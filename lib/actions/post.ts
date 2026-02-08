@@ -41,7 +41,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       title,
       video_url: videoUrl,
       author_id: user.id,
-      author_name: user.user_metadata?.full_name ?? user.email,
+      author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
     });
 
@@ -61,7 +61,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       type: "text",
       body,
       author_id: user.id,
-      author_name: user.user_metadata?.full_name ?? user.email,
+      author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
     });
 
