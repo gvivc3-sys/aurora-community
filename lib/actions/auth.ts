@@ -21,7 +21,7 @@ export async function signIn(previousState: unknown, formData: FormData) {
 export async function signUp(previousState: unknown, formData: FormData) {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: formData.get("email") as string,
     password: formData.get("password") as string,
     options: {
@@ -31,6 +31,12 @@ export async function signUp(previousState: unknown, formData: FormData) {
 
   if (error) {
     return { error: error.message };
+  }
+
+  // Supabase returns a user with empty identities when the email is already taken
+  // (security measure to avoid revealing which emails are registered)
+  if (data.user?.identities?.length === 0) {
+    return { error: "An account with this email already exists. Try logging in." };
   }
 
   redirect("/login?message=Check your email to confirm your account");
