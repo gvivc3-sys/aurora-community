@@ -1,14 +1,14 @@
 "use client";
 
 import { useActionState } from "react";
-import { deleteVideo } from "@/lib/actions/video";
+import { deletePost } from "@/lib/actions/post";
 
-export default function DeleteVideoButton({ videoId }: { videoId: string }) {
-  const [state, formAction, pending] = useActionState(deleteVideo, null);
+export default function DeletePostButton({ postId }: { postId: string }) {
+  const [state, formAction, pending] = useActionState(deletePost, null);
 
   return (
     <form action={formAction}>
-      <input type="hidden" name="videoId" value={videoId} />
+      <input type="hidden" name="postId" value={postId} />
       {state?.error && (
         <p className="text-xs text-red-600">{state.error}</p>
       )}

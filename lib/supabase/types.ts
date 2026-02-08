@@ -13,26 +13,59 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      videos: {
+      posts: {
         Row: {
           id: string;
-          title: string;
-          vimeo_url: string;
+          type: "video" | "text";
+          title: string | null;
+          body: string | null;
+          video_url: string | null;
           author_id: string;
+          author_name: string | null;
+          author_avatar_url: string | null;
           created_at: string;
         };
         Insert: {
           id?: string;
-          title: string;
-          vimeo_url: string;
+          type: "video" | "text";
+          title?: string | null;
+          body?: string | null;
+          video_url?: string | null;
           author_id: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
           created_at?: string;
         };
         Update: {
           id?: string;
-          title?: string;
-          vimeo_url?: string;
+          type?: "video" | "text";
+          title?: string | null;
+          body?: string | null;
+          video_url?: string | null;
           author_id?: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      likes: {
+        Row: {
+          id: string;
+          post_id: string;
+          user_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          post_id: string;
+          user_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          post_id?: string;
+          user_id?: string;
           created_at?: string;
         };
         Relationships: [];
