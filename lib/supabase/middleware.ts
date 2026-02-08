@@ -26,7 +26,9 @@ export async function updateSession(request: NextRequest) {
   );
 
   // Refresh the auth token — this is what keeps the session alive.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return supabaseResponse;
+  return { response: supabaseResponse, user };
 }
