@@ -1,0 +1,161 @@
+"use client";
+
+import { useActionState, useState } from "react";
+import { useRouter } from "next/navigation";
+import { type User } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/client";
+import { updateProfile } from "@/lib/actions/profile";
+import { getZodiacSign } from "@/lib/zodiac";
+import Avatar from "@/components/avatar";
+
+export default function ProfileForm({ user }: { user: User }) {
+  const router = useRouter();
+  const meta = user.user_metadata ?? {};
+  const [state, formAction, pending] = useActionState(updateProfile, null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(
+    meta.avatar_url ?? null,
+  );
+  const [uploading, setUploading] = useState(false);
+  const [birthday, setBirthday] = useState<string>(meta.birthday ?? "");
+
+  const zodiac = birthday ? getZodiacSign(new Date(birthday)) : null;
+
+  async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const supabase = createClient();
+    const ext = file.name.split(".").pop();
+    const path = `${user.id}/avatar.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("avatars")
+      .upload(path, file, { upsert: true });
+
+    if (uploadError) {
+      setUploading(false);
+      alert("Upload failed: " + uploadError.message);
+      return;
+    }
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("avatars").getPublicUrl(path);
+
+    // Append cache-buster so the browser fetches the new image
+    const freshUrl = `${publicUrl}?t=${Date.now()}`;
+
+    await supabase.auth.updateUser({ data: { avatar_url: freshUrl } });
+    setAvatarUrl(freshUrl);
+    setUploading(false);
+    router.refresh();
+  }
+
+  return (
+    <div className="min-h-[calc(100vh-3.5rem)] bg-zinc-50">
+      <div className="mx-auto max-w-xl px-6 py-16">
+        <h1 className="text-2xl font-semibold text-zinc-900">Your Profile</h1>
+        <p className="mt-1 text-sm text-zinc-500">{user.email}</p>
+
+        {/* Avatar card */}
+        <div className="mt-8 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-sm font-medium text-zinc-500">Profile picture</h2>
+          <div className="mt-4 flex items-center gap-5">
+            <Avatar
+              src={avatarUrl}
+              name={meta.username}
+              email={user.email}
+              size="lg"
+            />
+            <div>
+              <label className="cursor-pointer rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50">
+                {uploading ? "Uploading..." : "Change picture"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploading}
+                  onChange={handleAvatarUpload}
+                />
+              </label>
+              <p className="mt-2 text-xs text-zinc-400">
+                JPG, PNG, or GIF. Max 2 MB.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Info card */}
+        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-sm font-medium text-zinc-500">
+            Personal information
+          </h2>
+
+          {state && "error" in state && (
+            <p className="mt-3 rounded-md bg-red-50 p-3 text-sm text-red-600">
+              {state.error}
+            </p>
+          )}
+          {state && "success" in state && (
+            <p className="mt-3 rounded-md bg-green-50 p-3 text-sm text-green-700">
+              Profile updated.
+            </p>
+          )}
+
+          <form action={formAction} className="mt-4 space-y-4">
+            <div>
+              <label
+                htmlFor="username"
+                className="mb-1 block text-sm font-medium text-zinc-700"
+              >
+                Username
+              </label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                defaultValue={meta.username ?? ""}
+                className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                placeholder="Pick a display name"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="birthday"
+                className="mb-1 block text-sm font-medium text-zinc-700"
+              >
+                Birthday
+              </label>
+              <input
+                id="birthday"
+                name="birthday"
+                type="date"
+                value={birthday}
+                onChange={(e) => setBirthday(e.target.value)}
+                className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+              />
+            </div>
+
+            {zodiac && (
+              <div className="rounded-md bg-zinc-50 p-3 text-sm text-zinc-600">
+                <span className="text-lg">{zodiac.symbol}</span>{" "}
+                <strong>{zodiac.name}</strong> — {zodiac.element} sign (
+                {zodiac.dateRange})
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={pending}
+              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+            >
+              {pending ? "Saving..." : "Save changes"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

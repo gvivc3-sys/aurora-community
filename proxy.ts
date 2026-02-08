@@ -5,7 +5,12 @@ export async function proxy(request: NextRequest) {
   const { response, user } = await updateSession(request);
 
   // Redirect unauthenticated users away from protected routes
-  if (request.nextUrl.pathname.startsWith("/dashboard") && !user) {
+  const protectedPaths = ["/dashboard", "/profile"];
+  const isProtected = protectedPaths.some((p) =>
+    request.nextUrl.pathname.startsWith(p),
+  );
+
+  if (isProtected && !user) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
     return NextResponse.redirect(loginUrl);

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/lib/actions/auth";
+import Avatar from "@/components/avatar";
 
 export default async function Nav() {
   const supabase = await createClient();
@@ -21,7 +22,20 @@ export default async function Nav() {
         <div className="flex items-center gap-4">
           {user ? (
             <>
-              <span className="text-sm text-zinc-500">{user.email}</span>
+              <Link
+                href="/profile"
+                className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-zinc-100"
+              >
+                <Avatar
+                  src={user.user_metadata?.avatar_url}
+                  name={user.user_metadata?.username}
+                  email={user.email}
+                  size="sm"
+                />
+                <span className="text-sm text-zinc-700">
+                  {user.user_metadata?.username || user.email}
+                </span>
+              </Link>
               <form action={signOut}>
                 <button
                   type="submit"
