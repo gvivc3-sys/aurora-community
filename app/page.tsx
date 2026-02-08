@@ -23,7 +23,7 @@ export default async function Home() {
                 href="/dashboard"
                 className="rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
               >
-                Go to Dashboard
+                Go to Feed
               </Link>
               <Link
                 href="/profile"

@@ -13,7 +13,30 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      [_ in never]: never;
+      videos: {
+        Row: {
+          id: string;
+          title: string;
+          vimeo_url: string;
+          author_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          vimeo_url: string;
+          author_id: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          vimeo_url?: string;
+          author_id?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
