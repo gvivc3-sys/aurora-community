@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
@@ -176,18 +175,20 @@ export default async function DashboardPage({
                         />
                       </div>
                       {post.body && (
-                        <div className="prose prose-sm prose-zinc mt-3 max-w-none px-4">
-                          <Markdown>{post.body}</Markdown>
-                        </div>
+                        <div
+                          className="prose prose-sm prose-zinc mt-3 max-w-none px-4"
+                          dangerouslySetInnerHTML={{ __html: post.body }}
+                        />
                       )}
                     </>
                   )}
 
-                  {/* Text post body (rendered as markdown) */}
+                  {/* Text post body */}
                   {post.type === "text" && post.body && (
-                    <div className="prose prose-sm prose-zinc mt-3 max-w-none px-4">
-                      <Markdown>{post.body}</Markdown>
-                    </div>
+                    <div
+                      className="prose prose-sm prose-zinc mt-3 max-w-none px-4"
+                      dangerouslySetInnerHTML={{ __html: post.body }}
+                    />
                   )}
 
                   {/* Article post body (collapsible) */}

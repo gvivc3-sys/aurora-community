@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Markdown from "react-markdown";
 
 export default function ArticleBody({
   title,
@@ -22,7 +21,7 @@ export default function ArticleBody({
           expanded ? "max-h-[none]" : "max-h-32"
         }`}
       >
-        <Markdown>{body}</Markdown>
+        <div dangerouslySetInnerHTML={{ __html: body }} />
         {!expanded && (
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
         )}

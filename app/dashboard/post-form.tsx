@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 import { createPost } from "@/lib/actions/post";
+import RichTextEditor from "@/components/rich-text-editor";
 
 const postTypes = [
   { key: "video", label: "Video" },
@@ -22,6 +23,13 @@ export default function PostForm() {
   const [state, formAction, pending] = useActionState(createPost, null);
   const [type, setType] = useState<PostType>("video");
   const [tag, setTag] = useState<Tag>("love");
+  // Key to force re-mount of RichTextEditor when type changes
+  const [editorKey, setEditorKey] = useState(0);
+
+  function handleTypeChange(newType: PostType) {
+    setType(newType);
+    setEditorKey((k) => k + 1);
+  }
 
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
@@ -32,7 +40,7 @@ export default function PostForm() {
           <button
             key={pt.key}
             type="button"
-            onClick={() => setType(pt.key)}
+            onClick={() => handleTypeChange(pt.key)}
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               type === pt.key
                 ? "bg-zinc-900 text-white"
@@ -87,46 +95,33 @@ export default function PostForm() {
               />
             </div>
             <div>
-              <label
-                htmlFor="body"
-                className="block text-sm font-medium text-zinc-700"
-              >
+              <label className="mb-1 block text-sm font-medium text-zinc-700">
                 Description{" "}
                 <span className="font-normal text-zinc-400">(optional)</span>
               </label>
-              <textarea
-                id="body"
+              <RichTextEditor
+                key={editorKey}
                 name="body"
-                rows={2}
-                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
                 placeholder="Add a description..."
+                minHeight="3rem"
               />
-              <p className="mt-1 text-xs text-zinc-400">
-                Supports **bold**, *italic*, and [links](url).
-              </p>
             </div>
           </>
         )}
 
         {type === "text" && (
           <div>
-            <label
-              htmlFor="body"
-              className="block text-sm font-medium text-zinc-700"
-            >
+            <label className="mb-1 block text-sm font-medium text-zinc-700">
               What&apos;s on your mind?
             </label>
-            <textarea
-              id="body"
+            <RichTextEditor
+              key={editorKey}
               name="body"
-              required
-              maxLength={300}
-              rows={3}
-              className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
               placeholder="Write something..."
+              minHeight="4rem"
             />
             <p className="mt-1 text-xs text-zinc-400">
-              300 character limit. Supports **bold**, *italic*, and [links](url).
+              300 character limit for text posts.
             </p>
           </div>
         )}
@@ -151,24 +146,15 @@ export default function PostForm() {
               />
             </div>
             <div>
-              <label
-                htmlFor="body"
-                className="block text-sm font-medium text-zinc-700"
-              >
+              <label className="mb-1 block text-sm font-medium text-zinc-700">
                 Content
               </label>
-              <textarea
-                id="body"
+              <RichTextEditor
+                key={editorKey}
                 name="body"
-                required
-                rows={8}
-                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
                 placeholder="Write your article..."
+                minHeight="10rem"
               />
-              <p className="mt-1 text-xs text-zinc-400">
-                Supports **bold**, *italic*, [links](url), lists, and headings
-                (#, ##, ###).
-              </p>
             </div>
           </>
         )}

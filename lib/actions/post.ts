@@ -25,6 +25,16 @@ export async function createPost(previousState: unknown, formData: FormData) {
     return { error: "Please select a tag." };
   }
 
+  // Tiptap outputs "<p></p>" for empty content
+  function isEmptyHtml(html: string) {
+    const text = html.replace(/<[^>]*>/g, "").trim();
+    return text.length === 0;
+  }
+
+  function stripTags(html: string) {
+    return html.replace(/<[^>]*>/g, "");
+  }
+
   if (type === "video") {
     const videoUrl = formData.get("video_url") as string;
     const video = extractVideoId(videoUrl || "");
@@ -32,7 +42,8 @@ export async function createPost(previousState: unknown, formData: FormData) {
       return { error: "Please enter a valid YouTube or Vimeo URL." };
     }
 
-    const description = (formData.get("body") as string)?.trim() || null;
+    const rawBody = (formData.get("body") as string)?.trim() || "";
+    const description = isEmptyHtml(rawBody) ? null : rawBody;
 
     const { error } = await supabase.from("posts").insert({
       type: "video",
@@ -49,10 +60,10 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
   } else if (type === "text") {
     const body = (formData.get("body") as string)?.trim();
-    if (!body) {
+    if (!body || isEmptyHtml(body)) {
       return { error: "Post body is required." };
     }
-    if (body.length > 300) {
+    if (stripTags(body).length > 300) {
       return {
         error:
           "Text posts are limited to 300 characters. Try using an Article post for longer content.",
@@ -73,7 +84,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
   } else if (type === "article") {
     const body = (formData.get("body") as string)?.trim();
-    if (!body) {
+    if (!body || isEmptyHtml(body)) {
       return { error: "Article body is required." };
     }
 
