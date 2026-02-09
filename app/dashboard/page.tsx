@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Markdown from "react-markdown";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
@@ -6,6 +7,7 @@ import Avatar from "@/components/avatar";
 import PostForm from "./post-form";
 import DeletePostButton from "./delete-post-button";
 import LikeButton from "./like-button";
+import ArticleBody from "./article-body";
 
 function timeAgo(date: string): string {
   const seconds = Math.floor(
@@ -61,7 +63,7 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-zinc-50">
       <div className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="text-2xl font-semibold text-zinc-900">Feed</h1>
+        <h1 className="text-2xl font-semibold text-zinc-900">Posts</h1>
         <p className="mt-2 text-zinc-500">
           Latest posts from the community.
         </p>
@@ -102,39 +104,44 @@ export default async function DashboardPage() {
                     </div>
                   </div>
 
-                  {/* Video embed */}
+                  {/* Video embed + optional description */}
                   {post.type === "video" && video && (
-                    <div className="mt-3 aspect-video">
-                      <iframe
-                        src={getEmbedUrl(video.provider, video.id)}
-                        className="h-full w-full"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  )}
-
-                  {/* Text body */}
-                  {post.type === "text" && post.body && (
-                    <p className="mt-3 whitespace-pre-wrap px-4 text-zinc-800">
-                      {post.body}
-                    </p>
-                  )}
-
-                  {/* Footer: title (for video), like, delete */}
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <LikeButton
-                        postId={post.id}
-                        likeCount={likeCounts[post.id] ?? 0}
-                        likedByUser={!!userLiked[post.id]}
-                      />
-                      {post.type === "video" && post.title && (
-                        <h3 className="text-sm font-medium text-zinc-900">
-                          {post.title}
-                        </h3>
+                    <>
+                      <div className="mt-3 aspect-video">
+                        <iframe
+                          src={getEmbedUrl(video.provider, video.id)}
+                          className="h-full w-full"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                      {post.body && (
+                        <div className="prose prose-sm prose-zinc mt-3 max-w-none px-4">
+                          <Markdown>{post.body}</Markdown>
+                        </div>
                       )}
+                    </>
+                  )}
+
+                  {/* Text post body (rendered as markdown) */}
+                  {post.type === "text" && post.body && (
+                    <div className="prose prose-sm prose-zinc mt-3 max-w-none px-4">
+                      <Markdown>{post.body}</Markdown>
                     </div>
+                  )}
+
+                  {/* Article post body (collapsible) */}
+                  {post.type === "article" && post.body && (
+                    <ArticleBody title={post.title} body={post.body} />
+                  )}
+
+                  {/* Footer: like + delete */}
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <LikeButton
+                      postId={post.id}
+                      likeCount={likeCounts[post.id] ?? 0}
+                      likedByUser={!!userLiked[post.id]}
+                    />
                     {admin && <DeletePostButton postId={post.id} />}
                   </div>
                 </div>

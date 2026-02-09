@@ -16,7 +16,7 @@ export interface Database {
       posts: {
         Row: {
           id: string;
-          type: "video" | "text";
+          type: "video" | "text" | "article";
           title: string | null;
           body: string | null;
           video_url: string | null;
@@ -27,7 +27,7 @@ export interface Database {
         };
         Insert: {
           id?: string;
-          type: "video" | "text";
+          type: "video" | "text" | "article";
           title?: string | null;
           body?: string | null;
           video_url?: string | null;
@@ -38,7 +38,7 @@ export interface Database {
         };
         Update: {
           id?: string;
-          type?: "video" | "text";
+          type?: "video" | "text" | "article";
           title?: string | null;
           body?: string | null;
           video_url?: string | null;

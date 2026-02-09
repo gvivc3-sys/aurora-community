@@ -3,37 +3,37 @@
 import { useActionState, useState } from "react";
 import { createPost } from "@/lib/actions/post";
 
+const postTypes = [
+  { key: "video", label: "Video" },
+  { key: "text", label: "Text" },
+  { key: "article", label: "Article" },
+] as const;
+
+type PostType = (typeof postTypes)[number]["key"];
+
 export default function PostForm() {
   const [state, formAction, pending] = useActionState(createPost, null);
-  const [type, setType] = useState<"video" | "text">("video");
+  const [type, setType] = useState<PostType>("video");
 
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-zinc-900">Create a Post</h2>
 
       <div className="mt-4 flex gap-2">
-        <button
-          type="button"
-          onClick={() => setType("video")}
-          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-            type === "video"
-              ? "bg-zinc-900 text-white"
-              : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
-          }`}
-        >
-          Video
-        </button>
-        <button
-          type="button"
-          onClick={() => setType("text")}
-          className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-            type === "text"
-              ? "bg-zinc-900 text-white"
-              : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
-          }`}
-        >
-          Text
-        </button>
+        {postTypes.map((pt) => (
+          <button
+            key={pt.key}
+            type="button"
+            onClick={() => setType(pt.key)}
+            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+              type === pt.key
+                ? "bg-zinc-900 text-white"
+                : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+            }`}
+          >
+            {pt.label}
+          </button>
+        ))}
       </div>
 
       <form action={formAction} className="mt-4 space-y-4">
@@ -41,23 +41,6 @@ export default function PostForm() {
 
         {type === "video" && (
           <>
-            <div>
-              <label
-                htmlFor="title"
-                className="block text-sm font-medium text-zinc-700"
-              >
-                Title
-              </label>
-              <input
-                id="title"
-                name="title"
-                type="text"
-                required
-                maxLength={200}
-                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
-                placeholder="Video title"
-              />
-            </div>
             <div>
               <label
                 htmlFor="video_url"
@@ -74,6 +57,25 @@ export default function PostForm() {
                 placeholder="YouTube or Vimeo URL"
               />
             </div>
+            <div>
+              <label
+                htmlFor="body"
+                className="block text-sm font-medium text-zinc-700"
+              >
+                Description{" "}
+                <span className="font-normal text-zinc-400">(optional)</span>
+              </label>
+              <textarea
+                id="body"
+                name="body"
+                rows={2}
+                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                placeholder="Add a description..."
+              />
+              <p className="mt-1 text-xs text-zinc-400">
+                Supports **bold**, *italic*, and [links](url).
+              </p>
+            </div>
           </>
         )}
 
@@ -89,12 +91,57 @@ export default function PostForm() {
               id="body"
               name="body"
               required
-              maxLength={500}
+              maxLength={300}
               rows={3}
               className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
               placeholder="Write something..."
             />
+            <p className="mt-1 text-xs text-zinc-400">
+              300 character limit. Supports **bold**, *italic*, and [links](url).
+            </p>
           </div>
+        )}
+
+        {type === "article" && (
+          <>
+            <div>
+              <label
+                htmlFor="title"
+                className="block text-sm font-medium text-zinc-700"
+              >
+                Title{" "}
+                <span className="font-normal text-zinc-400">(optional)</span>
+              </label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                maxLength={200}
+                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                placeholder="Article title"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="body"
+                className="block text-sm font-medium text-zinc-700"
+              >
+                Content
+              </label>
+              <textarea
+                id="body"
+                name="body"
+                required
+                rows={8}
+                className="mt-1 block w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                placeholder="Write your article..."
+              />
+              <p className="mt-1 text-xs text-zinc-400">
+                Supports **bold**, *italic*, [links](url), lists, and headings
+                (#, ##, ###).
+              </p>
+            </div>
+          </>
         )}
 
         {state?.error && (

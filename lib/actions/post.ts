@@ -22,23 +22,17 @@ export async function createPost(previousState: unknown, formData: FormData) {
   const type = formData.get("type") as string;
 
   if (type === "video") {
-    const title = (formData.get("title") as string)?.trim();
-    if (!title) {
-      return { error: "Title is required." };
-    }
-    if (title.length > 200) {
-      return { error: "Title must be 200 characters or less." };
-    }
-
     const videoUrl = formData.get("video_url") as string;
     const video = extractVideoId(videoUrl || "");
     if (!video) {
       return { error: "Please enter a valid YouTube or Vimeo URL." };
     }
 
+    const description = (formData.get("body") as string)?.trim() || null;
+
     const { error } = await supabase.from("posts").insert({
       type: "video",
-      title,
+      body: description,
       video_url: videoUrl,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
@@ -53,12 +47,35 @@ export async function createPost(previousState: unknown, formData: FormData) {
     if (!body) {
       return { error: "Post body is required." };
     }
-    if (body.length > 500) {
-      return { error: "Post body must be 500 characters or less." };
+    if (body.length > 300) {
+      return {
+        error:
+          "Text posts are limited to 300 characters. Try using an Article post for longer content.",
+      };
     }
 
     const { error } = await supabase.from("posts").insert({
       type: "text",
+      body,
+      author_id: user.id,
+      author_name: user.user_metadata?.username ?? user.email,
+      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+    });
+
+    if (error) {
+      return { error: error.message };
+    }
+  } else if (type === "article") {
+    const body = (formData.get("body") as string)?.trim();
+    if (!body) {
+      return { error: "Article body is required." };
+    }
+
+    const title = (formData.get("title") as string)?.trim() || null;
+
+    const { error } = await supabase.from("posts").insert({
+      type: "article",
+      title,
       body,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
