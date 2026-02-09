@@ -5,11 +5,9 @@ import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
 import PostForm from "./post-form";
-import DeletePostButton from "./delete-post-button";
-import LikeButton from "./like-button";
 import ArticleBody from "./article-body";
 import FeedFilters from "./feed-filters";
-import CommentSection from "./comment-section";
+import PostActions from "./post-actions";
 
 const PAGE_SIZE = 20;
 
@@ -231,27 +229,17 @@ export default async function DashboardPage({
                   {/* Divider */}
                   <div className="mx-4 mt-3 border-t border-zinc-100" />
 
-                  {/* Action bar: like + comment toggle + delete */}
-                  <div className="flex items-center gap-4 px-4 py-3">
-                    <LikeButton
-                      postId={post.id}
-                      likeCount={likeCounts[post.id] ?? 0}
-                      likedByUser={!!userLiked[post.id]}
-                    />
-                    <CommentSection
-                      postId={post.id}
-                      comments={commentsByPost[post.id] ?? []}
-                      commentCount={commentCounts[post.id] ?? 0}
-                      commentsEnabled={post.comments_enabled}
-                      currentUserId={user.id}
-                      isAdmin={admin}
-                    />
-                    {admin && (
-                      <div className="ml-auto">
-                        <DeletePostButton postId={post.id} />
-                      </div>
-                    )}
-                  </div>
+                  {/* Actions + comments */}
+                  <PostActions
+                    postId={post.id}
+                    likeCount={likeCounts[post.id] ?? 0}
+                    likedByUser={!!userLiked[post.id]}
+                    comments={commentsByPost[post.id] ?? []}
+                    commentCount={commentCounts[post.id] ?? 0}
+                    commentsEnabled={post.comments_enabled}
+                    currentUserId={user.id}
+                    isAdmin={admin}
+                  />
                 </div>
               );
             })
