@@ -131,10 +131,9 @@ export default async function DashboardPage({
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-zinc-50">
-      <div className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="text-2xl font-semibold text-zinc-900">Posts</h1>
-        <p className="mt-2 text-zinc-500">
-          Latest posts from the community.
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-16">
+        <p className="text-center font-mono text-sm text-zinc-500">
+          welcome {user.user_metadata?.username || user.email}
         </p>
 
         {admin && (
