@@ -243,13 +243,6 @@ export default function PostActions({
                 >
                   {"\uD83D\uDE0A"}
                 </button>
-                <button
-                  type="submit"
-                  disabled={addPending}
-                  className="shrink-0 rounded-md bg-warm-900 px-3 py-1.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
-                >
-                  {addPending ? "..." : "Post"}
-                </button>
               </div>
               {showEmojis && (
                 <div className="flex flex-wrap gap-1 border-t border-warm-200 bg-warm-50 px-2 py-2">
@@ -285,6 +278,13 @@ export default function PostActions({
                 </div>
               )}
             </div>
+            <button
+              type="submit"
+              disabled={addPending}
+              className="mt-3 w-full rounded-full bg-warm-900 px-4 py-2 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
+            >
+              {addPending ? "Posting..." : "Post Comment"}
+            </button>
           </form>
           {addState?.error && (
             <p className="mt-1 text-xs text-red-600">{addState.error}</p>
