@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { type User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 import { updateProfile } from "@/lib/actions/profile";
+import { createPortalSession } from "@/lib/actions/stripe";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
 
@@ -152,6 +153,22 @@ export default function ProfileForm({ user }: { user: User }) {
               className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
+            </button>
+          </form>
+        </div>
+        {/* Subscription card */}
+        <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <h2 className="text-sm font-medium text-warm-500">Subscription</h2>
+          <p className="mt-2 text-sm text-warm-700">
+            Manage your billing, update payment method, or cancel your
+            membership through the Stripe customer portal.
+          </p>
+          <form action={createPortalSession} className="mt-4">
+            <button
+              type="submit"
+              className="rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+            >
+              Manage Subscription
             </button>
           </form>
         </div>

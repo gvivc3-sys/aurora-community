@@ -76,6 +76,42 @@ export interface Database {
         };
         Relationships: [];
       };
+      subscriptions: {
+        Row: {
+          id: string;
+          user_id: string;
+          stripe_customer_id: string;
+          stripe_subscription_id: string | null;
+          status: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
+          current_period_end: string | null;
+          telegram_user_id: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          stripe_customer_id: string;
+          stripe_subscription_id?: string | null;
+          status?: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
+          current_period_end?: string | null;
+          telegram_user_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          stripe_customer_id?: string;
+          stripe_subscription_id?: string | null;
+          status?: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
+          current_period_end?: string | null;
+          telegram_user_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       comments: {
         Row: {
           id: string;
