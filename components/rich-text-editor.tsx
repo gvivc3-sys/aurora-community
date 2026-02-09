@@ -4,8 +4,9 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useEffect, useRef, useState } from "react";
-import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
+import { useState } from "react";
+
+const EMOJIS = ["❤️", "😊", "😂", "🔥", "👏", "🙌", "✨", "💯", "🎉", "👀", "💪", "🙏"];
 
 type RichTextEditorProps = {
   name: string;
@@ -40,54 +41,13 @@ function ToolbarButton({
   );
 }
 
-function EmojiButton({ onSelect }: { onSelect: (emoji: string) => void }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    if (open) document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [open]);
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        title="Emoji"
-        className="rounded px-2 py-1 text-sm text-zinc-600 transition-colors hover:bg-zinc-200"
-      >
-        <span className="text-base leading-none">😊</span>
-      </button>
-      {open && (
-        <div className="absolute left-0 top-full z-50 mt-1">
-          <EmojiPicker
-            onEmojiClick={(data: EmojiClickData) => {
-              onSelect(data.emoji);
-              setOpen(false);
-            }}
-            width={320}
-            height={360}
-            skinTonesDisabled
-            searchPlaceHolder="Search emoji..."
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function RichTextEditor({
   name,
   placeholder,
   minHeight = "5rem",
 }: RichTextEditorProps) {
   const [html, setHtml] = useState("");
+  const [showEmojis, setShowEmojis] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -180,15 +140,37 @@ export default function RichTextEditor({
 
         <div className="mx-1 h-5 w-px bg-zinc-300" />
 
-        <EmojiButton
-          onSelect={(emoji) => editor.chain().focus().insertContent(emoji).run()}
-        />
+        <ToolbarButton
+          active={showEmojis}
+          onClick={() => setShowEmojis(!showEmojis)}
+          title="Emoji"
+        >
+          <span className="text-base leading-none">😊</span>
+        </ToolbarButton>
       </div>
 
       {/* Editor area */}
       <div className="px-3 py-2">
         <EditorContent editor={editor} />
       </div>
+
+      {/* Emoji tray — inside the frame, at the bottom */}
+      {showEmojis && (
+        <div className="flex flex-wrap gap-1 border-t border-zinc-200 bg-zinc-50 px-3 py-2">
+          {EMOJIS.map((emoji) => (
+            <button
+              key={emoji}
+              type="button"
+              onClick={() => {
+                editor.chain().focus().insertContent(emoji).run();
+              }}
+              className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-zinc-200"
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Hidden input synced via onUpdate */}
       <input type="hidden" name={name} value={html} />

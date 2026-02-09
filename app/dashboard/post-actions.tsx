@@ -3,7 +3,8 @@
 import { useActionState, useRef, useState } from "react";
 import { addComment, deleteComment, deletePost, toggleLike } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
-import EmojiPopover from "@/components/emoji-popover";
+
+const EMOJIS = ["❤️", "😊", "😂", "🔥", "👏", "🙌", "✨", "💯", "🎉", "👀", "💪", "🙏"];
 
 type Comment = {
   id: string;
@@ -66,6 +67,7 @@ export default function PostActions({
   const [addState, addAction, addPending] = useActionState(addComment, null);
   const formRef = useRef<HTMLFormElement>(null);
   const commentInputRef = useRef<HTMLInputElement>(null);
+  const [showEmojis, setShowEmojis] = useState(false);
 
   // Delete comment
   const [, deleteCommentAction, deleteCommentPending] = useActionState(deleteComment, null);
@@ -217,53 +219,71 @@ export default function PostActions({
             action={async (formData) => {
               await addAction(formData);
               formRef.current?.reset();
+              setShowEmojis(false);
             }}
             className="mt-4"
           >
             <input type="hidden" name="postId" value={postId} />
-            <div className="flex w-full items-center gap-2 rounded-lg border border-zinc-300 bg-white px-1 focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
-              <input
-                ref={commentInputRef}
-                name="body"
-                type="text"
-                required
-                maxLength={500}
-                placeholder="Write a comment..."
-                className="min-w-0 flex-1 border-0 bg-transparent px-2 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-0"
-              />
-              <EmojiPopover
-                onSelect={(emoji) => {
-                  const input = commentInputRef.current;
-                  if (input) {
-                    const start = input.selectionStart ?? input.value.length;
-                    const end = input.selectionEnd ?? input.value.length;
-                    const nativeInputValueSetter =
-                      Object.getOwnPropertyDescriptor(
-                        HTMLInputElement.prototype,
-                        "value",
-                      )?.set;
-                    nativeInputValueSetter?.call(
-                      input,
-                      input.value.slice(0, start) +
-                        emoji +
-                        input.value.slice(end),
-                    );
-                    input.dispatchEvent(new Event("input", { bubbles: true }));
-                    input.focus();
-                    input.setSelectionRange(
-                      start + emoji.length,
-                      start + emoji.length,
-                    );
-                  }
-                }}
-              />
-              <button
-                type="submit"
-                disabled={addPending}
-                className="shrink-0 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
-              >
-                {addPending ? "..." : "Post"}
-              </button>
+            <div className="overflow-hidden rounded-lg border border-zinc-300 focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
+              <div className="flex w-full items-center gap-1 px-2">
+                <input
+                  ref={commentInputRef}
+                  name="body"
+                  type="text"
+                  required
+                  maxLength={500}
+                  placeholder="Write a comment..."
+                  className="min-w-0 flex-1 border-0 bg-transparent px-1 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-0"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowEmojis(!showEmojis)}
+                  className={`rounded p-1 text-base transition-colors ${showEmojis ? "bg-zinc-200" : "hover:bg-zinc-100"}`}
+                  title="Emoji"
+                >
+                  😊
+                </button>
+                <button
+                  type="submit"
+                  disabled={addPending}
+                  className="shrink-0 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+                >
+                  {addPending ? "..." : "Post"}
+                </button>
+              </div>
+              {showEmojis && (
+                <div className="flex flex-wrap gap-1 border-t border-zinc-200 bg-zinc-50 px-2 py-2">
+                  {EMOJIS.map((emoji) => (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => {
+                        const input = commentInputRef.current;
+                        if (input) {
+                          const pos = input.selectionStart ?? input.value.length;
+                          const before = input.value.slice(0, pos);
+                          const after = input.value.slice(pos);
+                          const nativeSetter =
+                            Object.getOwnPropertyDescriptor(
+                              HTMLInputElement.prototype,
+                              "value",
+                            )?.set;
+                          nativeSetter?.call(input, before + emoji + after);
+                          input.dispatchEvent(
+                            new Event("input", { bubbles: true }),
+                          );
+                          input.focus();
+                          const newPos = pos + emoji.length;
+                          input.setSelectionRange(newPos, newPos);
+                        }
+                      }}
+                      className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-zinc-200"
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </form>
           {addState?.error && (

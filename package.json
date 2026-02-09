@@ -17,7 +17,6 @@
     "@tiptap/extension-underline": "^3.19.0",
     "@tiptap/react": "^3.19.0",
     "@tiptap/starter-kit": "^3.19.0",
-    "emoji-picker-react": "^4.18.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
