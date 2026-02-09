@@ -24,6 +24,7 @@ export interface Database {
           author_name: string | null;
           author_avatar_url: string | null;
           tag: "love" | "health" | "magic";
+          comments_enabled: boolean;
           created_at: string;
         };
         Insert: {
@@ -36,6 +37,7 @@ export interface Database {
           author_name?: string | null;
           author_avatar_url?: string | null;
           tag: "love" | "health" | "magic";
+          comments_enabled?: boolean;
           created_at?: string;
         };
         Update: {
@@ -48,6 +50,7 @@ export interface Database {
           author_name?: string | null;
           author_avatar_url?: string | null;
           tag?: "love" | "health" | "magic";
+          comments_enabled?: boolean;
           created_at?: string;
         };
         Relationships: [];
@@ -69,6 +72,36 @@ export interface Database {
           id?: string;
           post_id?: string;
           user_id?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      comments: {
+        Row: {
+          id: string;
+          post_id: string;
+          user_id: string;
+          author_name: string | null;
+          author_avatar_url: string | null;
+          body: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          post_id: string;
+          user_id: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          body: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          post_id?: string;
+          user_id?: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          body?: string;
           created_at?: string;
         };
         Relationships: [];

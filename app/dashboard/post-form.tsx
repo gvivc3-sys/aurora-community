@@ -159,6 +159,16 @@ export default function PostForm() {
           </>
         )}
 
+        <label className="flex items-center gap-2 text-sm text-zinc-700">
+          <input
+            type="checkbox"
+            name="comments_enabled"
+            defaultChecked
+            className="rounded border-zinc-300"
+          />
+          Allow comments
+        </label>
+
         {state?.error && (
           <p className="text-sm text-red-600">{state.error}</p>
         )}

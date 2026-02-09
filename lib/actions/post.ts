@@ -25,6 +25,8 @@ export async function createPost(previousState: unknown, formData: FormData) {
     return { error: "Please select a tag." };
   }
 
+  const commentsEnabled = formData.get("comments_enabled") === "on";
+
   // Tiptap outputs "<p></p>" for empty content
   function isEmptyHtml(html: string) {
     const text = html.replace(/<[^>]*>/g, "").trim();
@@ -53,6 +55,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
+      comments_enabled: commentsEnabled,
     });
 
     if (error) {
@@ -77,6 +80,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
+      comments_enabled: commentsEnabled,
     });
 
     if (error) {
@@ -98,6 +102,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
+      comments_enabled: commentsEnabled,
     });
 
     if (error) {
@@ -188,4 +193,74 @@ export async function toggleLike(previousState: unknown, formData: FormData) {
     revalidatePath("/dashboard");
     return { liked: true };
   }
+}
+
+export async function addComment(previousState: unknown, formData: FormData) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  const postId = formData.get("postId") as string;
+  if (!postId) {
+    return { error: "Post ID is required." };
+  }
+
+  const body = (formData.get("body") as string)?.trim();
+  if (!body) {
+    return { error: "Comment cannot be empty." };
+  }
+  if (body.length > 500) {
+    return { error: "Comment must be 500 characters or less." };
+  }
+
+  const { error } = await supabase.from("comments").insert({
+    post_id: postId,
+    user_id: user.id,
+    author_name: user.user_metadata?.username ?? user.email,
+    author_avatar_url: user.user_metadata?.avatar_url ?? null,
+    body,
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
+export async function deleteComment(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  const commentId = formData.get("commentId") as string;
+  if (!commentId) {
+    return { error: "Comment ID is required." };
+  }
+
+  const { error } = await supabase
+    .from("comments")
+    .delete()
+    .eq("id", commentId);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath("/dashboard");
+  return { success: true };
 }

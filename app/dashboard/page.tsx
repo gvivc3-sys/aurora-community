@@ -9,6 +9,7 @@ import DeletePostButton from "./delete-post-button";
 import LikeButton from "./like-button";
 import ArticleBody from "./article-body";
 import FeedFilters from "./feed-filters";
+import CommentSection from "./comment-section";
 
 const PAGE_SIZE = 20;
 
@@ -16,6 +17,12 @@ const tagColors: Record<string, string> = {
   love: "bg-pink-100 text-pink-700",
   health: "bg-green-100 text-green-700",
   magic: "bg-purple-100 text-purple-700",
+};
+
+const tagBorderColors: Record<string, string> = {
+  love: "border-pink-200",
+  health: "border-green-200",
+  magic: "border-purple-200",
 };
 
 function timeAgo(date: string): string {
@@ -86,6 +93,15 @@ export default async function DashboardPage({
         .in("post_id", postIds)
     : { data: [] };
 
+  // Fetch all comments for these posts
+  const { data: allComments } = postIds.length
+    ? await supabase
+        .from("comments")
+        .select("*")
+        .in("post_id", postIds)
+        .order("created_at", { ascending: true })
+    : { data: [] };
+
   // Compute like counts and user-liked per post
   const likeCounts: Record<string, number> = {};
   const userLiked: Record<string, boolean> = {};
@@ -94,6 +110,19 @@ export default async function DashboardPage({
     if (like.user_id === user.id) {
       userLiked[like.post_id] = true;
     }
+  }
+
+  // Group comments by post
+  type Comment = NonNullable<typeof allComments>[number];
+  const commentsByPost: Record<string, Comment[]> = {};
+  const commentCounts: Record<string, number> = {};
+  for (const comment of allComments ?? []) {
+    if (!commentsByPost[comment.post_id]) {
+      commentsByPost[comment.post_id] = [];
+    }
+    commentsByPost[comment.post_id].push(comment);
+    commentCounts[comment.post_id] =
+      (commentCounts[comment.post_id] ?? 0) + 1;
   }
 
   const admin = isAdmin(user);
@@ -134,10 +163,13 @@ export default async function DashboardPage({
                   ? extractVideoId(post.video_url)
                   : null;
 
+              const borderColor =
+                tagBorderColors[post.tag] ?? "border-zinc-200";
+
               return (
                 <div
                   key={post.id}
-                  className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm"
+                  className={`overflow-hidden rounded-lg border-2 bg-white shadow-sm ${borderColor}`}
                 >
                   {/* Header: author info + tag */}
                   <div className="flex items-center justify-between px-4 pt-4">
@@ -196,14 +228,29 @@ export default async function DashboardPage({
                     <ArticleBody title={post.title} body={post.body} />
                   )}
 
-                  {/* Footer: like + delete */}
-                  <div className="flex items-center justify-between px-4 py-3">
+                  {/* Divider */}
+                  <div className="mx-4 mt-3 border-t border-zinc-100" />
+
+                  {/* Footer: like + comments + delete */}
+                  <div className="flex flex-wrap items-center gap-4 px-4 py-3">
                     <LikeButton
                       postId={post.id}
                       likeCount={likeCounts[post.id] ?? 0}
                       likedByUser={!!userLiked[post.id]}
                     />
-                    {admin && <DeletePostButton postId={post.id} />}
+                    <CommentSection
+                      postId={post.id}
+                      comments={commentsByPost[post.id] ?? []}
+                      commentCount={commentCounts[post.id] ?? 0}
+                      commentsEnabled={post.comments_enabled}
+                      currentUserId={user.id}
+                      isAdmin={admin}
+                    />
+                    {admin && (
+                      <div className="ml-auto">
+                        <DeletePostButton postId={post.id} />
+                      </div>
+                    )}
                   </div>
                 </div>
               );

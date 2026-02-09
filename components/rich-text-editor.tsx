@@ -3,6 +3,8 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
+import Placeholder from "@tiptap/extension-placeholder";
+import { useState } from "react";
 
 type RichTextEditorProps = {
   name: string;
@@ -42,21 +44,30 @@ export default function RichTextEditor({
   placeholder,
   minHeight = "5rem",
 }: RichTextEditorProps) {
+  const [html, setHtml] = useState("");
+
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [
+      StarterKit,
+      Underline,
+      Placeholder.configure({ placeholder: placeholder ?? "" }),
+    ],
     editorProps: {
       attributes: {
-        class: `prose prose-sm prose-zinc max-w-none focus:outline-none`,
+        class: "prose prose-sm prose-zinc max-w-none focus:outline-none",
         style: `min-height: ${minHeight}`,
       },
     },
     content: "",
+    onUpdate: ({ editor: e }) => {
+      setHtml(e.getHTML());
+    },
   });
 
   if (!editor) return null;
 
   return (
-    <div className="rounded-md border border-zinc-300 shadow-sm focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
+    <div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
       {/* Toolbar */}
       <div className="flex flex-wrap gap-0.5 border-b border-zinc-200 bg-zinc-50 px-2 py-1.5">
         <ToolbarButton
@@ -127,16 +138,11 @@ export default function RichTextEditor({
 
       {/* Editor area */}
       <div className="px-3 py-2">
-        {editor.isEmpty && placeholder && (
-          <p className="pointer-events-none absolute text-sm text-zinc-400">
-            {placeholder}
-          </p>
-        )}
         <EditorContent editor={editor} />
       </div>
 
-      {/* Hidden input to submit the HTML */}
-      <input type="hidden" name={name} value={editor.getHTML()} />
+      {/* Hidden input synced via onUpdate */}
+      <input type="hidden" name={name} value={html} />
     </div>
   );
 }
