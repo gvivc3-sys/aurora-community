@@ -23,6 +23,7 @@ export interface Database {
           author_id: string;
           author_name: string | null;
           author_avatar_url: string | null;
+          tag: "love" | "health" | "magic";
           created_at: string;
         };
         Insert: {
@@ -34,6 +35,7 @@ export interface Database {
           author_id: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
+          tag: "love" | "health" | "magic";
           created_at?: string;
         };
         Update: {
@@ -45,6 +47,7 @@ export interface Database {
           author_id?: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
+          tag?: "love" | "health" | "magic";
           created_at?: string;
         };
         Relationships: [];

@@ -20,6 +20,10 @@ export async function createPost(previousState: unknown, formData: FormData) {
   }
 
   const type = formData.get("type") as string;
+  const tag = formData.get("tag") as string;
+  if (!tag || !["love", "health", "magic"].includes(tag)) {
+    return { error: "Please select a tag." };
+  }
 
   if (type === "video") {
     const videoUrl = formData.get("video_url") as string;
@@ -37,6 +41,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      tag: tag as "love" | "health" | "magic",
     });
 
     if (error) {
@@ -60,6 +65,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      tag: tag as "love" | "health" | "magic",
     });
 
     if (error) {
@@ -80,6 +86,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      tag: tag as "love" | "health" | "magic",
     });
 
     if (error) {

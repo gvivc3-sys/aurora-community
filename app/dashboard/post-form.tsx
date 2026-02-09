@@ -9,11 +9,19 @@ const postTypes = [
   { key: "article", label: "Article" },
 ] as const;
 
+const tags = [
+  { key: "love", label: "Love" },
+  { key: "health", label: "Health" },
+  { key: "magic", label: "Magic" },
+] as const;
+
 type PostType = (typeof postTypes)[number]["key"];
+type Tag = (typeof tags)[number]["key"];
 
 export default function PostForm() {
   const [state, formAction, pending] = useActionState(createPost, null);
   const [type, setType] = useState<PostType>("video");
+  const [tag, setTag] = useState<Tag>("love");
 
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
@@ -38,6 +46,27 @@ export default function PostForm() {
 
       <form action={formAction} className="mt-4 space-y-4">
         <input type="hidden" name="type" value={type} />
+        <input type="hidden" name="tag" value={tag} />
+
+        <div>
+          <label className="block text-sm font-medium text-zinc-700">Tag</label>
+          <div className="mt-1 flex gap-2">
+            {tags.map((t) => (
+              <button
+                key={t.key}
+                type="button"
+                onClick={() => setTag(t.key)}
+                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                  tag === t.key
+                    ? "bg-zinc-900 text-white"
+                    : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {type === "video" && (
           <>
