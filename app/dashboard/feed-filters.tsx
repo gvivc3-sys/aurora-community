@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useTransition } from "react";
 
 const tags = [
   { key: "all", label: "All" },
@@ -13,6 +13,7 @@ const tags = [
 export default function FeedFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
 
   const currentTag = searchParams.get("tag") ?? "all";
   const currentSort = searchParams.get("sort") ?? "newest";
@@ -30,13 +31,18 @@ export default function FeedFilters() {
       }
       // Reset to page 1 when changing filters
       params.delete("page");
-      router.push(`/dashboard?${params.toString()}`);
+      const qs = params.toString();
+      startTransition(() => {
+        router.replace(`/dashboard${qs ? `?${qs}` : ""}`, { scroll: false });
+      });
     },
-    [router, searchParams],
+    [router, searchParams, startTransition],
   );
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3">
+    <div
+      className={`flex flex-wrap items-center justify-between gap-3 transition-opacity ${isPending ? "opacity-60" : ""}`}
+    >
       <div className="flex gap-2">
         {tags.map((t) => (
           <button

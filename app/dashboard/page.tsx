@@ -231,8 +231,8 @@ export default async function DashboardPage({
                   {/* Divider */}
                   <div className="mx-4 mt-3 border-t border-zinc-100" />
 
-                  {/* Footer: like + comments + delete */}
-                  <div className="flex flex-wrap items-center gap-4 px-4 py-3">
+                  {/* Action bar: like + comment toggle + delete */}
+                  <div className="flex items-center gap-4 px-4 py-3">
                     <LikeButton
                       postId={post.id}
                       likeCount={likeCounts[post.id] ?? 0}
