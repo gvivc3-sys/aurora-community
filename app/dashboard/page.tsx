@@ -11,16 +11,10 @@ import PostActions from "./post-actions";
 
 const PAGE_SIZE = 20;
 
-const tagColors: Record<string, string> = {
-  love: "bg-pink-100 text-pink-700",
-  health: "bg-green-100 text-green-700",
-  magic: "bg-purple-100 text-purple-700",
-};
-
-const tagBorderColors: Record<string, string> = {
-  love: "border-pink-200",
-  health: "border-green-200",
-  magic: "border-purple-200",
+const tagStyles: Record<string, { badge: string; emoji: string }> = {
+  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
+  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
+  magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
 };
 
 function timeAgo(date: string): string {
@@ -161,13 +155,12 @@ export default async function DashboardPage({
                   ? extractVideoId(post.video_url)
                   : null;
 
-              const borderColor =
-                tagBorderColors[post.tag] ?? "border-zinc-200";
+              const tag = tagStyles[post.tag];
 
               return (
                 <div
                   key={post.id}
-                  className={`overflow-hidden rounded-lg border-2 bg-white shadow-sm ${borderColor}`}
+                  className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
                   {/* Header: author info + tag */}
                   <div className="flex items-center justify-between px-4 pt-4">
@@ -187,8 +180,9 @@ export default async function DashboardPage({
                       </div>
                     </div>
                     <span
-                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${tagColors[post.tag] ?? "bg-zinc-100 text-zinc-600"}`}
+                      className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-zinc-100 text-zinc-600"}`}
                     >
+                      <span>{tag?.emoji}</span>
                       {post.tag}
                     </span>
                   </div>

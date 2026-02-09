@@ -3,6 +3,7 @@
 import { useActionState, useRef, useState } from "react";
 import { addComment, deleteComment, deletePost, toggleLike } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
+import EmojiPopover from "@/components/emoji-popover";
 
 type Comment = {
   id: string;
@@ -64,6 +65,7 @@ export default function PostActions({
   // Add comment
   const [addState, addAction, addPending] = useActionState(addComment, null);
   const formRef = useRef<HTMLFormElement>(null);
+  const commentInputRef = useRef<HTMLInputElement>(null);
 
   // Delete comment
   const [, deleteCommentAction, deleteCommentPending] = useActionState(deleteComment, null);
@@ -216,24 +218,53 @@ export default function PostActions({
               await addAction(formData);
               formRef.current?.reset();
             }}
-            className="mt-4 flex w-full gap-2"
+            className="mt-4"
           >
             <input type="hidden" name="postId" value={postId} />
-            <input
-              name="body"
-              type="text"
-              required
-              maxLength={500}
-              placeholder="Write a comment..."
-              className="min-w-0 flex-1 rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
-            />
-            <button
-              type="submit"
-              disabled={addPending}
-              className="shrink-0 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
-            >
-              {addPending ? "..." : "Post"}
-            </button>
+            <div className="flex w-full items-center gap-2 rounded-lg border border-zinc-300 bg-white px-1 focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
+              <input
+                ref={commentInputRef}
+                name="body"
+                type="text"
+                required
+                maxLength={500}
+                placeholder="Write a comment..."
+                className="min-w-0 flex-1 border-0 bg-transparent px-2 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-0"
+              />
+              <EmojiPopover
+                onSelect={(emoji) => {
+                  const input = commentInputRef.current;
+                  if (input) {
+                    const start = input.selectionStart ?? input.value.length;
+                    const end = input.selectionEnd ?? input.value.length;
+                    const nativeInputValueSetter =
+                      Object.getOwnPropertyDescriptor(
+                        HTMLInputElement.prototype,
+                        "value",
+                      )?.set;
+                    nativeInputValueSetter?.call(
+                      input,
+                      input.value.slice(0, start) +
+                        emoji +
+                        input.value.slice(end),
+                    );
+                    input.dispatchEvent(new Event("input", { bubbles: true }));
+                    input.focus();
+                    input.setSelectionRange(
+                      start + emoji.length,
+                      start + emoji.length,
+                    );
+                  }
+                }}
+              />
+              <button
+                type="submit"
+                disabled={addPending}
+                className="shrink-0 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+              >
+                {addPending ? "..." : "Post"}
+              </button>
+            </div>
           </form>
           {addState?.error && (
             <p className="mt-1 text-xs text-red-600">{addState.error}</p>
