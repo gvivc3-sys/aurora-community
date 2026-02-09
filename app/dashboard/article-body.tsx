@@ -14,7 +14,7 @@ export default function ArticleBody({
   return (
     <div className="mt-3 px-4">
       {title && (
-        <h3 className="text-base font-semibold text-zinc-900">{title}</h3>
+        <h3 className="text-base font-semibold text-warm-900">{title}</h3>
       )}
       <div
         className={`prose prose-sm prose-zinc relative mt-1 max-w-none overflow-hidden transition-[max-height] duration-300 ${
@@ -29,7 +29,7 @@ export default function ArticleBody({
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="mt-1 text-sm font-medium text-zinc-500 hover:text-zinc-700"
+        className="mt-1 text-sm font-medium text-warm-500 hover:text-warm-700"
       >
         {expanded ? "Show less" : "Read more"}
       </button>

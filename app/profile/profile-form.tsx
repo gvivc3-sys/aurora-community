@@ -53,14 +53,14 @@ export default function ProfileForm({ user }: { user: User }) {
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-zinc-50">
-      <div className="mx-auto max-w-xl px-6 py-16">
-        <h1 className="text-2xl font-semibold text-zinc-900">Your Profile</h1>
-        <p className="mt-1 text-sm text-zinc-500">{user.email}</p>
+    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+      <div className="mx-auto max-w-xl px-4 py-8 sm:px-6 sm:py-16">
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">Your Profile</h1>
+        <p className="mt-1 text-sm text-warm-500">{user.email}</p>
 
         {/* Avatar card */}
-        <div className="mt-8 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
-          <h2 className="text-sm font-medium text-zinc-500">Profile picture</h2>
+        <div className="mt-8 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <h2 className="text-sm font-medium text-warm-500">Profile picture</h2>
           <div className="mt-4 flex items-center gap-5">
             <Avatar
               src={avatarUrl}
@@ -69,7 +69,7 @@ export default function ProfileForm({ user }: { user: User }) {
               size="lg"
             />
             <div>
-              <label className="cursor-pointer rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50">
+              <label className="cursor-pointer rounded-full border border-warm-300 bg-white px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50">
                 {uploading ? "Uploading..." : "Change picture"}
                 <input
                   type="file"
@@ -79,7 +79,7 @@ export default function ProfileForm({ user }: { user: User }) {
                   onChange={handleAvatarUpload}
                 />
               </label>
-              <p className="mt-2 text-xs text-zinc-400">
+              <p className="mt-2 text-xs text-warm-400">
                 JPG, PNG, or GIF. Max 2 MB.
               </p>
             </div>
@@ -87,18 +87,18 @@ export default function ProfileForm({ user }: { user: User }) {
         </div>
 
         {/* Info card */}
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
-          <h2 className="text-sm font-medium text-zinc-500">
+        <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <h2 className="text-sm font-medium text-warm-500">
             Personal information
           </h2>
 
           {state && "error" in state && (
-            <p className="mt-3 rounded-md bg-red-50 p-3 text-sm text-red-600">
+            <p className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
               {state.error}
             </p>
           )}
           {state && "success" in state && (
-            <p className="mt-3 rounded-md bg-green-50 p-3 text-sm text-green-700">
+            <p className="mt-3 rounded-lg bg-green-50 p-3 text-sm text-green-700">
               Profile updated.
             </p>
           )}
@@ -107,7 +107,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <div>
               <label
                 htmlFor="username"
-                className="mb-1 block text-sm font-medium text-zinc-700"
+                className="mb-1 block text-sm font-medium text-warm-700"
               >
                 Username
               </label>
@@ -116,7 +116,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 name="username"
                 type="text"
                 defaultValue={meta.username ?? ""}
-                className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Pick a display name"
               />
             </div>
@@ -124,7 +124,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <div>
               <label
                 htmlFor="birthday"
-                className="mb-1 block text-sm font-medium text-zinc-700"
+                className="mb-1 block text-sm font-medium text-warm-700"
               >
                 Birthday
               </label>
@@ -134,12 +134,12 @@ export default function ProfileForm({ user }: { user: User }) {
                 type="date"
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
-                className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
               />
             </div>
 
             {zodiac && (
-              <div className="rounded-md bg-zinc-50 p-3 text-sm text-zinc-600">
+              <div className="rounded-lg bg-warm-100 p-3 text-sm text-warm-700">
                 <span className="text-lg">{zodiac.symbol}</span>{" "}
                 <strong>{zodiac.name}</strong> — {zodiac.element} sign (
                 {zodiac.dateRange})
@@ -149,7 +149,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <button
               type="submit"
               disabled={pending}
-              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+              className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
             </button>

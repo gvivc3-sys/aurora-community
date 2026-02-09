@@ -4,7 +4,7 @@ import { useActionState, useRef, useState } from "react";
 import { addComment, deleteComment, deletePost, toggleLike } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
 
-const EMOJIS = ["❤️", "😊", "😂", "🔥", "👏", "🙌", "✨", "💯", "🎉", "👀", "💪", "🙏"];
+const EMOJIS = ["\u2764\uFE0F", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDD25", "\uD83D\uDC4F", "\uD83D\uDE4C", "\u2728", "\uD83D\uDCAF", "\uD83C\uDF89", "\uD83D\uDC40", "\uD83D\uDCAA", "\uD83D\uDE4F"];
 
 type Comment = {
   id: string;
@@ -100,7 +100,7 @@ export default function PostActions({
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-5 w-5 text-zinc-400 hover:text-red-400"
+                className="h-5 w-5 text-warm-400 hover:text-red-400"
               >
                 <path
                   strokeLinecap="round"
@@ -109,7 +109,7 @@ export default function PostActions({
                 />
               </svg>
             )}
-            <span className={liked ? "text-red-500" : "text-zinc-400"}>
+            <span className={liked ? "text-red-500" : "text-warm-400"}>
               {displayLikeCount > 0 ? displayLikeCount : ""}
             </span>
           </button>
@@ -120,7 +120,7 @@ export default function PostActions({
           type="button"
           onClick={() => setCommentsOpen(!commentsOpen)}
           disabled={!commentsEnabled}
-          className="ml-4 flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-zinc-600 disabled:cursor-not-allowed disabled:opacity-40"
+          className="ml-4 flex items-center gap-1 text-sm text-warm-400 transition-colors hover:text-warm-600 disabled:cursor-not-allowed disabled:opacity-40"
           title={commentsEnabled ? "Comments" : "Comments disabled"}
         >
           <svg
@@ -152,7 +152,7 @@ export default function PostActions({
             <button
               type="submit"
               disabled={deletePending}
-              className="text-sm text-red-500 transition-colors hover:text-red-700 disabled:opacity-50"
+              className="text-sm text-red-400 transition-colors hover:text-red-600 disabled:opacity-50"
             >
               {deletePending ? "Deleting..." : "Delete"}
             </button>
@@ -162,7 +162,7 @@ export default function PostActions({
 
       {/* Comment panel — own area beneath the action bar */}
       {commentsOpen && commentsEnabled && (
-        <div className="border-t border-zinc-100 px-4 pb-4 pt-3">
+        <div className="border-t border-warm-100 px-4 pb-4 pt-3">
           {/* Comment list */}
           {comments.length > 0 ? (
             <div className="space-y-4">
@@ -177,10 +177,10 @@ export default function PostActions({
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm font-medium text-zinc-900">
+                      <span className="text-sm font-medium text-warm-900">
                         {comment.author_name ?? "Unknown"}
                       </span>
-                      <span className="text-xs text-zinc-400">
+                      <span className="text-xs text-warm-400">
                         {timeAgo(comment.created_at)}
                       </span>
                       {(comment.user_id === currentUserId || isAdmin) && (
@@ -200,7 +200,7 @@ export default function PostActions({
                         </form>
                       )}
                     </div>
-                    <p className="mt-0.5 text-sm text-zinc-700">
+                    <p className="mt-0.5 text-sm text-warm-700">
                       {comment.body}
                     </p>
                   </div>
@@ -208,7 +208,7 @@ export default function PostActions({
               ))}
             </div>
           ) : (
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-warm-400">
               No comments yet. Be the first!
             </p>
           )}
@@ -224,7 +224,7 @@ export default function PostActions({
             className="mt-4"
           >
             <input type="hidden" name="postId" value={postId} />
-            <div className="overflow-hidden rounded-lg border border-zinc-300 focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
+            <div className="overflow-hidden rounded-lg border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
               <div className="flex w-full items-center gap-1 px-2">
                 <input
                   ref={commentInputRef}
@@ -233,26 +233,26 @@ export default function PostActions({
                   required
                   maxLength={500}
                   placeholder="Write a comment..."
-                  className="min-w-0 flex-1 border-0 bg-transparent px-1 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-0"
+                  className="min-w-0 flex-1 border-0 bg-transparent px-1 py-2 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
                 />
                 <button
                   type="button"
                   onClick={() => setShowEmojis(!showEmojis)}
-                  className={`rounded p-1 text-base transition-colors ${showEmojis ? "bg-zinc-200" : "hover:bg-zinc-100"}`}
+                  className={`rounded p-1 text-base transition-colors ${showEmojis ? "bg-warm-200" : "hover:bg-warm-100"}`}
                   title="Emoji"
                 >
-                  😊
+                  {"\uD83D\uDE0A"}
                 </button>
                 <button
                   type="submit"
                   disabled={addPending}
-                  className="shrink-0 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+                  className="shrink-0 rounded-md bg-warm-900 px-3 py-1.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
                 >
                   {addPending ? "..." : "Post"}
                 </button>
               </div>
               {showEmojis && (
-                <div className="flex flex-wrap gap-1 border-t border-zinc-200 bg-zinc-50 px-2 py-2">
+                <div className="flex flex-wrap gap-1 border-t border-warm-200 bg-warm-50 px-2 py-2">
                   {EMOJIS.map((emoji) => (
                     <button
                       key={emoji}
@@ -277,7 +277,7 @@ export default function PostActions({
                           input.setSelectionRange(newPos, newPos);
                         }
                       }}
-                      className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-zinc-200"
+                      className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-warm-200"
                     >
                       {emoji}
                     </button>

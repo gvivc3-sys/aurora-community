@@ -32,11 +32,11 @@ export default function PostForm() {
   }
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-zinc-900">Create a Post</h2>
+    <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+      <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
 
       {/* Post type — tab-style underline selector */}
-      <div className="mt-4 flex border-b border-zinc-200">
+      <div className="mt-4 flex border-b border-warm-200">
         {postTypes.map((pt) => (
           <button
             key={pt.key}
@@ -44,8 +44,8 @@ export default function PostForm() {
             onClick={() => handleTypeChange(pt.key)}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               type === pt.key
-                ? "border-b-2 border-zinc-900 text-zinc-900"
-                : "text-zinc-400 hover:text-zinc-600"
+                ? "border-b-2 border-warm-900 text-warm-900"
+                : "text-warm-400 hover:text-warm-600"
             }`}
           >
             {pt.label}
@@ -64,7 +64,7 @@ export default function PostForm() {
 
         {/* Tag selector — colored cards with emoji */}
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-700">
+          <label className="mb-2 block text-sm font-medium text-warm-700">
             Category
           </label>
           <div className="flex gap-3">
@@ -89,7 +89,7 @@ export default function PostForm() {
             <div>
               <label
                 htmlFor="video_url"
-                className="block text-sm font-medium text-zinc-700"
+                className="block text-sm font-medium text-warm-700"
               >
                 Video URL
               </label>
@@ -98,14 +98,14 @@ export default function PostForm() {
                 name="video_url"
                 type="url"
                 required
-                className="mt-1 block w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="YouTube or Vimeo URL"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-zinc-700">
+              <label className="mb-1 block text-sm font-medium text-warm-700">
                 Description{" "}
-                <span className="font-normal text-zinc-400">(optional)</span>
+                <span className="font-normal text-warm-400">(optional)</span>
               </label>
               <RichTextEditor
                 key={editorKey}
@@ -119,7 +119,7 @@ export default function PostForm() {
 
         {type === "text" && (
           <div>
-            <label className="mb-1 block text-sm font-medium text-zinc-700">
+            <label className="mb-1 block text-sm font-medium text-warm-700">
               What&apos;s on your mind?
             </label>
             <RichTextEditor
@@ -128,7 +128,7 @@ export default function PostForm() {
               placeholder="Write something..."
               minHeight="4rem"
             />
-            <p className="mt-1 text-xs text-zinc-400">
+            <p className="mt-1 text-xs text-warm-400">
               300 character limit for text posts.
             </p>
           </div>
@@ -139,22 +139,22 @@ export default function PostForm() {
             <div>
               <label
                 htmlFor="title"
-                className="block text-sm font-medium text-zinc-700"
+                className="block text-sm font-medium text-warm-700"
               >
                 Title{" "}
-                <span className="font-normal text-zinc-400">(optional)</span>
+                <span className="font-normal text-warm-400">(optional)</span>
               </label>
               <input
                 id="title"
                 name="title"
                 type="text"
                 maxLength={200}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Article title"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-zinc-700">
+              <label className="mb-1 block text-sm font-medium text-warm-700">
                 Content
               </label>
               <RichTextEditor
@@ -169,7 +169,7 @@ export default function PostForm() {
 
         {/* Comments toggle */}
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-zinc-700">
+          <span className="text-sm font-medium text-warm-700">
             Allow comments
           </span>
           <button
@@ -178,7 +178,7 @@ export default function PostForm() {
             aria-checked={commentsEnabled}
             onClick={() => setCommentsEnabled(!commentsEnabled)}
             className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
-              commentsEnabled ? "bg-zinc-900" : "bg-zinc-300"
+              commentsEnabled ? "bg-warm-900" : "bg-warm-300"
             }`}
           >
             <span
@@ -199,7 +199,7 @@ export default function PostForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-50"
+          className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
         >
           {pending ? "Posting..." : "Publish"}
         </button>

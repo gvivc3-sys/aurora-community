@@ -51,8 +51,8 @@ export default function FeedFilters() {
             onClick={() => update("tag", t.key)}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               currentTag === t.key
-                ? "bg-zinc-900 text-white"
-                : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                ? "bg-warm-900 text-warm-50"
+                : "bg-warm-100 text-warm-600 hover:bg-warm-200"
             }`}
           >
             {t.label}
@@ -64,7 +64,7 @@ export default function FeedFilters() {
         onClick={() =>
           update("sort", currentSort === "newest" ? "oldest" : "newest")
         }
-        className="flex items-center gap-1 rounded-md bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 transition-colors hover:bg-zinc-200"
+        className="flex items-center gap-1 rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
       >
         {currentSort === "newest" ? "Newest first" : "Oldest first"}
         <svg

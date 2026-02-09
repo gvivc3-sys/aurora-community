@@ -6,7 +6,7 @@ import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useState } from "react";
 
-const EMOJIS = ["❤️", "😊", "😂", "🔥", "👏", "🙌", "✨", "💯", "🎉", "👀", "💪", "🙏"];
+const EMOJIS = ["\u2764\uFE0F", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDD25", "\uD83D\uDC4F", "\uD83D\uDE4C", "\u2728", "\uD83D\uDCAF", "\uD83C\uDF89", "\uD83D\uDC40", "\uD83D\uDCAA", "\uD83D\uDE4F"];
 
 type RichTextEditorProps = {
   name: string;
@@ -32,8 +32,8 @@ function ToolbarButton({
       title={title}
       className={`rounded px-2 py-1 text-sm transition-colors ${
         active
-          ? "bg-zinc-900 text-white"
-          : "text-zinc-600 hover:bg-zinc-200"
+          ? "bg-warm-900 text-warm-50"
+          : "text-warm-600 hover:bg-warm-200"
       }`}
     >
       {children}
@@ -50,6 +50,7 @@ export default function RichTextEditor({
   const [showEmojis, setShowEmojis] = useState(false);
 
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit,
       Underline,
@@ -70,9 +71,9 @@ export default function RichTextEditor({
   if (!editor) return null;
 
   return (
-    <div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm focus-within:border-zinc-500 focus-within:ring-1 focus-within:ring-zinc-500">
+    <div className="overflow-hidden rounded-lg border border-warm-300 shadow-sm focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-0.5 border-b border-zinc-200 bg-zinc-50 px-2 py-1.5">
+      <div className="flex flex-wrap items-center gap-0.5 border-b border-warm-200 bg-warm-50 px-2 py-1.5">
         <ToolbarButton
           active={editor.isActive("bold")}
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -95,7 +96,7 @@ export default function RichTextEditor({
           <span className="underline">U</span>
         </ToolbarButton>
 
-        <div className="mx-1 h-5 w-px bg-zinc-300" />
+        <div className="mx-1 h-5 w-px bg-warm-300" />
 
         <ToolbarButton
           active={editor.isActive("bulletList")}
@@ -119,7 +120,7 @@ export default function RichTextEditor({
           </svg>
         </ToolbarButton>
 
-        <div className="mx-1 h-5 w-px bg-zinc-300" />
+        <div className="mx-1 h-5 w-px bg-warm-300" />
 
         <ToolbarButton
           active={editor.isActive("heading", { level: 2 })}
@@ -138,14 +139,14 @@ export default function RichTextEditor({
           </svg>
         </ToolbarButton>
 
-        <div className="mx-1 h-5 w-px bg-zinc-300" />
+        <div className="mx-1 h-5 w-px bg-warm-300" />
 
         <ToolbarButton
           active={showEmojis}
           onClick={() => setShowEmojis(!showEmojis)}
           title="Emoji"
         >
-          <span className="text-base leading-none">😊</span>
+          <span className="text-base leading-none">{"\uD83D\uDE0A"}</span>
         </ToolbarButton>
       </div>
 
@@ -156,7 +157,7 @@ export default function RichTextEditor({
 
       {/* Emoji tray — inside the frame, at the bottom */}
       {showEmojis && (
-        <div className="flex flex-wrap gap-1 border-t border-zinc-200 bg-zinc-50 px-3 py-2">
+        <div className="flex flex-wrap gap-1 border-t border-warm-200 bg-warm-50 px-3 py-2">
           {EMOJIS.map((emoji) => (
             <button
               key={emoji}
@@ -164,7 +165,7 @@ export default function RichTextEditor({
               onClick={() => {
                 editor.chain().focus().insertContent(emoji).run();
               }}
-              className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-zinc-200"
+              className="rounded p-1 text-xl transition-transform hover:scale-125 hover:bg-warm-200"
             >
               {emoji}
             </button>

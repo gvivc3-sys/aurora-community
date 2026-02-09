@@ -16,13 +16,13 @@ export default function NavInner({ user }: { user: NavUser | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="border-b border-zinc-200 bg-white">
+    <nav className="border-b border-warm-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-zinc-900"
+          className="text-lg font-light tracking-tight text-warm-900"
         >
-          Aurora Community
+          Aurora
         </Link>
 
         {/* Desktop nav */}
@@ -31,13 +31,13 @@ export default function NavInner({ user }: { user: NavUser | null }) {
             <>
               <Link
                 href="/dashboard"
-                className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
               >
                 Feed
               </Link>
               <Link
                 href="/profile"
-                className="flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-zinc-100"
+                className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-100"
               >
                 <Avatar
                   src={user.avatarUrl}
@@ -45,11 +45,11 @@ export default function NavInner({ user }: { user: NavUser | null }) {
                   email={user.email}
                   size="sm"
                 />
-                <span className="text-sm text-zinc-700">
+                <span className="text-sm text-warm-700">
                   {user.username || user.email}
                 </span>
                 {user.isAdmin && (
-                  <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-xs font-medium text-white">
+                  <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">
                     Admin
                   </span>
                 )}
@@ -57,7 +57,7 @@ export default function NavInner({ user }: { user: NavUser | null }) {
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                  className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-100 hover:text-warm-800"
                 >
                   Log out
                 </button>
@@ -67,13 +67,13 @@ export default function NavInner({ user }: { user: NavUser | null }) {
             <>
               <Link
                 href="/login"
-                className="rounded-md px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100 hover:text-warm-900"
               >
                 Log in
               </Link>
               <Link
                 href="/signup"
-                className="rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+                className="rounded-full bg-warm-900 px-4 py-1.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
               >
                 Sign up
               </Link>
@@ -85,7 +85,7 @@ export default function NavInner({ user }: { user: NavUser | null }) {
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="rounded-md p-2 text-zinc-600 transition-colors hover:bg-zinc-100 md:hidden"
+          className="rounded-md p-2 text-warm-600 transition-colors hover:bg-warm-100 md:hidden"
           aria-label="Toggle menu"
         >
           {menuOpen ? (
@@ -124,7 +124,7 @@ export default function NavInner({ user }: { user: NavUser | null }) {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="border-t border-zinc-100 bg-white px-6 pb-4 pt-3 md:hidden">
+        <div className="border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
           {user ? (
             <div className="space-y-3">
               <Link
@@ -139,33 +139,33 @@ export default function NavInner({ user }: { user: NavUser | null }) {
                   size="sm"
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-zinc-900">
+                  <p className="truncate text-sm font-medium text-warm-900">
                     {user.username || user.email}
                   </p>
                   {user.isAdmin && (
-                    <span className="text-xs text-zinc-500">Admin</span>
+                    <span className="text-xs text-warm-500">Admin</span>
                   )}
                 </div>
               </Link>
-              <div className="border-t border-zinc-100 pt-3">
+              <div className="border-t border-warm-100 pt-3">
                 <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
                   Feed
                 </Link>
                 <Link
                   href="/profile"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
                   Profile
                 </Link>
                 <form action={signOut}>
                   <button
                     type="submit"
-                    className="mt-1 w-full rounded-md px-3 py-2 text-left text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
+                    className="mt-1 w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                   >
                     Log out
                   </button>
@@ -177,14 +177,14 @@ export default function NavInner({ user }: { user: NavUser | null }) {
               <Link
                 href="/login"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
+                className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
               >
                 Log in
               </Link>
               <Link
                 href="/signup"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-md bg-zinc-900 px-3 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+                className="block rounded-full bg-warm-900 px-3 py-2 text-center text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
               >
                 Sign up
               </Link>

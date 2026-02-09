@@ -27,7 +27,7 @@ export default function Avatar({ src, name, email, size = "md" }: AvatarProps) {
 
   return (
     <div
-      className={`${classes} flex items-center justify-center rounded-full bg-zinc-200 font-medium text-zinc-600`}
+      className={`${classes} flex items-center justify-center rounded-full bg-warm-200 font-medium text-warm-600`}
     >
       {initials}
     </div>

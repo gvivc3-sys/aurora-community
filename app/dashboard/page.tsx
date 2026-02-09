@@ -130,9 +130,9 @@ export default async function DashboardPage({
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-zinc-50">
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-16">
-        <p className="text-center font-mono text-sm text-zinc-500">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <p className="text-center font-mono text-sm text-warm-500">
           welcome {user.user_metadata?.username || user.email}
         </p>
 
@@ -159,7 +159,7 @@ export default async function DashboardPage({
               return (
                 <div
                   key={post.id}
-                  className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
                   {/* Header: author info + tag */}
                   <div className="flex items-center justify-between px-4 pt-4">
@@ -170,16 +170,16 @@ export default async function DashboardPage({
                         size="sm"
                       />
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-zinc-900">
+                        <p className="truncate text-sm font-medium text-warm-900">
                           {post.author_name ?? "Unknown"}
                         </p>
-                        <p className="text-xs text-zinc-400">
+                        <p className="text-xs text-warm-400">
                           {timeAgo(post.created_at)}
                         </p>
                       </div>
                     </div>
                     <span
-                      className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-zinc-100 text-zinc-600"}`}
+                      className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                     >
                       <span>{tag?.emoji}</span>
                       {post.tag}
@@ -220,7 +220,7 @@ export default async function DashboardPage({
                   )}
 
                   {/* Divider */}
-                  <div className="mx-4 mt-3 border-t border-zinc-100" />
+                  <div className="mx-4 mt-3 border-t border-warm-100" />
 
                   {/* Actions + comments */}
                   <PostActions
@@ -237,7 +237,7 @@ export default async function DashboardPage({
               );
             })
           ) : (
-            <p className="py-12 text-center text-zinc-400">No posts yet.</p>
+            <p className="py-12 text-center text-warm-400">No posts yet.</p>
           )}
         </div>
 
@@ -247,18 +247,18 @@ export default async function DashboardPage({
             {page > 1 && (
               <Link
                 href={pageUrl(page - 1)}
-                className="rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200"
+                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
               >
                 Previous
               </Link>
             )}
-            <span className="text-sm text-zinc-500">
+            <span className="text-sm text-warm-500">
               Page {page} of {totalPages}
             </span>
             {page < totalPages && (
               <Link
                 href={pageUrl(page + 1)}
-                className="rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-200"
+                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
               >
                 Next
               </Link>
