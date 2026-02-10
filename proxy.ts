@@ -5,8 +5,8 @@ import { createServerClient } from "@supabase/ssr";
 // Routes that require an active subscription
 const PROTECTED_ROUTES = ["/dashboard", "/chat", "/profile"];
 
-// Routes that are always public
-const PUBLIC_ROUTES = [
+// Exact public routes (matched with ===)
+const PUBLIC_EXACT = [
   "/",
   "/login",
   "/signup",
@@ -14,8 +14,10 @@ const PUBLIC_ROUTES = [
   "/update-password",
   "/auth/callback",
   "/subscribe",
-  "/api/",
 ];
+
+// Prefix public routes (matched with startsWith)
+const PUBLIC_PREFIXES = ["/api/", "/auth/"];
 
 export async function proxy(request: NextRequest) {
   // Always refresh the Supabase session
@@ -24,7 +26,10 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Skip paywall for public routes and API routes
-  if (PUBLIC_ROUTES.some((route) => path === route || path.startsWith(route))) {
+  if (
+    PUBLIC_EXACT.includes(path) ||
+    PUBLIC_PREFIXES.some((prefix) => path.startsWith(prefix))
+  ) {
     return response;
   }
 

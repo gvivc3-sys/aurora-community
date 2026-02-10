@@ -183,7 +183,7 @@ export default async function Home() {
                 href="/signup"
                 className="inline-block rounded-full bg-warm-900 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-50 transition-colors hover:bg-warm-800"
               >
-                Join Aurora &mdash; It&apos;s Free
+                Join Aurora &mdash; $27/month
               </Link>
             )}
           </div>
