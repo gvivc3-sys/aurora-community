@@ -49,10 +49,10 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  // Check admin status (admins bypass paywall)
-  const appMetadata = (user as { app_metadata?: { role?: string } })
+  // Check admin status or granted access (bypass paywall)
+  const appMetadata = (user as { app_metadata?: { role?: string; access_granted?: boolean } })
     .app_metadata;
-  if (appMetadata?.role === "admin") {
+  if (appMetadata?.role === "admin" || appMetadata?.access_granted) {
     return response;
   }
 
