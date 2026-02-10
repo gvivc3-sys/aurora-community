@@ -130,17 +130,17 @@ export default function PostForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
       <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
 
       {/* Post type — tab-style underline selector */}
-      <div className="mt-4 flex border-b border-warm-200">
+      <div className="mt-3 flex border-b border-warm-200 sm:mt-4">
         {postTypes.map((pt) => (
           <button
             key={pt.key}
             type="button"
             onClick={() => handleTypeChange(pt.key)}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={`flex-1 px-2 py-2 text-center text-xs font-medium transition-colors sm:flex-none sm:px-4 sm:text-sm ${
               type === pt.key
                 ? "border-b-2 border-warm-900 text-warm-900"
                 : "text-warm-400 hover:text-warm-600"
@@ -151,7 +151,7 @@ export default function PostForm() {
         ))}
       </div>
 
-      <form action={handleSubmit} className="mt-5 space-y-5">
+      <form action={handleSubmit} className="mt-4 space-y-4 sm:mt-5 sm:space-y-5">
         <input type="hidden" name="type" value={type} />
         <input type="hidden" name="tag" value={tag} />
         <input
@@ -162,20 +162,20 @@ export default function PostForm() {
 
         {/* Tag selector — colored cards with emoji */}
         <div>
-          <label className="mb-2 block text-sm font-medium text-warm-700">
+          <label className="mb-1.5 block text-sm font-medium text-warm-700 sm:mb-2">
             Category
           </label>
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3">
             {tags.map((t) => (
               <button
                 key={t.key}
                 type="button"
                 onClick={() => setTag(t.key)}
-                className={`flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-all ${
+                className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-xs font-medium transition-all sm:flex-none sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
                   tag === t.key ? t.activeColor : t.color
                 }`}
               >
-                <span className="text-base">{t.emoji}</span>
+                <span className="text-sm sm:text-base">{t.emoji}</span>
                 {t.label}
               </button>
             ))}
@@ -290,20 +290,20 @@ export default function PostForm() {
               </label>
 
               {!audioBlob && !recording && (
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     type="button"
                     onClick={startRecording}
-                    className="flex items-center gap-2 rounded-full bg-red-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-600"
+                    className="flex items-center gap-1.5 rounded-full bg-red-500 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-red-600 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5 sm:h-4 sm:w-4">
                       <path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z" />
                       <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z" />
                     </svg>
                     Record
                   </button>
-                  <span className="text-sm text-warm-400">or</span>
-                  <label className="cursor-pointer rounded-full border border-warm-300 px-4 py-2.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50">
+                  <span className="text-xs text-warm-400 sm:text-sm">or</span>
+                  <label className="cursor-pointer rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-50 sm:px-4 sm:py-2.5 sm:text-sm">
                     Upload file
                     <input
                       type="file"
