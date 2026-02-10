@@ -108,6 +108,53 @@ export async function createPost(previousState: unknown, formData: FormData) {
     if (error) {
       return { error: error.message };
     }
+  } else if (type === "voice") {
+    const audioFile = formData.get("audio") as File | null;
+    if (!audioFile || audioFile.size === 0) {
+      return { error: "Please record or upload an audio file." };
+    }
+    if (!audioFile.type.startsWith("audio/")) {
+      return { error: "File must be an audio format." };
+    }
+    if (audioFile.size > 10 * 1024 * 1024) {
+      return { error: "Audio file must be under 10 MB." };
+    }
+
+    const title = (formData.get("title") as string)?.trim() || null;
+    const postId = crypto.randomUUID();
+    const ext = audioFile.name?.split(".").pop() || "webm";
+    const filePath = `audio/${postId}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("audio")
+      .upload(filePath, audioFile, {
+        contentType: audioFile.type,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      return { error: `Upload failed: ${uploadError.message}` };
+    }
+
+    const { data: publicUrlData } = supabase.storage
+      .from("audio")
+      .getPublicUrl(filePath);
+
+    const { error } = await supabase.from("posts").insert({
+      id: postId,
+      type: "voice",
+      title,
+      audio_url: publicUrlData.publicUrl,
+      author_id: user.id,
+      author_name: user.user_metadata?.username ?? user.email,
+      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      tag: tag as "love" | "health" | "magic",
+      comments_enabled: commentsEnabled,
+    });
+
+    if (error) {
+      return { error: error.message };
+    }
   } else {
     return { error: "Invalid post type." };
   }

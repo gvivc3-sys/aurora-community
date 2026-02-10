@@ -219,6 +219,26 @@ export default async function DashboardPage({
                     <ArticleBody title={post.title} body={post.body} />
                   )}
 
+                  {/* Voice post */}
+                  {post.type === "voice" && (
+                    <div className="mt-3 px-4">
+                      {post.title && (
+                        <h3 className="mb-2 text-base font-medium text-warm-900">
+                          {post.title}
+                        </h3>
+                      )}
+                      {post.audio_url && (
+                        <div className="rounded-xl bg-warm-50 p-3">
+                          <audio
+                            controls
+                            src={post.audio_url}
+                            className="w-full"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Divider */}
                   <div className="mx-4 mt-3 border-t border-warm-100" />
 

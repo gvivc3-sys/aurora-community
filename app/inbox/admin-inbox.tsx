@@ -1,0 +1,165 @@
+"use client";
+
+import { useState, useActionState } from "react";
+import { markAsRead } from "@/lib/actions/messages";
+import Avatar from "@/components/avatar";
+import type { Database } from "@/lib/supabase/types";
+
+type Message = Database["public"]["Tables"]["messages"]["Row"];
+
+function timeAgo(date: string): string {
+  const seconds = Math.floor(
+    (Date.now() - new Date(date).getTime()) / 1000,
+  );
+  if (seconds < 60) return "just now";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days}d ago`;
+  return new Date(date).toLocaleDateString();
+}
+
+function MarkReadButton({ messageId }: { messageId: string }) {
+  const [state, action, pending] = useActionState(markAsRead, null);
+
+  return (
+    <form action={action}>
+      <input type="hidden" name="messageId" value={messageId} />
+      <button
+        type="submit"
+        disabled={pending}
+        className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200 disabled:opacity-50"
+      >
+        {pending ? "..." : "Mark as read"}
+      </button>
+      {state?.error && (
+        <p className="mt-1 text-xs text-red-500">{state.error}</p>
+      )}
+    </form>
+  );
+}
+
+export default function AdminInbox({ messages }: { messages: Message[] }) {
+  const [filter, setFilter] = useState<"all" | "unread">("all");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const unreadCount = messages.filter((m) => m.status === "unread").length;
+  const filtered =
+    filter === "unread"
+      ? messages.filter((m) => m.status === "unread")
+      : messages;
+
+  return (
+    <div>
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">
+          Inbox
+        </h1>
+        {unreadCount > 0 && (
+          <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-medium text-white">
+            {unreadCount}
+          </span>
+        )}
+      </div>
+
+      {/* Filter tabs */}
+      <div className="mt-4 flex border-b border-warm-200">
+        <button
+          type="button"
+          onClick={() => setFilter("all")}
+          className={`px-4 py-2 text-sm font-medium transition-colors ${
+            filter === "all"
+              ? "border-b-2 border-warm-900 text-warm-900"
+              : "text-warm-400 hover:text-warm-600"
+          }`}
+        >
+          All ({messages.length})
+        </button>
+        <button
+          type="button"
+          onClick={() => setFilter("unread")}
+          className={`px-4 py-2 text-sm font-medium transition-colors ${
+            filter === "unread"
+              ? "border-b-2 border-warm-900 text-warm-900"
+              : "text-warm-400 hover:text-warm-600"
+          }`}
+        >
+          Unread ({unreadCount})
+        </button>
+      </div>
+
+      {/* Messages */}
+      <div className="mt-4 space-y-3">
+        {filtered.length > 0 ? (
+          filtered.map((msg) => {
+            const isExpanded = expandedId === msg.id;
+            return (
+              <div
+                key={msg.id}
+                className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition-shadow hover:shadow-md ${
+                  msg.status === "unread"
+                    ? "border-warm-300"
+                    : "border-warm-200"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() =>
+                    setExpandedId(isExpanded ? null : msg.id)
+                  }
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left"
+                >
+                  <Avatar
+                    src={msg.sender_avatar_url}
+                    name={msg.sender_name}
+                    size="sm"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="truncate text-sm font-medium text-warm-900">
+                        {msg.sender_name ?? "Unknown"}
+                      </p>
+                      {msg.status === "unread" && (
+                        <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                      )}
+                    </div>
+                    {!isExpanded && (
+                      <p className="truncate text-sm text-warm-500">
+                        {msg.body}
+                      </p>
+                    )}
+                  </div>
+                  <span className="shrink-0 text-xs text-warm-400">
+                    {timeAgo(msg.created_at)}
+                  </span>
+                </button>
+
+                {isExpanded && (
+                  <div className="border-t border-warm-100 px-4 py-3">
+                    <p className="whitespace-pre-wrap text-sm text-warm-700">
+                      {msg.body}
+                    </p>
+                    {msg.status === "unread" && (
+                      <div className="mt-3">
+                        <MarkReadButton messageId={msg.id} />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })
+        ) : (
+          <p className="py-12 text-center text-warm-400">
+            {filter === "unread"
+              ? "No unread messages."
+              : "No messages yet."}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}

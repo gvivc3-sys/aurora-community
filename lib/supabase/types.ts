@@ -16,10 +16,11 @@ export interface Database {
       posts: {
         Row: {
           id: string;
-          type: "video" | "text" | "article";
+          type: "video" | "text" | "article" | "voice";
           title: string | null;
           body: string | null;
           video_url: string | null;
+          audio_url: string | null;
           author_id: string;
           author_name: string | null;
           author_avatar_url: string | null;
@@ -29,10 +30,11 @@ export interface Database {
         };
         Insert: {
           id?: string;
-          type: "video" | "text" | "article";
+          type: "video" | "text" | "article" | "voice";
           title?: string | null;
           body?: string | null;
           video_url?: string | null;
+          audio_url?: string | null;
           author_id: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
@@ -42,10 +44,11 @@ export interface Database {
         };
         Update: {
           id?: string;
-          type?: "video" | "text" | "article";
+          type?: "video" | "text" | "article" | "voice";
           title?: string | null;
           body?: string | null;
           video_url?: string | null;
+          audio_url?: string | null;
           author_id?: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
@@ -138,6 +141,36 @@ export interface Database {
           author_name?: string | null;
           author_avatar_url?: string | null;
           body?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      messages: {
+        Row: {
+          id: string;
+          sender_id: string;
+          sender_name: string | null;
+          sender_avatar_url: string | null;
+          body: string;
+          status: "unread" | "read";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          sender_id: string;
+          sender_name?: string | null;
+          sender_avatar_url?: string | null;
+          body: string;
+          status?: "unread" | "read";
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          sender_id?: string;
+          sender_name?: string | null;
+          sender_avatar_url?: string | null;
+          body?: string;
+          status?: "unread" | "read";
           created_at?: string;
         };
         Relationships: [];

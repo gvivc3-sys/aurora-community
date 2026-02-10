@@ -42,6 +42,12 @@ export default function NavInner({ user }: { user: NavUser | null }) {
                 Chat
               </Link>
               <Link
+                href="/inbox"
+                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
+              >
+                Inbox
+              </Link>
+              <Link
                 href="/profile"
                 className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-100"
               >
@@ -167,6 +173,13 @@ export default function NavInner({ user }: { user: NavUser | null }) {
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
                   Chat
+                </Link>
+                <Link
+                  href="/inbox"
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                >
+                  Inbox
                 </Link>
                 <Link
                   href="/profile"
