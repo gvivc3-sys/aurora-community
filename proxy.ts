@@ -51,42 +51,45 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  // Check subscription status
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
-          );
+  // Check subscription status — default to blocking if anything fails
+  try {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) =>
+              request.cookies.set(name, value),
+            );
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options),
+            );
+          },
         },
       },
-    },
-  );
+    );
 
-  const { data: sub } = await supabase
-    .from("subscriptions")
-    .select("status")
-    .eq("user_id", user.id)
-    .single();
+    const { data: sub } = await supabase
+      .from("subscriptions")
+      .select("status")
+      .eq("user_id", user.id)
+      .single();
 
-  const isActive = sub?.status === "active" || sub?.status === "past_due";
-
-  if (!isActive) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/subscribe";
-    return NextResponse.redirect(url);
+    if (sub?.status === "active" || sub?.status === "past_due") {
+      return response;
+    }
+  } catch (err) {
+    console.error("Proxy subscription check failed:", err);
   }
 
-  return response;
+  // No active subscription (or check failed) → redirect to subscribe
+  const subscribeUrl = request.nextUrl.clone();
+  subscribeUrl.pathname = "/subscribe";
+  return NextResponse.redirect(subscribeUrl);
 }
 
 export const config = {
