@@ -8,6 +8,7 @@ import PostForm from "./post-form";
 import ArticleBody from "./article-body";
 import FeedFilters from "./feed-filters";
 import PostActions from "./post-actions";
+import AudioPlayer from "@/components/audio-player";
 
 const PAGE_SIZE = 20;
 
@@ -228,13 +229,7 @@ export default async function DashboardPage({
                         </h3>
                       )}
                       {post.audio_url && (
-                        <div className="rounded-xl bg-warm-50 p-3">
-                          <audio
-                            controls
-                            src={post.audio_url}
-                            className="w-full"
-                          />
-                        </div>
+                        <AudioPlayer src={post.audio_url} />
                       )}
                     </div>
                   )}

@@ -3,6 +3,7 @@
 import { useActionState, useState, useRef, useEffect, useCallback } from "react";
 import { createPost } from "@/lib/actions/post";
 import RichTextEditor from "@/components/rich-text-editor";
+import AudioPlayer from "@/components/audio-player";
 
 const postTypes = [
   { key: "video", label: "Video" },
@@ -337,7 +338,7 @@ export default function PostForm() {
 
               {audioBlob && audioPreviewUrl && (
                 <div className="space-y-2">
-                  <audio controls src={audioPreviewUrl} className="w-full" />
+                  <AudioPlayer src={audioPreviewUrl} />
                   <button
                     type="button"
                     onClick={clearRecording}
