@@ -158,6 +158,20 @@ export default async function DashboardPage({
           welcome {user.user_metadata?.username || user.email}
         </p>
 
+        {!user.user_metadata?.username && (
+          <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
+            <p className="text-sm text-amber-800">
+              You haven&apos;t set a display name yet.{" "}
+              <a
+                href="/profile"
+                className="font-medium underline hover:text-amber-900"
+              >
+                Set up your profile
+              </a>
+            </p>
+          </div>
+        )}
+
         {admin && (
           <div className="mt-8">
             <PostForm />
