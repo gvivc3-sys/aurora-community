@@ -55,6 +55,11 @@ export default async function DashboardPage({
     ["love", "health", "magic"].includes(params.tag)
       ? params.tag
       : null;
+  const typeFilter =
+    typeof params.type === "string" &&
+    ["video", "text", "article", "voice"].includes(params.type)
+      ? params.type
+      : null;
   const sort =
     typeof params.sort === "string" && params.sort === "oldest"
       ? "oldest"
@@ -68,6 +73,9 @@ export default async function DashboardPage({
   let query = supabase.from("posts").select("*", { count: "exact" });
   if (tagFilter) {
     query = query.eq("tag", tagFilter as "love" | "health" | "magic");
+  }
+  if (typeFilter) {
+    query = query.eq("type", typeFilter as "video" | "text" | "article" | "voice");
   }
   query = query
     .order("created_at", { ascending: sort === "oldest" })

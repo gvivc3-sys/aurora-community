@@ -10,12 +10,21 @@ const tags = [
   { key: "magic", label: "Magic" },
 ] as const;
 
+const types = [
+  { key: "all", label: "All" },
+  { key: "video", label: "Video" },
+  { key: "text", label: "Text" },
+  { key: "article", label: "Article" },
+  { key: "voice", label: "Voice" },
+] as const;
+
 export default function FeedFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
   const currentTag = searchParams.get("tag") ?? "all";
+  const currentType = searchParams.get("type") ?? "all";
   const currentSort = searchParams.get("sort") ?? "newest";
 
   const update = useCallback(
@@ -23,6 +32,7 @@ export default function FeedFilters() {
       const params = new URLSearchParams(searchParams.toString());
       if (
         (key === "tag" && value === "all") ||
+        (key === "type" && value === "all") ||
         (key === "sort" && value === "newest")
       ) {
         params.delete(key);
@@ -41,49 +51,67 @@ export default function FeedFilters() {
 
   return (
     <div
-      className={`flex flex-wrap items-center justify-between gap-3 transition-opacity ${isPending ? "opacity-60" : ""}`}
+      className={`space-y-2 transition-opacity ${isPending ? "opacity-60" : ""}`}
     >
-      <div className="flex gap-2">
-        {tags.map((t) => (
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => update("tag", t.key)}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                currentTag === t.key
+                  ? "bg-warm-900 text-warm-50"
+                  : "bg-warm-100 text-warm-600 hover:bg-warm-200"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() =>
+            update("sort", currentSort === "newest" ? "oldest" : "newest")
+          }
+          className="flex items-center gap-1 rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+        >
+          {currentSort === "newest" ? "Newest first" : "Oldest first"}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className={`h-3 w-3 transition-transform ${
+              currentSort === "oldest" ? "rotate-180" : ""
+            }`}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {types.map((t) => (
           <button
             key={t.key}
             type="button"
-            onClick={() => update("tag", t.key)}
+            onClick={() => update("type", t.key)}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-              currentTag === t.key
-                ? "bg-warm-900 text-warm-50"
-                : "bg-warm-100 text-warm-600 hover:bg-warm-200"
+              currentType === t.key
+                ? "bg-warm-700 text-warm-50"
+                : "bg-warm-50 text-warm-500 hover:bg-warm-100"
             }`}
           >
             {t.label}
           </button>
         ))}
       </div>
-      <button
-        type="button"
-        onClick={() =>
-          update("sort", currentSort === "newest" ? "oldest" : "newest")
-        }
-        className="flex items-center gap-1 rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
-      >
-        {currentSort === "newest" ? "Newest first" : "Oldest first"}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className={`h-3 w-3 transition-transform ${
-            currentSort === "oldest" ? "rotate-180" : ""
-          }`}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-          />
-        </svg>
-      </button>
     </div>
   );
 }
