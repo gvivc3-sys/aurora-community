@@ -10,6 +10,7 @@ import FeedFilters from "./feed-filters";
 import PostActions from "./post-actions";
 import AudioPlayer from "@/components/audio-player";
 import RealtimeRefresh from "@/components/realtime-refresh";
+import WelcomeCard from "./welcome-card";
 
 const PAGE_SIZE = 20;
 
@@ -159,6 +160,10 @@ export default async function DashboardPage({
         <p className="text-center font-mono text-sm text-warm-500">
           welcome {user.user_metadata?.username || user.email}
         </p>
+
+        <div className="mt-4">
+          <WelcomeCard />
+        </div>
 
         {!user.user_metadata?.username && (
           <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
