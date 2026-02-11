@@ -12,7 +12,7 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-export default function NavInner({ user }: { user: NavUser | null }) {
+export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser | null; unreadInboxCount?: number }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -43,9 +43,14 @@ export default function NavInner({ user }: { user: NavUser | null }) {
               </Link>
               <Link
                 href="/inbox"
-                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
+                className="relative text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
               >
                 Inbox
+                {unreadInboxCount > 0 && (
+                  <span className="absolute -right-3 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                    {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/profile"
@@ -177,9 +182,14 @@ export default function NavInner({ user }: { user: NavUser | null }) {
                 <Link
                   href="/inbox"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
                   Inbox
+                  {unreadInboxCount > 0 && (
+                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                      {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                    </span>
+                  )}
                 </Link>
                 <Link
                   href="/profile"
