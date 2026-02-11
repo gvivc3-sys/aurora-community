@@ -96,7 +96,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
               </Link>
               <Link
                 href="/signup"
-                className="rounded-full bg-warm-900 px-4 py-1.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
+                className="rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-1.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
               >
                 Sign up
               </Link>
@@ -233,7 +233,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
               <Link
                 href="/signup"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-warm-900 px-3 py-2 text-center text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
+                className="block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-3 py-2 text-center text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
               >
                 Sign up
               </Link>

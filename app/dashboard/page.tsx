@@ -12,6 +12,8 @@ import AudioPlayer from "@/components/audio-player";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import WelcomeCard from "./welcome-card";
 
+export const dynamic = "force-dynamic";
+
 const PAGE_SIZE = 20;
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
@@ -272,6 +274,11 @@ export default async function DashboardPage({
                       )}
                       {post.audio_url && (
                         <AudioPlayer src={post.audio_url} />
+                      )}
+                      {post.body && (
+                        <p className="mt-2 text-sm leading-relaxed text-warm-600">
+                          {post.body}
+                        </p>
                       )}
                     </div>
                   )}

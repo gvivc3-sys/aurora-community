@@ -6,10 +6,10 @@ import RichTextEditor from "@/components/rich-text-editor";
 import AudioPlayer from "@/components/audio-player";
 
 const postTypes = [
+  { key: "voice", label: "Voice" },
   { key: "video", label: "Video" },
   { key: "text", label: "Text" },
   { key: "article", label: "Article" },
-  { key: "voice", label: "Voice" },
 ] as const;
 
 const tags = [
@@ -21,9 +21,76 @@ const tags = [
 type PostType = (typeof postTypes)[number]["key"];
 type Tag = (typeof tags)[number]["key"];
 
+function RecordingVisualizer({ stream }: { stream: MediaStream }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const audioCtx = new AudioContext();
+    const source = audioCtx.createMediaStreamSource(stream);
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 128;
+    source.connect(analyser);
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    let animationId: number;
+
+    const draw = () => {
+      animationId = requestAnimationFrame(draw);
+      analyser.getByteFrequencyData(dataArray);
+
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.clientWidth * dpr;
+      const h = canvas.clientHeight * dpr;
+      canvas.width = w;
+      canvas.height = h;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const barW = 3 * dpr;
+      const gap = 2 * dpr;
+      const bars = Math.floor(w / (barW + gap));
+      const step = Math.max(1, Math.floor(bufferLength / bars));
+
+      for (let i = 0; i < bars; i++) {
+        const value = dataArray[i * step] || 0;
+        const barH = Math.max(2 * dpr, (value / 255) * h * 0.85);
+        const x = i * (barW + gap);
+        const y = (h - barH) / 2;
+
+        ctx.fillStyle = `rgba(92, 80, 64, ${0.3 + (value / 255) * 0.7})`;
+        ctx.beginPath();
+        ctx.roundRect(x, y, barW, barH, 1.5 * dpr);
+        ctx.fill();
+      }
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      audioCtx.close();
+    };
+  }, [stream]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="h-12 w-full rounded-lg bg-warm-50"
+    />
+  );
+}
+
 export default function PostForm() {
   const [state, formAction, pending] = useActionState(createPost, null);
-  const [type, setType] = useState<PostType>("video");
+  const [type, setType] = useState<PostType>("voice");
   const [tag, setTag] = useState<Tag>("love");
   const [commentsEnabled, setCommentsEnabled] = useState(true);
   const [editorKey, setEditorKey] = useState(0);
@@ -36,6 +103,7 @@ export default function PostForm() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
 
   // Clean up preview URL on unmount or change
   useEffect(() => {
@@ -47,6 +115,7 @@ export default function PostForm() {
   const startRecording = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      streamRef.current = stream;
       const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
         ? "audio/webm;codecs=opus"
         : "audio/webm";
@@ -63,6 +132,7 @@ export default function PostForm() {
         const url = URL.createObjectURL(blob);
         setAudioPreviewUrl(url);
         stream.getTracks().forEach((t) => t.stop());
+        streamRef.current = null;
       };
 
       mediaRecorderRef.current = recorder;
@@ -182,6 +252,112 @@ export default function PostForm() {
           </div>
         </div>
 
+        {type === "voice" && (
+          <>
+            <div>
+              <label
+                htmlFor="voice_title"
+                className="block text-sm font-medium text-warm-700"
+              >
+                Title{" "}
+                <span className="font-normal text-warm-400">(optional)</span>
+              </label>
+              <input
+                id="voice_title"
+                name="title"
+                type="text"
+                maxLength={200}
+                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                placeholder="Voice note title"
+              />
+            </div>
+            <div className="space-y-3">
+              <label className="block text-sm font-medium text-warm-700">
+                Audio
+              </label>
+
+              {!audioBlob && !recording && (
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={startRecording}
+                    className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 text-xs font-medium text-white shadow-md transition-all hover:from-red-400 hover:to-red-500 hover:shadow-lg active:scale-[0.98] sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5 sm:h-4 sm:w-4">
+                      <path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z" />
+                      <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z" />
+                    </svg>
+                    Record
+                  </button>
+                  <span className="text-xs text-warm-400 sm:text-sm">or</span>
+                  <label className="cursor-pointer rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 shadow-sm transition-all hover:border-warm-400 hover:bg-warm-50 hover:shadow-md active:scale-[0.98] sm:px-4 sm:py-2.5 sm:text-sm">
+                    Upload file
+                    <input
+                      type="file"
+                      accept="audio/*"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              )}
+
+              {recording && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-3 w-3">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                        <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500" />
+                      </span>
+                      <span className="text-sm font-medium text-warm-700">
+                        Recording {formatDuration(duration)}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={stopRecording}
+                      className="flex items-center gap-2 rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                        <path fillRule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clipRule="evenodd" />
+                      </svg>
+                      Stop
+                    </button>
+                  </div>
+                  {streamRef.current && <RecordingVisualizer stream={streamRef.current} />}
+                </div>
+              )}
+
+              {audioBlob && audioPreviewUrl && (
+                <div className="space-y-2">
+                  <AudioPlayer src={audioPreviewUrl} />
+                  <button
+                    type="button"
+                    onClick={clearRecording}
+                    className="text-sm text-warm-500 underline hover:text-warm-700"
+                  >
+                    Remove and re-record
+                  </button>
+                </div>
+              )}
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-warm-700">
+                Description{" "}
+                <span className="font-normal text-warm-400">(optional)</span>
+              </label>
+              <textarea
+                name="body"
+                maxLength={500}
+                rows={2}
+                placeholder="Add context to your voice note..."
+                className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+              />
+            </div>
+          </>
+        )}
+
         {type === "video" && (
           <>
             <div>
@@ -265,93 +441,6 @@ export default function PostForm() {
           </>
         )}
 
-        {type === "voice" && (
-          <>
-            <div>
-              <label
-                htmlFor="voice_title"
-                className="block text-sm font-medium text-warm-700"
-              >
-                Title{" "}
-                <span className="font-normal text-warm-400">(optional)</span>
-              </label>
-              <input
-                id="voice_title"
-                name="title"
-                type="text"
-                maxLength={200}
-                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
-                placeholder="Voice note title"
-              />
-            </div>
-            <div className="space-y-3">
-              <label className="block text-sm font-medium text-warm-700">
-                Audio
-              </label>
-
-              {!audioBlob && !recording && (
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <button
-                    type="button"
-                    onClick={startRecording}
-                    className="flex items-center gap-1.5 rounded-full bg-red-500 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-red-600 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5 sm:h-4 sm:w-4">
-                      <path d="M8.25 4.5a3.75 3.75 0 1 1 7.5 0v8.25a3.75 3.75 0 1 1-7.5 0V4.5Z" />
-                      <path d="M6 10.5a.75.75 0 0 1 .75.75v1.5a5.25 5.25 0 1 0 10.5 0v-1.5a.75.75 0 0 1 1.5 0v1.5a6.751 6.751 0 0 1-6 6.709v2.291h3a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1 0-1.5h3v-2.291a6.751 6.751 0 0 1-6-6.709v-1.5A.75.75 0 0 1 6 10.5Z" />
-                    </svg>
-                    Record
-                  </button>
-                  <span className="text-xs text-warm-400 sm:text-sm">or</span>
-                  <label className="cursor-pointer rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-50 sm:px-4 sm:py-2.5 sm:text-sm">
-                    Upload file
-                    <input
-                      type="file"
-                      accept="audio/*"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
-              )}
-
-              {recording && (
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-red-500" />
-                    <span className="text-sm font-medium text-warm-700">
-                      Recording {formatDuration(duration)}
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={stopRecording}
-                    className="flex items-center gap-2 rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path fillRule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clipRule="evenodd" />
-                    </svg>
-                    Stop
-                  </button>
-                </div>
-              )}
-
-              {audioBlob && audioPreviewUrl && (
-                <div className="space-y-2">
-                  <AudioPlayer src={audioPreviewUrl} />
-                  <button
-                    type="button"
-                    onClick={clearRecording}
-                    className="text-sm text-warm-500 underline hover:text-warm-700"
-                  >
-                    Remove and re-record
-                  </button>
-                </div>
-              )}
-            </div>
-          </>
-        )}
-
         {/* Comments toggle */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-warm-700">
@@ -384,7 +473,7 @@ export default function PostForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
+          className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
         >
           {pending ? "Posting..." : "Publish"}
         </button>

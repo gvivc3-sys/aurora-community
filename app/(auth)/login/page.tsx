@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useActionState } from "react";
+import { Suspense, useActionState, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "@/lib/actions/auth";
@@ -9,6 +9,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const message = searchParams.get("message");
   const [state, formAction, pending] = useActionState(signIn, null);
+  const [email, setEmail] = useState("");
 
   return (
     <div className="w-full max-w-sm rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
@@ -44,6 +45,8 @@ function LoginForm() {
             name="email"
             type="email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
             placeholder="you@example.com"
           />
@@ -68,7 +71,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
+          className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
         >
           {pending ? "Signing in..." : "Sign in"}
         </button>

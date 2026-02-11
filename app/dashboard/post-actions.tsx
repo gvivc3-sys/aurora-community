@@ -163,7 +163,7 @@ export default function PostActions({
           <input type="hidden" name="postId" value={postId} />
           <button
             type="submit"
-            className="ml-4 text-sm transition-colors"
+            className="ml-4 flex items-center text-sm transition-colors"
             title={optimisticBookmark ? "Remove bookmark" : "Bookmark"}
           >
             {optimisticBookmark ? (
@@ -319,7 +319,7 @@ export default function PostActions({
             <button
               type="submit"
               disabled={addPending}
-              className="mt-3 w-full rounded-full bg-warm-900 px-4 py-2 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
+              className="mt-3 w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
             >
               {addPending ? "Posting..." : "Post Comment"}
             </button>

@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
@@ -175,6 +177,11 @@ export default async function BookmarksPage() {
                         </h3>
                       )}
                       {post.audio_url && <AudioPlayer src={post.audio_url} />}
+                      {post.body && (
+                        <p className="mt-2 text-sm leading-relaxed text-warm-600">
+                          {post.body}
+                        </p>
+                      )}
                     </div>
                   )}
 

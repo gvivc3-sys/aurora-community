@@ -121,6 +121,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
 
     const title = (formData.get("title") as string)?.trim() || null;
+    const body = (formData.get("body") as string)?.trim() || null;
     const postId = crypto.randomUUID();
     const ext = audioFile.name?.split(".").pop() || "webm";
     const filePath = `audio/${postId}.${ext}`;
@@ -144,6 +145,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       id: postId,
       type: "voice",
       title,
+      body,
       audio_url: publicUrlData.publicUrl,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
