@@ -3,7 +3,7 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { createServerClient } from "@supabase/ssr";
 
 // Routes that require an active subscription
-const PROTECTED_ROUTES = ["/dashboard", "/chat", "/profile", "/inbox"];
+const PROTECTED_ROUTES = ["/dashboard", "/chat", "/profile", "/inbox", "/bookmarks"];
 
 // Exact public routes (matched with ===)
 const PUBLIC_EXACT = [

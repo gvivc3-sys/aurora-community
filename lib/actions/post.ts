@@ -311,3 +311,43 @@ export async function deleteComment(
   revalidatePath("/dashboard");
   return { success: true };
 }
+
+export async function toggleBookmark(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in.", bookmarked: false };
+  }
+
+  const postId = formData.get("postId") as string;
+  if (!postId) {
+    return { error: "Post ID is required.", bookmarked: false };
+  }
+
+  const { data: existing } = await supabase
+    .from("bookmarks")
+    .select("id")
+    .eq("post_id", postId)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (existing) {
+    await supabase.from("bookmarks").delete().eq("id", existing.id);
+    revalidatePath("/dashboard");
+    revalidatePath("/bookmarks");
+    return { bookmarked: false };
+  } else {
+    await supabase
+      .from("bookmarks")
+      .insert({ post_id: postId, user_id: user.id });
+    revalidatePath("/dashboard");
+    revalidatePath("/bookmarks");
+    return { bookmarked: true };
+  }
+}

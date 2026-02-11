@@ -4,13 +4,9 @@ import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
-import PostForm from "./post-form";
-import ArticleBody from "./article-body";
-import FeedFilters from "./feed-filters";
-import PostActions from "./post-actions";
+import ArticleBody from "@/app/dashboard/article-body";
+import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
-
-const PAGE_SIZE = 20;
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
@@ -32,14 +28,7 @@ function timeAgo(date: string): string {
   return new Date(date).toLocaleDateString();
 }
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
-
-export default async function DashboardPage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
-  const params = await searchParams;
+export default async function BookmarksPage() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -49,44 +38,29 @@ export default async function DashboardPage({
     redirect("/login");
   }
 
-  // Parse query params
-  const tagFilter =
-    typeof params.tag === "string" &&
-    ["love", "health", "magic"].includes(params.tag)
-      ? params.tag
-      : null;
-  const typeFilter =
-    typeof params.type === "string" &&
-    ["video", "text", "article", "voice"].includes(params.type)
-      ? params.type
-      : null;
-  const sort =
-    typeof params.sort === "string" && params.sort === "oldest"
-      ? "oldest"
-      : "newest";
-  const page = Math.max(
-    1,
-    typeof params.page === "string" ? parseInt(params.page, 10) || 1 : 1,
-  );
+  const admin = isAdmin(user);
 
-  // Build query
-  let query = supabase.from("posts").select("*", { count: "exact" });
-  if (tagFilter) {
-    query = query.eq("tag", tagFilter as "love" | "health" | "magic");
-  }
-  if (typeFilter) {
-    query = query.eq("type", typeFilter as "video" | "text" | "article" | "voice");
-  }
-  query = query
-    .order("created_at", { ascending: sort === "oldest" })
-    .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
+  // Fetch bookmarked post IDs
+  const { data: bookmarks } = await supabase
+    .from("bookmarks")
+    .select("post_id")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false });
 
-  const { data: posts, count } = await query;
-  const totalPages = Math.ceil((count ?? 0) / PAGE_SIZE);
+  const postIds = bookmarks?.map((b) => b.post_id) ?? [];
 
-  const postIds = posts?.map((p) => p.id) ?? [];
+  // Fetch the actual posts
+  const { data: posts } = postIds.length
+    ? await supabase.from("posts").select("*").in("id", postIds)
+    : { data: [] };
 
-  // Fetch all likes for these posts in one query
+  // Sort posts in bookmark order
+  const postMap = new Map((posts ?? []).map((p) => [p.id, p]));
+  const orderedPosts = postIds
+    .map((id) => postMap.get(id))
+    .filter(Boolean) as NonNullable<typeof posts>;
+
+  // Fetch likes
   const { data: allLikes } = postIds.length
     ? await supabase
         .from("likes")
@@ -94,7 +68,6 @@ export default async function DashboardPage({
         .in("post_id", postIds)
     : { data: [] };
 
-  // Fetch all comments for these posts
   const { data: allComments } = postIds.length
     ? await supabase
         .from("comments")
@@ -103,79 +76,36 @@ export default async function DashboardPage({
         .order("created_at", { ascending: true })
     : { data: [] };
 
-  // Fetch user's bookmarks for these posts
-  const { data: allBookmarks } = postIds.length
-    ? await supabase
-        .from("bookmarks")
-        .select("post_id")
-        .eq("user_id", user.id)
-        .in("post_id", postIds)
-    : { data: [] };
-  const userBookmarked: Record<string, boolean> = {};
-  for (const bm of allBookmarks ?? []) {
-    userBookmarked[bm.post_id] = true;
-  }
-
-  // Compute like counts and user-liked per post
   const likeCounts: Record<string, number> = {};
   const userLiked: Record<string, boolean> = {};
   for (const like of allLikes ?? []) {
     likeCounts[like.post_id] = (likeCounts[like.post_id] ?? 0) + 1;
-    if (like.user_id === user.id) {
-      userLiked[like.post_id] = true;
-    }
+    if (like.user_id === user.id) userLiked[like.post_id] = true;
   }
 
-  // Group comments by post
   type Comment = NonNullable<typeof allComments>[number];
   const commentsByPost: Record<string, Comment[]> = {};
   const commentCounts: Record<string, number> = {};
   for (const comment of allComments ?? []) {
-    if (!commentsByPost[comment.post_id]) {
-      commentsByPost[comment.post_id] = [];
-    }
+    if (!commentsByPost[comment.post_id]) commentsByPost[comment.post_id] = [];
     commentsByPost[comment.post_id].push(comment);
-    commentCounts[comment.post_id] =
-      (commentCounts[comment.post_id] ?? 0) + 1;
-  }
-
-  const admin = isAdmin(user);
-
-  // Build pagination URLs
-  function pageUrl(p: number) {
-    const sp = new URLSearchParams();
-    if (tagFilter) sp.set("tag", tagFilter);
-    if (sort === "oldest") sp.set("sort", "oldest");
-    if (p > 1) sp.set("page", String(p));
-    const qs = sp.toString();
-    return `/dashboard${qs ? `?${qs}` : ""}`;
+    commentCounts[comment.post_id] = (commentCounts[comment.post_id] ?? 0) + 1;
   }
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-        <p className="text-center font-mono text-sm text-warm-500">
-          welcome {user.user_metadata?.username || user.email}
-        </p>
-
-        {admin && (
-          <div className="mt-8">
-            <PostForm />
-          </div>
-        )}
-
-        <div className="mt-8">
-          <FeedFilters />
-        </div>
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">
+          Saved Posts
+        </h1>
 
         <div className="mt-6 space-y-6">
-          {posts && posts.length > 0 ? (
-            posts.map((post) => {
+          {orderedPosts.length > 0 ? (
+            orderedPosts.map((post) => {
               const video =
                 post.type === "video" && post.video_url
                   ? extractVideoId(post.video_url)
                   : null;
-
               const tag = tagStyles[post.tag];
 
               return (
@@ -183,7 +113,6 @@ export default async function DashboardPage({
                   key={post.id}
                   className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
-                  {/* Header: author info + tag */}
                   <div className="flex items-center justify-between px-4 pt-4">
                     <div className="flex items-center gap-3">
                       <Avatar
@@ -208,7 +137,6 @@ export default async function DashboardPage({
                     </span>
                   </div>
 
-                  {/* Video embed + optional description */}
                   {post.type === "video" && video && (
                     <>
                       <div className="mt-3 aspect-video">
@@ -228,7 +156,6 @@ export default async function DashboardPage({
                     </>
                   )}
 
-                  {/* Text post body */}
                   {post.type === "text" && post.body && (
                     <div
                       className="prose prose-sm prose-zinc mt-3 max-w-none px-4"
@@ -236,12 +163,10 @@ export default async function DashboardPage({
                     />
                   )}
 
-                  {/* Article post body (collapsible) */}
                   {post.type === "article" && post.body && (
                     <ArticleBody title={post.title} body={post.body} />
                   )}
 
-                  {/* Voice post */}
                   {post.type === "voice" && (
                     <div className="mt-3 px-4">
                       {post.title && (
@@ -249,21 +174,17 @@ export default async function DashboardPage({
                           {post.title}
                         </h3>
                       )}
-                      {post.audio_url && (
-                        <AudioPlayer src={post.audio_url} />
-                      )}
+                      {post.audio_url && <AudioPlayer src={post.audio_url} />}
                     </div>
                   )}
 
-                  {/* Divider */}
                   <div className="mx-4 mt-3 border-t border-warm-100" />
 
-                  {/* Actions + comments */}
                   <PostActions
                     postId={post.id}
                     likeCount={likeCounts[post.id] ?? 0}
                     likedByUser={!!userLiked[post.id]}
-                    bookmarkedByUser={!!userBookmarked[post.id]}
+                    bookmarkedByUser={true}
                     comments={commentsByPost[post.id] ?? []}
                     commentCount={commentCounts[post.id] ?? 0}
                     commentsEnabled={post.comments_enabled}
@@ -274,34 +195,17 @@ export default async function DashboardPage({
               );
             })
           ) : (
-            <p className="py-12 text-center text-warm-400">No posts yet.</p>
+            <div className="py-12 text-center">
+              <p className="text-warm-400">No saved posts yet.</p>
+              <Link
+                href="/dashboard"
+                className="mt-2 inline-block text-sm font-medium text-warm-600 underline hover:text-warm-900"
+              >
+                Browse the feed
+              </Link>
+            </div>
           )}
         </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-8 flex items-center justify-center gap-2">
-            {page > 1 && (
-              <Link
-                href={pageUrl(page - 1)}
-                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
-              >
-                Previous
-              </Link>
-            )}
-            <span className="text-sm text-warm-500">
-              Page {page} of {totalPages}
-            </span>
-            {page < totalPages && (
-              <Link
-                href={pageUrl(page + 1)}
-                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
-              >
-                Next
-              </Link>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
