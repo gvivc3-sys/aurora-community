@@ -59,10 +59,10 @@ export default async function SubscribePage() {
 
           <ul className="mt-8 space-y-3">
             {[
-              "Full access to the community feed",
-              "Video guides, articles & text posts",
-              "Like, comment & engage with members",
-              "Private Telegram group access",
+              "Weekly voice notes from Ashley",
+              "Video guides, articles & curated content",
+              "Private messaging with the Aurora team",
+              "Community feed — like, comment & save",
               "New content added weekly",
               "Cancel anytime",
             ].map((feature) => (
@@ -87,7 +87,7 @@ export default async function SubscribePage() {
           <form action={createCheckoutSession} className="mt-8">
             <button
               type="submit"
-              className="w-full rounded-full bg-warm-900 px-4 py-3 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
+              className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-3 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
             >
               Subscribe Now
             </button>
