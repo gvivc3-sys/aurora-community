@@ -9,6 +9,7 @@ import ArticleBody from "./article-body";
 import FeedFilters from "./feed-filters";
 import PostActions from "./post-actions";
 import AudioPlayer from "@/components/audio-player";
+import RealtimeRefresh from "@/components/realtime-refresh";
 
 const PAGE_SIZE = 20;
 
@@ -153,6 +154,7 @@ export default async function DashboardPage({
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+      <RealtimeRefresh table="posts" />
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <p className="text-center font-mono text-sm text-warm-500">
           welcome {user.user_metadata?.username || user.email}

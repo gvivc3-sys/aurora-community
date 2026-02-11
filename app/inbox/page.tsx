@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import AdminInbox from "./admin-inbox";
 import UserInbox from "./user-inbox";
+import RealtimeRefresh from "@/components/realtime-refresh";
 
 export default async function InboxPage() {
   const supabase = await createClient();
@@ -24,6 +25,7 @@ export default async function InboxPage() {
 
     return (
       <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+        <RealtimeRefresh table="messages" />
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
           <AdminInbox messages={messages ?? []} />
         </div>
