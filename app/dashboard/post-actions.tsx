@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useRef, useState } from "react";
+import { useActionState, useOptimistic, useRef, useState } from "react";
 import { addComment, deleteComment, deletePost, toggleLike } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
 
@@ -52,13 +52,17 @@ export default function PostActions({
 }: PostActionsProps) {
   const [commentsOpen, setCommentsOpen] = useState(false);
 
-  // Like
-  const [likeState, likeAction, likePending] = useActionState(toggleLike, null);
-  const liked = likeState ? likeState.liked : likedByUser;
-  const displayLikeCount = likeState
-    ? likeCount +
-      (likeState.liked ? (likedByUser ? 0 : 1) : likedByUser ? -1 : 0)
-    : likeCount;
+  // Like — optimistic
+  const [optimistic, setOptimistic] = useOptimistic(
+    { liked: likedByUser, count: likeCount },
+    (state) => ({
+      liked: !state.liked,
+      count: state.count + (state.liked ? -1 : 1),
+    }),
+  );
+  const [, likeAction] = useActionState(toggleLike, null);
+  const liked = optimistic.liked;
+  const displayLikeCount = optimistic.count;
 
   // Delete post
   const [deleteState, deleteAction, deletePending] = useActionState(deletePost, null);
@@ -77,12 +81,14 @@ export default function PostActions({
       {/* Action bar */}
       <div className="flex items-center px-4 py-3">
         {/* Like button */}
-        <form action={likeAction}>
+        <form action={async (formData) => {
+          setOptimistic(null);
+          await likeAction(formData);
+        }}>
           <input type="hidden" name="postId" value={postId} />
           <button
             type="submit"
-            disabled={likePending}
-            className="flex items-center gap-1 text-sm transition-colors disabled:opacity-50"
+            className="flex items-center gap-1 text-sm transition-colors"
           >
             {liked ? (
               <svg
