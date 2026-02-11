@@ -74,3 +74,38 @@ export async function markAsRead(
   revalidatePath("/inbox");
   return { success: true };
 }
+
+export async function markAsAddressed(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  if (!isAdmin(user)) {
+    return { error: "Only admins can mark messages as addressed." };
+  }
+
+  const messageId = formData.get("messageId") as string;
+  if (!messageId) {
+    return { error: "Message ID is required." };
+  }
+
+  const { error } = await supabase
+    .from("messages")
+    .update({ status: "addressed" })
+    .eq("id", messageId);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath("/inbox");
+  return { success: true };
+}

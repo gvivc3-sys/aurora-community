@@ -91,12 +91,18 @@ export default function UserInbox({ messages }: { messages: Message[] }) {
                   </span>
                   <span
                     className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      msg.status === "read"
-                        ? "bg-green-50 text-green-700"
-                        : "bg-warm-100 text-warm-500"
+                      msg.status === "addressed"
+                        ? "bg-green-100 text-green-700"
+                        : msg.status === "read"
+                          ? "bg-blue-50 text-blue-600"
+                          : "bg-warm-100 text-warm-500"
                     }`}
                   >
-                    {msg.status === "read" ? "Read" : "Unread"}
+                    {msg.status === "addressed"
+                      ? "Addressed"
+                      : msg.status === "read"
+                        ? "Read"
+                        : "Sent"}
                   </span>
                 </div>
                 <p className="mt-2 whitespace-pre-wrap text-sm text-warm-700">

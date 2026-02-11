@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useActionState } from "react";
-import { markAsRead } from "@/lib/actions/messages";
+import { markAsRead, markAsAddressed } from "@/lib/actions/messages";
 import Avatar from "@/components/avatar";
 import type { Database } from "@/lib/supabase/types";
 
@@ -33,6 +33,26 @@ function MarkReadButton({ messageId }: { messageId: string }) {
         className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200 disabled:opacity-50"
       >
         {pending ? "..." : "Mark as read"}
+      </button>
+      {state?.error && (
+        <p className="mt-1 text-xs text-red-500">{state.error}</p>
+      )}
+    </form>
+  );
+}
+
+function MarkAddressedButton({ messageId }: { messageId: string }) {
+  const [state, action, pending] = useActionState(markAsAddressed, null);
+
+  return (
+    <form action={action}>
+      <input type="hidden" name="messageId" value={messageId} />
+      <button
+        type="submit"
+        disabled={pending}
+        className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 transition-colors hover:bg-green-200 disabled:opacity-50"
+      >
+        {pending ? "..." : "Mark addressed"}
       </button>
       {state?.error && (
         <p className="mt-1 text-xs text-red-500">{state.error}</p>
@@ -125,6 +145,11 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       {msg.status === "unread" && (
                         <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
                       )}
+                      {msg.status === "addressed" && (
+                        <span className="rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
+                          Addressed
+                        </span>
+                      )}
                     </div>
                     {!isExpanded && (
                       <p className="truncate text-sm text-warm-500">
@@ -142,9 +167,12 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     <p className="whitespace-pre-wrap text-sm text-warm-700">
                       {msg.body}
                     </p>
-                    {msg.status === "unread" && (
-                      <div className="mt-3">
-                        <MarkReadButton messageId={msg.id} />
+                    {msg.status !== "addressed" && (
+                      <div className="mt-3 flex gap-2">
+                        {msg.status === "unread" && (
+                          <MarkReadButton messageId={msg.id} />
+                        )}
+                        <MarkAddressedButton messageId={msg.id} />
                       </div>
                     )}
                   </div>

@@ -152,7 +152,7 @@ export interface Database {
           sender_name: string | null;
           sender_avatar_url: string | null;
           body: string;
-          status: "unread" | "read";
+          status: "unread" | "read" | "addressed";
           created_at: string;
         };
         Insert: {
@@ -161,7 +161,7 @@ export interface Database {
           sender_name?: string | null;
           sender_avatar_url?: string | null;
           body: string;
-          status?: "unread" | "read";
+          status?: "unread" | "read" | "addressed";
           created_at?: string;
         };
         Update: {
@@ -170,7 +170,7 @@ export interface Database {
           sender_name?: string | null;
           sender_avatar_url?: string | null;
           body?: string;
-          status?: "unread" | "read";
+          status?: "unread" | "read" | "addressed";
           created_at?: string;
         };
         Relationships: [];
