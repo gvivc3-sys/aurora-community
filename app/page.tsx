@@ -209,7 +209,7 @@ export default async function Home() {
         <AnimateOnScroll>
           <div className="relative overflow-hidden rounded-2xl shadow-xl">
             <Image
-              src="/images/portrait_image_wide.jpg"
+              src="/images/flower_bg2.jpg"
               alt="Aurora community — women embracing natural beauty"
               width={1200}
               height={500}
