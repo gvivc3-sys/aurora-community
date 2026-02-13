@@ -213,7 +213,7 @@ export default async function Home() {
               alt="Aurora community — women embracing natural beauty"
               width={1200}
               height={500}
-              className="h-[280px] w-full object-cover object-top sm:h-[400px]"
+              className="h-[280px] w-full object-cover object-center sm:h-[400px]"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 via-warm-900/10 to-transparent" />
