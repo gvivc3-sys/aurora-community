@@ -28,7 +28,7 @@ export default async function ChatPage() {
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <p className="text-center font-mono text-sm text-warm-500">
-          community chat
+          telegram
         </p>
 
         {/* Telegram connect card */}
@@ -49,7 +49,7 @@ export default async function ChatPage() {
             </div>
 
             <h2 className="mt-5 text-xl font-light tracking-tight text-warm-900">
-              Aurora Chat
+              Aurora Telegram
             </h2>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-warm-500">
               Connect with the community in real time through our private

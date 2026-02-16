@@ -50,14 +50,18 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 href="/dashboard"
                 className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
               >
-                Feed
+                Circle
               </Link>
 
-              {/* More dropdown */}
-              <div ref={dropdownRef} className="relative">
+              {/* More dropdown (hover) */}
+              <div
+                ref={dropdownRef}
+                className="group/dropdown relative"
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
                 <button
                   type="button"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="flex items-center gap-1 text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
                 >
                   More
@@ -76,13 +80,13 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border border-warm-200 bg-white/95 py-1 shadow-lg backdrop-blur-sm">
+                  <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-xl border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
                     <Link
                       href="/chat"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
-                      Chat
+                      Telegram
                     </Link>
                     <Link
                       href="/bookmarks"
@@ -96,7 +100,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                       onClick={() => setDropdownOpen(false)}
                       className="flex items-center gap-2 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
-                      Inbox
+                      Ask Circle
                       {unreadInboxCount > 0 && (
                         <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
                           {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
@@ -232,14 +236,14 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
-                  Feed
+                  Circle
                 </Link>
                 <Link
                   href="/chat"
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
-                  Chat
+                  Telegram
                 </Link>
                 <Link
                   href="/bookmarks"
@@ -253,7 +257,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
-                  Inbox
+                  Ask Circle
                   {unreadInboxCount > 0 && (
                     <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
                       {unreadInboxCount > 9 ? "9+" : unreadInboxCount}

@@ -208,7 +208,7 @@ export default async function BookmarksPage() {
                 href="/dashboard"
                 className="mt-2 inline-block text-sm font-medium text-warm-600 underline hover:text-warm-900"
               >
-                Browse the feed
+                Browse the circle
               </Link>
             </div>
           )}

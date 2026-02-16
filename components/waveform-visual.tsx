@@ -24,7 +24,7 @@ export default function WaveformVisual() {
   }, []);
 
   return (
-    <div className="flex flex-1 items-center gap-[1.5px]" style={{ height: 40 }}>
+    <div className="flex min-w-0 flex-1 items-center gap-[1.5px] overflow-hidden" style={{ height: 40 }}>
       {barHeights.map((h, i) => (
         <div
           key={i}

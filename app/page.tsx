@@ -118,7 +118,7 @@ const features = [
   },
   {
     icon: <UserGroupIcon className="h-5 w-5 text-warm-700" />,
-    title: "Community Feed",
+    title: "The Circle",
     description:
       "A quiet, intentional space. No algorithms, no noise \u2014 just women gathering around what matters.",
   },
@@ -184,7 +184,7 @@ export default async function Home() {
                 href="/dashboard"
                 className="rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
               >
-                Enter the Community
+                Enter the Circle
               </Link>
             ) : (
               <>
@@ -541,7 +541,7 @@ export default async function Home() {
                 href="/dashboard"
                 className="inline-block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-12 py-4 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
               >
-                Go to Your Feed
+                Go to Your Circle
               </Link>
             ) : (
               <div className="flex flex-col items-center gap-3">

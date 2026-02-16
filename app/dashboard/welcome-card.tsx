@@ -36,10 +36,10 @@ export default function WelcomeCard() {
         Welcome to Aurora
       </h3>
       <p className="mt-1.5 text-sm leading-relaxed text-warm-600">
-        This is your community feed. Here you&apos;ll find posts, voice
+        This is your circle. Here you&apos;ll find posts, voice
         notes, and articles from the Aurora team. You can like, comment on,
-        and save posts you love. Use the{" "}
-        <span className="font-medium">Inbox</span> to send private messages,
+        and save posts you love. Use{" "}
+        <span className="font-medium">Ask Circle</span> to send private messages,
         and visit <span className="font-medium">Saved</span> to revisit your
         bookmarked content.
       </p>
