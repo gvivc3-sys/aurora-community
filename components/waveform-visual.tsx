@@ -24,11 +24,11 @@ export default function WaveformVisual() {
   }, []);
 
   return (
-    <div className="flex min-w-0 flex-1 items-center gap-[1.5px] overflow-hidden" style={{ height: 40 }}>
+    <div className="flex min-w-0 flex-1 items-center gap-[1px] sm:gap-[1.5px]" style={{ height: 40 }}>
       {barHeights.map((h, i) => (
         <div
           key={i}
-          className="w-[2px] rounded-full transition-colors duration-300"
+          className="min-w-0 flex-1 rounded-full transition-colors duration-300"
           style={{
             height: `${h}%`,
             backgroundColor:
