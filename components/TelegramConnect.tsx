@@ -47,9 +47,22 @@ export default function TelegramConnect({
   useEffect(() => {
     if (connected || !widgetRef.current) return;
 
-    // Expose global callback
-    (window as unknown as Record<string, unknown>).__telegramLoginCallback =
-      handleTelegramAuth;
+    // Expose global callback — must be a plain function on window
+    // so the Telegram popup can call it after auth
+    const w = window as unknown as Record<string, unknown>;
+    w.onTelegramAuth = (user: Record<string, unknown>) => {
+      handleTelegramAuth(
+        user as unknown as {
+          id: number;
+          first_name: string;
+          last_name?: string;
+          username?: string;
+          photo_url?: string;
+          auth_date: number;
+          hash: string;
+        },
+      );
+    };
 
     // Load the Telegram Login Widget script
     const script = document.createElement("script");
@@ -58,14 +71,13 @@ export default function TelegramConnect({
     script.setAttribute("data-telegram-login", botUsername);
     script.setAttribute("data-size", "large");
     script.setAttribute("data-radius", "24");
-    script.setAttribute("data-onauth", "__telegramLoginCallback(user)");
+    script.setAttribute("data-onauth", "onTelegramAuth(user)");
     script.setAttribute("data-request-access", "write");
 
     widgetRef.current.appendChild(script);
 
     return () => {
-      delete (window as unknown as Record<string, unknown>)
-        .__telegramLoginCallback;
+      delete w.onTelegramAuth;
     };
   }, [connected, botUsername, handleTelegramAuth]);
 
