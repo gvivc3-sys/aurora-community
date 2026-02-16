@@ -24,9 +24,6 @@ export default async function ChatPage() {
 
   const telegramUserId = sub?.telegram_user_id ?? null;
 
-  // TODO: remove debug
-  console.log("[chat] user:", user.id, "telegramUserId:", telegramUserId, "botUsername:", BOT_USERNAME);
-
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
@@ -91,11 +88,6 @@ export default async function ChatPage() {
               </p>
             </div>
           </div>
-
-          {/* TODO: remove debug */}
-          <p className="mt-4 text-center text-xs text-warm-300">
-            debug: uid={user.id} tgId={telegramUserId ?? "null"} bot={BOT_USERNAME || "empty"}
-          </p>
 
           {/* Telegram connect widget */}
           <div className="mt-8">

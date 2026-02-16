@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import crypto from "crypto";
 
@@ -56,8 +57,8 @@ export async function connectTelegram(data: TelegramLoginData): Promise<{
     return { success: false, error: "Authentication expired, please try again" };
   }
 
-  // Store telegram_user_id in the subscription row
-  const { error } = await supabase
+  // Use admin client to bypass RLS
+  const { error } = await supabaseAdmin
     .from("subscriptions")
     .update({
       telegram_user_id: String(data.id),
@@ -90,10 +91,10 @@ export async function getTelegramInviteLink(): Promise<{
 
   if (!user) return { error: "Not authenticated" };
 
-  // Check subscription or admin status
+  // Admins can always get invite links
   const admin = isAdmin(user);
   if (!admin) {
-    const { data: sub } = await supabase
+    const { data: sub } = await supabaseAdmin
       .from("subscriptions")
       .select("status, telegram_user_id")
       .eq("user_id", user.id)
