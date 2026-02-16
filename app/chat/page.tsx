@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { isAdmin } from "@/lib/roles";
+import TelegramConnect from "@/components/TelegramConnect";
+
+const BOT_USERNAME = process.env.TELEGRAM_BOT_USERNAME ?? "";
 
 export default async function ChatPage() {
   const supabase = await createClient();
@@ -9,6 +13,25 @@ export default async function ChatPage() {
 
   if (!user) {
     redirect("/login");
+  }
+
+  // Fetch telegram_user_id from subscription row (or null for admins without one)
+  let telegramUserId: string | null = null;
+
+  if (isAdmin(user)) {
+    const { data: sub } = await supabase
+      .from("subscriptions")
+      .select("telegram_user_id")
+      .eq("user_id", user.id)
+      .single();
+    telegramUserId = sub?.telegram_user_id ?? null;
+  } else {
+    const { data: sub } = await supabase
+      .from("subscriptions")
+      .select("telegram_user_id")
+      .eq("user_id", user.id)
+      .single();
+    telegramUserId = sub?.telegram_user_id ?? null;
   }
 
   return (
@@ -76,28 +99,12 @@ export default async function ChatPage() {
             </div>
           </div>
 
-          {/* Connect button (placeholder for now) */}
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <button
-              type="button"
-              disabled
-              className="flex items-center gap-2 rounded-full bg-[#2AABEE] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#229ED9] disabled:opacity-60"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="h-4 w-4"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38Z"
-                  fill="currentColor"
-                />
-              </svg>
-              Connect Telegram
-            </button>
-            <p className="text-xs text-warm-400">
-              Coming soon
-            </p>
+          {/* Telegram connect widget */}
+          <div className="mt-8">
+            <TelegramConnect
+              telegramUserId={telegramUserId}
+              botUsername={BOT_USERNAME}
+            />
           </div>
         </div>
 
