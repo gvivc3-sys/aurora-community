@@ -94,7 +94,7 @@ export default async function ChatPage() {
 
           {/* TODO: remove debug */}
           <p className="mt-4 text-center text-xs text-warm-300">
-            debug: tgId={telegramUserId ?? "null"} bot={BOT_USERNAME || "empty"}
+            debug: uid={user.id} tgId={telegramUserId ?? "null"} bot={BOT_USERNAME || "empty"}
           </p>
 
           {/* Telegram connect widget */}
