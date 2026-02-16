@@ -3,6 +3,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
+import ParallaxImage from "@/components/parallax-image";
 
 /* ── SVG icon components (inline Heroicon-style) ── */
 
@@ -161,8 +162,8 @@ export default async function Home() {
             className="animate-fade-in-up mt-8 text-5xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
             style={{ animationDelay: "150ms" }}
           >
-            Find your circle.
-            <span className="mt-1 block italic">Return to your nature.</span>
+            Find your <span className="font-medium">circle.</span>
+            <span className="mt-1 block italic">Return to your <span className="font-medium">nature.</span></span>
           </h1>
 
           <p
@@ -206,14 +207,13 @@ export default async function Home() {
       </section>
 
       {/* ─── WIDE PORTRAIT BANNER ─── */}
-      <section className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
+      <section className="relative mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <AnimateOnScroll>
           <div className="relative overflow-hidden rounded-2xl shadow-xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <ParallaxImage
               src="/images/flower_bg2.jpeg"
               alt="Aurora community — women embracing natural beauty"
-              className="h-[280px] w-full object-cover object-center sm:h-[400px]"
+              className="h-[320px] w-full object-cover object-center sm:h-[440px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 via-warm-900/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 px-8 pb-8 sm:px-12 sm:pb-12">
@@ -227,7 +227,7 @@ export default async function Home() {
       </section>
 
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-28">
+      <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
           <AnimateOnScroll>
@@ -236,7 +236,7 @@ export default async function Home() {
             </p>
             <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
               Wisdom shared,
-              <span className="block italic">not preached</span>
+              <span className="block italic">not <span className="font-medium">preached</span></span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
               Every week, Ashley records raw, honest voice notes on primal
@@ -257,7 +257,7 @@ export default async function Home() {
 
           {/* Voice note mockup card */}
           <AnimateOnScroll delay={200}>
-            <div className="animate-float rounded-2xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
+            <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
                   AA
@@ -305,6 +305,73 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── THREE PILLARS ─── */}
+      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
+        <AnimateOnScroll className="text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+            What We Gather Around
+          </p>
+          <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+            Three pillars of our <span className="font-medium">sisterhood</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-warm-500">
+            Everything inside Aurora is rooted in timeless principles that
+            women have carried for generations &mdash; now shared and explored
+            together.
+          </p>
+        </AnimateOnScroll>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-3">
+          <AnimateOnScroll delay={0} className="group">
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-rose-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-50 transition-transform duration-300 group-hover:scale-110">
+                <HeartIcon className="h-6 w-6 text-rose-400" />
+              </div>
+              <h3 className="mt-5 text-lg font-medium text-warm-900">
+                Primal <span className="font-semibold">Beauty</span>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-warm-600">
+                Radiance that can&apos;t be bought in a bottle. Skin rituals,
+                hair care, and beauty practices that honour your body&apos;s
+                natural intelligence.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={150} className="group">
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-green-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-50 transition-transform duration-300 group-hover:scale-110">
+                <LeafIcon className="h-6 w-6 text-green-500" />
+              </div>
+              <h3 className="mt-5 text-lg font-medium text-warm-900">
+                Ancestral <span className="font-semibold">Health</span>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-warm-600">
+                Whole foods, seasonal rhythms, and toxin-free living. Reconnect
+                with the wisdom your great-grandmother knew by heart &mdash;
+                together.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={300} className="group">
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-amber-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-amber-50 transition-transform duration-300 group-hover:scale-110">
+                <SunIcon className="h-6 w-6 text-amber-500" />
+              </div>
+              <h3 className="mt-5 text-lg font-medium text-warm-900">
+                Feminine <span className="font-semibold">Energy</span>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-warm-600">
+                Cultivating your natural magnetism through deep rest, nature
+                connection, and the quiet confidence that comes from being held
+                by a community.
+              </p>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ─── QUOTE / DARK SECTION ─── */}
       <section className="dark-gradient relative overflow-hidden px-6 py-24 sm:py-32">
         <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
@@ -324,73 +391,6 @@ export default async function Home() {
         </AnimateOnScroll>
       </section>
 
-      {/* ─── THREE PILLARS ─── */}
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
-        <AnimateOnScroll className="text-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            What We Gather Around
-          </p>
-          <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            Three pillars of our sisterhood
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-warm-500">
-            Everything inside Aurora is rooted in timeless principles that
-            women have carried for generations &mdash; now shared and explored
-            together.
-          </p>
-        </AnimateOnScroll>
-
-        <div className="mt-16 grid gap-6 sm:grid-cols-3">
-          <AnimateOnScroll delay={0} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-rose-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-50 transition-transform duration-300 group-hover:scale-110">
-                <HeartIcon className="h-6 w-6 text-rose-400" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Primal Beauty
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Radiance that can&apos;t be bought in a bottle. Skin rituals,
-                hair care, and beauty practices that honour your body&apos;s
-                natural intelligence.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={150} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-green-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-50 transition-transform duration-300 group-hover:scale-110">
-                <LeafIcon className="h-6 w-6 text-green-500" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Ancestral Health
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Whole foods, seasonal rhythms, and toxin-free living. Reconnect
-                with the wisdom your great-grandmother knew by heart &mdash;
-                together.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={300} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-amber-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-amber-50 transition-transform duration-300 group-hover:scale-110">
-                <SunIcon className="h-6 w-6 text-amber-500" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Feminine Energy
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Cultivating your natural magnetism through deep rest, nature
-                connection, and the quiet confidence that comes from being held
-                by a community.
-              </p>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
-
       {/* ─── WHAT'S INSIDE ─── */}
       <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
         <div className="mx-auto max-w-5xl">
@@ -399,7 +399,7 @@ export default async function Home() {
               Membership
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              What awaits inside
+              What awaits <span className="font-medium">inside</span>
             </h2>
           </AnimateOnScroll>
 
@@ -443,7 +443,7 @@ export default async function Home() {
               The Woman Behind Aurora
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Meet Ashley
+              Meet <span className="font-medium">Ashley</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-warm-600">
               Ashley has spent years immersed in ancestral beauty practices,
@@ -527,7 +527,7 @@ export default async function Home() {
           </p>
           <h2 className="mt-5 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
             You don&apos;t have to walk
-            <span className="block italic">this path alone</span>
+            <span className="block italic">this path <span className="font-medium">alone</span></span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-500">
             Join a growing circle of women choosing a more natural, intentional
