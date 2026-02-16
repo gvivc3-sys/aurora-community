@@ -141,11 +141,15 @@ export default async function Home() {
       <section className="relative overflow-hidden">
         <div className="hero-gradient absolute inset-0" />
 
-        {/* Decorative blobs */}
-        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-rose-200/20 blur-3xl" />
+        {/* Decorative gaussian blur blobs */}
+        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-rose-200/25 blur-[80px]" />
         <div
-          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-amber-200/20 blur-3xl"
+          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-amber-200/25 blur-[80px]"
           style={{ animationDelay: "3.5s" }}
+        />
+        <div
+          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-pink-100/30 blur-[100px]"
+          style={{ animationDelay: "1.5s" }}
         />
 
         <div className="relative mx-auto max-w-4xl px-6 pb-28 pt-24 text-center sm:pb-40 sm:pt-36">
@@ -200,9 +204,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Thin separator */}
-      <div className="mx-auto w-12 border-t border-warm-300/50" />
 
       {/* ─── WIDE PORTRAIT BANNER ─── */}
       <section className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
@@ -510,10 +511,14 @@ export default async function Home() {
       {/* ─── FINAL CTA ─── */}
       <section className="relative overflow-hidden px-6 py-28 sm:py-40">
         <div className="hero-gradient absolute inset-0 opacity-50" />
-        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-rose-200/30 blur-3xl" />
+        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-rose-200/30 blur-[80px]" />
         <div
-          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-amber-200/30 blur-3xl"
+          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-amber-200/30 blur-[80px]"
           style={{ animationDelay: "3s" }}
+        />
+        <div
+          className="animate-float absolute left-1/3 top-2/3 h-48 w-48 rounded-full bg-pink-100/25 blur-[100px]"
+          style={{ animationDelay: "5s" }}
         />
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
@@ -558,7 +563,7 @@ export default async function Home() {
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-warm-200 bg-warm-50 px-6 py-10">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-light tracking-tight text-warm-700">
+          <p className="font-display text-sm font-bold italic tracking-tight text-warm-700">
             Aurora Community
           </p>
           <p className="text-xs text-warm-400">

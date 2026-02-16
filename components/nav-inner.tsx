@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 
@@ -14,15 +14,32 @@ type NavUser = {
 
 export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser | null; unreadInboxCount?: number }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="border-b border-warm-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        {/* Aurora logo with gaussian blur accent */}
         <Link
           href="/"
-          className="text-lg font-light tracking-tight text-warm-900"
+          className="group relative"
         >
-          Aurora
+          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-rose-200/40 to-amber-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="relative font-display text-xl font-bold italic tracking-tight text-warm-900">
+            Aurora
+          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -35,29 +52,68 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
               >
                 Feed
               </Link>
-              <Link
-                href="/chat"
-                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
-              >
-                Chat
-              </Link>
-              <Link
-                href="/bookmarks"
-                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
-              >
-                Saved
-              </Link>
-              <Link
-                href="/inbox"
-                className="relative text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
-              >
-                Inbox
-                {unreadInboxCount > 0 && (
-                  <span className="absolute -right-3 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                    {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                  </span>
+
+              {/* More dropdown */}
+              <div ref={dropdownRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center gap-1 text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
+                >
+                  More
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+
+                {dropdownOpen && (
+                  <div className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border border-warm-200 bg-white/95 py-1 shadow-lg backdrop-blur-sm">
+                    <Link
+                      href="/chat"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Chat
+                    </Link>
+                    <Link
+                      href="/bookmarks"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Saved
+                    </Link>
+                    <Link
+                      href="/inbox"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Inbox
+                      {unreadInboxCount > 0 && (
+                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                          {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                        </span>
+                      )}
+                    </Link>
+                    <Link
+                      href="/profile"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Profile
+                    </Link>
+                  </div>
                 )}
-              </Link>
+              </div>
+
               <Link
                 href="/profile"
                 className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-100"
