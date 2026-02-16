@@ -24,7 +24,7 @@ export default function WaveformVisual() {
       {barHeights.map((h, i) => (
         <div
           key={i}
-          className="w-[3px] rounded-full transition-colors duration-300"
+          className="min-w-[2px] flex-1 rounded-full transition-colors duration-300"
           style={{
             height: `${h}%`,
             backgroundColor:
