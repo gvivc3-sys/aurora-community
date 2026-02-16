@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { isAdmin } from "@/lib/roles";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import TelegramConnect from "@/components/TelegramConnect";
 
 const BOT_USERNAME = process.env.TELEGRAM_BOT_USERNAME ?? "";
@@ -15,24 +15,14 @@ export default async function ChatPage() {
     redirect("/login");
   }
 
-  // Fetch telegram_user_id from subscription row (or null for admins without one)
-  let telegramUserId: string | null = null;
+  // Use admin client to bypass RLS
+  const { data: sub } = await supabaseAdmin
+    .from("subscriptions")
+    .select("telegram_user_id")
+    .eq("user_id", user.id)
+    .single();
 
-  if (isAdmin(user)) {
-    const { data: sub } = await supabase
-      .from("subscriptions")
-      .select("telegram_user_id")
-      .eq("user_id", user.id)
-      .single();
-    telegramUserId = sub?.telegram_user_id ?? null;
-  } else {
-    const { data: sub } = await supabase
-      .from("subscriptions")
-      .select("telegram_user_id")
-      .eq("user_id", user.id)
-      .single();
-    telegramUserId = sub?.telegram_user_id ?? null;
-  }
+  const telegramUserId = sub?.telegram_user_id ?? null;
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
