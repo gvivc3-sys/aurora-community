@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const STORAGE_KEY = "aurora-welcome-dismissed";
@@ -39,9 +40,10 @@ export default function WelcomeCard() {
         This is your circle. Here you&apos;ll find posts, voice
         notes, and articles from the Aurora team. You can like, comment on,
         and save posts you love. Use{" "}
-        <span className="font-medium">Ask Circle</span> to send private messages,
-        and visit <span className="font-medium">Saved</span> to revisit your
-        bookmarked content.
+        <Link href="/inbox" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Share</Link> to
+        ask a question anonymously, and visit{" "}
+        <Link href="/bookmarks" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Saved</Link> to
+        revisit your bookmarked content.
       </p>
     </div>
   );

@@ -167,7 +167,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
       {/* Header */}
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Ask Circle
+          Share
         </h1>
         {unreadCount > 0 && (
           <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-medium text-white">

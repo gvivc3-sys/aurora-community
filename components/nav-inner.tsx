@@ -65,6 +65,18 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 Circle
               </Link>
 
+              <Link
+                href="/inbox"
+                className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+              >
+                Share
+                {unreadInboxCount > 0 && (
+                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                    {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                  </span>
+                )}
+              </Link>
+
               {/* More dropdown (hover) */}
               <div
                 ref={dropdownRef}
@@ -74,7 +86,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
               >
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
+                  className="flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                 >
                   More
                   <svg
@@ -108,18 +120,6 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                       Saved
                     </Link>
                     <Link
-                      href="/inbox"
-                      onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                    >
-                      Ask Circle
-                      {unreadInboxCount > 0 && (
-                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                          {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                        </span>
-                      )}
-                    </Link>
-                    <Link
                       href="/profile"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
@@ -141,7 +141,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
 
               <Link
                 href="/profile"
-                className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-100"
+                className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-50 hover:text-warm-900"
               >
                 <Avatar
                   src={user.avatarUrl}
@@ -161,7 +161,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
               <form action={signOut}>
                 <button
                   type="submit"
-                  className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-100 hover:text-warm-800"
+                  className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900"
                 >
                   Log out
                 </button>
@@ -171,7 +171,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
             <>
               <Link
                 href="/login"
-                className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100 hover:text-warm-900"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
               >
                 Log in
               </Link>
@@ -272,6 +272,18 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   Circle
                 </Link>
                 <Link
+                  href="/inbox"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                >
+                  Share
+                  {unreadInboxCount > 0 && (
+                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                      {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                    </span>
+                  )}
+                </Link>
+                <Link
                   href="/chat"
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
@@ -284,18 +296,6 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
                   Saved
-                </Link>
-                <Link
-                  href="/inbox"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                >
-                  Ask Circle
-                  {unreadInboxCount > 0 && (
-                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                      {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                    </span>
-                  )}
                 </Link>
                 <Link
                   href="/profile"

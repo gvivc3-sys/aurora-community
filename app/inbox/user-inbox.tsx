@@ -64,11 +64,12 @@ export default function UserInbox({
       {/* Send message section */}
       <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Ask a Question
+          Share
         </h1>
-        <p className="mt-2 text-sm text-warm-500">
-          Ask a question for feedback from Ashley. Your identity stays between
-          us.
+        <p className="mt-2 text-sm leading-relaxed text-warm-500">
+          Ask a question or share something on your mind. Ashley will read your
+          message and may post a response to the Circle feed for the community
+          to discuss — your identity stays completely anonymous.
         </p>
 
         {onCooldown && (
@@ -124,7 +125,7 @@ export default function UserInbox({
       {messages.length > 0 && (
         <div className="mt-8">
           <h2 className="text-lg font-light tracking-tight text-warm-900">
-            Your Messages
+            Your Questions
           </h2>
           <div className="mt-4 space-y-3">
             {messages.map((msg) => (
@@ -157,7 +158,7 @@ export default function UserInbox({
                 </p>
                 {msg.status === "addressed" && msg.reply_body && (
                   <div className="mt-3 rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
-                    <p className="text-xs font-medium text-warm-500">Aurora replied:</p>
+                    <p className="text-xs font-medium text-warm-500">Ashley replied:</p>
                     <div
                       className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
                       dangerouslySetInnerHTML={{ __html: msg.reply_body }}
