@@ -549,7 +549,7 @@ export default async function Home() {
                   href="/signup"
                   className="inline-block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-12 py-4 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
                 >
-                  Join Aurora &mdash; $27/month
+                  Join Aurora &mdash; $77/month
                 </Link>
                 <p className="text-xs text-warm-400">
                   Cancel anytime. No contracts. No questions asked.
