@@ -39,10 +39,20 @@ export default async function InboxPage() {
     .eq("sender_id", user.id)
     .order("created_at", { ascending: false });
 
+  // Compute cooldown for rate limiting
+  let canSendAfter: string | null = null;
+  if (messages && messages.length > 0) {
+    const latestAt = new Date(messages[0].created_at).getTime();
+    const cooldownEnd = latestAt + 60 * 60 * 1000;
+    if (cooldownEnd > Date.now()) {
+      canSendAfter = new Date(cooldownEnd).toISOString();
+    }
+  }
+
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-        <UserInbox messages={messages ?? []} />
+        <UserInbox messages={messages ?? []} canSendAfter={canSendAfter} />
       </div>
     </div>
   );

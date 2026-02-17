@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useRef } from "react";
+import { useActionState, useRef, useState, useEffect } from "react";
 import { sendMessage } from "@/lib/actions/messages";
 import type { Database } from "@/lib/supabase/types";
 
@@ -20,21 +20,64 @@ function timeAgo(date: string): string {
   return new Date(date).toLocaleDateString();
 }
 
-export default function UserInbox({ messages }: { messages: Message[] }) {
+function formatRemaining(ms: number): string {
+  const totalMinutes = Math.ceil(ms / 60000);
+  if (totalMinutes >= 60) {
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
+  return `${totalMinutes}m`;
+}
+
+export default function UserInbox({
+  messages,
+  canSendAfter,
+}: {
+  messages: Message[];
+  canSendAfter: string | null;
+}) {
   const [state, formAction, pending] = useActionState(sendMessage, null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [remaining, setRemaining] = useState<number>(0);
+
+  useEffect(() => {
+    if (!canSendAfter) {
+      setRemaining(0);
+      return;
+    }
+
+    const update = () => {
+      const ms = new Date(canSendAfter).getTime() - Date.now();
+      setRemaining(ms > 0 ? ms : 0);
+    };
+
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, [canSendAfter]);
+
+  const onCooldown = remaining > 0;
 
   return (
     <div>
       {/* Send message section */}
       <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Send a Message
+          Ask a Question
         </h1>
         <p className="mt-2 text-sm text-warm-500">
-          Share something privately with the Aurora team. Your identity stays
-          between us.
+          Ask a question for feedback from Ashley. Your identity stays between
+          us.
         </p>
+
+        {onCooldown && (
+          <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+            <p className="text-sm text-amber-800">
+              You can ask again in {formatRemaining(remaining)}.
+            </p>
+          </div>
+        )}
 
         <form
           ref={formRef}
@@ -49,14 +92,15 @@ export default function UserInbox({ messages }: { messages: Message[] }) {
             required
             maxLength={2000}
             rows={4}
-            placeholder="Write your message..."
-            className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+            disabled={onCooldown}
+            placeholder="Write your question..."
+            className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500 disabled:bg-warm-50 disabled:text-warm-400"
           />
           <div className="flex items-center justify-between">
             <p className="text-xs text-warm-400">Max 2000 characters</p>
             <button
               type="submit"
-              disabled={pending}
+              disabled={pending || onCooldown}
               className="flex items-center gap-2 rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-6 py-2.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">

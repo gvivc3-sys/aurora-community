@@ -18,6 +18,24 @@ export async function sendMessage(
     return { error: "You must be logged in." };
   }
 
+  // Rate limit: 1 message per hour
+  const { data: lastMessage } = await supabase
+    .from("messages")
+    .select("created_at")
+    .eq("sender_id", user.id)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .single();
+
+  if (lastMessage) {
+    const elapsed = Date.now() - new Date(lastMessage.created_at).getTime();
+    const cooldown = 60 * 60 * 1000; // 1 hour
+    if (elapsed < cooldown) {
+      const remaining = Math.ceil((cooldown - elapsed) / 60000);
+      return { error: `You can send another question in ${remaining}m.` };
+    }
+  }
+
   const body = (formData.get("body") as string)?.trim();
   if (!body) {
     return { error: "Message cannot be empty." };
