@@ -19,7 +19,8 @@ export default async function AdminPage() {
     supabaseAdmin
       .from("subscriptions")
       .select("id", { count: "exact", head: true })
-      .in("status", ["active", "past_due"]),
+      .in("status", ["active", "past_due"])
+      .not("stripe_subscription_id", "is", null),
   ]);
 
   const totalMembers = usersRes.data?.users?.length ?? 0;
@@ -31,7 +32,7 @@ export default async function AdminPage() {
 
   const stats = [
     { label: "Total Members", value: totalMembers },
-    { label: "Active Subscribers", value: activeSubscribers },
+    { label: "Paid Subscribers", value: activeSubscribers },
     { label: "Admins", value: adminCount },
   ];
 
