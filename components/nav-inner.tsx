@@ -114,6 +114,15 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                     >
                       Profile
                     </Link>
+                    {user.isAdmin && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setDropdownOpen(false)}
+                        className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      >
+                        Stats
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
@@ -271,6 +280,15 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 >
                   Profile
                 </Link>
+                {user.isAdmin && (
+                  <Link
+                    href="/admin"
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  >
+                    Stats
+                  </Link>
+                )}
                 <form action={signOut}>
                   <button
                     type="submit"

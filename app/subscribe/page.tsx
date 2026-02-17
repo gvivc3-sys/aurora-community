@@ -37,7 +37,7 @@ export default async function SubscribePage() {
             Membership
           </p>
           <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            Join the Aurora Community
+            Join the <span className="font-medium">Aurora</span> Community
           </h1>
           <p className="mx-auto mt-4 max-w-md text-warm-600">
             Get full access to the feed, community chat, curated content, and
@@ -51,7 +51,7 @@ export default async function SubscribePage() {
             <h2 className="text-lg font-medium text-warm-900">Aurora Member</h2>
             <div className="mt-4 flex items-baseline justify-center gap-1">
               <span className="text-4xl font-light tracking-tight text-warm-900">
-                $27
+                $77
               </span>
               <span className="text-sm text-warm-500">/month</span>
             </div>

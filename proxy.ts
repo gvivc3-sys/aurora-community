@@ -14,6 +14,7 @@ const PUBLIC_EXACT = [
   "/update-password",
   "/auth/callback",
   "/subscribe",
+  "/community-guidelines",
 ];
 
 // Prefix public routes (matched with startsWith)
@@ -80,11 +81,16 @@ export async function proxy(request: NextRequest) {
 
     const { data: sub } = await supabase
       .from("subscriptions")
-      .select("status")
+      .select("status, terms_accepted_at")
       .eq("user_id", user.id)
       .single();
 
     if (sub?.status === "active" || sub?.status === "past_due") {
+      if (!sub.terms_accepted_at) {
+        const guidelinesUrl = request.nextUrl.clone();
+        guidelinesUrl.pathname = "/community-guidelines";
+        return NextResponse.redirect(guidelinesUrl);
+      }
       return response;
     }
   } catch (err) {

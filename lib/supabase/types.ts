@@ -88,6 +88,7 @@ export interface Database {
           status: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
           current_period_end: string | null;
           telegram_user_id: string | null;
+          terms_accepted_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -99,6 +100,7 @@ export interface Database {
           status?: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
           current_period_end?: string | null;
           telegram_user_id?: string | null;
+          terms_accepted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -110,6 +112,7 @@ export interface Database {
           status?: "active" | "past_due" | "canceled" | "unpaid" | "inactive";
           current_period_end?: string | null;
           telegram_user_id?: string | null;
+          terms_accepted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
