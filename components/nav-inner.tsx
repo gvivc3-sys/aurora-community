@@ -48,8 +48,20 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
             <>
               <Link
                 href="/dashboard"
-                className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-900"
+                className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
               >
+                <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite]" fill="none">
+                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                    <circle
+                      key={angle}
+                      cx={10 + 7 * Math.cos((angle * Math.PI) / 180)}
+                      cy={10 + 7 * Math.sin((angle * Math.PI) / 180)}
+                      r={angle % 90 === 0 ? 1.4 : 1}
+                      fill="currentColor"
+                      opacity={0.3 + (angle / 315) * 0.7}
+                    />
+                  ))}
+                </svg>
                 Circle
               </Link>
 
@@ -243,8 +255,20 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                 >
+                  <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite]" fill="none">
+                    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                      <circle
+                        key={angle}
+                        cx={10 + 7 * Math.cos((angle * Math.PI) / 180)}
+                        cy={10 + 7 * Math.sin((angle * Math.PI) / 180)}
+                        r={angle % 90 === 0 ? 1.4 : 1}
+                        fill="currentColor"
+                        opacity={0.3 + (angle / 315) * 0.7}
+                      />
+                    ))}
+                  </svg>
                   Circle
                 </Link>
                 <Link
