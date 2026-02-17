@@ -24,8 +24,9 @@ export interface Database {
           author_id: string;
           author_name: string | null;
           author_avatar_url: string | null;
-          tag: "love" | "health" | "magic";
+          tag: "love" | "health" | "magic" | "ask";
           comments_enabled: boolean;
+          anonymous_question: string | null;
           created_at: string;
         };
         Insert: {
@@ -38,8 +39,9 @@ export interface Database {
           author_id: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
-          tag: "love" | "health" | "magic";
+          tag: "love" | "health" | "magic" | "ask";
           comments_enabled?: boolean;
+          anonymous_question?: string | null;
           created_at?: string;
         };
         Update: {
@@ -54,6 +56,7 @@ export interface Database {
           author_avatar_url?: string | null;
           tag?: "love" | "health" | "magic";
           comments_enabled?: boolean;
+          anonymous_question?: string | null;
           created_at?: string;
         };
         Relationships: [];
@@ -155,6 +158,7 @@ export interface Database {
           sender_name: string | null;
           sender_avatar_url: string | null;
           body: string;
+          reply_body: string | null;
           status: "unread" | "read" | "addressed";
           created_at: string;
         };
@@ -164,6 +168,7 @@ export interface Database {
           sender_name?: string | null;
           sender_avatar_url?: string | null;
           body: string;
+          reply_body?: string | null;
           status?: "unread" | "read" | "addressed";
           created_at?: string;
         };
@@ -173,6 +178,7 @@ export interface Database {
           sender_name?: string | null;
           sender_avatar_url?: string | null;
           body?: string;
+          reply_body?: string | null;
           status?: "unread" | "read" | "addressed";
           created_at?: string;
         };

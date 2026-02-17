@@ -21,6 +21,7 @@ const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
   health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
   magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
+  ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83D\uDCAC" },
 };
 
 function timeAgo(date: string): string {
@@ -57,7 +58,7 @@ export default async function DashboardPage({
   // Parse query params
   const tagFilter =
     typeof params.tag === "string" &&
-    ["love", "health", "magic"].includes(params.tag)
+    ["love", "health", "magic", "ask"].includes(params.tag)
       ? params.tag
       : null;
   const typeFilter =
@@ -77,7 +78,7 @@ export default async function DashboardPage({
   // Build query
   let query = supabase.from("posts").select("*", { count: "exact" });
   if (tagFilter) {
-    query = query.eq("tag", tagFilter as "love" | "health" | "magic");
+    query = query.eq("tag", tagFilter as "love" | "health" | "magic" | "ask");
   }
   if (typeFilter) {
     query = query.eq("type", typeFilter as "video" | "text" | "article" | "voice");
@@ -251,6 +252,16 @@ export default async function DashboardPage({
                         />
                       )}
                     </>
+                  )}
+
+                  {/* Anonymous question quote */}
+                  {post.anonymous_question && (
+                    <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                      <p className="text-xs font-medium text-warm-500">A community member asked:</p>
+                      <p className="mt-1 text-sm italic text-warm-600">
+                        {post.anonymous_question}
+                      </p>
+                    </div>
                   )}
 
                   {/* Text post body */}

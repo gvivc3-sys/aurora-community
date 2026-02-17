@@ -111,6 +111,15 @@ export default function UserInbox({ messages }: { messages: Message[] }) {
                 <p className="mt-2 whitespace-pre-wrap text-sm text-warm-700">
                   {msg.body}
                 </p>
+                {msg.status === "addressed" && msg.reply_body && (
+                  <div className="mt-3 rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
+                    <p className="text-xs font-medium text-warm-500">Aurora replied:</p>
+                    <div
+                      className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                      dangerouslySetInnerHTML={{ __html: msg.reply_body }}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>

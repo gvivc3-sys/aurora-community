@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useActionState } from "react";
-import { markAsRead, markAsAddressed } from "@/lib/actions/messages";
+import { markAsRead, markAsAddressed, replyToMessage } from "@/lib/actions/messages";
 import Avatar from "@/components/avatar";
+import RichTextEditor from "@/components/rich-text-editor";
 import type { Database } from "@/lib/supabase/types";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
@@ -56,6 +57,96 @@ function MarkAddressedButton({ messageId }: { messageId: string }) {
       </button>
       {state?.error && (
         <p className="mt-1 text-xs text-red-500">{state.error}</p>
+      )}
+    </form>
+  );
+}
+
+function ReplyForm({ messageId }: { messageId: string }) {
+  const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<"private" | "public">("private");
+  const [state, action, pending] = useActionState(replyToMessage, null);
+
+  if (state?.success) {
+    return (
+      <p className="text-xs font-medium text-green-600">
+        {state.mode === "public"
+          ? "Reply posted to Circle."
+          : "Private reply sent."}
+      </p>
+    );
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
+      >
+        Reply
+      </button>
+    );
+  }
+
+  return (
+    <form action={action} className="space-y-2">
+      <input type="hidden" name="messageId" value={messageId} />
+      <input type="hidden" name="mode" value={mode} />
+
+      {/* Mode toggle */}
+      <div className="flex rounded-lg border border-warm-200 p-0.5">
+        <button
+          type="button"
+          onClick={() => setMode("private")}
+          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            mode === "private"
+              ? "bg-warm-800 text-warm-50"
+              : "text-warm-500 hover:text-warm-700"
+          }`}
+        >
+          Reply privately
+        </button>
+        <button
+          type="button"
+          onClick={() => setMode("public")}
+          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            mode === "public"
+              ? "bg-warm-800 text-warm-50"
+              : "text-warm-500 hover:text-warm-700"
+          }`}
+        >
+          Post to Circle
+        </button>
+      </div>
+
+      <RichTextEditor
+        name="replyBody"
+        placeholder="Write your reply..."
+        minHeight="4rem"
+      />
+      <div className="flex gap-2">
+        <button
+          type="submit"
+          disabled={pending}
+          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
+        >
+          {pending
+            ? "Sending..."
+            : mode === "public"
+              ? "Post to Circle"
+              : "Send privately"}
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+        >
+          Cancel
+        </button>
+      </div>
+      {state?.error && (
+        <p className="text-xs text-red-500">{state.error}</p>
       )}
     </form>
   );
@@ -168,11 +259,21 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       {msg.body}
                     </p>
                     {msg.status !== "addressed" && (
-                      <div className="mt-3 flex gap-2">
+                      <div className="mt-3 flex flex-wrap gap-2">
                         {msg.status === "unread" && (
                           <MarkReadButton messageId={msg.id} />
                         )}
                         <MarkAddressedButton messageId={msg.id} />
+                        <ReplyForm messageId={msg.id} />
+                      </div>
+                    )}
+                    {msg.status === "addressed" && msg.reply_body && (
+                      <div className="mt-3 rounded-lg bg-warm-50 px-3 py-2">
+                        <p className="text-xs font-medium text-warm-500">Replied:</p>
+                        <div
+                          className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                          dangerouslySetInnerHTML={{ __html: msg.reply_body }}
+                        />
                       </div>
                     )}
                   </div>

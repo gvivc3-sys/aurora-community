@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 
 export async function sendMessage(
@@ -108,4 +109,76 @@ export async function markAsAddressed(
 
   revalidatePath("/inbox");
   return { success: true };
+}
+
+export async function replyToMessage(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  if (!isAdmin(user)) {
+    return { error: "Only admins can reply to messages." };
+  }
+
+  const messageId = formData.get("messageId") as string;
+  const replyBody = (formData.get("replyBody") as string)?.trim();
+  const mode = formData.get("mode") as string;
+
+  if (!messageId) {
+    return { error: "Message ID is required." };
+  }
+  if (!replyBody) {
+    return { error: "Reply cannot be empty." };
+  }
+
+  // Fetch original message
+  const { data: message, error: fetchError } = await supabase
+    .from("messages")
+    .select("*")
+    .eq("id", messageId)
+    .single();
+
+  if (fetchError || !message) {
+    return { error: "Message not found." };
+  }
+
+  if (mode === "public") {
+    // Create a post in the Circle feed with the admin's reply
+    const { error: postError } = await supabaseAdmin.from("posts").insert({
+      type: "text",
+      body: replyBody,
+      anonymous_question: message.body,
+      tag: "ask",
+      comments_enabled: true,
+      author_id: user.id,
+      author_name: user.user_metadata?.username ?? user.email,
+      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+    });
+
+    if (postError) {
+      return { error: postError.message };
+    }
+  }
+
+  // Update the message status and store the reply
+  const { error: updateError } = await supabase
+    .from("messages")
+    .update({ status: "addressed", reply_body: replyBody })
+    .eq("id", messageId);
+
+  if (updateError) {
+    return { error: updateError.message };
+  }
+
+  revalidatePath("/inbox");
+  revalidatePath("/dashboard");
+  return { success: true, mode: mode === "public" ? "public" : "private" };
 }
