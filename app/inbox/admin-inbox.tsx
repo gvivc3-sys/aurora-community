@@ -259,13 +259,17 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       {msg.body}
                     </p>
                     {msg.status !== "addressed" && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {msg.status === "unread" && (
-                          <MarkReadButton messageId={msg.id} />
-                        )}
-                        <MarkAddressedButton messageId={msg.id} />
-                        <ReplyForm messageId={msg.id} />
-                      </div>
+                      <>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {msg.status === "unread" && (
+                            <MarkReadButton messageId={msg.id} />
+                          )}
+                          <MarkAddressedButton messageId={msg.id} />
+                        </div>
+                        <div className="mt-3 border-t border-warm-100 pt-3">
+                          <ReplyForm messageId={msg.id} />
+                        </div>
+                      </>
                     )}
                     {msg.status === "addressed" && msg.reply_body && (
                       <div className="mt-3 rounded-lg bg-warm-50 px-3 py-2">
