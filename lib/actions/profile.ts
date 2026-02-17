@@ -12,6 +12,14 @@ export async function updateProfile(
   const username = formData.get("username") as string;
   const birthday = formData.get("birthday") as string;
 
+  if (birthday) {
+    const date = new Date(birthday);
+    const now = new Date();
+    if (isNaN(date.getTime()) || date.getFullYear() < 1920 || date > now) {
+      return { error: "Please enter a valid birthday." };
+    }
+  }
+
   const { error } = await supabase.auth.updateUser({
     data: {
       username: username || undefined,

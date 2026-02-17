@@ -133,6 +133,8 @@ export default function ProfileForm({ user }: { user: User }) {
                 id="birthday"
                 name="birthday"
                 type="date"
+                min="1920-01-01"
+                max={new Date().toISOString().split("T")[0]}
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
                 className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
