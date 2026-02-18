@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       const { data } = await supabase.auth.getUser();
       if (data.user?.email && data.user.created_at) {
         const createdAt = new Date(data.user.created_at).getTime();
-        const isNew = Date.now() - createdAt < 2 * 60 * 1000;
+        const isNew = Date.now() - createdAt < 10 * 60 * 1000;
         if (isNew) {
           sendWelcomeEmail(data.user.email);
         }
