@@ -199,9 +199,40 @@ export default function PostForm() {
     formAction(formData);
   }
 
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="rounded-2xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
-      <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
+    <div className="rounded-2xl border border-warm-200 bg-white shadow-sm">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center gap-2.5 px-4 py-4 text-left transition-colors hover:bg-warm-50 sm:px-6"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="h-5 w-5 text-warm-400"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+        </svg>
+        <span className="text-lg font-light tracking-tight text-warm-900">Create a Post</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className={`ml-auto h-4 w-4 text-warm-400 transition-transform ${open ? "rotate-180" : ""}`}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+      </button>
+
+      {!open ? null : (
+      <div className="px-4 pb-4 sm:px-6 sm:pb-6">
 
       {/* Post type — tab-style underline selector */}
       <div className="mt-3 flex border-b border-warm-200 sm:mt-4">
@@ -478,6 +509,8 @@ export default function PostForm() {
           {pending ? "Posting..." : "Publish"}
         </button>
       </form>
+      </div>
+      )}
     </div>
   );
 }
