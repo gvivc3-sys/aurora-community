@@ -203,29 +203,17 @@ export default function PostForm() {
 
   return (
     <div>
-      {!open ? (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-full border border-warm-300 bg-white px-4 py-2.5 text-sm font-medium text-warm-700 shadow-sm transition-colors hover:bg-warm-50"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-          </svg>
-          New Post
-        </button>
-      ) : (
-      <div className="rounded-2xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="text-sm text-warm-400 hover:text-warm-600"
-          >
-            Close
-          </button>
-        </div>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="rounded-full bg-warm-900 px-4 py-2 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
+      >
+        {open ? "Cancel" : "+ New Post"}
+      </button>
+
+      {open && (
+      <div className="mt-4 rounded-2xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
+        <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
 
       {/* Post type — tab-style underline selector */}
       <div className="mt-3 flex border-b border-warm-200 sm:mt-4">
