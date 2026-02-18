@@ -3,7 +3,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
-import ParallaxImage from "@/components/parallax-image";
+
 
 /* ── SVG icon components (inline Heroicon-style) ── */
 
@@ -206,25 +206,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── WIDE PORTRAIT BANNER ─── */}
-      <section className="relative mx-auto max-w-6xl px-6 py-12 sm:py-16">
-        <AnimateOnScroll>
-          <div className="relative overflow-hidden rounded-2xl shadow-xl">
-            <ParallaxImage
-              src="/images/flower_bg2.jpeg"
-              alt="Aurora community — women embracing natural beauty"
-              className="h-[320px] w-full object-cover object-center sm:h-[440px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-warm-900/60 via-warm-900/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 px-8 pb-8 sm:px-12 sm:pb-12">
-              <p className="max-w-md text-lg font-light leading-relaxed text-warm-50 sm:text-xl">
-                More than content.
-                <span className="mt-1 block font-normal italic">Connection.</span>
-              </p>
-            </div>
-          </div>
-        </AnimateOnScroll>
-      </section>
+      {/* ─── section divider ─── */}
+      <div className="mx-auto max-w-24">
+        <div className="flex items-center justify-center gap-2 py-2">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
+          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
+            ))}
+          </svg>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
+        </div>
+      </div>
 
       {/* ─── ABOUT ASHLEY ─── */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
@@ -271,6 +264,19 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── section divider ─── */}
+      <div className="mx-auto max-w-24">
+        <div className="flex items-center justify-center gap-2 py-2">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
+          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
+            ))}
+          </svg>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
+        </div>
+      </div>
+
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
         <div className="grid items-center gap-16 md:grid-cols-2">
@@ -304,8 +310,8 @@ export default async function Home() {
           <AnimateOnScroll delay={200}>
             <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
-                  AA
+                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
+                  <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="44px" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-warm-900">
@@ -349,6 +355,19 @@ export default async function Home() {
           </AnimateOnScroll>
         </div>
       </section>
+
+      {/* ─── section divider ─── */}
+      <div className="mx-auto max-w-24">
+        <div className="flex items-center justify-center gap-2 py-2">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
+          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
+            ))}
+          </svg>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
+        </div>
+      </div>
 
       {/* ─── WHISPERS FROM THE CIRCLE ─── */}
       <section className="relative overflow-hidden px-6 py-24 sm:py-36">
@@ -407,8 +426,8 @@ export default async function Home() {
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
-                      AA
+                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
+                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -464,8 +483,8 @@ export default async function Home() {
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
-                      AA
+                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
+                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -521,8 +540,8 @@ export default async function Home() {
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
-                      AA
+                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
+                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -579,6 +598,19 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* ─── section divider ─── */}
+      <div className="mx-auto max-w-24">
+        <div className="flex items-center justify-center gap-2 py-2">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
+          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
+            ))}
+          </svg>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
+        </div>
+      </div>
 
       {/* ─── THREE PILLARS ─── */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
