@@ -65,18 +65,6 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 Circle
               </Link>
 
-              <Link
-                href="/inbox"
-                className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-              >
-                Whisper
-                {unreadInboxCount > 0 && (
-                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                    {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                  </span>
-                )}
-              </Link>
-
               {/* More dropdown (hover) */}
               <div
                 ref={dropdownRef}
@@ -127,13 +115,36 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                       Profile
                     </Link>
                     {user.isAdmin && (
-                      <Link
-                        href="/admin"
-                        onClick={() => setDropdownOpen(false)}
-                        className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                      >
-                        Stats
-                      </Link>
+                      <>
+                        <div className="mx-3 my-1 border-t border-warm-100" />
+                        <p className="px-4 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
+                        <Link
+                          href="/inbox"
+                          onClick={() => setDropdownOpen(false)}
+                          className="flex items-center gap-2 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                        >
+                          Inbox
+                          {unreadInboxCount > 0 && (
+                            <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                              {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                            </span>
+                          )}
+                        </Link>
+                        <Link
+                          href="/admin/profiles"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                        >
+                          Profiles
+                        </Link>
+                        <Link
+                          href="/admin"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                        >
+                          Stats
+                        </Link>
+                      </>
                     )}
                   </div>
                 )}
@@ -272,18 +283,6 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   Circle
                 </Link>
                 <Link
-                  href="/inbox"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                >
-                  Whisper
-                  {unreadInboxCount > 0 && (
-                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                      {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                    </span>
-                  )}
-                </Link>
-                <Link
                   href="/chat"
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
@@ -305,13 +304,36 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   Profile
                 </Link>
                 {user.isAdmin && (
-                  <Link
-                    href="/admin"
-                    onClick={() => setMenuOpen(false)}
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                  >
-                    Stats
-                  </Link>
+                  <>
+                    <div className="mx-3 my-1 border-t border-warm-100" />
+                    <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
+                    <Link
+                      href="/inbox"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                    >
+                      Inbox
+                      {unreadInboxCount > 0 && (
+                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                          {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                        </span>
+                      )}
+                    </Link>
+                    <Link
+                      href="/admin/profiles"
+                      onClick={() => setMenuOpen(false)}
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                    >
+                      Profiles
+                    </Link>
+                    <Link
+                      href="/admin"
+                      onClick={() => setMenuOpen(false)}
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                    >
+                      Stats
+                    </Link>
+                  </>
                 )}
                 <form action={signOut}>
                   <button
