@@ -112,15 +112,15 @@ const features = [
   },
   {
     icon: <EnvelopeIcon className="h-5 w-5 text-warm-700" />,
-    title: "Private Messaging",
+    title: "Whisper",
     description:
-      "Send a personal message to the Aurora team. Share what you\u2019re navigating. Every message is read with care.",
+      "Send a private whisper to Ashley \u2014 a question, an intention, or something you\u2019re working through. Every whisper is read with care, and some may be shared with the sacred circle.",
   },
   {
     icon: <UserGroupIcon className="h-5 w-5 text-warm-700" />,
     title: "The Circle",
     description:
-      "A quiet, intentional space. No algorithms, no noise \u2014 just women gathering around what matters.",
+      "A quiet, sacred space. No algorithms, no noise \u2014 just women gathering around what matters.",
   },
   {
     icon: <BookmarkIcon className="h-5 w-5 text-warm-700" />,
@@ -171,8 +171,8 @@ export default async function Home() {
             style={{ animationDelay: "300ms" }}
           >
             Aurora is a gathering place for women who are ready to shed the
-            modern noise and reconnect &mdash; with themselves, with nature,
-            and with each other.
+            modern noise and reconnect with ancient wisdom &mdash; with themselves,
+            with nature, with ritual, and with each other.
           </p>
 
           <div
@@ -302,6 +302,115 @@ export default async function Home() {
               </p>
             </div>
           </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ─── WHISPERS FROM THE CIRCLE ─── */}
+      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
+        <div className="mx-auto max-w-5xl">
+          <AnimateOnScroll className="text-center">
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+              The Whisper
+            </p>
+            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+              Your sacred circle should be safe enough to <span className="font-medium">speak freely</span>
+            </h2>
+          </AnimateOnScroll>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            {/* Card 1 — Anonymous */}
+            <AnimateOnScroll delay={0}>
+              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                <div className="flex items-center justify-between px-4 pt-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-500">
+                      ?
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-warm-900">Anonymous</p>
+                      <p className="text-xs text-warm-400">2d ago</p>
+                    </div>
+                  </div>
+                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                    🤍 whisper
+                  </span>
+                </div>
+                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                  <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
+                  <p className="mt-1 text-sm italic text-warm-600">
+                    &ldquo;How do you stay rooted in your rituals when life gets overwhelming? I keep losing my routine and it feels like I&apos;m starting over every time.&rdquo;
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-sm leading-relaxed text-warm-700">
+                    You&apos;re not starting over &mdash; you&apos;re returning. That&apos;s different. When everything feels chaotic, come back to the smallest anchor: one glass of warm water in the morning, one minute of stillness. The ritual doesn&apos;t have to be grand to hold you.
+                  </p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Card 2 — Anonymous */}
+            <AnimateOnScroll delay={150}>
+              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                <div className="flex items-center justify-between px-4 pt-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-500">
+                      ?
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-warm-900">Anonymous</p>
+                      <p className="text-xs text-warm-400">5d ago</p>
+                    </div>
+                  </div>
+                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                    🤍 whisper
+                  </span>
+                </div>
+                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                  <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
+                  <p className="mt-1 text-sm italic text-warm-600">
+                    &ldquo;Has anyone else set boundaries with family around the way they eat? I feel so alone in this sometimes.&rdquo;
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-sm leading-relaxed text-warm-700">
+                    You are not alone in this. Setting boundaries around how you nourish yourself is one of the most courageous acts of self-love. It can feel isolating, but know that this circle is full of women walking the same path &mdash; quietly, bravely.
+                  </p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Card 3 — Named */}
+            <AnimateOnScroll delay={300}>
+              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                <div className="flex items-center justify-between px-4 pt-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
+                      EM
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-warm-900">Elena Morales</p>
+                      <p className="text-xs text-warm-400">1w ago</p>
+                    </div>
+                  </div>
+                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                    🤍 whisper
+                  </span>
+                </div>
+                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                  <p className="text-xs font-medium text-warm-500">Elena asked:</p>
+                  <p className="mt-1 text-sm italic text-warm-600">
+                    &ldquo;What&apos;s one ancient beauty ritual you think every woman should try at least once?&rdquo;
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-sm leading-relaxed text-warm-700">
+                    Oil cleansing. It&apos;s one of the oldest beauty practices in the world &mdash; a revival of ancestral skincare that modern routines forgot. Warm oil, gentle hands, and a moment of intention. Your skin already knows what to do.
+                  </p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+          </div>
         </div>
       </section>
 
@@ -531,9 +640,9 @@ export default async function Home() {
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-500">
             Join a growing circle of women choosing a more natural, intentional
-            way of living. Weekly voice notes, curated guides, private
-            messaging, and a community of sisters who understand. All for less
-            than a dollar a day.
+            way of living &mdash; rooted in ancient ritual. Weekly voice notes,
+            curated guides, private whispers, and a community of sisters who
+            understand. All for less than a dollar a day.
           </p>
           <div className="mt-10">
             {user ? (

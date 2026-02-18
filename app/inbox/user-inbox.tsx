@@ -40,6 +40,7 @@ export default function UserInbox({
   const [state, formAction, pending] = useActionState(sendMessage, null);
   const formRef = useRef<HTMLFormElement>(null);
   const [remaining, setRemaining] = useState<number>(0);
+  const [anonymous, setAnonymous] = useState(true);
 
   useEffect(() => {
     if (!canSendAfter) {
@@ -64,18 +65,19 @@ export default function UserInbox({
       {/* Send message section */}
       <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Share
+          Whisper
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-warm-500">
-          Ask a question or share something on your mind. Ashley will read your
-          message and may post a response to the Circle feed for the community
-          to discuss — your identity stays completely anonymous.
+          Share what&apos;s on your heart &mdash; a question, an intention, or
+          something you&apos;re navigating. Ashley will read your whisper and
+          may share her response with the sacred circle for the community to
+          reflect on. Your identity is yours to reveal.
         </p>
 
         {onCooldown && (
           <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
             <p className="text-sm text-amber-800">
-              You can ask again in {formatRemaining(remaining)}.
+              You can whisper again in {formatRemaining(remaining)}.
             </p>
           </div>
         )}
@@ -88,13 +90,48 @@ export default function UserInbox({
           }}
           className="mt-4 space-y-4"
         >
+          <input type="hidden" name="anonymous" value={anonymous ? "on" : ""} />
+
+          {/* Anonymous / Named toggle */}
+          <div>
+            <div className="flex rounded-lg border border-warm-200 p-0.5">
+              <button
+                type="button"
+                onClick={() => setAnonymous(true)}
+                className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  anonymous
+                    ? "bg-warm-800 text-warm-50"
+                    : "text-warm-500 hover:text-warm-700"
+                }`}
+              >
+                Anonymous
+              </button>
+              <button
+                type="button"
+                onClick={() => setAnonymous(false)}
+                className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  !anonymous
+                    ? "bg-warm-800 text-warm-50"
+                    : "text-warm-500 hover:text-warm-700"
+                }`}
+              >
+                Named
+              </button>
+            </div>
+            <p className="mt-1.5 text-xs text-warm-400">
+              {anonymous
+                ? "Anonymous \u2014 Ashley won\u2019t see your name"
+                : "Named \u2014 Ashley will see your profile"}
+            </p>
+          </div>
+
           <textarea
             name="body"
             required
             maxLength={2000}
             rows={4}
             disabled={onCooldown}
-            placeholder="Write your question..."
+            placeholder="Share what\u2019s on your heart..."
             className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500 disabled:bg-warm-50 disabled:text-warm-400"
           />
           <div className="flex items-center justify-between">
@@ -115,7 +152,7 @@ export default function UserInbox({
           )}
           {state?.success && (
             <p className="text-sm text-green-600">
-              Message sent successfully.
+              Whisper sent successfully.
             </p>
           )}
         </form>
@@ -125,7 +162,7 @@ export default function UserInbox({
       {messages.length > 0 && (
         <div className="mt-8">
           <h2 className="text-lg font-light tracking-tight text-warm-900">
-            Your Questions
+            Your Whispers
           </h2>
           <div className="mt-4 space-y-3">
             {messages.map((msg) => (
@@ -158,7 +195,7 @@ export default function UserInbox({
                 </p>
                 {msg.status === "addressed" && msg.reply_body && (
                   <div className="mt-3 rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
-                    <p className="text-xs font-medium text-warm-500">Ashley replied:</p>
+                    <p className="text-xs font-medium text-warm-500">Ashley whispered back:</p>
                     <div
                       className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
                       dangerouslySetInnerHTML={{ __html: msg.reply_body }}

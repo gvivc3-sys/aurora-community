@@ -167,7 +167,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
       {/* Header */}
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Share
+          Whispers
         </h1>
         {unreadCount > 0 && (
           <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-medium text-white">
@@ -231,7 +231,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <p className="truncate text-sm font-medium text-warm-900">
-                        {msg.sender_name ?? "Unknown"}
+                        {msg.sender_name ?? "Anonymous"}
                       </p>
                       {msg.status === "unread" && (
                         <span className="inline-block h-2 w-2 rounded-full bg-red-500" />

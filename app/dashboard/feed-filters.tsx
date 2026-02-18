@@ -8,7 +8,7 @@ const topics = [
   { key: "love", label: "Love" },
   { key: "health", label: "Health" },
   { key: "magic", label: "Magic" },
-  { key: "ask", label: "Share" },
+  { key: "ask", label: "Whisper" },
 ] as const;
 
 const types = [

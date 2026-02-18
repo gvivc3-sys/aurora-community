@@ -44,10 +44,12 @@ export async function sendMessage(
     return { error: "Message must be 2000 characters or less." };
   }
 
+  const anonymous = formData.get("anonymous") === "on";
+
   const { error } = await supabase.from("messages").insert({
     sender_id: user.id,
-    sender_name: user.user_metadata?.username ?? user.email,
-    sender_avatar_url: user.user_metadata?.avatar_url ?? null,
+    sender_name: anonymous ? null : (user.user_metadata?.username ?? user.email),
+    sender_avatar_url: anonymous ? null : (user.user_metadata?.avatar_url ?? null),
     body,
   });
 
