@@ -32,38 +32,53 @@ export default function AvatarCircle() {
 
     let currentX = 0;
     let currentY = 0;
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
 
     function onMouseMove(e: MouseEvent) {
+      if (isMobile) return;
       const rect = el!.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      // Map mouse position to rotation (-12 to 12 degrees)
       tiltRef.current.x = ((e.clientY - cy) / (rect.height / 2)) * -12;
       tiltRef.current.y = ((e.clientX - cx) / (rect.width / 2)) * 12;
     }
 
     function onMouseLeave() {
+      if (isMobile) return;
       tiltRef.current.x = 0;
       tiltRef.current.y = 0;
     }
 
+    function onScroll() {
+      if (!isMobile) return;
+      const rect = el!.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      // How far through the viewport the section center is (0 = top, 1 = bottom)
+      const progress = (viewH / 2 - rect.top) / (rect.height + viewH);
+      // Map to tilt: -15 to +15 degrees on X axis
+      tiltRef.current.x = (progress - 0.5) * 30;
+      // Gentle Y wobble based on scroll position
+      tiltRef.current.y = Math.sin(progress * Math.PI * 2) * 8;
+    }
+
     function animate() {
-      // Lerp toward target for smooth movement
       currentX += (tiltRef.current.x - currentX) * 0.08;
       currentY += (tiltRef.current.y - currentY) * 0.08;
       inner!.style.transform = `perspective(800px) rotateX(${currentX}deg) rotateY(${currentY}deg)`;
       rafRef.current = requestAnimationFrame(animate);
     }
 
-    // Listen on the whole hero section (parent) for broader mouse tracking
     const section = el.closest("section") ?? document;
     section.addEventListener("mousemove", onMouseMove as EventListener);
     section.addEventListener("mouseleave", onMouseLeave as EventListener);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       section.removeEventListener("mousemove", onMouseMove as EventListener);
       section.removeEventListener("mouseleave", onMouseLeave as EventListener);
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafRef.current);
     };
   }, []);
@@ -95,7 +110,7 @@ export default function AvatarCircle() {
                 }}
               >
                 <div
-                  className="h-16 w-16 overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-20 sm:w-20"
+                  className="h-[38px] w-[38px] overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-20 sm:w-20"
                   style={{
                     animation: "spin 30s linear infinite reverse",
                   }}
