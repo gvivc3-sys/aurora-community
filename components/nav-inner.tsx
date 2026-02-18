@@ -65,6 +65,13 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 Circle
               </Link>
 
+              <Link
+                href="/inbox"
+                className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+              >
+                Whisper
+              </Link>
+
               {/* More dropdown (hover) */}
               <div
                 ref={dropdownRef}
@@ -281,6 +288,13 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                     ))}
                   </svg>
                   Circle
+                </Link>
+                <Link
+                  href="/inbox"
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                >
+                  Whisper
                 </Link>
                 <Link
                   href="/chat"

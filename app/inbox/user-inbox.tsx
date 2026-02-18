@@ -131,7 +131,7 @@ export default function UserInbox({
             maxLength={2000}
             rows={4}
             disabled={onCooldown}
-            placeholder="Share what\u2019s on your heart..."
+            placeholder="Write your whisper..."
             className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500 disabled:bg-warm-50 disabled:text-warm-400"
           />
           <div className="flex items-center justify-between">
