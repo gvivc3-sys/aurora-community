@@ -16,9 +16,17 @@ const avatars = [
   "/images/avatar_pool/woman_blonde_2.jpeg",
 ];
 
+// Pre-compute positions as rounded integers so server and client match exactly
+const RADIUS = 280;
+const positions = avatars.map((_, i) => {
+  const rad = ((i / avatars.length) * 360 * Math.PI) / 180;
+  return {
+    x: Math.round(Math.cos(rad) * RADIUS),
+    y: Math.round(Math.sin(rad) * RADIUS),
+  };
+});
+
 export default function AvatarCircle() {
-  const count = avatars.length;
-  const radius = 280;
   const containerRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number>(0);
@@ -53,11 +61,8 @@ export default function AvatarCircle() {
       if (!isMobile) return;
       const rect = el!.getBoundingClientRect();
       const viewH = window.innerHeight;
-      // How far through the viewport the section center is (0 = top, 1 = bottom)
       const progress = (viewH / 2 - rect.top) / (rect.height + viewH);
-      // Map to tilt: -15 to +15 degrees on X axis
       tiltRef.current.x = (progress - 0.5) * 30;
-      // Gentle Y wobble based on scroll position
       tiltRef.current.y = Math.sin(progress * Math.PI * 2) * 8;
     }
 
@@ -95,37 +100,30 @@ export default function AvatarCircle() {
         style={{ transformStyle: "preserve-3d" }}
       >
         <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
-          {avatars.map((src, i) => {
-            const angle = (i / count) * 360;
-            const rad = (angle * Math.PI) / 180;
-            const x = Math.cos(rad) * radius;
-            const y = Math.sin(rad) * radius;
-
-            return (
+          {avatars.map((src, i) => (
+            <div
+              key={src}
+              className="absolute left-1/2 top-1/2"
+              style={{
+                transform: `translate(-50%, -50%) translate(${positions[i].x}px, ${positions[i].y}px)`,
+              }}
+            >
               <div
-                key={src}
-                className="absolute left-1/2 top-1/2"
+                className="h-[88px] w-[88px] overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-20 sm:w-20"
                 style={{
-                  transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                  animation: "spin 30s linear infinite reverse",
                 }}
               >
-                <div
-                  className="h-[38px] w-[38px] overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-20 sm:w-20"
-                  style={{
-                    animation: "spin 30s linear infinite reverse",
-                  }}
-                >
-                  <Image
-                    src={src}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                <Image
+                  src={src}
+                  alt=""
+                  width={88}
+                  height={88}
+                  className="h-full w-full object-cover"
+                />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>
