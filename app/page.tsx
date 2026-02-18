@@ -226,6 +226,51 @@ export default async function Home() {
         </AnimateOnScroll>
       </section>
 
+      {/* ─── ABOUT ASHLEY ─── */}
+      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
+        <div className="grid items-center gap-12 md:grid-cols-5">
+          <AnimateOnScroll className="md:col-span-2">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/profile_image_of_ashley.jpg"
+                alt="Ashley Aurora"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 80vw, 320px"
+              />
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={150} className="md:col-span-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+              The Woman Behind Aurora
+            </p>
+            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+              Meet <span className="font-medium">Ashley</span>
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-warm-600">
+              Ashley has spent years immersed in ancestral beauty practices,
+              whole-food nutrition, energy cultivation, and the quiet art of
+              feminine living. She spends her days in nature, experimenting with
+              traditional recipes, and studying what women throughout history
+              have always known.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-warm-600">
+              Aurora was born from something simple: Ashley wanted to bring
+              together women who feel the same pull &mdash; back to nature,
+              back to simplicity, back to the kind of beauty that doesn&apos;t
+              need a filter. Not as a guru with all the answers, but as a
+              sister on the same path.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-warm-600">
+              Through weekly voice notes, curated guides, and a deeply
+              intentional community, she shares everything she&apos;s learning
+              &mdash; so we can all walk this road together.
+            </p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
         <div className="grid items-center gap-16 md:grid-cols-2">
@@ -306,8 +351,46 @@ export default async function Home() {
       </section>
 
       {/* ─── WHISPERS FROM THE CIRCLE ─── */}
-      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative overflow-hidden px-6 py-24 sm:py-36">
+        {/* Rotating circles with gaussian blur — decorative background */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <svg viewBox="0 0 400 400" className="absolute -left-20 top-1/4 h-[32rem] w-[32rem] animate-[spin_30s_linear_infinite] opacity-[0.07]" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle
+                key={angle}
+                cx={200 + 140 * Math.cos((angle * Math.PI) / 180)}
+                cy={200 + 140 * Math.sin((angle * Math.PI) / 180)}
+                r={angle % 90 === 0 ? 18 : 12}
+                fill="currentColor"
+                className="text-warm-800"
+              />
+            ))}
+          </svg>
+          <svg viewBox="0 0 400 400" className="absolute -right-16 bottom-1/4 h-[28rem] w-[28rem] animate-[spin_25s_linear_infinite_reverse] opacity-[0.05]" fill="none">
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <circle
+                key={angle}
+                cx={200 + 140 * Math.cos((angle * Math.PI) / 180)}
+                cy={200 + 140 * Math.sin((angle * Math.PI) / 180)}
+                r={angle % 90 === 0 ? 18 : 12}
+                fill="currentColor"
+                className="text-rose-400"
+              />
+            ))}
+          </svg>
+          {/* Gaussian blur blobs */}
+          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-rose-200/20 blur-[100px]" />
+          <div
+            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-amber-200/20 blur-[100px]"
+            style={{ animationDelay: "4s" }}
+          />
+          <div
+            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-100/15 blur-[80px]"
+            style={{ animationDelay: "2s" }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
               The Whisper
@@ -318,16 +401,17 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
-            {/* Card 1 — Anonymous */}
+            {/* Card 1 — Anonymous whisper, Ashley responds */}
             <AnimateOnScroll delay={0}>
               <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-500">
-                      ?
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
+                      AA
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Anonymous</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
@@ -335,30 +419,56 @@ export default async function Home() {
                     🤍 whisper
                   </span>
                 </div>
+                {/* Nested anonymous whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;How do you stay rooted in your rituals when life gets overwhelming? I keep losing my routine and it feels like I&apos;m starting over every time.&rdquo;
                   </p>
                 </div>
+                {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
                     You&apos;re not starting over &mdash; you&apos;re returning. That&apos;s different. When everything feels chaotic, come back to the smallest anchor: one glass of warm water in the morning, one minute of stillness. The ritual doesn&apos;t have to be grand to hold you.
                   </p>
                 </div>
+                {/* Divider */}
+                <div className="mx-4 border-t border-warm-100" />
+                {/* Fake comments */}
+                <div className="px-4 py-3 space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-200 to-rose-100 text-[9px] font-semibold text-warm-600">
+                      SL
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Sofia Lin</span> <span className="text-warm-400">&middot; 1d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Needed this today. Returning, not starting over.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-yellow-100 text-[9px] font-semibold text-warm-600">
+                      RK
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Rina K.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">The warm water ritual changed my mornings completely.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </AnimateOnScroll>
 
-            {/* Card 2 — Anonymous */}
+            {/* Card 2 — Anonymous whisper, Ashley responds */}
             <AnimateOnScroll delay={150}>
               <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-500">
-                      ?
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
+                      AA
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Anonymous</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
                       <p className="text-xs text-warm-400">5d ago</p>
                     </div>
                   </div>
@@ -366,30 +476,56 @@ export default async function Home() {
                     🤍 whisper
                   </span>
                 </div>
+                {/* Nested anonymous whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;Has anyone else set boundaries with family around the way they eat? I feel so alone in this sometimes.&rdquo;
                   </p>
                 </div>
+                {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
                     You are not alone in this. Setting boundaries around how you nourish yourself is one of the most courageous acts of self-love. It can feel isolating, but know that this circle is full of women walking the same path &mdash; quietly, bravely.
                   </p>
                 </div>
+                {/* Divider */}
+                <div className="mx-4 border-t border-warm-100" />
+                {/* Fake comments */}
+                <div className="px-4 py-3 space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-200 to-purple-100 text-[9px] font-semibold text-warm-600">
+                      JM
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Jasmine M.</span> <span className="text-warm-400">&middot; 4d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I went through the same thing last year. It does get easier.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-200 to-emerald-100 text-[9px] font-semibold text-warm-600">
+                      NW
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Nadia W.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Boundaries are sacred. Thank you for this reminder.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </AnimateOnScroll>
 
-            {/* Card 3 — Named */}
+            {/* Card 3 — Named whisper (Elena), Ashley responds */}
             <AnimateOnScroll delay={300}>
               <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+                {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-sm font-semibold text-warm-700">
-                      EM
+                      AA
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Elena Morales</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
                       <p className="text-xs text-warm-400">1w ago</p>
                     </div>
                   </div>
@@ -397,16 +533,46 @@ export default async function Home() {
                     🤍 whisper
                   </span>
                 </div>
+                {/* Nested named whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
-                  <p className="text-xs font-medium text-warm-500">Elena asked:</p>
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[8px] font-semibold text-warm-700">
+                      EM
+                    </div>
+                    <p className="text-xs font-medium text-warm-500">Elena Morales asked:</p>
+                  </div>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;What&apos;s one ancient beauty ritual you think every woman should try at least once?&rdquo;
                   </p>
                 </div>
+                {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
                     Oil cleansing. It&apos;s one of the oldest beauty practices in the world &mdash; a revival of ancestral skincare that modern routines forgot. Warm oil, gentle hands, and a moment of intention. Your skin already knows what to do.
                   </p>
+                </div>
+                {/* Divider */}
+                <div className="mx-4 border-t border-warm-100" />
+                {/* Fake comments */}
+                <div className="px-4 py-3 space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[9px] font-semibold text-warm-700">
+                      EM
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Elena Morales</span> <span className="text-warm-400">&middot; 6d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I tried it last night and my skin feels incredible. Thank you!</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-200 to-blue-100 text-[9px] font-semibold text-warm-600">
+                      DT
+                    </div>
+                    <div>
+                      <p className="text-xs"><span className="font-medium text-warm-800">Diana T.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">My grandmother used to do this. Full circle moment.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </AnimateOnScroll>
@@ -529,51 +695,6 @@ export default async function Home() {
               </AnimateOnScroll>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ─── ABOUT ASHLEY ─── */}
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
-        <div className="grid items-center gap-12 md:grid-cols-5">
-          <AnimateOnScroll className="md:col-span-2">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/images/profile_image_of_ashley.jpg"
-                alt="Ashley Aurora"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 80vw, 320px"
-              />
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={150} className="md:col-span-3">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              The Woman Behind Aurora
-            </p>
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Meet <span className="font-medium">Ashley</span>
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-warm-600">
-              Ashley has spent years immersed in ancestral beauty practices,
-              whole-food nutrition, energy cultivation, and the quiet art of
-              feminine living. She spends her days in nature, experimenting with
-              traditional recipes, and studying what women throughout history
-              have always known.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Aurora was born from something simple: Ashley wanted to bring
-              together women who feel the same pull &mdash; back to nature,
-              back to simplicity, back to the kind of beauty that doesn&apos;t
-              need a filter. Not as a guru with all the answers, but as a
-              sister on the same path.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Through weekly voice notes, curated guides, and a deeply
-              intentional community, she shares everything she&apos;s learning
-              &mdash; so we can all walk this road together.
-            </p>
-          </AnimateOnScroll>
         </div>
       </section>
 
