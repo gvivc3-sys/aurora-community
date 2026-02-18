@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useActionState } from "react";
+import Link from "next/link";
 import { markAsRead, markAsAddressed, replyToMessage } from "@/lib/actions/messages";
 import Avatar from "@/components/avatar";
 import RichTextEditor from "@/components/rich-text-editor";
@@ -216,42 +217,46 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     : "border-warm-200"
                 }`}
               >
-                <button
-                  type="button"
-                  onClick={() =>
-                    setExpandedId(isExpanded ? null : msg.id)
-                  }
-                  className="flex w-full items-center gap-3 px-4 py-3 text-left"
-                >
-                  <Avatar
-                    src={msg.sender_avatar_url}
-                    name={msg.sender_name}
-                    size="sm"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="truncate text-sm font-medium text-warm-900">
-                        {msg.sender_name ?? "Anonymous"}
-                      </p>
-                      {msg.status === "unread" && (
-                        <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
-                      )}
-                      {msg.status === "addressed" && (
-                        <span className="rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
-                          Addressed
-                        </span>
+                <div className="flex w-full items-center gap-3 px-4 py-3">
+                  <Link href={`/profile/${msg.sender_id}`}>
+                    <Avatar
+                      src={msg.sender_avatar_url}
+                      name={msg.sender_name}
+                      size="sm"
+                    />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedId(isExpanded ? null : msg.id)
+                    }
+                    className="flex min-w-0 flex-1 items-center gap-3 text-left"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <Link href={`/profile/${msg.sender_id}`} className="truncate text-sm font-medium text-warm-900 hover:underline" onClick={(e) => e.stopPropagation()}>
+                          {msg.sender_name ?? "Anonymous"}
+                        </Link>
+                        {msg.status === "unread" && (
+                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                        )}
+                        {msg.status === "addressed" && (
+                          <span className="rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
+                            Addressed
+                          </span>
+                        )}
+                      </div>
+                      {!isExpanded && (
+                        <p className="truncate text-sm text-warm-500">
+                          {msg.body}
+                        </p>
                       )}
                     </div>
-                    {!isExpanded && (
-                      <p className="truncate text-sm text-warm-500">
-                        {msg.body}
-                      </p>
-                    )}
-                  </div>
-                  <span className="shrink-0 text-xs text-warm-400">
-                    {timeAgo(msg.created_at)}
-                  </span>
-                </button>
+                    <span className="shrink-0 text-xs text-warm-400">
+                      {timeAgo(msg.created_at)}
+                    </span>
+                  </button>
+                </div>
 
                 {isExpanded && (
                   <div className="border-t border-warm-100 px-4 py-3">

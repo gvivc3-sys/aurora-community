@@ -11,6 +11,8 @@ export async function updateProfile(
 
   const username = formData.get("username") as string;
   const birthday = formData.get("birthday") as string;
+  const bio = (formData.get("bio") as string)?.trim() ?? "";
+  const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
 
   if (birthday) {
     const date = new Date(birthday);
@@ -20,10 +22,16 @@ export async function updateProfile(
     }
   }
 
+  if (rawTelegram && !/^[a-zA-Z0-9_]{5,32}$/.test(rawTelegram)) {
+    return { error: "Telegram handle must be 5–32 characters (letters, numbers, underscores)." };
+  }
+
   const { error } = await supabase.auth.updateUser({
     data: {
       username: username || undefined,
       birthday: birthday || undefined,
+      bio: bio.slice(0, 300) || undefined,
+      telegram_handle: rawTelegram || undefined,
     },
   });
 

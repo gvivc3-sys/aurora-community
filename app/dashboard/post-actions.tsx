@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useOptimistic, useRef, useState } from "react";
+import Link from "next/link";
 import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
 
@@ -206,18 +207,18 @@ export default function PostActions({
             <div className="space-y-4">
               {comments.map((comment) => (
                 <div key={comment.id} className="flex gap-3">
-                  <div className="shrink-0 pt-0.5">
+                  <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
                     <Avatar
                       src={comment.author_avatar_url}
                       name={comment.author_name}
                       size="sm"
                     />
-                  </div>
+                  </Link>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm font-medium text-warm-900">
+                      <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
                         {comment.author_name ?? "Unknown"}
-                      </span>
+                      </Link>
                       <span className="text-xs text-warm-400">
                         {timeAgo(comment.created_at)}
                       </span>

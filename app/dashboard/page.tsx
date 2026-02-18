@@ -212,15 +212,17 @@ export default async function DashboardPage({
                   {/* Header: author info + tag */}
                   <div className="flex items-center justify-between px-4 pt-4">
                     <div className="flex items-center gap-3">
-                      <Avatar
-                        src={post.author_avatar_url}
-                        name={post.author_name}
-                        size="sm"
-                      />
+                      <Link href={`/profile/${post.author_id}`}>
+                        <Avatar
+                          src={post.author_avatar_url}
+                          name={post.author_name}
+                          size="sm"
+                        />
+                      </Link>
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-warm-900">
+                        <Link href={`/profile/${post.author_id}`} className="truncate text-sm font-medium text-warm-900 hover:underline">
                           {post.author_name ?? "Unknown"}
-                        </p>
+                        </Link>
                         <p className="text-xs text-warm-400">
                           {timeAgo(post.created_at)}
                         </p>
