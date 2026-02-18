@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import {
+  sendSubscriptionConfirmedEmail,
+  sendPaymentFailedEmail,
+  sendSubscriptionCanceledEmail,
+} from "@/lib/emails";
 
 export async function POST(request: NextRequest) {
   const body = await request.text();
@@ -56,6 +61,11 @@ export async function POST(request: NextRequest) {
               },
               { onConflict: "user_id" },
             );
+
+            const { data: userData } = await supabaseAdmin.auth.admin.getUserById(userId);
+            if (userData.user?.email) {
+              sendSubscriptionConfirmedEmail(userData.user.email);
+            }
           }
         }
         break;
@@ -85,6 +95,18 @@ export async function POST(request: NextRequest) {
               updated_at: new Date().toISOString(),
             })
             .eq("stripe_subscription_id", subId);
+
+          const { data: sub } = await supabaseAdmin
+            .from("subscriptions")
+            .select("user_id")
+            .eq("stripe_subscription_id", subId)
+            .single();
+          if (sub?.user_id) {
+            const { data: userData } = await supabaseAdmin.auth.admin.getUserById(sub.user_id);
+            if (userData.user?.email) {
+              sendPaymentFailedEmail(userData.user.email);
+            }
+          }
         }
         break;
       }
@@ -107,6 +129,12 @@ export async function POST(request: NextRequest) {
       }
 
       case "customer.subscription.deleted": {
+        const { data: canceledSub } = await supabaseAdmin
+          .from("subscriptions")
+          .select("user_id")
+          .eq("stripe_subscription_id", obj.id)
+          .single();
+
         await kickFromTelegram(obj.id);
 
         await supabaseAdmin
@@ -116,6 +144,13 @@ export async function POST(request: NextRequest) {
             updated_at: new Date().toISOString(),
           })
           .eq("stripe_subscription_id", obj.id);
+
+        if (canceledSub?.user_id) {
+          const { data: userData } = await supabaseAdmin.auth.admin.getUserById(canceledSub.user_id);
+          if (userData.user?.email) {
+            sendSubscriptionCanceledEmail(userData.user.email);
+          }
+        }
         break;
       }
     }
