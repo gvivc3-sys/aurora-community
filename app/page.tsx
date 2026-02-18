@@ -688,113 +688,32 @@ export default async function Home() {
       </section>
 
       {/* ─── TELEGRAM GROUP ─── */}
-      <section className="mx-auto max-w-6xl px-6 py-24 sm:py-36">
-        <div className="grid items-center gap-16 md:grid-cols-2">
-          <AnimateOnScroll>
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Stay Connected
-            </p>
-            <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              A private group,
-              <span className="block italic">just for <span className="font-medium">us</span></span>
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-warm-600">
-              Every Aurora member gets access to our private Telegram group
-              &mdash; a space for real-time conversations, shared discoveries,
-              and the kind of daily connection that makes this path feel less
-              solitary.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Share a recipe that changed your morning. Ask for advice on a
-              new ritual. Celebrate the small wins with women who truly
-              understand. No algorithms deciding what you see &mdash; just
-              honest, unhurried conversation.
-            </p>
-            <p className="mt-6 border-l-2 border-warm-300 pl-4 text-sm italic leading-relaxed text-warm-500">
-              &ldquo;The Telegram group feels like a group chat with your
-              wisest friends. I check it before I check anything else.&rdquo;
-            </p>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={200} className="flex justify-center">
-            {/* CSS iPhone frame */}
-            <div className="relative mx-auto w-[260px] sm:w-[280px]">
-              {/* Phone bezel */}
-              <div className="rounded-[3rem] border-[6px] border-warm-800 bg-warm-900 p-3 shadow-2xl">
-                {/* Notch / Dynamic Island */}
-                <div className="mx-auto mb-3 h-[22px] w-[90px] rounded-full bg-warm-800" />
-
-                {/* Screen */}
-                <div className="overflow-hidden rounded-[2rem] bg-white">
-                  {/* Status bar */}
-                  <div className="flex items-center justify-between px-5 pb-1 pt-2">
-                    <span className="text-[9px] font-semibold text-warm-500">9:41</span>
-                    <div className="flex items-center gap-1">
-                      <div className="flex gap-[2px]">
-                        <div className="h-[6px] w-[3px] rounded-sm bg-warm-400" />
-                        <div className="h-[8px] w-[3px] rounded-sm bg-warm-400" />
-                        <div className="h-[10px] w-[3px] rounded-sm bg-warm-400" />
-                        <div className="h-[6px] w-[3px] rounded-sm bg-warm-200" />
-                      </div>
-                      <svg viewBox="0 0 25 12" className="h-[10px] w-[20px] text-warm-400" fill="currentColor">
-                        <rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                        <rect x="2" y="3" width="14" height="6" rx="1" />
-                        <rect x="21" y="4" width="3" height="4" rx="1" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Telegram content */}
-                  <div className="flex flex-col items-center px-6 pb-10 pt-8">
-                    {/* Telegram icon */}
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#2AABEE] shadow-lg">
-                      <svg viewBox="0 0 24 24" className="h-10 w-10 text-white" fill="currentColor">
-                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                      </svg>
-                    </div>
-
-                    <h3 className="mt-5 text-center text-sm font-semibold text-warm-900">
-                      Aurora Sisterhood
-                    </h3>
-                    <p className="mt-1 text-center text-[11px] text-warm-400">
-                      Private group
-                    </p>
-
-                    {/* Notification badge */}
-                    <div className="mt-6 flex items-center gap-2.5 rounded-full bg-warm-50 px-4 py-2">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#2AABEE] text-[9px] font-bold text-white">
-                        3
-                      </div>
-                      <span className="text-xs text-warm-500">new messages</span>
-                    </div>
-
-                    {/* Member avatars */}
-                    <div className="mt-5 flex -space-x-2">
-                      {[
-                        "from-rose-200 to-pink-100",
-                        "from-amber-200 to-yellow-100",
-                        "from-violet-200 to-purple-100",
-                        "from-teal-200 to-emerald-100",
-                        "from-sky-200 to-blue-100",
-                      ].map((gradient, i) => (
-                        <div
-                          key={i}
-                          className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br ${gradient} text-[8px] font-semibold text-warm-600`}
-                        />
-                      ))}
-                      <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-warm-100 text-[8px] font-medium text-warm-500">
-                        +
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Glow behind phone */}
-              <div className="absolute -inset-8 -z-10 rounded-full bg-[#2AABEE]/10 blur-[40px]" />
-            </div>
-          </AnimateOnScroll>
-        </div>
+      <section className="mx-auto max-w-3xl px-6 py-24 sm:py-36">
+        <AnimateOnScroll className="text-center">
+          <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#2AABEE] shadow-sm" style={{ animation: "wiggle 15s ease-in-out infinite" }}>
+            <svg viewBox="0 0 24 24" className="h-8 w-8 text-white" fill="currentColor">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+            </svg>
+          </div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+            Stay Connected
+          </p>
+          <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+            A private group, <span className="italic">just for <span className="font-medium">us</span></span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
+            Every Aurora member gets access to our private Telegram group
+            &mdash; a space for real-time conversations, shared discoveries,
+            and the kind of daily connection that makes this path feel less
+            solitary.
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-600">
+            Share a recipe that changed your morning. Ask for advice on a
+            new ritual. Celebrate the small wins with women who truly
+            understand. No algorithms deciding what you see &mdash; just
+            honest, unhurried conversation.
+          </p>
+        </AnimateOnScroll>
       </section>
 
       {/* ─── COMMUNITY ETHOS STRIP ─── */}

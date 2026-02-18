@@ -66,6 +66,14 @@ body {
   50% { transform: translateY(-14px); }
 }
 
+@keyframes wiggle {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  92% { transform: rotate(-6deg); }
+  94% { transform: rotate(6deg); }
+  96% { transform: rotate(-4deg); }
+  98% { transform: rotate(3deg); }
+}
+
 @keyframes shimmer {
   from { background-position: 200% center; }
   to { background-position: -200% center; }
