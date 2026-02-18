@@ -206,18 +206,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── section divider ─── */}
-      <div className="mx-auto max-w-24">
-        <div className="flex items-center justify-center gap-2 py-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
-          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
-            ))}
-          </svg>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
-        </div>
-      </div>
 
       {/* ─── ABOUT ASHLEY ─── */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
@@ -264,18 +252,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── section divider ─── */}
-      <div className="mx-auto max-w-24">
-        <div className="flex items-center justify-center gap-2 py-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
-          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
-            ))}
-          </svg>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
-        </div>
-      </div>
 
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
@@ -356,18 +332,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── section divider ─── */}
-      <div className="mx-auto max-w-24">
-        <div className="flex items-center justify-center gap-2 py-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
-          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
-            ))}
-          </svg>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
-        </div>
-      </div>
 
       {/* ─── WHISPERS FROM THE CIRCLE ─── */}
       <section className="relative overflow-hidden px-6 py-24 sm:py-36">
@@ -599,18 +563,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── section divider ─── */}
-      <div className="mx-auto max-w-24">
-        <div className="flex items-center justify-center gap-2 py-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-warm-200" />
-          <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite] text-warm-300" fill="none">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <circle key={angle} cx={10 + 7 * Math.cos((angle * Math.PI) / 180)} cy={10 + 7 * Math.sin((angle * Math.PI) / 180)} r={angle % 90 === 0 ? 1.4 : 1} fill="currentColor" opacity={0.3 + (angle / 315) * 0.7} />
-            ))}
-          </svg>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-warm-200" />
-        </div>
-      </div>
 
       {/* ─── THREE PILLARS ─── */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
