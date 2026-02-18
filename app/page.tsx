@@ -3,6 +3,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
+import AvatarCircle from "@/components/avatar-circle";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -154,31 +155,34 @@ export default async function Home() {
         />
 
         <div className="relative mx-auto max-w-4xl px-6 pb-28 pt-24 text-center sm:pb-40 sm:pt-36">
-          <p className="animate-fade-in-up font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            A Private Community for Women
-          </p>
+          <AvatarCircle />
 
-          <h1
-            className="animate-fade-in-up mt-8 text-5xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
-            style={{ animationDelay: "150ms" }}
-          >
-            Find your <span className="font-medium">circle.</span>
-            <span className="mt-1 block italic">Return to your <span className="font-medium">nature.</span></span>
-          </h1>
+          <div className="relative z-10">
+            <p className="animate-fade-in-up font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+              A Private Community for Women
+            </p>
 
-          <p
-            className="animate-fade-in-up mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500"
-            style={{ animationDelay: "300ms" }}
-          >
-            Aurora is a gathering place for women who are ready to shed the
-            modern noise and reconnect with ancient wisdom &mdash; with themselves,
-            with nature, with ritual, and with each other.
-          </p>
+            <h1
+              className="animate-fade-in-up mt-8 text-5xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
+              style={{ animationDelay: "150ms" }}
+            >
+              Find your <span className="font-medium">circle.</span>
+              <span className="mt-1 block italic">Return to your <span className="font-medium">nature.</span></span>
+            </h1>
 
-          <div
-            className="animate-fade-in-up mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-            style={{ animationDelay: "450ms" }}
-          >
+            <p
+              className="animate-fade-in-up mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500"
+              style={{ animationDelay: "300ms" }}
+            >
+              Aurora is a gathering place for women who are ready to shed the
+              modern noise and reconnect with ancient wisdom &mdash; with themselves,
+              with nature, with ritual, and with each other.
+            </p>
+
+            <div
+              className="animate-fade-in-up mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+              style={{ animationDelay: "450ms" }}
+            >
             {user ? (
               <Link
                 href="/dashboard"
@@ -202,6 +206,7 @@ export default async function Home() {
                 </Link>
               </>
             )}
+          </div>
           </div>
         </div>
       </section>
