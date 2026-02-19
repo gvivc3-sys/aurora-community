@@ -5,6 +5,26 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
 
+const tagStyles: Record<string, { badge: string; emoji: string }> = {
+  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
+  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
+  magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
+};
+
+function timeAgo(date: string): string {
+  const seconds = Math.floor(
+    (Date.now() - new Date(date).getTime()) / 1000,
+  );
+  if (seconds < 60) return "just now";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days}d ago`;
+  return new Date(date).toLocaleDateString();
+}
+
 type Params = Promise<{ userId: string }>;
 
 export default async function PublicProfilePage({
@@ -32,6 +52,24 @@ export default async function PublicProfilePage({
   const target = data.user;
   const meta = target.user_metadata ?? {};
   const isOwner = viewer.id === target.id;
+
+  // Fetch target user's bookmarks
+  const { data: bookmarks } = await supabase
+    .from("bookmarks")
+    .select("post_id, created_at")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  const postIds = bookmarks?.map((b) => b.post_id) ?? [];
+
+  const { data: posts } = postIds.length
+    ? await supabase.from("posts").select("*").in("id", postIds)
+    : { data: [] };
+
+  const postMap = new Map((posts ?? []).map((p) => [p.id, p]));
+  const savedPosts = postIds
+    .map((id) => postMap.get(id))
+    .filter(Boolean) as NonNullable<typeof posts>;
 
   const memberSince = new Date(target.created_at).toLocaleDateString("en-US", {
     month: "long",
@@ -93,6 +131,45 @@ export default async function PublicProfilePage({
             >
               @{meta.telegram_handle}
             </a>
+          </div>
+        )}
+
+        {/* Saved posts */}
+        {savedPosts.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Saved</h2>
+            <div className="mt-3 space-y-3">
+              {savedPosts.map((post) => {
+                const tag = tagStyles[post.tag];
+                const label =
+                  post.type === "article" || post.type === "voice"
+                    ? post.title || "Untitled"
+                    : (post.body ?? "").replace(/<[^>]*>/g, "").slice(0, 80) +
+                      ((post.body ?? "").replace(/<[^>]*>/g, "").length > 80
+                        ? "…"
+                        : "");
+                return (
+                  <Link
+                    key={post.id}
+                    href="/dashboard"
+                    className="flex items-center gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-warm-50"
+                  >
+                    <span
+                      className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
+                    >
+                      <span>{tag?.emoji}</span>
+                      {post.tag}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-warm-700">
+                      {label}
+                    </span>
+                    <span className="shrink-0 text-xs text-warm-400">
+                      {timeAgo(post.created_at)}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
 
