@@ -52,7 +52,7 @@ export default async function InboxPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-        <UserInbox messages={messages ?? []} canSendAfter={canSendAfter} />
+        <UserInbox messages={messages ?? []} canSendAfter={canSendAfter} userId={user.id} />
       </div>
     </div>
   );

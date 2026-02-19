@@ -195,6 +195,8 @@ export async function replyToMessage(
     body: replyBody,
     created_at: new Date().toISOString(),
     mode: mode === "public" ? "public" : "private",
+    author_name: user.user_metadata?.username ?? user.email ?? "Admin",
+    role: "admin",
   });
 
   // Update the message status and store the replies
@@ -213,4 +215,73 @@ export async function replyToMessage(
   revalidatePath("/inbox");
   revalidatePath("/dashboard");
   return { success: true, mode: mode === "public" ? "public" : "private" };
+}
+
+export async function replyToReply(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  const messageId = formData.get("messageId") as string;
+  const replyBody = (formData.get("replyBody") as string)?.trim();
+
+  if (!messageId) {
+    return { error: "Message ID is required." };
+  }
+  if (!replyBody) {
+    return { error: "Reply cannot be empty." };
+  }
+  if (replyBody.length > 500) {
+    return { error: "Reply must be 500 characters or less." };
+  }
+
+  // Fetch original message
+  const { data: message, error: fetchError } = await supabase
+    .from("messages")
+    .select("*")
+    .eq("id", messageId)
+    .single();
+
+  if (fetchError || !message) {
+    return { error: "Message not found." };
+  }
+
+  // Only the original sender can reply
+  if (message.sender_id !== user.id) {
+    return { error: "You can only reply to your own whispers." };
+  }
+
+  // Append user reply
+  const existingReplies = parseReplies(message.reply_body);
+  existingReplies.push({
+    body: replyBody,
+    created_at: new Date().toISOString(),
+    mode: "private",
+    author_name: user.user_metadata?.username ?? user.email ?? "User",
+    role: "user",
+  });
+
+  // Update message: set status to unread so admin sees the new reply
+  const { error: updateError } = await supabase
+    .from("messages")
+    .update({
+      status: "unread",
+      reply_body: JSON.stringify(existingReplies),
+    })
+    .eq("id", messageId);
+
+  if (updateError) {
+    return { error: updateError.message };
+  }
+
+  revalidatePath("/inbox");
+  return { success: true };
 }

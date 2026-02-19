@@ -287,10 +287,19 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       return replies.length > 0 ? (
                         <div className="mt-3 space-y-2">
                           {replies.map((reply, i) => (
-                            <div key={i} className="rounded-lg bg-warm-50 px-3 py-2">
+                            <div key={i} className={`rounded-lg px-3 py-2 ${
+                              reply.role === "user"
+                                ? "border-l-2 border-warm-300 bg-warm-100/50"
+                                : "bg-warm-50"
+                            }`}>
                               <div className="flex items-center gap-2">
                                 <p className="text-xs font-medium text-warm-500">
-                                  {reply.mode === "public" ? "Posted to Circle" : "Private reply"}
+                                  {reply.author_name} replied
+                                  {reply.role === "admin" && (
+                                    <span className="ml-1 text-warm-400">
+                                      · {reply.mode === "public" ? "Posted to Circle" : "Private"}
+                                    </span>
+                                  )}
                                 </p>
                                 {reply.created_at && (
                                   <span className="text-xs text-warm-400">
@@ -298,10 +307,14 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                                   </span>
                                 )}
                               </div>
-                              <div
-                                className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
-                                dangerouslySetInnerHTML={{ __html: reply.body }}
-                              />
+                              {reply.role === "user" ? (
+                                <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700">{reply.body}</p>
+                              ) : (
+                                <div
+                                  className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                                  dangerouslySetInnerHTML={{ __html: reply.body }}
+                                />
+                              )}
                             </div>
                           ))}
                         </div>

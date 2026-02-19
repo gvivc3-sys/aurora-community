@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useRef, useState, useEffect } from "react";
-import { sendMessage } from "@/lib/actions/messages";
+import { sendMessage, replyToReply } from "@/lib/actions/messages";
 import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
 
@@ -31,12 +31,80 @@ function formatRemaining(ms: number): string {
   return `${totalMinutes}m`;
 }
 
+function UserReplyForm({ messageId }: { messageId: string }) {
+  const [open, setOpen] = useState(false);
+  const [state, action, pending] = useActionState(replyToReply, null);
+  const [lastSuccess, setLastSuccess] = useState<string | null>(null);
+  const formKey = useRef(0);
+
+  useEffect(() => {
+    if (state?.success) {
+      setLastSuccess("Reply sent.");
+      setOpen(false);
+      formKey.current += 1;
+    }
+  }, [state]);
+
+  return (
+    <div className="mt-3 space-y-2">
+      {lastSuccess && (
+        <p className="text-xs font-medium text-green-600">{lastSuccess}</p>
+      )}
+      {!open ? (
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setLastSuccess(null);
+          }}
+          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
+        >
+          Reply
+        </button>
+      ) : (
+        <form key={formKey.current} action={action} className="space-y-2">
+          <input type="hidden" name="messageId" value={messageId} />
+          <textarea
+            name="replyBody"
+            required
+            maxLength={500}
+            rows={3}
+            placeholder="Write your reply..."
+            className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={pending}
+              className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
+            >
+              {pending ? "Sending..." : "Send reply"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+            >
+              Cancel
+            </button>
+          </div>
+          {state?.error && (
+            <p className="text-xs text-red-500">{state.error}</p>
+          )}
+        </form>
+      )}
+    </div>
+  );
+}
+
 export default function UserInbox({
   messages,
   canSendAfter,
+  userId,
 }: {
   messages: Message[];
   canSendAfter: string | null;
+  userId: string;
 }) {
   const [state, formAction, pending] = useActionState(sendMessage, null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -194,26 +262,42 @@ export default function UserInbox({
                 <p className="mt-2 whitespace-pre-wrap text-sm text-warm-700">
                   {msg.body}
                 </p>
-                {msg.status === "addressed" && msg.reply_body && (() => {
+                {msg.reply_body && (() => {
                   const replies = parseReplies(msg.reply_body);
+                  const hasAdminReply = replies.some((r) => r.role === "admin");
                   return replies.length > 0 ? (
                     <div className="mt-3 space-y-2">
                       {replies.map((reply, i) => (
-                        <div key={i} className="rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
+                        <div key={i} className={`rounded-lg border px-3 py-2.5 ${
+                          reply.role === "user"
+                            ? "border-warm-200 bg-warm-100/50"
+                            : "border-warm-200 bg-warm-50"
+                        }`}>
                           <div className="flex items-center gap-2">
-                            <p className="text-xs font-medium text-warm-500">Ashley whispered back</p>
+                            <p className="text-xs font-medium text-warm-500">
+                              {reply.role === "user"
+                                ? "You replied"
+                                : `${reply.author_name} whispered back`}
+                            </p>
                             {reply.created_at && (
                               <span className="text-xs text-warm-400">
                                 {timeAgo(reply.created_at)}
                               </span>
                             )}
                           </div>
-                          <div
-                            className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
-                            dangerouslySetInnerHTML={{ __html: reply.body }}
-                          />
+                          {reply.role === "user" ? (
+                            <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700">{reply.body}</p>
+                          ) : (
+                            <div
+                              className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                              dangerouslySetInnerHTML={{ __html: reply.body }}
+                            />
+                          )}
                         </div>
                       ))}
+                      {hasAdminReply && (
+                        <UserReplyForm messageId={msg.id} />
+                      )}
                     </div>
                   ) : null;
                 })()}
