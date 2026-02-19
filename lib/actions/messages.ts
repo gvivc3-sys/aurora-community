@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
+import { parseReplies } from "@/lib/replies";
 
 export async function sendMessage(
   previousState: unknown,
@@ -188,10 +189,21 @@ export async function replyToMessage(
     }
   }
 
-  // Update the message status and store the reply
+  // Build replies array (append to existing replies)
+  const existingReplies = parseReplies(message.reply_body);
+  existingReplies.push({
+    body: replyBody,
+    created_at: new Date().toISOString(),
+    mode: mode === "public" ? "public" : "private",
+  });
+
+  // Update the message status and store the replies
   const { error: updateError } = await supabase
     .from("messages")
-    .update({ status: "addressed", reply_body: replyBody })
+    .update({
+      status: "addressed",
+      reply_body: JSON.stringify(existingReplies),
+    })
     .eq("id", messageId);
 
   if (updateError) {

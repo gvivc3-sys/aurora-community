@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useActionState } from "react";
+import { useState, useRef, useEffect, useActionState } from "react";
 import Link from "next/link";
 import { markAsRead, markAsAddressed, replyToMessage } from "@/lib/actions/messages";
 import Avatar from "@/components/avatar";
 import RichTextEditor from "@/components/rich-text-editor";
+import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
@@ -67,89 +68,99 @@ function ReplyForm({ messageId }: { messageId: string }) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"private" | "public">("private");
   const [state, action, pending] = useActionState(replyToMessage, null);
+  const [lastSuccess, setLastSuccess] = useState<string | null>(null);
+  const formKey = useRef(0);
 
-  if (state?.success) {
-    return (
-      <p className="text-xs font-medium text-green-600">
-        {state.mode === "public"
+  useEffect(() => {
+    if (state?.success) {
+      setLastSuccess(
+        state.mode === "public"
           ? "Reply posted to Circle."
-          : "Private reply sent."}
-      </p>
-    );
-  }
-
-  if (!open) {
-    return (
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
-      >
-        Reply
-      </button>
-    );
-  }
+          : "Private reply sent.",
+      );
+      setOpen(false);
+      formKey.current += 1;
+    }
+  }, [state]);
 
   return (
-    <form action={action} className="space-y-2">
-      <input type="hidden" name="messageId" value={messageId} />
-      <input type="hidden" name="mode" value={mode} />
-
-      {/* Mode toggle */}
-      <div className="flex rounded-lg border border-warm-200 p-0.5">
-        <button
-          type="button"
-          onClick={() => setMode("private")}
-          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-            mode === "private"
-              ? "bg-warm-800 text-warm-50"
-              : "text-warm-500 hover:text-warm-700"
-          }`}
-        >
-          Reply privately
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode("public")}
-          className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-            mode === "public"
-              ? "bg-warm-800 text-warm-50"
-              : "text-warm-500 hover:text-warm-700"
-          }`}
-        >
-          Post to Circle
-        </button>
-      </div>
-
-      <RichTextEditor
-        name="replyBody"
-        placeholder="Write your reply..."
-        minHeight="4rem"
-      />
-      <div className="flex gap-2">
-        <button
-          type="submit"
-          disabled={pending}
-          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
-        >
-          {pending
-            ? "Sending..."
-            : mode === "public"
-              ? "Post to Circle"
-              : "Send privately"}
-        </button>
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
-        >
-          Cancel
-        </button>
-      </div>
-      {state?.error && (
-        <p className="text-xs text-red-500">{state.error}</p>
+    <div className="space-y-2">
+      {lastSuccess && (
+        <p className="text-xs font-medium text-green-600">{lastSuccess}</p>
       )}
-    </form>
+      {!open ? (
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setLastSuccess(null);
+          }}
+          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
+        >
+          Reply
+        </button>
+      ) : (
+        <form key={formKey.current} action={action} className="space-y-2">
+          <input type="hidden" name="messageId" value={messageId} />
+          <input type="hidden" name="mode" value={mode} />
+
+          {/* Mode toggle */}
+          <div className="flex rounded-lg border border-warm-200 p-0.5">
+            <button
+              type="button"
+              onClick={() => setMode("private")}
+              className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                mode === "private"
+                  ? "bg-warm-800 text-warm-50"
+                  : "text-warm-500 hover:text-warm-700"
+              }`}
+            >
+              Reply privately
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("public")}
+              className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                mode === "public"
+                  ? "bg-warm-800 text-warm-50"
+                  : "text-warm-500 hover:text-warm-700"
+              }`}
+            >
+              Post to Circle
+            </button>
+          </div>
+
+          <RichTextEditor
+            name="replyBody"
+            placeholder="Write your reply..."
+            minHeight="4rem"
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={pending}
+              className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
+            >
+              {pending
+                ? "Sending..."
+                : mode === "public"
+                  ? "Post to Circle"
+                  : "Send privately"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+            >
+              Cancel
+            </button>
+          </div>
+          {state?.error && (
+            <p className="text-xs text-red-500">{state.error}</p>
+          )}
+        </form>
+      )}
+    </div>
   );
 }
 
@@ -264,27 +275,41 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       {msg.body}
                     </p>
                     {msg.status !== "addressed" && (
-                      <>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {msg.status === "unread" && (
-                            <MarkReadButton messageId={msg.id} />
-                          )}
-                          <MarkAddressedButton messageId={msg.id} />
-                        </div>
-                        <div className="mt-3 border-t border-warm-100 pt-3">
-                          <ReplyForm messageId={msg.id} />
-                        </div>
-                      </>
-                    )}
-                    {msg.status === "addressed" && msg.reply_body && (
-                      <div className="mt-3 rounded-lg bg-warm-50 px-3 py-2">
-                        <p className="text-xs font-medium text-warm-500">Replied:</p>
-                        <div
-                          className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
-                          dangerouslySetInnerHTML={{ __html: msg.reply_body }}
-                        />
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {msg.status === "unread" && (
+                          <MarkReadButton messageId={msg.id} />
+                        )}
+                        <MarkAddressedButton messageId={msg.id} />
                       </div>
                     )}
+                    {msg.reply_body && (() => {
+                      const replies = parseReplies(msg.reply_body);
+                      return replies.length > 0 ? (
+                        <div className="mt-3 space-y-2">
+                          {replies.map((reply, i) => (
+                            <div key={i} className="rounded-lg bg-warm-50 px-3 py-2">
+                              <div className="flex items-center gap-2">
+                                <p className="text-xs font-medium text-warm-500">
+                                  {reply.mode === "public" ? "Posted to Circle" : "Private reply"}
+                                </p>
+                                {reply.created_at && (
+                                  <span className="text-xs text-warm-400">
+                                    {timeAgo(reply.created_at)}
+                                  </span>
+                                )}
+                              </div>
+                              <div
+                                className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                                dangerouslySetInnerHTML={{ __html: reply.body }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : null;
+                    })()}
+                    <div className="mt-3 border-t border-warm-100 pt-3">
+                      <ReplyForm messageId={msg.id} />
+                    </div>
                   </div>
                 )}
               </div>

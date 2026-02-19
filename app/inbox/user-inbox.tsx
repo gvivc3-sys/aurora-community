@@ -2,6 +2,7 @@
 
 import { useActionState, useRef, useState, useEffect } from "react";
 import { sendMessage } from "@/lib/actions/messages";
+import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
@@ -193,15 +194,29 @@ export default function UserInbox({
                 <p className="mt-2 whitespace-pre-wrap text-sm text-warm-700">
                   {msg.body}
                 </p>
-                {msg.status === "addressed" && msg.reply_body && (
-                  <div className="mt-3 rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
-                    <p className="text-xs font-medium text-warm-500">Ashley whispered back:</p>
-                    <div
-                      className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
-                      dangerouslySetInnerHTML={{ __html: msg.reply_body }}
-                    />
-                  </div>
-                )}
+                {msg.status === "addressed" && msg.reply_body && (() => {
+                  const replies = parseReplies(msg.reply_body);
+                  return replies.length > 0 ? (
+                    <div className="mt-3 space-y-2">
+                      {replies.map((reply, i) => (
+                        <div key={i} className="rounded-lg border border-warm-200 bg-warm-50 px-3 py-2.5">
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs font-medium text-warm-500">Ashley whispered back</p>
+                            {reply.created_at && (
+                              <span className="text-xs text-warm-400">
+                                {timeAgo(reply.created_at)}
+                              </span>
+                            )}
+                          </div>
+                          <div
+                            className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"
+                            dangerouslySetInnerHTML={{ __html: reply.body }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : null;
+                })()}
               </div>
             ))}
           </div>
