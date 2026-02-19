@@ -47,7 +47,7 @@ export async function createCheckoutSession() {
     customer: customerId,
     mode: "subscription",
     line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
-    success_url: `${siteUrl}/dashboard?subscribed=true`,
+    success_url: `${siteUrl}/community-guidelines`,
     cancel_url: `${siteUrl}/subscribe`,
     subscription_data: {
       metadata: { supabase_user_id: user.id },
