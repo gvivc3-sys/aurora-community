@@ -30,7 +30,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
   }, []);
 
   return (
-    <nav className="relative z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Aurora logo with gaussian blur accent */}
         <Link
