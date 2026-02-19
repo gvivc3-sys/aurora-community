@@ -22,6 +22,15 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Aurora Community",
   description: "Membership and community platform",
+  themeColor: "#1c1917",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Aurora",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -36,6 +45,11 @@ export default function RootLayout({
       >
         <Nav />
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
+          }}
+        />
       </body>
     </html>
   );

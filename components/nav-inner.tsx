@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
+import InstallPrompt from "@/components/install-prompt";
 
 type NavUser = {
   email: string;
@@ -317,6 +318,7 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 >
                   Profile
                 </Link>
+                <InstallPrompt />
                 {user.isAdmin && (
                   <>
                     <div className="mx-3 my-1 border-t border-warm-100" />
