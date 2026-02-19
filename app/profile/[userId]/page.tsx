@@ -53,8 +53,8 @@ export default async function PublicProfilePage({
   const meta = target.user_metadata ?? {};
   const isOwner = viewer.id === target.id;
 
-  // Fetch target user's bookmarks
-  const { data: bookmarks } = await supabase
+  // Fetch target user's bookmarks (admin client bypasses RLS so any viewer can see them)
+  const { data: bookmarks } = await supabaseAdmin
     .from("bookmarks")
     .select("post_id, created_at")
     .eq("user_id", userId)
@@ -63,7 +63,7 @@ export default async function PublicProfilePage({
   const postIds = bookmarks?.map((b) => b.post_id) ?? [];
 
   const { data: posts } = postIds.length
-    ? await supabase.from("posts").select("*").in("id", postIds)
+    ? await supabaseAdmin.from("posts").select("*").in("id", postIds)
     : { data: [] };
 
   const postMap = new Map((posts ?? []).map((p) => [p.id, p]));
