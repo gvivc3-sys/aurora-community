@@ -4,7 +4,7 @@ import { useActionState, useState } from "react";
 import { useRouter } from "next/navigation";
 import { type User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
-import { updateProfile } from "@/lib/actions/profile";
+import { updateProfile, updateAvatar } from "@/lib/actions/profile";
 import { createPortalSession } from "@/lib/actions/stripe";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
@@ -47,8 +47,18 @@ export default function ProfileForm({ user }: { user: User }) {
     // Append cache-buster so the browser fetches the new image
     const freshUrl = `${publicUrl}?t=${Date.now()}`;
 
+    const oldAvatarUrl = avatarUrl;
     await supabase.auth.updateUser({ data: { avatar_url: freshUrl } });
     setAvatarUrl(freshUrl);
+
+    const result = await updateAvatar();
+    if (result && "error" in result) {
+      alert(result.error);
+      // Revert avatar in metadata
+      await supabase.auth.updateUser({ data: { avatar_url: oldAvatarUrl ?? undefined } });
+      setAvatarUrl(oldAvatarUrl);
+    }
+
     setUploading(false);
     router.refresh();
   }
