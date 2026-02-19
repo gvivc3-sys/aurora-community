@@ -1,7 +1,7 @@
 import { getResend } from "@/lib/resend";
 
-const FROM = "Aurora Community <onboarding@resend.dev>";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://auroracommunity.com";
+const FROM = "Aurora Community <hello@myaurora.io>";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://myaurora.io";
 
 // ---------------------------------------------------------------------------
 // Shared layout
