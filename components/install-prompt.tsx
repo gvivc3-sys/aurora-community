@@ -7,6 +7,17 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
+// Capture the event globally so it persists even when the component
+// is unmounted (e.g. inside a conditionally-rendered mobile menu).
+let savedPrompt: BeforeInstallPromptEvent | null = null;
+
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e: Event) => {
+    e.preventDefault();
+    savedPrompt = e as BeforeInstallPromptEvent;
+  });
+}
+
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
@@ -26,9 +37,15 @@ export default function InstallPrompt() {
       setIsIOS(true);
     }
 
-    // Listen for the install prompt (Chrome/Edge/Android)
+    // Pick up the globally captured prompt if it fired before mount
+    if (savedPrompt) {
+      setDeferredPrompt(savedPrompt);
+    }
+
+    // Also listen for future events (e.g. after user dismisses and Chrome re-fires)
     function handleBeforeInstall(e: Event) {
       e.preventDefault();
+      savedPrompt = e as BeforeInstallPromptEvent;
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     }
 
@@ -44,6 +61,7 @@ export default function InstallPrompt() {
     if (outcome === "accepted") {
       setIsInstalled(true);
     }
+    savedPrompt = null;
     setDeferredPrompt(null);
   }
 
