@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Nav from "@/components/nav";
 import "./globals.css";
@@ -19,10 +19,13 @@ const playfair = Playfair_Display({
   weight: ["700", "800", "900"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#1c1917",
+};
+
 export const metadata: Metadata = {
   title: "Aurora Community",
   description: "Membership and community platform",
-  themeColor: "#1c1917",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
