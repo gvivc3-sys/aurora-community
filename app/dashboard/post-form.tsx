@@ -4,6 +4,7 @@ import { useActionState, useState, useRef, useEffect, useCallback } from "react"
 import { createPost } from "@/lib/actions/post";
 import RichTextEditor from "@/components/rich-text-editor";
 import AudioPlayer from "@/components/audio-player";
+import { useToast } from "@/components/toast";
 
 const postTypes = [
   { key: "voice", label: "Voice" },
@@ -89,6 +90,7 @@ function RecordingVisualizer({ stream }: { stream: MediaStream }) {
 }
 
 export default function PostForm() {
+  const { toast } = useToast();
   const [state, formAction, pending] = useActionState(createPost, null);
   const [type, setType] = useState<PostType>("voice");
   const [tag, setTag] = useState<Tag>("love");
@@ -111,6 +113,14 @@ export default function PostForm() {
       if (audioPreviewUrl) URL.revokeObjectURL(audioPreviewUrl);
     };
   }, [audioPreviewUrl]);
+
+  useEffect(() => {
+    if (state?.error) {
+      toast(state.error, "error");
+    } else if (state?.success) {
+      toast("Post created successfully.", "success");
+    }
+  }, [state, toast]);
 
   const startRecording = useCallback(async () => {
     try {
@@ -141,7 +151,7 @@ export default function PostForm() {
       setDuration(0);
       timerRef.current = setInterval(() => setDuration((d) => d + 1), 1000);
     } catch {
-      alert("Could not access microphone. Please allow microphone access.");
+      toast("Could not access microphone. Please allow microphone access.", "error");
     }
   }, []);
 
@@ -165,11 +175,11 @@ export default function PostForm() {
     const file = e.target.files?.[0];
     if (!file) return;
     if (!file.type.startsWith("audio/")) {
-      alert("Please select an audio file.");
+      toast("Please select an audio file.", "error");
       return;
     }
     if (file.size > 10 * 1024 * 1024) {
-      alert("Audio file must be under 10 MB.");
+      toast("Audio file must be under 10 MB.", "error");
       return;
     }
     setAudioBlob(file);
@@ -474,13 +484,6 @@ export default function PostForm() {
             />
           </button>
         </div>
-
-        {state?.error && (
-          <p className="text-sm text-red-600">{state.error}</p>
-        )}
-        {state?.success && (
-          <p className="text-sm text-green-600">Post created successfully.</p>
-        )}
 
         <button
           type="submit"

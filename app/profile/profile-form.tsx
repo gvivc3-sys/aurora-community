@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { type User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
@@ -9,9 +9,23 @@ import { createPortalSession } from "@/lib/actions/stripe";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
 import BackLink from "@/components/back-link";
+import { useToast } from "@/components/toast";
+
+function ProfileToastEffect({ state }: { state: { error?: string; success?: boolean } | null }) {
+  const { toast } = useToast();
+  useEffect(() => {
+    if (state && "error" in state && state.error) {
+      toast(state.error, "error");
+    } else if (state && "success" in state) {
+      toast("Profile updated.", "success");
+    }
+  }, [state, toast]);
+  return null;
+}
 
 export default function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
+  const { toast } = useToast();
   const meta = user.user_metadata ?? {};
   const [state, formAction, pending] = useActionState(updateProfile, null);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(
@@ -37,7 +51,7 @@ export default function ProfileForm({ user }: { user: User }) {
 
     if (uploadError) {
       setUploading(false);
-      alert("Upload failed: " + uploadError.message);
+      toast("Upload failed: " + uploadError.message, "error");
       return;
     }
 
@@ -54,7 +68,7 @@ export default function ProfileForm({ user }: { user: User }) {
 
     const result = await updateAvatar();
     if (result && "error" in result) {
-      alert(result.error);
+      toast(result.error ?? "Avatar update failed.", "error");
       // Revert avatar in metadata
       await supabase.auth.updateUser({ data: { avatar_url: oldAvatarUrl ?? undefined } });
       setAvatarUrl(oldAvatarUrl);
@@ -105,16 +119,7 @@ export default function ProfileForm({ user }: { user: User }) {
             Personal information
           </h2>
 
-          {state && "error" in state && (
-            <p className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
-              {state.error}
-            </p>
-          )}
-          {state && "success" in state && (
-            <p className="mt-3 rounded-lg bg-green-50 p-3 text-sm text-green-700">
-              Profile updated.
-            </p>
-          )}
+          <ProfileToastEffect state={state} />
 
           <form action={formAction} className="mt-4 space-y-4">
             <div>

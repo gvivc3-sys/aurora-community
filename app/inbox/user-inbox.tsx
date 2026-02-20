@@ -5,6 +5,7 @@ import { sendMessage, replyToReply, deleteMessage } from "@/lib/actions/messages
 import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
 import MentionText from "@/components/mention-text";
+import { useToast } from "@/components/toast";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
 
@@ -76,31 +77,27 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
 }
 
 function UserReplyForm({ messageId }: { messageId: string }) {
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [state, action, pending] = useActionState(replyToReply, null);
-  const [lastSuccess, setLastSuccess] = useState<string | null>(null);
   const formKey = useRef(0);
 
   useEffect(() => {
     if (state?.success) {
-      setLastSuccess("Reply sent.");
+      toast("Reply sent.", "success");
       setOpen(false);
       formKey.current += 1;
+    } else if (state?.error) {
+      toast(state.error, "error");
     }
-  }, [state]);
+  }, [state, toast]);
 
   return (
     <div className="mt-3 space-y-2">
-      {lastSuccess && (
-        <p className="text-xs font-medium text-green-600">{lastSuccess}</p>
-      )}
       {!open ? (
         <button
           type="button"
-          onClick={() => {
-            setOpen(true);
-            setLastSuccess(null);
-          }}
+          onClick={() => setOpen(true)}
           className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
         >
           Reply
@@ -132,9 +129,6 @@ function UserReplyForm({ messageId }: { messageId: string }) {
               Cancel
             </button>
           </div>
-          {state?.error && (
-            <p className="text-xs text-red-500">{state.error}</p>
-          )}
         </form>
       )}
     </div>
@@ -150,6 +144,7 @@ export default function UserInbox({
   canSendAfter: string | null;
   userId: string;
 }) {
+  const { toast } = useToast();
   const [state, formAction, pending] = useActionState(sendMessage, null);
   const formRef = useRef<HTMLFormElement>(null);
   const [remaining, setRemaining] = useState<number>(0);
@@ -170,6 +165,14 @@ export default function UserInbox({
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, [canSendAfter]);
+
+  useEffect(() => {
+    if (state?.error) {
+      toast(state.error, "error");
+    } else if (state?.success) {
+      toast("Whisper sent successfully.", "success");
+    }
+  }, [state, toast]);
 
   const onCooldown = remaining > 0;
 
@@ -260,14 +263,6 @@ export default function UserInbox({
               {pending ? "Sending..." : "Send"}
             </button>
           </div>
-          {state?.error && (
-            <p className="text-sm text-red-600">{state.error}</p>
-          )}
-          {state?.success && (
-            <p className="text-sm text-green-600">
-              Whisper sent successfully.
-            </p>
-          )}
         </form>
       </div>
 
