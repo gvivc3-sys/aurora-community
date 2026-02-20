@@ -15,6 +15,7 @@ const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
   health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
   magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
+  ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D" },
 };
 
 function timeAgo(date: string): string {
@@ -153,7 +154,7 @@ export default async function BookmarksPage() {
                       className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                     >
                       <span>{tag?.emoji}</span>
-                      {post.tag}
+                      {post.tag === "ask" ? "whisper" : post.tag}
                     </span>
                   </div>
 
@@ -174,6 +175,15 @@ export default async function BookmarksPage() {
                         />
                       )}
                     </>
+                  )}
+
+                  {post.anonymous_question && (
+                    <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                      <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
+                      <p className="mt-1 text-sm italic text-warm-600">
+                        {post.anonymous_question}
+                      </p>
+                    </div>
                   )}
 
                   {post.type === "text" && post.body && (
