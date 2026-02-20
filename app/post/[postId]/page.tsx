@@ -237,6 +237,7 @@ export default async function PostPage({ params }: { params: Params }) {
             isAdmin={admin}
             userHandles={userHandles}
             defaultCommentsOpen
+            hideFocusLink
           />
         </div>
       </div>
