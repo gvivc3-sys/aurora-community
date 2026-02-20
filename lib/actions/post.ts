@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId } from "@/lib/video";
-import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds } from "@/lib/mentions";
+import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds, linkifyMentionsInHtml } from "@/lib/mentions";
 import { createMentionNotifications } from "@/lib/actions/notifications";
 
 export async function createPost(previousState: unknown, formData: FormData) {
@@ -50,7 +50,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
 
     const rawBody = (formData.get("body") as string)?.trim() || "";
-    const description = isEmptyHtml(rawBody) ? null : rawBody;
+    const description = isEmptyHtml(rawBody) ? null : await linkifyMentionsInHtml(rawBody);
     bodyForMentions = description;
 
     const { data, error } = await supabase.from("posts").insert({
@@ -79,11 +79,12 @@ export async function createPost(previousState: unknown, formData: FormData) {
           "Text posts are limited to 300 characters. Try using an Article post for longer content.",
       };
     }
-    bodyForMentions = body;
+    const linkedBody = await linkifyMentionsInHtml(body);
+    bodyForMentions = linkedBody;
 
     const { data, error } = await supabase.from("posts").insert({
       type: "text",
-      body,
+      body: linkedBody,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
@@ -102,12 +103,13 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
 
     const title = (formData.get("title") as string)?.trim() || null;
-    bodyForMentions = body;
+    const linkedBody = await linkifyMentionsInHtml(body);
+    bodyForMentions = linkedBody;
 
     const { data, error } = await supabase.from("posts").insert({
       type: "article",
       title,
-      body,
+      body: linkedBody,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.avatar_url ?? null,

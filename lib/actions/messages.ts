@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { parseReplies } from "@/lib/replies";
-import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds } from "@/lib/mentions";
+import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds, linkifyMentionsInHtml } from "@/lib/mentions";
 import { createMentionNotifications } from "@/lib/actions/notifications";
 
 export async function sendMessage(
@@ -152,15 +152,18 @@ export async function replyToMessage(
   }
 
   const messageId = formData.get("messageId") as string;
-  const replyBody = (formData.get("replyBody") as string)?.trim();
+  const rawReplyBody = (formData.get("replyBody") as string)?.trim();
   const mode = formData.get("mode") as string;
 
   if (!messageId) {
     return { error: "Message ID is required." };
   }
-  if (!replyBody) {
+  if (!rawReplyBody) {
     return { error: "Reply cannot be empty." };
   }
+
+  // Linkify @mentions in the reply HTML
+  const replyBody = await linkifyMentionsInHtml(rawReplyBody);
 
   // Fetch original message
   const { data: message, error: fetchError } = await supabase
