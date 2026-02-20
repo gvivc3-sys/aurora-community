@@ -96,6 +96,7 @@ export default function PostForm() {
   const [tag, setTag] = useState<Tag>("love");
   const [commentsEnabled, setCommentsEnabled] = useState(true);
   const [editorKey, setEditorKey] = useState(0);
+  const [textCharCount, setTextCharCount] = useState(0);
 
   // Voice recording state
   const [recording, setRecording] = useState(false);
@@ -423,9 +424,10 @@ export default function PostForm() {
               name="body"
               placeholder="Write something..."
               minHeight="4rem"
+              onCharCount={setTextCharCount}
             />
-            <p className="mt-1 text-xs text-warm-400">
-              300 character limit for text posts.
+            <p className={`mt-1 text-xs ${textCharCount > 300 ? "font-medium text-red-500" : "text-warm-400"}`}>
+              {textCharCount}/300 characters
             </p>
           </div>
         )}

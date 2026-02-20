@@ -6,6 +6,7 @@ import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
 import BackLink from "@/components/back-link";
+import ShareButton from "@/components/share-button";
 import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
@@ -106,7 +107,10 @@ export default async function PostPage({ params }: { params: Params }) {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
-        <BackLink />
+        <div className="flex items-center justify-between">
+          <BackLink />
+          <ShareButton />
+        </div>
 
         {/* Post card */}
         <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">

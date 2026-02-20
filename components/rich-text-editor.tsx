@@ -12,6 +12,7 @@ type RichTextEditorProps = {
   name: string;
   placeholder?: string;
   minHeight?: string;
+  onCharCount?: (count: number) => void;
 };
 
 function ToolbarButton({
@@ -45,6 +46,7 @@ export default function RichTextEditor({
   name,
   placeholder,
   minHeight = "5rem",
+  onCharCount,
 }: RichTextEditorProps) {
   const [html, setHtml] = useState("");
   const [showEmojis, setShowEmojis] = useState(false);
@@ -65,6 +67,7 @@ export default function RichTextEditor({
     content: "",
     onUpdate: ({ editor: e }) => {
       setHtml(e.getHTML());
+      onCharCount?.(e.getText().length);
     },
   });
 

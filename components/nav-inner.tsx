@@ -34,6 +34,18 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ESC to close mobile menu
+  useEffect(() => {
+    function handleEsc(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
+
   return (
     <nav className="sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
@@ -257,7 +269,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
+        <div className="animate-slide-down border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
           {user ? (
             <div className="space-y-3">
               <Link
