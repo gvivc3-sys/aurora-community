@@ -1,4 +1,4 @@
-import { redirect, notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
@@ -53,7 +53,7 @@ export default async function PostPage({ params }: { params: Params }) {
     .single();
 
   if (!post) {
-    notFound();
+    redirect("/dashboard");
   }
 
   // Fetch likes
