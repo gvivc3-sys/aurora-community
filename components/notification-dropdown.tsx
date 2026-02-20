@@ -50,7 +50,7 @@ function getNavigationHref(notification: Notification): string {
     return "/inbox";
   }
   if (notification.resource_id) {
-    return `/dashboard#post-${notification.resource_id}`;
+    return `/post/${notification.resource_id}`;
   }
   return "/dashboard";
 }
