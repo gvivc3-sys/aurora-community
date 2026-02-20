@@ -65,6 +65,7 @@ type PostActionsProps = {
   currentUserId: string;
   isAdmin: boolean;
   userHandles: Record<string, string>;
+  defaultCommentsOpen?: boolean;
 };
 
 function timeAgo(date: string): string {
@@ -92,8 +93,9 @@ export default function PostActions({
   currentUserId,
   isAdmin,
   userHandles,
+  defaultCommentsOpen = false,
 }: PostActionsProps) {
-  const [commentsOpen, setCommentsOpen] = useState(false);
+  const [commentsOpen, setCommentsOpen] = useState(defaultCommentsOpen);
 
   // Like — optimistic
   const [optimistic, setOptimistic] = useOptimistic(
