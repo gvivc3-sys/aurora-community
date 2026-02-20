@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
@@ -143,6 +144,21 @@ export default async function DashboardPage({
     commentsByPost[comment.post_id].push(comment);
     commentCounts[comment.post_id] =
       (commentCounts[comment.post_id] ?? 0) + 1;
+  }
+
+  // Fetch handles for comment authors
+  const commentUserIds = [
+    ...new Set((allComments ?? []).map((c) => c.user_id)),
+  ];
+  const { data: handleRows } = commentUserIds.length
+    ? await supabaseAdmin
+        .from("user_handles")
+        .select("user_id, handle")
+        .in("user_id", commentUserIds)
+    : { data: [] };
+  const userHandles: Record<string, string> = {};
+  for (const row of handleRows ?? []) {
+    userHandles[row.user_id] = row.handle;
   }
 
   const admin = isAdmin(user);
@@ -312,6 +328,7 @@ export default async function DashboardPage({
                     commentsEnabled={post.comments_enabled}
                     currentUserId={user.id}
                     isAdmin={admin}
+                    userHandles={userHandles}
                   />
                 </div>
               );

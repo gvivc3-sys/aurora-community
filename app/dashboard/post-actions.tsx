@@ -27,6 +27,7 @@ type PostActionsProps = {
   commentsEnabled: boolean;
   currentUserId: string;
   isAdmin: boolean;
+  userHandles: Record<string, string>;
 };
 
 function timeAgo(date: string): string {
@@ -53,6 +54,7 @@ export default function PostActions({
   commentsEnabled,
   currentUserId,
   isAdmin,
+  userHandles,
 }: PostActionsProps) {
   const [commentsOpen, setCommentsOpen] = useState(false);
 
@@ -208,30 +210,39 @@ export default function PostActions({
               <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-10 bg-gradient-to-b from-white to-transparent" />
             )}
             <div className="space-y-3">
-              {comments.slice(-3).map((comment) => (
-                <div key={comment.id} className="flex gap-3">
-                  <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
-                    <Avatar
-                      src={comment.author_avatar_url}
-                      name={comment.author_name}
-                      size="sm"
-                    />
-                  </Link>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline gap-2">
-                      <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
-                        {comment.author_name ?? "Unknown"}
-                      </Link>
-                      <span className="text-xs text-warm-400">
-                        {timeAgo(comment.created_at)}
-                      </span>
+              {comments.slice(-3).map((comment) => {
+                const handle = userHandles[comment.user_id];
+                return (
+                  <div key={comment.id} className="flex gap-3">
+                    <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
+                      <Avatar
+                        src={comment.author_avatar_url}
+                        name={comment.author_name}
+                        size="sm"
+                      />
+                    </Link>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5">
+                        <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
+                          {comment.author_name ?? "Unknown"}
+                        </Link>
+                        {handle && (
+                          <Link href={`/profile/${comment.user_id}`} className="text-xs font-medium text-warm-500 hover:underline">
+                            @{handle}
+                          </Link>
+                        )}
+                        <span className="text-warm-300">·</span>
+                        <span className="text-xs text-warm-400">
+                          {timeAgo(comment.created_at)}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-sm text-warm-700">
+                        <MentionText text={comment.body} />
+                      </p>
                     </div>
-                    <p className="mt-0.5 text-sm text-warm-700">
-                      <MentionText text={comment.body} />
-                    </p>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           {comments.length > 3 && (
@@ -252,46 +263,58 @@ export default function PostActions({
           {/* Comment list */}
           {comments.length > 0 ? (
             <div className="space-y-4">
-              {comments.map((comment) => (
-                <div key={comment.id} className="flex gap-3">
-                  <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
-                    <Avatar
-                      src={comment.author_avatar_url}
-                      name={comment.author_name}
-                      size="sm"
-                    />
-                  </Link>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline gap-2">
-                      <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
-                        {comment.author_name ?? "Unknown"}
-                      </Link>
-                      <span className="text-xs text-warm-400">
-                        {timeAgo(comment.created_at)}
-                      </span>
-                      {(comment.user_id === currentUserId || isAdmin) && (
-                        <form action={deleteCommentAction} className="inline">
-                          <input
-                            type="hidden"
-                            name="commentId"
-                            value={comment.id}
-                          />
-                          <button
-                            type="submit"
-                            disabled={deleteCommentPending}
-                            className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
-                          >
-                            Delete
-                          </button>
-                        </form>
-                      )}
+              {comments.map((comment) => {
+                const handle = userHandles[comment.user_id];
+                return (
+                  <div key={comment.id} className="flex gap-3">
+                    <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
+                      <Avatar
+                        src={comment.author_avatar_url}
+                        name={comment.author_name}
+                        size="sm"
+                      />
+                    </Link>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5">
+                        <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
+                          {comment.author_name ?? "Unknown"}
+                        </Link>
+                        {handle && (
+                          <Link href={`/profile/${comment.user_id}`} className="text-xs font-medium text-warm-500 hover:underline">
+                            @{handle}
+                          </Link>
+                        )}
+                        <span className="text-warm-300">·</span>
+                        <span className="text-xs text-warm-400">
+                          {timeAgo(comment.created_at)}
+                        </span>
+                        {(comment.user_id === currentUserId || isAdmin) && (
+                          <>
+                            <span className="text-warm-300">·</span>
+                            <form action={deleteCommentAction} className="inline">
+                              <input
+                                type="hidden"
+                                name="commentId"
+                                value={comment.id}
+                              />
+                              <button
+                                type="submit"
+                                disabled={deleteCommentPending}
+                                className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
+                              >
+                                Delete
+                              </button>
+                            </form>
+                          </>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-sm text-warm-700">
+                        <MentionText text={comment.body} />
+                      </p>
                     </div>
-                    <p className="mt-0.5 text-sm text-warm-700">
-                      <MentionText text={comment.body} />
-                    </p>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <p className="text-sm text-warm-400">
