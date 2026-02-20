@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
@@ -15,9 +16,12 @@ type NavUser = {
 };
 
 export default function NavInner({ user, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; unreadInboxCount?: number; unreadNotificationCount?: number }) {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -50,7 +54,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
             <>
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/dashboard") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
               >
                 <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite]" fill="none">
                   {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
@@ -69,7 +73,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
 
               <Link
                 href="/inbox"
-                className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                className={`relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/inbox") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
               >
                 Whisper
               </Link>
@@ -277,7 +281,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                 <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   <svg viewBox="0 0 20 20" className="h-4 w-4 animate-[spin_12s_linear_infinite]" fill="none">
                     {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
@@ -296,28 +300,28 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                 <Link
                   href="/inbox"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Whisper
                 </Link>
                 <Link
                   href="/chat"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/chat") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Telegram
                 </Link>
                 <Link
                   href="/bookmarks"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Saved
                 </Link>
                 <Link
                   href="/profile"
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Profile
                 </Link>

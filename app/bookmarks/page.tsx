@@ -10,6 +10,7 @@ import Avatar from "@/components/avatar";
 import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
+import BackLink from "@/components/back-link";
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
@@ -114,6 +115,7 @@ export default async function BookmarksPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <BackLink />
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
           Saved Posts
         </h1>

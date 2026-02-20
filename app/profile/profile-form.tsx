@@ -8,6 +8,7 @@ import { updateProfile, updateAvatar } from "@/lib/actions/profile";
 import { createPortalSession } from "@/lib/actions/stripe";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
+import BackLink from "@/components/back-link";
 
 export default function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
@@ -66,6 +67,7 @@ export default function ProfileForm({ user }: { user: User }) {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-xl px-4 py-8 sm:px-6 sm:py-16">
+        <BackLink />
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Your Profile</h1>
         <p className="mt-1 text-sm text-warm-500">{user.email}</p>
 

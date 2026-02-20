@@ -4,6 +4,7 @@ import { isAdmin } from "@/lib/roles";
 import AdminInbox from "./admin-inbox";
 import UserInbox from "./user-inbox";
 import RealtimeRefresh from "@/components/realtime-refresh";
+import BackLink from "@/components/back-link";
 
 export default async function InboxPage() {
   const supabase = await createClient();
@@ -27,6 +28,7 @@ export default async function InboxPage() {
       <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
         <RealtimeRefresh table="messages" />
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+          <BackLink />
           <AdminInbox messages={messages ?? []} />
         </div>
       </div>
@@ -52,6 +54,7 @@ export default async function InboxPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <BackLink />
         <UserInbox messages={messages ?? []} canSendAfter={canSendAfter} userId={user.id} />
       </div>
     </div>

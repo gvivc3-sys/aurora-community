@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import TelegramConnect from "@/components/TelegramConnect";
+import BackLink from "@/components/back-link";
 
 const BOT_USERNAME = process.env.TELEGRAM_BOT_USERNAME ?? "";
 
@@ -27,6 +28,7 @@ export default async function ChatPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <BackLink />
         <p className="text-center font-mono text-sm text-warm-500">
           telegram
         </p>
