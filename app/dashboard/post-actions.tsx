@@ -4,7 +4,44 @@ import { useActionState, useOptimistic, useRef, useState } from "react";
 import Link from "next/link";
 import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
-import MentionText from "@/components/mention-text";
+
+/** Render @handles in comment text as links using pre-resolved handle map */
+function CommentBody({ text, userHandles }: { text: string; userHandles: Record<string, string> }) {
+  // Build reverse map: handle → userId
+  const handleToUserId: Record<string, string> = {};
+  for (const [userId, handle] of Object.entries(userHandles)) {
+    handleToUserId[handle] = userId;
+  }
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  const regex = /@([a-z][a-z0-9_]{2,19})\b/g;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const handle = match[1];
+    const userId = handleToUserId[handle];
+    if (userId) {
+      parts.push(
+        <Link key={match.index} href={`/profile/${userId}`} className="font-semibold text-warm-600 hover:underline">
+          @{handle}
+        </Link>
+      );
+    } else {
+      parts.push(match[0]);
+    }
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return <>{parts}</>;
+}
 
 const EMOJIS = ["\u2764\uFE0F", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDD25", "\uD83D\uDC4F", "\uD83D\uDE4C", "\u2728", "\uD83D\uDCAF", "\uD83C\uDF89", "\uD83D\uDC40", "\uD83D\uDCAA", "\uD83D\uDE4F"];
 
@@ -212,6 +249,7 @@ export default function PostActions({
             <div className="space-y-3">
               {comments.slice(-3).map((comment) => {
                 const handle = userHandles[comment.user_id];
+                const canDelete = comment.user_id === currentUserId || isAdmin;
                 return (
                   <div key={comment.id} className="flex gap-3">
                     <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
@@ -223,21 +261,33 @@ export default function PostActions({
                     </Link>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
-                        <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
+                        <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-sm font-medium text-warm-900 hover:underline">
                           {comment.author_name ?? "Unknown"}
                         </Link>
                         {handle && (
-                          <Link href={`/profile/${comment.user_id}`} className="text-xs font-medium text-warm-500 hover:underline">
+                          <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
                             @{handle}
                           </Link>
                         )}
-                        <span className="text-warm-300">·</span>
-                        <span className="text-xs text-warm-400">
+                        <span className="shrink-0 text-warm-300">·</span>
+                        <span className="shrink-0 text-xs text-warm-400">
                           {timeAgo(comment.created_at)}
                         </span>
+                        {canDelete && (
+                          <form action={deleteCommentAction} className="ml-auto shrink-0">
+                            <input type="hidden" name="commentId" value={comment.id} />
+                            <button
+                              type="submit"
+                              disabled={deleteCommentPending}
+                              className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
+                            >
+                              Delete
+                            </button>
+                          </form>
+                        )}
                       </div>
                       <p className="mt-0.5 text-sm text-warm-700">
-                        <MentionText text={comment.body} />
+                        <CommentBody text={comment.body} userHandles={userHandles} />
                       </p>
                     </div>
                   </div>
@@ -262,9 +312,10 @@ export default function PostActions({
         <div className="border-t border-warm-100 px-4 pb-4 pt-3">
           {/* Comment list */}
           {comments.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {comments.map((comment) => {
                 const handle = userHandles[comment.user_id];
+                const canDelete = comment.user_id === currentUserId || isAdmin;
                 return (
                   <div key={comment.id} className="flex gap-3">
                     <Link href={`/profile/${comment.user_id}`} className="shrink-0 pt-0.5">
@@ -276,40 +327,33 @@ export default function PostActions({
                     </Link>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
-                        <Link href={`/profile/${comment.user_id}`} className="text-sm font-medium text-warm-900 hover:underline">
+                        <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-sm font-medium text-warm-900 hover:underline">
                           {comment.author_name ?? "Unknown"}
                         </Link>
                         {handle && (
-                          <Link href={`/profile/${comment.user_id}`} className="text-xs font-medium text-warm-500 hover:underline">
+                          <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
                             @{handle}
                           </Link>
                         )}
-                        <span className="text-warm-300">·</span>
-                        <span className="text-xs text-warm-400">
+                        <span className="shrink-0 text-warm-300">·</span>
+                        <span className="shrink-0 text-xs text-warm-400">
                           {timeAgo(comment.created_at)}
                         </span>
-                        {(comment.user_id === currentUserId || isAdmin) && (
-                          <>
-                            <span className="text-warm-300">·</span>
-                            <form action={deleteCommentAction} className="inline">
-                              <input
-                                type="hidden"
-                                name="commentId"
-                                value={comment.id}
-                              />
-                              <button
-                                type="submit"
-                                disabled={deleteCommentPending}
-                                className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
-                              >
-                                Delete
-                              </button>
-                            </form>
-                          </>
+                        {canDelete && (
+                          <form action={deleteCommentAction} className="ml-auto shrink-0">
+                            <input type="hidden" name="commentId" value={comment.id} />
+                            <button
+                              type="submit"
+                              disabled={deleteCommentPending}
+                              className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
+                            >
+                              Delete
+                            </button>
+                          </form>
                         )}
                       </div>
                       <p className="mt-0.5 text-sm text-warm-700">
-                        <MentionText text={comment.body} />
+                        <CommentBody text={comment.body} userHandles={userHandles} />
                       </p>
                     </div>
                   </div>
