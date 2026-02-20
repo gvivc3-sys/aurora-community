@@ -4,6 +4,7 @@ import { useActionState, useRef, useState, useEffect } from "react";
 import { sendMessage, replyToReply } from "@/lib/actions/messages";
 import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
+import MentionText from "@/components/mention-text";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
 
@@ -286,7 +287,7 @@ export default function UserInbox({
                             )}
                           </div>
                           {reply.role === "user" ? (
-                            <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700">{reply.body}</p>
+                            <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700"><MentionText text={reply.body} /></p>
                           ) : (
                             <div
                               className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"

@@ -7,6 +7,7 @@ import Avatar from "@/components/avatar";
 import RichTextEditor from "@/components/rich-text-editor";
 import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
+import MentionText from "@/components/mention-text";
 
 type Message = Database["public"]["Tables"]["messages"]["Row"];
 
@@ -308,7 +309,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                                 )}
                               </div>
                               {reply.role === "user" ? (
-                                <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700">{reply.body}</p>
+                                <p className="mt-1 whitespace-pre-wrap text-sm text-warm-700"><MentionText text={reply.body} /></p>
                               ) : (
                                 <div
                                   className="prose prose-sm prose-zinc mt-1 max-w-none text-warm-700"

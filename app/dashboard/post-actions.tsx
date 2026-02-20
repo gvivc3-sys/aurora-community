@@ -4,6 +4,7 @@ import { useActionState, useOptimistic, useRef, useState } from "react";
 import Link from "next/link";
 import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
+import MentionText from "@/components/mention-text";
 
 const EMOJIS = ["\u2764\uFE0F", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDD25", "\uD83D\uDC4F", "\uD83D\uDE4C", "\u2728", "\uD83D\uDCAF", "\uD83C\uDF89", "\uD83D\uDC40", "\uD83D\uDCAA", "\uD83D\uDE4F"];
 
@@ -240,7 +241,7 @@ export default function PostActions({
                       )}
                     </div>
                     <p className="mt-0.5 text-sm text-warm-700">
-                      {comment.body}
+                      <MentionText text={comment.body} />
                     </p>
                   </div>
                 </div>
