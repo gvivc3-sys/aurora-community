@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { isValidHandle, generateHandle } from "@/lib/handle";
 
 const IDENTITY_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
 
@@ -42,6 +43,7 @@ export async function updateProfile(
   const birthday = formData.get("birthday") as string;
   const bio = (formData.get("bio") as string)?.trim() ?? "";
   const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
+  const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
 
   if (birthday) {
     const date = new Date(birthday);
@@ -52,7 +54,7 @@ export async function updateProfile(
   }
 
   if (rawTelegram && !/^[a-zA-Z0-9_]{5,32}$/.test(rawTelegram)) {
-    return { error: "Telegram handle must be 5–32 characters (letters, numbers, underscores)." };
+    return { error: "Telegram handle must be 5-32 characters (letters, numbers, underscores)." };
   }
 
   // Fetch current user to detect identity changes
@@ -68,17 +70,84 @@ export async function updateProfile(
     }
   }
 
+  // Handle logic
+  let handle = rawHandle;
+
+  // If no handle provided, check if user already has one; if not, auto-generate
+  if (!handle) {
+    const { data: existingHandle } = await supabaseAdmin
+      .from("user_handles")
+      .select("handle")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (!existingHandle) {
+      // Auto-generate from display name
+      const nameForHandle = username || oldUsername || user.email?.split("@")[0] || "user";
+      handle = generateHandle(nameForHandle);
+
+      // Ensure uniqueness by appending random digits if needed
+      const { data: conflict } = await supabaseAdmin
+        .from("user_handles")
+        .select("handle")
+        .eq("handle", handle)
+        .maybeSingle();
+
+      if (conflict) {
+        handle = handle.slice(0, 16) + "_" + Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+      }
+    } else {
+      handle = existingHandle.handle;
+    }
+  }
+
+  // Validate handle format
+  if (handle && !isValidHandle(handle)) {
+    return { error: "Handle must be 3-20 characters, start with a letter, and contain only lowercase letters, numbers, and underscores." };
+  }
+
+  // Check uniqueness (exclude self)
+  if (handle) {
+    const { data: taken } = await supabaseAdmin
+      .from("user_handles")
+      .select("user_id")
+      .eq("handle", handle)
+      .neq("user_id", user.id)
+      .maybeSingle();
+
+    if (taken) {
+      return { error: "That handle is already taken. Please choose another." };
+    }
+  }
+
   const { error } = await supabase.auth.updateUser({
     data: {
       username: username || undefined,
       birthday: birthday || undefined,
       bio: bio.slice(0, 300) || undefined,
       telegram_handle: rawTelegram || undefined,
+      handle: handle || undefined,
     },
   });
 
   if (error) {
     return { error: error.message };
+  }
+
+  // Upsert user_handles
+  if (handle) {
+    const avatarUrl = user.user_metadata?.avatar_url ?? null;
+    const displayName = username || oldUsername || null;
+
+    await supabaseAdmin
+      .from("user_handles")
+      .upsert({
+        user_id: user.id,
+        handle,
+        display_name: displayName,
+        avatar_url: avatarUrl,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: "user_id" });
   }
 
   if (usernameChanged) {
@@ -87,6 +156,14 @@ export async function updateProfile(
     await supabaseAdmin.auth.admin.updateUserById(user.id, {
       user_metadata: { identity_changed_at: new Date().toISOString() },
     });
+
+    // Also update display_name in user_handles
+    if (handle) {
+      await supabaseAdmin
+        .from("user_handles")
+        .update({ display_name: username })
+        .eq("user_id", user.id);
+    }
   }
 
   revalidatePath("/", "layout");
@@ -109,6 +186,12 @@ export async function updateAvatar() {
   await supabaseAdmin.auth.admin.updateUserById(user.id, {
     user_metadata: { identity_changed_at: new Date().toISOString() },
   });
+
+  // Also update avatar_url in user_handles
+  await supabaseAdmin
+    .from("user_handles")
+    .update({ avatar_url: avatarUrl, updated_at: new Date().toISOString() })
+    .eq("user_id", user.id);
 
   revalidatePath("/", "layout");
   return { success: true };

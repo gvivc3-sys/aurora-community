@@ -205,6 +205,75 @@ export interface Database {
         };
         Relationships: [];
       };
+      user_handles: {
+        Row: {
+          user_id: string;
+          handle: string;
+          display_name: string | null;
+          avatar_url: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          user_id: string;
+          handle: string;
+          display_name?: string | null;
+          avatar_url?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          handle?: string;
+          display_name?: string | null;
+          avatar_url?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      notifications: {
+        Row: {
+          id: string;
+          user_id: string;
+          type: string;
+          actor_id: string;
+          actor_name: string | null;
+          actor_avatar_url: string | null;
+          resource_type: string | null;
+          resource_id: string | null;
+          body_preview: string | null;
+          read: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          type: string;
+          actor_id: string;
+          actor_name?: string | null;
+          actor_avatar_url?: string | null;
+          resource_type?: string | null;
+          resource_id?: string | null;
+          body_preview?: string | null;
+          read?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          type?: string;
+          actor_id?: string;
+          actor_name?: string | null;
+          actor_avatar_url?: string | null;
+          resource_type?: string | null;
+          resource_id?: string | null;
+          body_preview?: string | null;
+          read?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

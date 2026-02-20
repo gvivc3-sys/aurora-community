@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import NavInner from "@/components/nav-inner";
 
 export default async function Nav() {
@@ -17,6 +18,16 @@ export default async function Nav() {
     unreadCount = count ?? 0;
   }
 
+  let unreadNotificationCount = 0;
+  if (user) {
+    const { count } = await supabaseAdmin
+      .from("notifications")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .eq("read", false);
+    unreadNotificationCount = count ?? 0;
+  }
+
   return (
     <NavInner
       user={
@@ -30,6 +41,7 @@ export default async function Nav() {
           : null
       }
       unreadInboxCount={unreadCount}
+      unreadNotificationCount={unreadNotificationCount}
     />
   );
 }

@@ -5,6 +5,8 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { parseReplies } from "@/lib/replies";
+import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds } from "@/lib/mentions";
+import { createMentionNotifications } from "@/lib/actions/notifications";
 
 export async function sendMessage(
   previousState: unknown,
@@ -212,6 +214,21 @@ export async function replyToMessage(
     return { error: updateError.message };
   }
 
+  // Extract mentions from the reply HTML and create notifications
+  const mentionedUserIds = extractMentionsFromHtml(replyBody);
+  if (mentionedUserIds.length > 0) {
+    await createMentionNotifications({
+      actorId: user.id,
+      actorName: user.user_metadata?.username ?? user.email ?? null,
+      actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+      mentionedUserIds,
+      type: "mention_reply",
+      resourceType: "message",
+      resourceId: messageId,
+      bodyPreview: replyBody.replace(/<[^>]*>/g, "").slice(0, 200),
+    });
+  }
+
   revalidatePath("/inbox");
   revalidatePath("/dashboard");
   return { success: true, mode: mode === "public" ? "public" : "private" };
@@ -280,6 +297,24 @@ export async function replyToReply(
 
   if (updateError) {
     return { error: updateError.message };
+  }
+
+  // Extract mentions from plaintext reply and create notifications
+  const handles = extractMentionsFromText(replyBody);
+  if (handles.length > 0) {
+    const mentionedUserIds = await resolveHandlesToUserIds(handles);
+    if (mentionedUserIds.length > 0) {
+      await createMentionNotifications({
+        actorId: user.id,
+        actorName: user.user_metadata?.username ?? user.email ?? null,
+        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        mentionedUserIds,
+        type: "mention_reply",
+        resourceType: "message",
+        resourceId: messageId,
+        bodyPreview: replyBody.slice(0, 200),
+      });
+    }
   }
 
   revalidatePath("/inbox");

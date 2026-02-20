@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId } from "@/lib/video";
+import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds } from "@/lib/mentions";
+import { createMentionNotifications } from "@/lib/actions/notifications";
 
 export async function createPost(previousState: unknown, formData: FormData) {
   const supabase = await createClient();
@@ -37,6 +39,9 @@ export async function createPost(previousState: unknown, formData: FormData) {
     return html.replace(/<[^>]*>/g, "");
   }
 
+  let insertedPostId: string | null = null;
+  let bodyForMentions: string | null = null;
+
   if (type === "video") {
     const videoUrl = formData.get("video_url") as string;
     const video = extractVideoId(videoUrl || "");
@@ -46,8 +51,9 @@ export async function createPost(previousState: unknown, formData: FormData) {
 
     const rawBody = (formData.get("body") as string)?.trim() || "";
     const description = isEmptyHtml(rawBody) ? null : rawBody;
+    bodyForMentions = description;
 
-    const { error } = await supabase.from("posts").insert({
+    const { data, error } = await supabase.from("posts").insert({
       type: "video",
       body: description,
       video_url: videoUrl,
@@ -56,11 +62,12 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
-    });
+    }).select("id").single();
 
     if (error) {
       return { error: error.message };
     }
+    insertedPostId = data.id;
   } else if (type === "text") {
     const body = (formData.get("body") as string)?.trim();
     if (!body || isEmptyHtml(body)) {
@@ -72,8 +79,9 @@ export async function createPost(previousState: unknown, formData: FormData) {
           "Text posts are limited to 300 characters. Try using an Article post for longer content.",
       };
     }
+    bodyForMentions = body;
 
-    const { error } = await supabase.from("posts").insert({
+    const { data, error } = await supabase.from("posts").insert({
       type: "text",
       body,
       author_id: user.id,
@@ -81,11 +89,12 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
-    });
+    }).select("id").single();
 
     if (error) {
       return { error: error.message };
     }
+    insertedPostId = data.id;
   } else if (type === "article") {
     const body = (formData.get("body") as string)?.trim();
     if (!body || isEmptyHtml(body)) {
@@ -93,8 +102,9 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
 
     const title = (formData.get("title") as string)?.trim() || null;
+    bodyForMentions = body;
 
-    const { error } = await supabase.from("posts").insert({
+    const { data, error } = await supabase.from("posts").insert({
       type: "article",
       title,
       body,
@@ -103,11 +113,12 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
-    });
+    }).select("id").single();
 
     if (error) {
       return { error: error.message };
     }
+    insertedPostId = data.id;
   } else if (type === "voice") {
     const audioFile = formData.get("audio") as File | null;
     if (!audioFile || audioFile.size === 0) {
@@ -122,6 +133,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
 
     const title = (formData.get("title") as string)?.trim() || null;
     const body = (formData.get("body") as string)?.trim() || null;
+    bodyForMentions = body;
     const postId = crypto.randomUUID();
     const ext = audioFile.name?.split(".").pop() || "webm";
     const filePath = `audio/${postId}.${ext}`;
@@ -141,7 +153,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       .from("audio")
       .getPublicUrl(filePath);
 
-    const { error } = await supabase.from("posts").insert({
+    const { data, error } = await supabase.from("posts").insert({
       id: postId,
       type: "voice",
       title,
@@ -152,13 +164,31 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_avatar_url: user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
-    });
+    }).select("id").single();
 
     if (error) {
       return { error: error.message };
     }
+    insertedPostId = data.id;
   } else {
     return { error: "Invalid post type." };
+  }
+
+  // Extract mentions and create notifications
+  if (insertedPostId && bodyForMentions) {
+    const mentionedUserIds = extractMentionsFromHtml(bodyForMentions);
+    if (mentionedUserIds.length > 0) {
+      await createMentionNotifications({
+        actorId: user.id,
+        actorName: user.user_metadata?.username ?? user.email ?? null,
+        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        mentionedUserIds,
+        type: "mention_post",
+        resourceType: "post",
+        resourceId: insertedPostId,
+        bodyPreview: stripTags(bodyForMentions).slice(0, 200),
+      });
+    }
   }
 
   revalidatePath("/dashboard");
@@ -267,16 +297,34 @@ export async function addComment(previousState: unknown, formData: FormData) {
     return { error: "Comment must be 500 characters or less." };
   }
 
-  const { error } = await supabase.from("comments").insert({
+  const { data, error } = await supabase.from("comments").insert({
     post_id: postId,
     user_id: user.id,
     author_name: user.user_metadata?.username ?? user.email,
     author_avatar_url: user.user_metadata?.avatar_url ?? null,
     body,
-  });
+  }).select("id").single();
 
   if (error) {
     return { error: error.message };
+  }
+
+  // Extract mentions from plaintext comment and create notifications
+  const handles = extractMentionsFromText(body);
+  if (handles.length > 0) {
+    const mentionedUserIds = await resolveHandlesToUserIds(handles);
+    if (mentionedUserIds.length > 0) {
+      await createMentionNotifications({
+        actorId: user.id,
+        actorName: user.user_metadata?.username ?? user.email ?? null,
+        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        mentionedUserIds,
+        type: "mention_comment",
+        resourceType: "comment",
+        resourceId: data.id,
+        bodyPreview: body.slice(0, 200),
+      });
+    }
   }
 
   revalidatePath("/dashboard");

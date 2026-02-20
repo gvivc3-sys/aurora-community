@@ -134,6 +134,29 @@ export default function ProfileForm({ user }: { user: User }) {
 
             <div>
               <label
+                htmlFor="handle"
+                className="mb-1 block text-sm font-medium text-warm-700"
+              >
+                Handle
+              </label>
+              <div className="flex items-center rounded-lg border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                <span className="pl-3 text-sm text-warm-400">@</span>
+                <input
+                  id="handle"
+                  name="handle"
+                  type="text"
+                  defaultValue={meta.handle ?? ""}
+                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                  placeholder="auto-generated from your name"
+                />
+              </div>
+              <p className="mt-1 text-xs text-warm-400">
+                3-20 characters. Lowercase letters, numbers, underscores. Must start with a letter.
+              </p>
+            </div>
+
+            <div>
+              <label
                 htmlFor="birthday"
                 className="mb-1 block text-sm font-medium text-warm-700"
               >

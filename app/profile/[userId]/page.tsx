@@ -94,6 +94,11 @@ export default async function PublicProfilePage({
           <h1 className="mt-4 text-2xl font-light tracking-tight text-warm-900">
             {meta.username ?? "Anonymous"}
           </h1>
+          {meta.handle && (
+            <p className="mt-0.5 text-sm font-medium text-warm-500">
+              @{meta.handle}
+            </p>
+          )}
           <p className="mt-1 text-sm text-warm-400">
             Member since {memberSince}
           </p>

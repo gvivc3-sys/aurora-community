@@ -4,7 +4,9 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
+import Mention from "@tiptap/extension-mention";
 import { useState } from "react";
+import suggestion from "@/lib/mention-suggestion";
 
 const EMOJIS = ["\u2764\uFE0F", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDD25", "\uD83D\uDC4F", "\uD83D\uDE4C", "\u2728", "\uD83D\uDCAF", "\uD83C\uDF89", "\uD83D\uDC40", "\uD83D\uDCAA", "\uD83D\uDE4F"];
 
@@ -55,6 +57,25 @@ export default function RichTextEditor({
       StarterKit,
       Underline,
       Placeholder.configure({ placeholder: placeholder ?? "" }),
+      Mention.configure({
+        HTMLAttributes: {
+          class: "mention",
+          "data-type": "mention",
+        },
+        suggestion,
+        renderHTML: ({ node }) => {
+          return [
+            "span",
+            {
+              "data-type": "mention",
+              "data-id": node.attrs.id,
+              "data-label": node.attrs.label,
+              class: "mention",
+            },
+            `@${node.attrs.label}`,
+          ];
+        },
+      }),
     ],
     editorProps: {
       attributes: {

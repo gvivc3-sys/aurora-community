@@ -49,6 +49,19 @@ body {
   height: 0;
 }
 
+/* ── Mention styling ── */
+[data-type="mention"],
+.mention {
+  color: var(--warm-600);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-type="mention"]:hover,
+.mention:hover {
+  text-decoration: underline;
+}
+
 /* ── Landing page animations ── */
 
 @keyframes gradient-move {

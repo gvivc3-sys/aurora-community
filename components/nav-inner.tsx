@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
+import NotificationDropdown from "@/components/notification-dropdown";
 
 type NavUser = {
   email: string;
@@ -13,7 +14,7 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser | null; unreadInboxCount?: number }) {
+export default function NavInner({ user, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; unreadInboxCount?: number; unreadNotificationCount?: number }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -157,6 +158,8 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                   </div>
                 )}
               </div>
+
+              <NotificationDropdown unreadCount={unreadNotificationCount} />
 
               <Link
                 href="/profile"
@@ -318,6 +321,9 @@ export default function NavInner({ user, unreadInboxCount = 0 }: { user: NavUser
                 >
                   Profile
                 </Link>
+                <div className="px-3 py-2">
+                  <NotificationDropdown unreadCount={unreadNotificationCount} />
+                </div>
                 <InstallPrompt />
                 {user.isAdmin && (
                   <>
