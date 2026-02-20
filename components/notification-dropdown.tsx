@@ -49,6 +49,9 @@ function getNavigationHref(notification: Notification): string {
   if (notification.resource_type === "message") {
     return "/inbox";
   }
+  if (notification.resource_id) {
+    return `/dashboard#post-${notification.resource_id}`;
+  }
   return "/dashboard";
 }
 

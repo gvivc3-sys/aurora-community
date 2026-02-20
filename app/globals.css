@@ -34,6 +34,10 @@
   --font-display: var(--font-playfair);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -47,6 +51,16 @@ body {
   color: #b8a68e;
   pointer-events: none;
   height: 0;
+}
+
+/* ── Post highlight on scroll-to ── */
+@keyframes highlight-fade {
+  0% { box-shadow: 0 0 0 3px var(--warm-300); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+:target {
+  animation: highlight-fade 2s ease-out;
 }
 
 /* ── Mention styling ── */

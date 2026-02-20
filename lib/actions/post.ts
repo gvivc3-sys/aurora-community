@@ -322,8 +322,8 @@ export async function addComment(previousState: unknown, formData: FormData) {
         actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
         mentionedUserIds,
         type: "mention_comment",
-        resourceType: "comment",
-        resourceId: data.id,
+        resourceType: "post",
+        resourceId: postId,
         bodyPreview: body.slice(0, 200),
       });
     }
