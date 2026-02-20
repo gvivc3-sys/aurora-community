@@ -1,15 +1,23 @@
 "use client";
 
-import { Suspense, useActionState, useState } from "react";
+import { Suspense, useActionState, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "@/lib/actions/auth";
+import { useToast } from "@/components/toast";
 
 function LoginForm() {
+  const { toast } = useToast();
   const searchParams = useSearchParams();
   const message = searchParams.get("message");
   const [state, formAction, pending] = useActionState(signIn, null);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (state?.error) {
+      toast(state.error, "error");
+    }
+  }, [state, toast]);
 
   return (
     <div className="w-full max-w-sm rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
@@ -23,12 +31,6 @@ function LoginForm() {
       {message && (
         <p className="mb-4 rounded-lg bg-warm-100 p-3 text-center text-sm text-warm-700">
           {message}
-        </p>
-      )}
-
-      {state?.error && (
-        <p className="mb-4 rounded-lg bg-red-50 p-3 text-center text-sm text-red-600">
-          {state.error}
         </p>
       )}
 

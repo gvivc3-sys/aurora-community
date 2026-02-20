@@ -11,6 +11,7 @@ import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
 import BackLink from "@/components/back-link";
+import TimeAgo from "@/components/time-ago";
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
@@ -18,20 +19,6 @@ const tagStyles: Record<string, { badge: string; emoji: string }> = {
   magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
   ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D" },
 };
-
-function timeAgo(date: string): string {
-  const seconds = Math.floor(
-    (Date.now() - new Date(date).getTime()) / 1000,
-  );
-  if (seconds < 60) return "just now";
-  const minutes = Math.floor(seconds / 60);
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  if (days < 30) return `${days}d ago`;
-  return new Date(date).toLocaleDateString();
-}
 
 export default async function BookmarksPage() {
   const supabase = await createClient();
@@ -147,9 +134,7 @@ export default async function BookmarksPage() {
                         <Link href={`/profile/${post.author_id}`} className="truncate text-sm font-medium text-warm-900 hover:underline">
                           {post.author_name ?? "Unknown"}
                         </Link>
-                        <p className="text-xs text-warm-400">
-                          {timeAgo(post.created_at)}
-                        </p>
+                        <TimeAgo date={post.created_at} className="text-xs text-warm-400" />
                       </div>
                     </div>
                     <span

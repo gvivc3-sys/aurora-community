@@ -29,6 +29,7 @@ function Dropdown({
   onChange: (key: string) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [focused, setFocused] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,13 +42,45 @@ function Dropdown({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (!open) {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setOpen(true);
+        setFocused(options.findIndex((o) => o.key === value));
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setFocused((f) => (f + 1) % options.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setFocused((f) => (f - 1 + options.length) % options.length);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      if (focused >= 0) {
+        onChange(options[focused].key);
+        setOpen(false);
+      }
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  }
+
   const selected = options.find((o) => o.key === value) ?? options[0];
 
   return (
     <div ref={ref} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => {
+          setOpen((o) => !o);
+          if (!open) setFocused(options.findIndex((o) => o.key === value));
+        }}
+        onKeyDown={handleKeyDown}
+        aria-expanded={open}
+        aria-haspopup="listbox"
         className="flex items-center gap-1.5 rounded-full border border-warm-200 bg-white px-3 py-1.5 text-xs font-medium text-warm-700 transition-colors hover:border-warm-300"
       >
         {selected.label}
@@ -64,11 +97,13 @@ function Dropdown({
       </button>
 
       {open && (
-        <div className="absolute left-0 z-50 mt-1 min-w-[140px] rounded-xl border border-warm-200 bg-white py-1 shadow-lg">
-          {options.map((o) => (
+        <div role="listbox" className="absolute left-0 z-50 mt-1 min-w-[140px] rounded-xl border border-warm-200 bg-white py-1 shadow-lg">
+          {options.map((o, i) => (
             <button
               key={o.key}
               type="button"
+              role="option"
+              aria-selected={value === o.key}
               onClick={() => {
                 onChange(o.key);
                 setOpen(false);
@@ -76,7 +111,9 @@ function Dropdown({
               className={`block w-full px-3 py-1.5 text-left text-xs font-medium transition-colors ${
                 value === o.key
                   ? "bg-warm-100 text-warm-900"
-                  : "text-warm-600 hover:bg-warm-50"
+                  : i === focused
+                    ? "bg-warm-50 text-warm-800"
+                    : "text-warm-600 hover:bg-warm-50"
               }`}
             >
               {o.label}
