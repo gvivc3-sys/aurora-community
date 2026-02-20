@@ -6,17 +6,28 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 
 /**
  * Extract mentioned user IDs from Tiptap HTML output.
- * Looks for <span data-type="mention" data-id="uuid">.
+ * Looks for <a data-type="mention" href="/profile/uuid"> or data-id="uuid".
  */
 export function extractMentionsFromHtml(html: string): string[] {
-  const regex = /data-type="mention"\s+data-id="([^"]+)"/g;
   const ids: string[] = [];
+
+  // Match href="/profile/{uuid}" on mention links
+  const hrefRegex = /data-type="mention"[^>]*href="\/profile\/([^"]+)"/g;
   let match;
-  while ((match = regex.exec(html)) !== null) {
+  while ((match = hrefRegex.exec(html)) !== null) {
     if (match[1] && !ids.includes(match[1])) {
       ids.push(match[1]);
     }
   }
+
+  // Also match data-id for backwards compatibility
+  const idRegex = /data-type="mention"[^>]*data-id="([^"]+)"/g;
+  while ((match = idRegex.exec(html)) !== null) {
+    if (match[1] && !ids.includes(match[1])) {
+      ids.push(match[1]);
+    }
+  }
+
   return ids;
 }
 

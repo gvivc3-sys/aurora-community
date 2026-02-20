@@ -50,15 +50,30 @@ body {
 }
 
 /* ── Mention styling ── */
-[data-type="mention"],
-.mention {
+a.mention,
+a[data-type="mention"] {
   color: var(--warm-600);
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 }
 
-[data-type="mention"]:hover,
-.mention:hover {
+a.mention:hover,
+a[data-type="mention"]:hover {
+  text-decoration: underline;
+}
+
+/* Override prose link styles for mentions */
+.prose a.mention,
+.prose a[data-type="mention"] {
+  color: var(--warm-600);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.prose a.mention:hover,
+.prose a[data-type="mention"]:hover {
+  color: var(--warm-700);
   text-decoration: underline;
 }
 

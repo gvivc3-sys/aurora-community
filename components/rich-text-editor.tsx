@@ -65,11 +65,11 @@ export default function RichTextEditor({
         suggestion,
         renderHTML: ({ node }) => {
           return [
-            "span",
+            "a",
             {
               "data-type": "mention",
               "data-id": node.attrs.id,
-              "data-label": node.attrs.label,
+              href: `/profile/${node.attrs.id}`,
               class: "mention",
             },
             `@${node.attrs.label}`,
