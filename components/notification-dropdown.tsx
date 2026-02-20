@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { getNotifications, markAllNotificationsRead } from "@/lib/actions/notifications";
+import { getNotifications, clearAllNotifications } from "@/lib/actions/notifications";
 
 type Notification = {
   id: string;
@@ -87,9 +87,9 @@ export default function NotificationDropdown({
     }
   }
 
-  async function handleMarkAllRead() {
-    await markAllNotificationsRead();
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  async function handleClearAll() {
+    await clearAllNotifications();
+    setNotifications([]);
     setLocalUnread(0);
   }
 
@@ -128,13 +128,13 @@ export default function NotificationDropdown({
             <h3 className="text-sm font-medium text-warm-900">
               Notifications
             </h3>
-            {localUnread > 0 && (
+            {notifications.length > 0 && (
               <button
                 type="button"
-                onClick={handleMarkAllRead}
+                onClick={handleClearAll}
                 className="text-xs font-medium text-warm-500 hover:text-warm-700"
               >
-                Mark all as read
+                Clear all
               </button>
             )}
           </div>

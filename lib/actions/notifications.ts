@@ -109,3 +109,17 @@ export async function markAllNotificationsRead() {
     .eq("user_id", user.id)
     .eq("read", false);
 }
+
+export async function clearAllNotifications() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  await supabaseAdmin
+    .from("notifications")
+    .delete()
+    .eq("user_id", user.id);
+}
