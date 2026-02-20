@@ -148,8 +148,11 @@ export default function NotificationDropdown({
                 Loading...
               </div>
             ) : notifications.length === 0 ? (
-              <div className="px-4 py-6 text-center text-sm text-warm-400">
-                No notifications yet
+              <div className="px-4 py-8 text-center">
+                <p className="text-sm text-warm-400">No notifications yet</p>
+                <p className="mt-1 text-xs text-warm-300">
+                  You&apos;ll be notified when someone mentions you.
+                </p>
               </div>
             ) : (
               notifications.map((notification) => (

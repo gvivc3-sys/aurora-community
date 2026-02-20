@@ -376,11 +376,18 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
             );
           })
         ) : (
-          <p className="py-12 text-center text-warm-400">
-            {filter === "unread"
-              ? "No unread messages."
-              : "No messages yet."}
-          </p>
+          <div className="py-16 text-center">
+            <p className="text-lg font-light text-warm-400">
+              {filter === "unread"
+                ? "All caught up."
+                : "No whispers yet."}
+            </p>
+            <p className="mt-2 text-sm text-warm-400">
+              {filter === "unread"
+                ? "No unread whispers right now."
+                : "Whispers from the community will appear here."}
+            </p>
+          </div>
         )}
       </div>
     </div>

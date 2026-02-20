@@ -117,7 +117,7 @@ export default async function BookmarksPage() {
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <BackLink />
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
-          Saved Posts
+          Saved
         </h1>
 
         <div className="mt-6 space-y-6">
@@ -233,13 +233,16 @@ export default async function BookmarksPage() {
               );
             })
           ) : (
-            <div className="py-12 text-center">
-              <p className="text-warm-400">No saved posts yet.</p>
+            <div className="py-16 text-center">
+              <p className="text-lg font-light text-warm-400">Nothing saved yet.</p>
+              <p className="mt-2 text-sm text-warm-400">
+                Bookmark posts from the circle to find them here later.
+              </p>
               <Link
                 href="/dashboard"
-                className="mt-2 inline-block text-sm font-medium text-warm-600 underline hover:text-warm-900"
+                className="mt-4 inline-block rounded-full bg-warm-100 px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-200"
               >
-                Browse the sacred circle
+                Browse the Circle
               </Link>
             </div>
           )}

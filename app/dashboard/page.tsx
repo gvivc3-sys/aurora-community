@@ -335,7 +335,14 @@ export default async function DashboardPage({
               );
             })
           ) : (
-            <p className="py-12 text-center text-warm-400">No posts yet.</p>
+            <div className="py-16 text-center">
+              <p className="text-lg font-light text-warm-400">The circle is quiet for now.</p>
+              <p className="mt-2 text-sm text-warm-400">
+                {tagFilter || typeFilter
+                  ? "Try adjusting your filters to see more posts."
+                  : "New posts will appear here as the community grows."}
+              </p>
+            </div>
           )}
         </div>
 
