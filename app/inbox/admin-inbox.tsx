@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useActionState } from "react";
 import Link from "next/link";
-import { markAsRead, markAsAddressed, replyToMessage } from "@/lib/actions/messages";
+import { markAsRead, markAsAddressed, replyToMessage, deleteMessage } from "@/lib/actions/messages";
 import Avatar from "@/components/avatar";
 import RichTextEditor from "@/components/rich-text-editor";
 import { parseReplies } from "@/lib/replies";
@@ -62,6 +62,49 @@ function MarkAddressedButton({ messageId }: { messageId: string }) {
         <p className="mt-1 text-xs text-red-500">{state.error}</p>
       )}
     </form>
+  );
+}
+
+function DeleteMessageButton({ messageId }: { messageId: string }) {
+  const [confirming, setConfirming] = useState(false);
+  const [state, action, pending] = useActionState(deleteMessage, null);
+
+  if (confirming) {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-red-600">Are you sure?</span>
+        <form action={action}>
+          <input type="hidden" name="messageId" value={messageId} />
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
+          >
+            {pending ? "..." : "Delete"}
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={() => setConfirming(false)}
+          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+        >
+          Cancel
+        </button>
+        {state?.error && (
+          <p className="text-xs text-red-500">{state.error}</p>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setConfirming(true)}
+      className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
+    >
+      Delete
+    </button>
   );
 }
 
@@ -275,14 +318,17 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     <p className="whitespace-pre-wrap text-sm text-warm-700">
                       {msg.body}
                     </p>
-                    {msg.status !== "addressed" && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {msg.status === "unread" && (
-                          <MarkReadButton messageId={msg.id} />
-                        )}
-                        <MarkAddressedButton messageId={msg.id} />
-                      </div>
-                    )}
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {msg.status !== "addressed" && (
+                        <>
+                          {msg.status === "unread" && (
+                            <MarkReadButton messageId={msg.id} />
+                          )}
+                          <MarkAddressedButton messageId={msg.id} />
+                        </>
+                      )}
+                      <DeleteMessageButton messageId={msg.id} />
+                    </div>
                     {msg.reply_body && (() => {
                       const replies = parseReplies(msg.reply_body);
                       return replies.length > 0 ? (

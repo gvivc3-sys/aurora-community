@@ -64,6 +64,53 @@ export async function sendMessage(
   return { success: true };
 }
 
+export async function deleteMessage(
+  previousState: unknown,
+  formData: FormData,
+) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  const messageId = formData.get("messageId") as string;
+  if (!messageId) {
+    return { error: "Message ID is required." };
+  }
+
+  // Fetch the message to check ownership
+  const { data: message, error: fetchError } = await supabaseAdmin
+    .from("messages")
+    .select("sender_id")
+    .eq("id", messageId)
+    .single();
+
+  if (fetchError || !message) {
+    return { error: "Message not found." };
+  }
+
+  // Only the sender or an admin can delete
+  if (message.sender_id !== user.id && !isAdmin(user)) {
+    return { error: "You can only delete your own messages." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("messages")
+    .delete()
+    .eq("id", messageId);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath("/inbox");
+  return { success: true };
+}
+
 export async function markAsRead(
   previousState: unknown,
   formData: FormData,

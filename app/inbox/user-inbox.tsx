@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useRef, useState, useEffect } from "react";
-import { sendMessage, replyToReply } from "@/lib/actions/messages";
+import { sendMessage, replyToReply, deleteMessage } from "@/lib/actions/messages";
 import { parseReplies } from "@/lib/replies";
 import type { Database } from "@/lib/supabase/types";
 import MentionText from "@/components/mention-text";
@@ -30,6 +30,49 @@ function formatRemaining(ms: number): string {
     return m > 0 ? `${h}h ${m}m` : `${h}h`;
   }
   return `${totalMinutes}m`;
+}
+
+function DeleteMessageButton({ messageId }: { messageId: string }) {
+  const [confirming, setConfirming] = useState(false);
+  const [state, action, pending] = useActionState(deleteMessage, null);
+
+  if (confirming) {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-red-600">Are you sure?</span>
+        <form action={action}>
+          <input type="hidden" name="messageId" value={messageId} />
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
+          >
+            {pending ? "..." : "Delete"}
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={() => setConfirming(false)}
+          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+        >
+          Cancel
+        </button>
+        {state?.error && (
+          <p className="text-xs text-red-500">{state.error}</p>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setConfirming(true)}
+      className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
+    >
+      Delete
+    </button>
+  );
 }
 
 function UserReplyForm({ messageId }: { messageId: string }) {
@@ -244,21 +287,24 @@ export default function UserInbox({
                   <span className="text-xs text-warm-400">
                     {timeAgo(msg.created_at)}
                   </span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      msg.status === "addressed"
-                        ? "bg-green-100 text-green-700"
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        msg.status === "addressed"
+                          ? "bg-green-100 text-green-700"
+                          : msg.status === "read"
+                            ? "bg-blue-50 text-blue-600"
+                            : "bg-warm-100 text-warm-500"
+                      }`}
+                    >
+                      {msg.status === "addressed"
+                        ? "Addressed"
                         : msg.status === "read"
-                          ? "bg-blue-50 text-blue-600"
-                          : "bg-warm-100 text-warm-500"
-                    }`}
-                  >
-                    {msg.status === "addressed"
-                      ? "Addressed"
-                      : msg.status === "read"
-                        ? "Read"
-                        : "Sent"}
-                  </span>
+                          ? "Read"
+                          : "Sent"}
+                    </span>
+                    <DeleteMessageButton messageId={msg.id} />
+                  </div>
                 </div>
                 <p className="mt-2 whitespace-pre-wrap text-sm text-warm-700">
                   {msg.body}
