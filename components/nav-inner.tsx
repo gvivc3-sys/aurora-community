@@ -211,13 +211,15 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
           )}
         </div>
 
-        {/* Burger button (mobile) */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="rounded-md p-2 text-warm-600 transition-colors hover:bg-warm-100 md:hidden"
-          aria-label="Toggle menu"
-        >
+        {/* Mobile: bell + burger */}
+        <div className="flex items-center gap-1 md:hidden">
+          {user && <NotificationDropdown unreadCount={unreadNotificationCount} />}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="rounded-md p-2 text-warm-600 transition-colors hover:bg-warm-100"
+            aria-label="Toggle menu"
+          >
           {menuOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +251,8 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
               />
             </svg>
           )}
-        </button>
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
@@ -325,9 +328,6 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                 >
                   Profile
                 </Link>
-                <div className="px-3 py-2">
-                  <NotificationDropdown unreadCount={unreadNotificationCount} />
-                </div>
                 <InstallPrompt />
                 {user.isAdmin && (
                   <>
