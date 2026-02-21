@@ -143,9 +143,9 @@ export default async function Home() {
               <>
                 <Link
                   href="/signup"
-                  className="group relative rounded-full bg-gradient-to-r from-warm-800 via-purple-700 to-warm-800 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all hover:shadow-xl hover:bg-[100%_0] active:scale-[0.98]"
+                  className="cta-gradient-btn rounded-full bg-gradient-to-r from-purple-800 via-violet-600 to-purple-800 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
-                  Join the Sisterhood
+                  Enter the Portal
                 </Link>
                 <Link
                   href="/login"
@@ -741,7 +741,7 @@ export default async function Home() {
               <div className="flex flex-col items-center gap-3">
                 <Link
                   href="/signup"
-                  className="inline-block rounded-full bg-gradient-to-r from-warm-800 via-purple-700 to-warm-800 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all hover:shadow-xl hover:bg-[100%_0] active:scale-[0.98]"
+                  className="cta-gradient-btn inline-block rounded-full bg-gradient-to-r from-purple-800 via-violet-600 to-purple-800 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
                   Join Aurora &mdash; $77/month
                 </Link>
