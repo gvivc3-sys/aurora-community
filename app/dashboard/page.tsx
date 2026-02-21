@@ -217,8 +217,8 @@ export default async function DashboardPage({
                   id={`post-${post.id}`}
                   className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md scroll-mt-16"
                 >
-                  {/* Header: author info + tag */}
-                  <div className="flex items-center justify-between px-4 pt-4">
+                  {/* Header: author info + tags */}
+                  <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
                       <Link href={`/profile/${post.author_id}`}>
                         <Avatar
