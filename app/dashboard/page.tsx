@@ -242,6 +242,7 @@ export default async function DashboardPage({
                         </div>
                       </div>
                     </div>
+                    <div className="border-t border-warm-100 sm:hidden" />
                     <div className="flex items-center gap-2">
                       {!!post.pinned && (
                         <span className="flex items-center gap-1 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">

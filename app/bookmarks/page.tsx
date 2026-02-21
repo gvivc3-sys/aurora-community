@@ -148,6 +148,7 @@ export default async function BookmarksPage() {
                         </div>
                       </div>
                     </div>
+                    <div className="border-t border-warm-100 sm:hidden" />
                     <span
                       className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                     >
