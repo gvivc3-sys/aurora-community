@@ -17,45 +17,11 @@ function MicrophoneIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function VideoCameraIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
-    </svg>
-  );
-}
-
-function DocumentTextIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clipRule="evenodd" />
-      <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
-    </svg>
-  );
-}
-
-function EnvelopeIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-      <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-    </svg>
-  );
-}
-
 function UserGroupIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
       <path fillRule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clipRule="evenodd" />
       <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
-    </svg>
-  );
-}
-
-function BookmarkIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z" clipRule="evenodd" />
     </svg>
   );
 }
@@ -92,42 +58,24 @@ function LeafIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-const features = [
+const pillars = [
   {
-    icon: <MicrophoneIcon className="h-5 w-5 text-warm-700" />,
-    title: "Weekly Voice Notes",
-    description:
-      "Intimate audio on beauty, health, and feminine living. Press play during your morning ritual or evening wind-down.",
-  },
-  {
-    icon: <VideoCameraIcon className="h-5 w-5 text-warm-700" />,
-    title: "Video Guides",
-    description:
-      "Step-by-step visual guides on rituals, recipes, and routines you can follow along with your sisters.",
-  },
-  {
-    icon: <DocumentTextIcon className="h-5 w-5 text-warm-700" />,
-    title: "Long-form Articles",
-    description:
-      "Deep dives into ancestral wisdom, ingredient breakdowns, and lifestyle philosophy to share and discuss.",
-  },
-  {
-    icon: <EnvelopeIcon className="h-5 w-5 text-warm-700" />,
-    title: "Whisper",
-    description:
-      "Send a private whisper to Ashley \u2014 a question, an intention, or something you\u2019re working through. Every whisper is read with care, and some may be shared with the sacred portal.",
-  },
-  {
-    icon: <UserGroupIcon className="h-5 w-5 text-warm-700" />,
+    emoji: "\u2728",
     title: "The Portal",
     description:
-      "A quiet, sacred space. No algorithms, no noise \u2014 just women gathering around what matters.",
+      "Daily blog posts and articles, weekly exclusive video content, and a space to send your questions directly \u2014 answered inside the Portal for the whole community to receive.",
   },
   {
-    icon: <BookmarkIcon className="h-5 w-5 text-warm-700" />,
-    title: "Save & Revisit",
+    emoji: "\uD83C\uDF00",
+    title: "The Circle",
     description:
-      "Bookmark the content that resonates. Build your personal library of wisdom alongside your sisters.",
+      "A private Telegram group chat with like-minded, aligned women who are on the same path as you.",
+  },
+  {
+    emoji: "\u26A1",
+    title: "Monthly Live Group Call",
+    description:
+      "A live monthly call with the Aurora community \u2014 connect face-to-face, ask questions in real time, and deepen your sisterhood.",
   },
 ];
 
@@ -166,17 +114,18 @@ export default async function Home() {
               className="animate-fade-in-up mt-8 text-5xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
               style={{ animationDelay: "150ms" }}
             >
-              Find your <span className="font-medium">portal.</span>
-              <span className="mt-1 block italic">Return to your <span className="font-medium">nature.</span></span>
+              Reclaim your <span className="font-medium">feminine energy.</span>
+              <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
             </h1>
 
             <p
               className="animate-fade-in-up mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500"
               style={{ animationDelay: "300ms" }}
             >
-              Aurora is a gathering place for women who are ready to shed the
-              modern noise and reconnect with ancient wisdom &mdash; with themselves,
-              with nature, with ritual, and with each other.
+              Aurora is a sanctuary for women who are ready to step into their
+              most magnetic, radiant, and naturally beautiful selves &mdash;
+              through holistic health, ancient feminine wisdom, and a community
+              of women rising and aligning together.
             </p>
 
             <div
@@ -242,16 +191,15 @@ export default async function Home() {
               have always known.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Aurora was born from something simple: Ashley wanted to bring
-              together women who feel the same pull &mdash; back to nature,
-              back to simplicity, back to the kind of beauty that doesn&apos;t
-              need a filter. Not as a guru with all the answers, but as a
-              sister on the same path.
+              This is for the woman who is ready to nourish her body, live
+              naturally in alignment with her true health, build a strong and
+              feminine physique, harness her life-force energy, and step into
+              the frequency of the life she has always known is meant for her.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Through weekly voice notes, curated guides, and a deeply
-              intentional community, she shares everything she&apos;s learning
-              &mdash; so we can all walk this road together.
+              Aurora was born from that calling &mdash; a sanctuary where women
+              gather to share everything they&apos;re learning, so we can all
+              rise together.
             </p>
           </AnimateOnScroll>
         </div>
@@ -660,25 +608,23 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Membership
+              Welcome Home ✨
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              What awaits <span className="font-medium">inside</span>
+              What Awaits You Inside the <span className="font-medium">Aurora Community</span>
             </h2>
           </AnimateOnScroll>
 
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, i) => (
-              <AnimateOnScroll key={i} delay={i * 80}>
-                <div className="h-full rounded-xl border border-warm-200 bg-white/80 px-6 py-5 transition-all duration-300 hover:shadow-md">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-warm-100">
-                    {feature.icon}
-                  </div>
-                  <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-warm-800">
-                    {feature.title}
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            {pillars.map((pillar, i) => (
+              <AnimateOnScroll key={i} delay={i * 120}>
+                <div className="h-full rounded-2xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
+                  <div className="text-4xl">{pillar.emoji}</div>
+                  <h3 className="mt-4 text-lg font-bold text-warm-900">
+                    {pillar.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-warm-600">
-                    {feature.description}
+                  <p className="mt-3 text-sm leading-relaxed text-warm-600">
+                    {pillar.description}
                   </p>
                 </div>
               </AnimateOnScroll>
@@ -778,10 +724,10 @@ export default async function Home() {
             <span className="block italic">this path <span className="font-medium">alone</span></span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-500">
-            Join a growing portal of women choosing a more natural, intentional
-            way of living &mdash; rooted in ancient ritual. Weekly voice notes,
-            curated guides, private whispers, a private Telegram group, and a
-            community of sisters who understand.
+            Step into a sanctuary of women reclaiming their feminine energy,
+            elevating their health, and rising together &mdash; through the
+            Portal, the Circle, monthly live calls, and a sisterhood that
+            truly understands.
           </p>
           <div className="mt-10">
             {user ? (
