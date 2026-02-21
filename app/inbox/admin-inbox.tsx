@@ -119,7 +119,7 @@ function ReplyForm({ messageId }: { messageId: string }) {
     if (state?.success) {
       setLastSuccess(
         state.mode === "public"
-          ? "Reply posted to Circle."
+          ? "Reply posted to Portal."
           : "Private reply sent.",
       );
       setOpen(false);
@@ -170,7 +170,7 @@ function ReplyForm({ messageId }: { messageId: string }) {
                   : "text-warm-500 hover:text-warm-700"
               }`}
             >
-              Post to Circle
+              Post to Portal
             </button>
           </div>
 
@@ -188,7 +188,7 @@ function ReplyForm({ messageId }: { messageId: string }) {
               {pending
                 ? "Sending..."
                 : mode === "public"
-                  ? "Post to Circle"
+                  ? "Post to Portal"
                   : "Send privately"}
             </button>
             <button
@@ -344,7 +344,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                                   {reply.author_name} replied
                                   {reply.role === "admin" && (
                                     <span className="ml-1 text-warm-400">
-                                      · {reply.mode === "public" ? "Posted to Circle" : "Private"}
+                                      · {reply.mode === "public" ? "Posted to Portal" : "Private"}
                                     </span>
                                   )}
                                 </p>

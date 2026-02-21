@@ -119,7 +119,7 @@ const features = [
   },
   {
     icon: <UserGroupIcon className="h-5 w-5 text-warm-700" />,
-    title: "The Circle",
+    title: "The Portal",
     description:
       "A quiet, sacred space. No algorithms, no noise \u2014 just women gathering around what matters.",
   },
@@ -188,7 +188,7 @@ export default async function Home() {
                 href="/dashboard"
                 className="rounded-full bg-yellow-400 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
-                Enter the Circle
+                Enter the Portal
               </Link>
             ) : (
               <>
@@ -338,7 +338,7 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── WHISPERS FROM THE CIRCLE ─── */}
+      {/* ─── WHISPERS FROM THE PORTAL ─── */}
       <section className="relative overflow-hidden px-6 py-24 sm:py-36">
         {/* Rotating circles with gaussian blur — decorative background */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -789,7 +789,7 @@ export default async function Home() {
                 href="/dashboard"
                 className="inline-block rounded-full bg-yellow-400 px-12 py-4 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
-                Go to Your Circle
+                Go to Your Portal
               </Link>
             ) : (
               <div className="flex flex-col items-center gap-3">

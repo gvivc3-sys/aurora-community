@@ -69,15 +69,18 @@ export default async function PostPage({ params }: { params: Params }) {
     .eq("user_id", user.id)
     .maybeSingle();
 
-  // Fetch handles for comment authors
-  const commentUserIds = [
-    ...new Set((comments ?? []).map((c) => c.user_id)),
+  // Fetch handles for post author and comment authors
+  const allUserIds = [
+    ...new Set([
+      post.author_id,
+      ...(comments ?? []).map((c) => c.user_id),
+    ]),
   ];
-  const { data: handleRows } = commentUserIds.length
+  const { data: handleRows } = allUserIds.length
     ? await supabaseAdmin
         .from("user_handles")
         .select("user_id, handle")
-        .in("user_id", commentUserIds)
+        .in("user_id", allUserIds)
     : { data: [] };
   const userHandles: Record<string, string> = {};
   for (const row of handleRows ?? []) {
@@ -112,13 +115,21 @@ export default async function PostPage({ params }: { params: Params }) {
                 />
               </Link>
               <div className="min-w-0">
-                <Link
-                  href={`/profile/${post.author_id}`}
-                  className="truncate text-sm font-medium text-warm-900 hover:underline"
-                >
-                  {post.author_name ?? "Unknown"}
-                </Link>
-                <TimeAgo date={post.created_at} className="text-xs text-warm-400" />
+                <div className="flex items-center gap-1.5">
+                  <Link
+                    href={`/profile/${post.author_id}`}
+                    className="shrink-0 truncate text-sm font-medium text-warm-900 hover:underline"
+                  >
+                    {post.author_name ?? "Unknown"}
+                  </Link>
+                  {userHandles[post.author_id] && (
+                    <Link href={`/profile/${post.author_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
+                      @{userHandles[post.author_id]}
+                    </Link>
+                  )}
+                  <span className="shrink-0 text-warm-300">&middot;</span>
+                  <TimeAgo date={post.created_at} className="shrink-0 text-xs text-warm-400" />
+                </div>
               </div>
             </div>
             <span

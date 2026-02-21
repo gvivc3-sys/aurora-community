@@ -224,7 +224,7 @@ export async function replyToMessage(
   }
 
   if (mode === "public") {
-    // Create a post in the Circle feed with the admin's reply
+    // Create a post in the Portal feed with the admin's reply
     const { error: postError } = await supabaseAdmin.from("posts").insert({
       type: "text",
       body: replyBody,

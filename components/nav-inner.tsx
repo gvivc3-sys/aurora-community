@@ -54,7 +54,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
           href="/"
           className="group relative"
         >
-          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-rose-200/40 to-amber-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-200/40 to-yellow-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
           <span className="relative font-display text-xl font-bold italic tracking-tight text-warm-900">
             Aurora
           </span>
@@ -80,7 +80,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                     />
                   ))}
                 </svg>
-                Circle
+                Portal
               </Link>
 
               <Link
@@ -215,7 +215,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
               </Link>
               <Link
                 href="/signup"
-                className="rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-1.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+                className="rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
                 Sign up
               </Link>
@@ -310,7 +310,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                       />
                     ))}
                   </svg>
-                  Circle
+                  Portal
                 </Link>
                 <Link
                   href="/inbox"
@@ -395,7 +395,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
               <Link
                 href="/signup"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-3 py-2 text-center text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+                className="block rounded-full bg-yellow-400 px-3 py-2 text-center text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
                 Sign up
               </Link>
