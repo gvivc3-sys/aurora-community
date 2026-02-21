@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId } from "@/lib/video";
 import { extractMentionsFromHtml, extractMentionsFromText, resolveHandlesToUserIds, linkifyMentionsInHtml } from "@/lib/mentions";
@@ -249,7 +250,7 @@ export async function togglePinPost(previousState: unknown, formData: FormData) 
 
   if (!currentlyPinned) {
     // Pinning — check limit
-    const { count } = await supabase
+    const { count } = await supabaseAdmin
       .from("posts")
       .select("id", { count: "exact", head: true })
       .eq("pinned", true);
@@ -258,7 +259,7 @@ export async function togglePinPost(previousState: unknown, formData: FormData) 
       return { error: "Unpin the current pinned post first." };
     }
 
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from("posts")
       .update({ pinned: true, pinned_at: new Date().toISOString() })
       .eq("id", postId);
@@ -268,7 +269,7 @@ export async function togglePinPost(previousState: unknown, formData: FormData) 
     }
   } else {
     // Unpinning
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from("posts")
       .update({ pinned: false, pinned_at: null })
       .eq("id", postId);
