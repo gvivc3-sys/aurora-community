@@ -226,6 +226,62 @@ export async function deletePost(previousState: unknown, formData: FormData) {
   return { success: true };
 }
 
+export async function togglePinPost(previousState: unknown, formData: FormData) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "You must be logged in." };
+  }
+
+  if (!isAdmin(user)) {
+    return { error: "Only admins can pin posts." };
+  }
+
+  const postId = formData.get("postId") as string;
+  if (!postId) {
+    return { error: "Post ID is required." };
+  }
+
+  const currentlyPinned = formData.get("pinned") === "true";
+
+  if (!currentlyPinned) {
+    // Pinning — check limit
+    const { count } = await supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .eq("pinned", true);
+
+    if ((count ?? 0) >= 3) {
+      return { error: "Maximum of 3 pinned posts." };
+    }
+
+    const { error } = await supabase
+      .from("posts")
+      .update({ pinned: true, pinned_at: new Date().toISOString() })
+      .eq("id", postId);
+
+    if (error) {
+      return { error: error.message };
+    }
+  } else {
+    // Unpinning
+    const { error } = await supabase
+      .from("posts")
+      .update({ pinned: false, pinned_at: null })
+      .eq("id", postId);
+
+    if (error) {
+      return { error: error.message };
+    }
+  }
+
+  revalidatePath("/dashboard");
+  return { success: true };
+}
+
 export async function toggleLike(previousState: unknown, formData: FormData) {
   const supabase = await createClient();
   const {

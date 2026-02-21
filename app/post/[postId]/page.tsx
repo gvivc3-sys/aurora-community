@@ -217,6 +217,7 @@ export default async function PostPage({ params }: { params: Params }) {
             currentUserId={user.id}
             isAdmin={admin}
             userHandles={userHandles}
+            pinned={!!post.pinned}
             defaultCommentsOpen
             hideFocusLink
           />

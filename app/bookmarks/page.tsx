@@ -224,6 +224,7 @@ export default async function BookmarksPage() {
                     currentUserId={user.id}
                     isAdmin={admin}
                     userHandles={userHandles}
+                    pinned={!!post.pinned}
                   />
                 </div>
               );

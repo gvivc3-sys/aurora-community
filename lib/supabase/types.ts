@@ -27,6 +27,8 @@ export interface Database {
           tag: "love" | "health" | "magic" | "ask";
           comments_enabled: boolean;
           anonymous_question: string | null;
+          pinned: boolean;
+          pinned_at: string | null;
           created_at: string;
         };
         Insert: {
@@ -42,6 +44,8 @@ export interface Database {
           tag: "love" | "health" | "magic" | "ask";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
+          pinned?: boolean;
+          pinned_at?: string | null;
           created_at?: string;
         };
         Update: {
@@ -57,6 +61,8 @@ export interface Database {
           tag?: "love" | "health" | "magic";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
+          pinned?: boolean;
+          pinned_at?: string | null;
           created_at?: string;
         };
         Relationships: [];

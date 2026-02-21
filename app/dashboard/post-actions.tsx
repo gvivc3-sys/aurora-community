@@ -2,7 +2,7 @@
 
 import { useActionState, useOptimistic, useRef, useState } from "react";
 import Link from "next/link";
-import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark } from "@/lib/actions/post";
+import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark, togglePinPost } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
 
 /** Render @handles in comment text as links using pre-resolved handle map */
@@ -65,6 +65,7 @@ type PostActionsProps = {
   currentUserId: string;
   isAdmin: boolean;
   userHandles: Record<string, string>;
+  pinned?: boolean;
   defaultCommentsOpen?: boolean;
   hideFocusLink?: boolean;
 };
@@ -94,6 +95,7 @@ export default function PostActions({
   currentUserId,
   isAdmin,
   userHandles,
+  pinned = false,
   defaultCommentsOpen = false,
   hideFocusLink = false,
 }: PostActionsProps) {
@@ -117,6 +119,9 @@ export default function PostActions({
     (state) => !state,
   );
   const [, bookmarkAction] = useActionState(toggleBookmark, null);
+
+  // Pin post
+  const [pinState, pinAction, pinPending] = useActionState(togglePinPost, null);
 
   // Delete post
   const [deleteState, deleteAction, deletePending] = useActionState(deletePost, null);
@@ -199,6 +204,33 @@ export default function PostActions({
           </svg>
           {commentCount > 0 && <span>{commentCount}</span>}
         </button>
+
+        {/* Pin (admin only, icon-only) */}
+        {isAdmin && (
+          <form action={pinAction} className="ml-4">
+            <input type="hidden" name="postId" value={postId} />
+            <input type="hidden" name="pinned" value={String(pinned)} />
+            <button
+              type="submit"
+              disabled={pinPending}
+              className="flex items-center text-sm transition-colors disabled:opacity-50"
+              title={pinned ? "Unpin post" : "Pin post"}
+            >
+              {pinned ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-warm-600">
+                  <path d="M16 2l-4 4-5-2-3 3 4.5 4.5L2 18l.5.5L9 12l4.5 4.5 3-3-2-5 4-4L16 2z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-warm-400 hover:text-warm-600">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 2l-4 4-5-2-3 3 4.5 4.5L2 18l.5.5L9 12l4.5 4.5 3-3-2-5 4-4L16 2z" />
+                </svg>
+              )}
+            </button>
+            {pinState?.error && (
+              <span className="text-xs text-red-600">{pinState.error}</span>
+            )}
+          </form>
+        )}
 
         {/* Bookmark */}
         <form action={async (formData) => {

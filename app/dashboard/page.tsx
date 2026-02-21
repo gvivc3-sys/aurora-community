@@ -72,6 +72,7 @@ export default async function DashboardPage({
     query = query.eq("type", typeFilter as "video" | "text" | "article" | "voice");
   }
   query = query
+    .order("pinned", { ascending: false, nullsFirst: false })
     .order("created_at", { ascending: sort === "oldest" })
     .range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1);
 
@@ -241,12 +242,19 @@ export default async function DashboardPage({
                         </div>
                       </div>
                     </div>
-                    <span
-                      className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
-                    >
-                      <span>{tag?.emoji}</span>
-                      {post.tag === "ask" ? "whisper" : post.tag}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      {!!post.pinned && (
+                        <span className="flex items-center gap-1 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
+                          📌 Pinned
+                        </span>
+                      )}
+                      <span
+                        className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
+                      >
+                        <span>{tag?.emoji}</span>
+                        {post.tag === "ask" ? "whisper" : post.tag}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Video embed + optional description */}
@@ -326,6 +334,7 @@ export default async function DashboardPage({
                     currentUserId={user.id}
                     isAdmin={admin}
                     userHandles={userHandles}
+                    pinned={!!post.pinned}
                   />
                 </div>
               );
