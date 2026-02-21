@@ -28,9 +28,9 @@ async function backfillIdentity(
   ]);
 }
 
-function isWithinCooldown(identityChangedAt: string | undefined): boolean {
-  if (!identityChangedAt) return false;
-  return Date.now() - new Date(identityChangedAt).getTime() < IDENTITY_COOLDOWN_MS;
+function isWithinCooldown(changedAt: string | undefined): boolean {
+  if (!changedAt) return false;
+  return Date.now() - new Date(changedAt).getTime() < IDENTITY_COOLDOWN_MS;
 }
 
 export async function updateProfile(
@@ -65,8 +65,8 @@ export async function updateProfile(
   const usernameChanged = username && username !== oldUsername;
 
   if (usernameChanged) {
-    if (isWithinCooldown(user.user_metadata?.identity_changed_at)) {
-      return { error: "You can only change your name or avatar once per week." };
+    if (isWithinCooldown(user.user_metadata?.name_changed_at)) {
+      return { error: "You can only change your name once per week." };
     }
   }
 
@@ -154,7 +154,7 @@ export async function updateProfile(
     const avatarUrl = user.user_metadata?.avatar_url ?? "";
     await backfillIdentity(user.id, username, avatarUrl);
     await supabaseAdmin.auth.admin.updateUserById(user.id, {
-      user_metadata: { identity_changed_at: new Date().toISOString() },
+      user_metadata: { name_changed_at: new Date().toISOString() },
     });
 
     // Also update display_name in user_handles
@@ -175,8 +175,8 @@ export async function updateAvatar() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Not authenticated." };
 
-  if (isWithinCooldown(user.user_metadata?.identity_changed_at)) {
-    return { error: "You can only change your name or avatar once per week." };
+  if (isWithinCooldown(user.user_metadata?.avatar_changed_at)) {
+    return { error: "You can only change your avatar once per week." };
   }
 
   const name = user.user_metadata?.username ?? "";
@@ -184,7 +184,7 @@ export async function updateAvatar() {
 
   await backfillIdentity(user.id, name, avatarUrl);
   await supabaseAdmin.auth.admin.updateUserById(user.id, {
-    user_metadata: { identity_changed_at: new Date().toISOString() },
+    user_metadata: { avatar_changed_at: new Date().toISOString() },
   });
 
   // Also update avatar_url in user_handles
