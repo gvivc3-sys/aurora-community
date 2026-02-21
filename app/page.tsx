@@ -135,7 +135,7 @@ export default async function Home() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="rounded-full bg-[#c9b8e8] px-10 py-3.5 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-[#d8c9f0] active:scale-[0.98]"
+                className="rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Enter the Portal
               </Link>
@@ -143,7 +143,7 @@ export default async function Home() {
               <>
                 <Link
                   href="/signup"
-                  className="rounded-full bg-[#c9b8e8] px-10 py-3.5 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-[#d8c9f0] active:scale-[0.98]"
+                  className="group relative rounded-full bg-gradient-to-r from-warm-800 via-purple-700 to-warm-800 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all hover:shadow-xl hover:bg-[100%_0] active:scale-[0.98]"
                 >
                   Join the Sisterhood
                 </Link>
@@ -733,7 +733,7 @@ export default async function Home() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="inline-block rounded-full bg-[#c9b8e8] px-12 py-4 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-[#d8c9f0] active:scale-[0.98]"
+                className="inline-block rounded-full bg-warm-800 px-12 py-4 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Go to Your Portal
               </Link>
@@ -741,7 +741,7 @@ export default async function Home() {
               <div className="flex flex-col items-center gap-3">
                 <Link
                   href="/signup"
-                  className="inline-block rounded-full bg-[#c9b8e8] px-12 py-4 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-[#d8c9f0] active:scale-[0.98]"
+                  className="inline-block rounded-full bg-gradient-to-r from-warm-800 via-purple-700 to-warm-800 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all hover:shadow-xl hover:bg-[100%_0] active:scale-[0.98]"
                 >
                   Join Aurora &mdash; $77/month
                 </Link>
