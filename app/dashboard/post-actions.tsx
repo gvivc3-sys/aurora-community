@@ -120,7 +120,11 @@ export default function PostActions({
   );
   const [, bookmarkAction] = useActionState(toggleBookmark, null);
 
-  // Pin post
+  // Pin — optimistic
+  const [optimisticPinned, setOptimisticPinned] = useOptimistic(
+    pinned,
+    (state) => !state,
+  );
   const [pinState, pinAction, pinPending] = useActionState(togglePinPost, null);
 
   // Delete post
@@ -207,16 +211,19 @@ export default function PostActions({
 
         {/* Pin (admin only, icon-only) */}
         {isAdmin && (
-          <form action={pinAction} className="ml-4">
+          <form action={async (formData) => {
+            setOptimisticPinned(null);
+            await pinAction(formData);
+          }} className="ml-4">
             <input type="hidden" name="postId" value={postId} />
-            <input type="hidden" name="pinned" value={String(pinned)} />
+            <input type="hidden" name="pinned" value={String(optimisticPinned)} />
             <button
               type="submit"
               disabled={pinPending}
               className="flex items-center text-sm transition-colors disabled:opacity-50"
-              title={pinned ? "Unpin post" : "Pin post"}
+              title={optimisticPinned ? "Unpin post" : "Pin post"}
             >
-              {pinned ? (
+              {optimisticPinned ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-warm-600">
                   <path d="M16 2l-4 4-5-2-3 3 4.5 4.5L2 18l.5.5L9 12l4.5 4.5 3-3-2-5 4-4L16 2z" />
                 </svg>

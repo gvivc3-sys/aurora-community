@@ -254,8 +254,8 @@ export async function togglePinPost(previousState: unknown, formData: FormData) 
       .select("id", { count: "exact", head: true })
       .eq("pinned", true);
 
-    if ((count ?? 0) >= 3) {
-      return { error: "Maximum of 3 pinned posts." };
+    if ((count ?? 0) >= 1) {
+      return { error: "Unpin the current pinned post first." };
     }
 
     const { error } = await supabase
