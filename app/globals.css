@@ -2,18 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #faf8f5;
-  --foreground: #2c2418;
-  --warm-50: #faf8f5;
-  --warm-100: #f3efe8;
-  --warm-200: #e8e0d4;
-  --warm-300: #d4c9b8;
-  --warm-400: #b8a68e;
-  --warm-500: #9c8a6e;
-  --warm-600: #7a6b54;
-  --warm-700: #5c5040;
-  --warm-800: #3d352b;
-  --warm-900: #2c2418;
+  --background: #f8f6fc;
+  --foreground: #1a1230;
+  --warm-50: #f8f6fc;
+  --warm-100: #eeebf7;
+  --warm-200: #ddd6f0;
+  --warm-300: #c4b8e3;
+  --warm-400: #a28fce;
+  --warm-500: #8270b5;
+  --warm-600: #65539a;
+  --warm-700: #4c3d78;
+  --warm-800: #342a55;
+  --warm-900: #1a1230;
 }
 
 @theme inline {
@@ -48,7 +48,7 @@ body {
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #b8a68e;
+  color: #a28fce;
   pointer-events: none;
   height: 0;
 }
@@ -133,12 +133,12 @@ a[data-type="mention"]:hover {
 .hero-gradient {
   background: linear-gradient(
     135deg,
-    #faf8f5 0%,
-    #fce4ec 18%,
-    #fef3c7 36%,
-    #f3efe8 54%,
-    #fce4ec 72%,
-    #faf8f5 90%
+    #f8f6fc 0%,
+    #e8dff5 18%,
+    #fef9c3 36%,
+    #eeebf7 54%,
+    #e0d4f0 72%,
+    #f8f6fc 90%
   );
   background-size: 400% 400%;
   animation: gradient-move 16s ease infinite;
@@ -147,11 +147,11 @@ a[data-type="mention"]:hover {
 .dark-gradient {
   background: linear-gradient(
     135deg,
-    #2c2418 0%,
-    #3d1c2a 30%,
-    #2c2418 50%,
-    #2a2a18 70%,
-    #2c2418 100%
+    #1a1230 0%,
+    #2a1845 30%,
+    #1a1230 50%,
+    #1e1538 70%,
+    #1a1230 100%
   );
   background-size: 400% 400%;
   animation: gradient-move 12s ease infinite;
@@ -169,7 +169,7 @@ a[data-type="mention"]:hover {
   background: linear-gradient(
     90deg,
     var(--warm-900) 0%,
-    #8b6914 45%,
+    #7c3aed 45%,
     var(--warm-900) 55%,
     var(--warm-900) 100%
   );

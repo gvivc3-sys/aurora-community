@@ -73,7 +73,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
+          className="w-full rounded-full bg-yellow-400 px-4 py-2.5 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98] disabled:opacity-50"
         >
           {pending ? "Signing in..." : "Sign in"}
         </button>

@@ -37,7 +37,7 @@ export default function WelcomeCard() {
         Welcome to Aurora
       </h3>
       <p className="mt-1.5 text-sm leading-relaxed text-warm-600">
-        This is your sacred circle. Here you&apos;ll find posts, voice
+        This is your sacred portal. Here you&apos;ll find posts, voice
         notes, and articles from the Aurora team. You can like, comment on,
         and save posts you love. Use{" "}
         <Link href="/inbox" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Whisper</Link> to

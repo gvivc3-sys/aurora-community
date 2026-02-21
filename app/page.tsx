@@ -115,7 +115,7 @@ const features = [
     icon: <EnvelopeIcon className="h-5 w-5 text-warm-700" />,
     title: "Whisper",
     description:
-      "Send a private whisper to Ashley \u2014 a question, an intention, or something you\u2019re working through. Every whisper is read with care, and some may be shared with the sacred circle.",
+      "Send a private whisper to Ashley \u2014 a question, an intention, or something you\u2019re working through. Every whisper is read with care, and some may be shared with the sacred portal.",
   },
   {
     icon: <UserGroupIcon className="h-5 w-5 text-warm-700" />,
@@ -144,13 +144,13 @@ export default async function Home() {
         <div className="hero-gradient absolute inset-0" />
 
         {/* Decorative gaussian blur blobs */}
-        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-rose-200/25 blur-[80px]" />
+        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-purple-200/25 blur-[80px]" />
         <div
-          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-amber-200/25 blur-[80px]"
+          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-yellow-200/25 blur-[80px]"
           style={{ animationDelay: "3.5s" }}
         />
         <div
-          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-pink-100/30 blur-[100px]"
+          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-violet-100/30 blur-[100px]"
           style={{ animationDelay: "1.5s" }}
         />
 
@@ -166,7 +166,7 @@ export default async function Home() {
               className="animate-fade-in-up mt-8 text-5xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
               style={{ animationDelay: "150ms" }}
             >
-              Find your <span className="font-medium">circle.</span>
+              Find your <span className="font-medium">portal.</span>
               <span className="mt-1 block italic">Return to your <span className="font-medium">nature.</span></span>
             </h1>
 
@@ -186,7 +186,7 @@ export default async function Home() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
+                className="rounded-full bg-yellow-400 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
                 Enter the Circle
               </Link>
@@ -194,7 +194,7 @@ export default async function Home() {
               <>
                 <Link
                   href="/signup"
-                  className="rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
+                  className="rounded-full bg-yellow-400 px-10 py-3.5 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
                 >
                   Join the Sisterhood
                 </Link>
@@ -282,7 +282,7 @@ export default async function Home() {
               learned &mdash; together, through story and shared experience.
             </p>
             <p className="mt-6 border-l-2 border-warm-300 pl-4 text-sm italic leading-relaxed text-warm-500">
-              &ldquo;It feels like sitting in a circle with women who just get
+              &ldquo;It feels like sitting in a portal with women who just get
               it. I&apos;ve never felt less alone on this path.&rdquo;
             </p>
           </AnimateOnScroll>
@@ -310,7 +310,7 @@ export default async function Home() {
 
               <div className="mt-4 rounded-xl bg-warm-50 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-warm-800 to-warm-900 text-warm-50 shadow-md">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-yellow-400 text-warm-900 shadow-md">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -362,18 +362,18 @@ export default async function Home() {
                 cy={200 + 140 * Math.sin((angle * Math.PI) / 180)}
                 r={angle % 90 === 0 ? 18 : 12}
                 fill="currentColor"
-                className="text-rose-400"
+                className="text-purple-400"
               />
             ))}
           </svg>
           {/* Gaussian blur blobs */}
-          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-rose-200/20 blur-[100px]" />
+          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-purple-200/20 blur-[100px]" />
           <div
-            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-amber-200/20 blur-[100px]"
+            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-yellow-200/20 blur-[100px]"
             style={{ animationDelay: "4s" }}
           />
           <div
-            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-100/15 blur-[80px]"
+            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-100/15 blur-[80px]"
             style={{ animationDelay: "2s" }}
           />
         </div>
@@ -384,7 +384,7 @@ export default async function Home() {
               The Whisper
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Your sacred circle should be safe enough to <span className="font-medium">speak freely</span>
+              Your sacred portal should be safe enough to <span className="font-medium">speak freely</span>
             </h2>
           </AnimateOnScroll>
 
@@ -403,7 +403,7 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
                     🤍 whisper
                   </span>
                 </div>
@@ -425,7 +425,7 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-200 to-rose-100 text-[9px] font-semibold text-warm-600">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-violet-100 text-[9px] font-semibold text-warm-600">
                       SL
                     </div>
                     <div>
@@ -460,7 +460,7 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">5d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
                     🤍 whisper
                   </span>
                 </div>
@@ -474,7 +474,7 @@ export default async function Home() {
                 {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
-                    You are not alone in this. Setting boundaries around how you nourish yourself is one of the most courageous acts of self-love. It can feel isolating, but know that this circle is full of women walking the same path &mdash; quietly, bravely.
+                    You are not alone in this. Setting boundaries around how you nourish yourself is one of the most courageous acts of self-love. It can feel isolating, but know that this portal is full of women walking the same path &mdash; quietly, bravely.
                   </p>
                 </div>
                 {/* Divider */}
@@ -517,14 +517,14 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">1w ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
                     🤍 whisper
                   </span>
                 </div>
                 {/* Nested named whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[8px] font-semibold text-warm-700">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-yellow-200 text-[8px] font-semibold text-warm-700">
                       EM
                     </div>
                     <p className="text-xs font-medium text-warm-500">Elena Morales asked:</p>
@@ -544,7 +544,7 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[9px] font-semibold text-warm-700">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-yellow-200 text-[9px] font-semibold text-warm-700">
                       EM
                     </div>
                     <div>
@@ -587,9 +587,9 @@ export default async function Home() {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
           <AnimateOnScroll delay={0} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-rose-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-50 transition-transform duration-300 group-hover:scale-110">
-                <HeartIcon className="h-6 w-6 text-rose-400" />
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-purple-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-50 transition-transform duration-300 group-hover:scale-110">
+                <HeartIcon className="h-6 w-6 text-purple-400" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
                 Primal <span className="font-semibold">Beauty</span>
@@ -619,9 +619,9 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={300} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-amber-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-amber-50 transition-transform duration-300 group-hover:scale-110">
-                <SunIcon className="h-6 w-6 text-amber-500" />
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-yellow-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-yellow-100 to-yellow-50 transition-transform duration-300 group-hover:scale-110">
+                <SunIcon className="h-6 w-6 text-yellow-500" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
                 Feminine <span className="font-semibold">Energy</span>
@@ -759,13 +759,13 @@ export default async function Home() {
       {/* ─── FINAL CTA ─── */}
       <section className="relative overflow-hidden px-6 py-28 sm:py-40">
         <div className="hero-gradient absolute inset-0 opacity-50" />
-        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-rose-200/30 blur-[80px]" />
+        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-purple-200/30 blur-[80px]" />
         <div
-          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-amber-200/30 blur-[80px]"
+          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-yellow-200/30 blur-[80px]"
           style={{ animationDelay: "3s" }}
         />
         <div
-          className="animate-float absolute left-1/3 top-2/3 h-48 w-48 rounded-full bg-pink-100/25 blur-[100px]"
+          className="animate-float absolute left-1/3 top-2/3 h-48 w-48 rounded-full bg-violet-100/25 blur-[100px]"
           style={{ animationDelay: "5s" }}
         />
 
@@ -778,7 +778,7 @@ export default async function Home() {
             <span className="block italic">this path <span className="font-medium">alone</span></span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-500">
-            Join a growing circle of women choosing a more natural, intentional
+            Join a growing portal of women choosing a more natural, intentional
             way of living &mdash; rooted in ancient ritual. Weekly voice notes,
             curated guides, private whispers, a private Telegram group, and a
             community of sisters who understand.
@@ -787,7 +787,7 @@ export default async function Home() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="inline-block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-12 py-4 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
+                className="inline-block rounded-full bg-yellow-400 px-12 py-4 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
               >
                 Go to Your Circle
               </Link>
@@ -795,7 +795,7 @@ export default async function Home() {
               <div className="flex flex-col items-center gap-3">
                 <Link
                   href="/signup"
-                  className="inline-block rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-12 py-4 text-sm font-medium tracking-wide text-warm-50 shadow-lg transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-xl active:scale-[0.98]"
+                  className="inline-block rounded-full bg-yellow-400 px-12 py-4 text-sm font-medium tracking-wide text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
                 >
                   Join Aurora &mdash; $77/month
                 </Link>

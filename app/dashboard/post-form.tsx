@@ -217,7 +217,7 @@ export default function PostForm() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="rounded-full bg-warm-900 px-4 py-2 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800"
+        className="rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
       >
         {open ? "Cancel" : "+ New Post"}
       </button>
@@ -340,7 +340,7 @@ export default function PostForm() {
                     <button
                       type="button"
                       onClick={stopRecording}
-                      className="flex items-center gap-2 rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+                      className="flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98]"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                         <path fillRule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clipRule="evenodd" />
@@ -490,7 +490,7 @@ export default function PostForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
+          className="w-full rounded-full bg-yellow-400 px-4 py-2.5 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98] disabled:opacity-50"
         >
           {pending ? "Posting..." : "Publish"}
         </button>

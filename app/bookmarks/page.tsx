@@ -221,13 +221,13 @@ export default async function BookmarksPage() {
             <div className="py-16 text-center">
               <p className="text-lg font-light text-warm-400">Nothing saved yet.</p>
               <p className="mt-2 text-sm text-warm-400">
-                Bookmark posts from the circle to find them here later.
+                Bookmark posts from the portal to find them here later.
               </p>
               <Link
                 href="/dashboard"
                 className="mt-4 inline-block rounded-full bg-warm-100 px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-200"
               >
-                Browse the Circle
+                Browse the Portal
               </Link>
             </div>
           )}

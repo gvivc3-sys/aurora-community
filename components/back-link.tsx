@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function BackLink({
   href = "/dashboard",
-  label = "Back to Circle",
+  label = "Back to Portal",
 }: {
   href?: string;
   label?: string;

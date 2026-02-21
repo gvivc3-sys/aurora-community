@@ -203,7 +203,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 maxLength={300}
                 defaultValue={meta.bio ?? ""}
                 className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
-                placeholder="Tell the circle a little about yourself..."
+                placeholder="Tell the portal a little about yourself..."
               />
             </div>
 
@@ -233,7 +233,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <button
               type="submit"
               disabled={pending}
-              className="w-full rounded-full bg-warm-900 px-4 py-2.5 text-sm font-medium text-warm-50 transition-colors hover:bg-warm-800 disabled:opacity-50"
+              className="w-full rounded-full bg-yellow-400 px-4 py-2.5 text-sm font-medium text-warm-900 shadow-md transition-all hover:bg-yellow-300 active:scale-[0.98] disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
             </button>

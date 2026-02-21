@@ -77,7 +77,7 @@ export async function sendSubscriptionConfirmedEmail(email: string) {
       subject: "You're in! Membership confirmed",
       html: emailLayout(
         "Membership Confirmed",
-        `<p ${textStyle}>Your Aurora membership is confirmed — welcome to the inner circle.</p>
+        `<p ${textStyle}>Your Aurora membership is confirmed — welcome to the inner portal.</p>
          <p ${textStyle}>You now have full access to everything Aurora has to offer, including our private Telegram group.</p>
          ${button("Set up Telegram access", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>If you have any questions, just reply to this email. We're happy to help.</p>`,

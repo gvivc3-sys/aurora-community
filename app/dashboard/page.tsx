@@ -321,7 +321,7 @@ export default async function DashboardPage({
             })
           ) : (
             <div className="py-16 text-center">
-              <p className="text-lg font-light text-warm-400">The circle is quiet for now.</p>
+              <p className="text-lg font-light text-warm-400">The portal is quiet for now.</p>
               <p className="mt-2 text-sm text-warm-400">
                 {tagFilter || typeFilter
                   ? "Try adjusting your filters to see more posts."
