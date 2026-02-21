@@ -22,7 +22,7 @@ const PAGE_SIZE = 20;
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
   health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
-  magic: { badge: "bg-purple-50 text-purple-700", emoji: "\u2728" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728" },
   ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D" },
 };
 

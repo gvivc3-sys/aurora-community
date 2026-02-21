@@ -16,7 +16,7 @@ const postTypes = [
 const tags = [
   { key: "love", label: "Love", emoji: "\u2764\uFE0F", color: "border-pink-300 bg-pink-50 text-pink-700", activeColor: "border-pink-500 bg-pink-100 text-pink-800 ring-2 ring-pink-200" },
   { key: "health", label: "Health", emoji: "\uD83C\uDF3F", color: "border-green-300 bg-green-50 text-green-700", activeColor: "border-green-500 bg-green-100 text-green-800 ring-2 ring-green-200" },
-  { key: "magic", label: "Magic", emoji: "\u2728", color: "border-purple-300 bg-purple-50 text-purple-700", activeColor: "border-purple-500 bg-purple-100 text-purple-800 ring-2 ring-purple-200" },
+  { key: "magic", label: "Magic", emoji: "\u2728", color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700", activeColor: "border-fuchsia-500 bg-fuchsia-100 text-fuchsia-800 ring-2 ring-fuchsia-200" },
 ] as const;
 
 type PostType = (typeof postTypes)[number]["key"];

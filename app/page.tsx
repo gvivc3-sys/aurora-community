@@ -92,13 +92,13 @@ export default async function Home() {
         <div className="hero-gradient absolute inset-0" />
 
         {/* Decorative gaussian blur blobs */}
-        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-purple-200/25 blur-[80px]" />
+        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-fuchsia-200/25 blur-[80px]" />
         <div
-          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-purple-200/25 blur-[80px]"
+          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-fuchsia-200/25 blur-[80px]"
           style={{ animationDelay: "3.5s" }}
         />
         <div
-          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-violet-100/30 blur-[100px]"
+          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-pink-100/30 blur-[100px]"
           style={{ animationDelay: "1.5s" }}
         />
 
@@ -143,7 +143,7 @@ export default async function Home() {
               <>
                 <Link
                   href="/signup"
-                  className="cta-gradient-btn rounded-full bg-gradient-to-r from-purple-800 via-violet-600 to-purple-800 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  className="cta-gradient-btn rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
                   Enter the Portal
                 </Link>
@@ -310,18 +310,18 @@ export default async function Home() {
                 cy={200 + 140 * Math.sin((angle * Math.PI) / 180)}
                 r={angle % 90 === 0 ? 18 : 12}
                 fill="currentColor"
-                className="text-purple-400"
+                className="text-pink-400"
               />
             ))}
           </svg>
           {/* Gaussian blur blobs */}
-          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-purple-200/20 blur-[100px]" />
+          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]" />
           <div
-            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-purple-200/20 blur-[100px]"
+            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]"
             style={{ animationDelay: "4s" }}
           />
           <div
-            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-100/15 blur-[80px]"
+            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-100/15 blur-[80px]"
             style={{ animationDelay: "2s" }}
           />
         </div>
@@ -351,7 +351,7 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
+                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
                     🤍 whisper
                   </span>
                 </div>
@@ -373,7 +373,7 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-violet-100 text-[9px] font-semibold text-warm-600">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-100 text-[9px] font-semibold text-warm-600">
                       SL
                     </div>
                     <div>
@@ -382,7 +382,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-purple-100 text-[9px] font-semibold text-warm-600">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-pink-100 text-[9px] font-semibold text-warm-600">
                       RK
                     </div>
                     <div>
@@ -408,7 +408,7 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">5d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
+                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
                     🤍 whisper
                   </span>
                 </div>
@@ -430,7 +430,7 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-200 to-purple-100 text-[9px] font-semibold text-warm-600">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-200 to-fuchsia-100 text-[9px] font-semibold text-warm-600">
                       JM
                     </div>
                     <div>
@@ -465,14 +465,14 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">1w ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
+                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
                     🤍 whisper
                   </span>
                 </div>
                 {/* Nested named whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-violet-200 text-[8px] font-semibold text-warm-700">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-200 text-[8px] font-semibold text-warm-700">
                       EM
                     </div>
                     <p className="text-xs font-medium text-warm-500">Elena Morales asked:</p>
@@ -492,7 +492,7 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-200 to-violet-200 text-[9px] font-semibold text-warm-700">
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-200 text-[9px] font-semibold text-warm-700">
                       EM
                     </div>
                     <div>
@@ -535,9 +535,9 @@ export default async function Home() {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
           <AnimateOnScroll delay={0} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-purple-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-100 to-purple-50 transition-transform duration-300 group-hover:scale-110">
-                <HeartIcon className="h-6 w-6 text-purple-400" />
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-pink-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-pink-100 to-pink-50 transition-transform duration-300 group-hover:scale-110">
+                <HeartIcon className="h-6 w-6 text-pink-400" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
                 Primal <span className="font-semibold">Beauty</span>
@@ -567,9 +567,9 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={300} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-violet-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-violet-100 to-violet-50 transition-transform duration-300 group-hover:scale-110">
-                <SunIcon className="h-6 w-6 text-violet-500" />
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-fuchsia-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-100 to-fuchsia-50 transition-transform duration-300 group-hover:scale-110">
+                <SunIcon className="h-6 w-6 text-fuchsia-500" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
                 Feminine <span className="font-semibold">Energy</span>
@@ -705,13 +705,13 @@ export default async function Home() {
       {/* ─── FINAL CTA ─── */}
       <section className="relative overflow-hidden px-6 py-28 sm:py-40">
         <div className="hero-gradient absolute inset-0 opacity-50" />
-        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-purple-200/30 blur-[80px]" />
+        <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-fuchsia-200/30 blur-[80px]" />
         <div
-          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-purple-200/30 blur-[80px]"
+          className="animate-float absolute -right-24 top-1/3 h-60 w-60 rounded-full bg-fuchsia-200/30 blur-[80px]"
           style={{ animationDelay: "3s" }}
         />
         <div
-          className="animate-float absolute left-1/3 top-2/3 h-48 w-48 rounded-full bg-violet-100/25 blur-[100px]"
+          className="animate-float absolute left-1/3 top-2/3 h-48 w-48 rounded-full bg-pink-100/25 blur-[100px]"
           style={{ animationDelay: "5s" }}
         />
 
@@ -741,7 +741,7 @@ export default async function Home() {
               <div className="flex flex-col items-center gap-3">
                 <Link
                   href="/signup"
-                  className="cta-gradient-btn inline-block rounded-full bg-gradient-to-r from-purple-800 via-violet-600 to-purple-800 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  className="cta-gradient-btn inline-block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
                   Join Aurora &mdash; $77/month
                 </Link>

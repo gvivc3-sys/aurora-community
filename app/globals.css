@@ -2,18 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #f8f6fc;
-  --foreground: #1a1230;
-  --warm-50: #f8f6fc;
-  --warm-100: #eeebf7;
-  --warm-200: #ddd6f0;
-  --warm-300: #c4b8e3;
-  --warm-400: #a28fce;
-  --warm-500: #8270b5;
-  --warm-600: #65539a;
-  --warm-700: #4c3d78;
-  --warm-800: #342a55;
-  --warm-900: #1a1230;
+  --background: #faf6fc;
+  --foreground: #2a1230;
+  --warm-50: #faf6fc;
+  --warm-100: #f3ebf5;
+  --warm-200: #e6d4ee;
+  --warm-300: #d1b4de;
+  --warm-400: #b88fcc;
+  --warm-500: #9b6fb5;
+  --warm-600: #80509a;
+  --warm-700: #633a78;
+  --warm-800: #482958;
+  --warm-900: #2a1230;
 }
 
 @theme inline {
@@ -48,7 +48,7 @@ body {
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #a28fce;
+  color: #b88fcc;
   pointer-events: none;
   height: 0;
 }
@@ -148,13 +148,13 @@ a[data-type="mention"]:hover {
   border-radius: 9999px;
   background: linear-gradient(
     135deg,
-    #7c3aed,
-    #a78bfa,
-    #c084fc,
-    #e879f9,
-    #c084fc,
-    #a78bfa,
-    #7c3aed
+    #9b3aed,
+    #c78bfa,
+    #d884f0,
+    #f472b6,
+    #d884f0,
+    #c78bfa,
+    #9b3aed
   );
   background-size: 300% 300%;
   animation: cta-glow 4s ease infinite;
@@ -172,12 +172,12 @@ a[data-type="mention"]:hover {
 .hero-gradient {
   background: linear-gradient(
     135deg,
-    #f8f6fc 0%,
-    #e8dff5 18%,
-    #f0e6f6 36%,
-    #eeebf7 54%,
-    #e0d4f0 72%,
-    #f8f6fc 90%
+    #faf6fc 0%,
+    #f0dff5 18%,
+    #f5e4f3 36%,
+    #f3ebf5 54%,
+    #edd4f0 72%,
+    #faf6fc 90%
   );
   background-size: 400% 400%;
   animation: gradient-move 16s ease infinite;
@@ -186,11 +186,11 @@ a[data-type="mention"]:hover {
 .dark-gradient {
   background: linear-gradient(
     135deg,
-    #1a1230 0%,
-    #2a1845 30%,
-    #1a1230 50%,
-    #1e1538 70%,
-    #1a1230 100%
+    #2a1230 0%,
+    #3a1845 30%,
+    #2a1230 50%,
+    #321538 70%,
+    #2a1230 100%
   );
   background-size: 400% 400%;
   animation: gradient-move 12s ease infinite;
@@ -208,7 +208,7 @@ a[data-type="mention"]:hover {
   background: linear-gradient(
     90deg,
     var(--warm-900) 0%,
-    #7c3aed 45%,
+    #c050a0 45%,
     var(--warm-900) 55%,
     var(--warm-900) 100%
   );

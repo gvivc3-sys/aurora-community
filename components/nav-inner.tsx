@@ -54,7 +54,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
           href="/"
           className="group relative"
         >
-          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-200/40 to-violet-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-fuchsia-200/40 to-pink-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
           <span className="relative font-display text-xl font-bold italic tracking-tight text-warm-900">
             Aurora
           </span>
