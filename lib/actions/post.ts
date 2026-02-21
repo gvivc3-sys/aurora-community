@@ -249,15 +249,11 @@ export async function togglePinPost(previousState: unknown, formData: FormData) 
   const currentlyPinned = formData.get("pinned") === "true";
 
   if (!currentlyPinned) {
-    // Pinning — check limit
-    const { count } = await supabaseAdmin
+    // Unpin any currently pinned post first
+    await supabaseAdmin
       .from("posts")
-      .select("id", { count: "exact", head: true })
+      .update({ pinned: false, pinned_at: null })
       .eq("pinned", true);
-
-    if ((count ?? 0) >= 1) {
-      return { error: "Unpin the current pinned post first." };
-    }
 
     const { error } = await supabaseAdmin
       .from("posts")
