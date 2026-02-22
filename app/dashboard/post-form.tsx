@@ -97,6 +97,7 @@ export default function PostForm() {
   const [commentsEnabled, setCommentsEnabled] = useState(true);
   const [editorKey, setEditorKey] = useState(0);
   const [textCharCount, setTextCharCount] = useState(0);
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const [filePreview, setFilePreview] = useState<{url: string, name: string, type: string} | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -205,6 +206,7 @@ export default function PostForm() {
     if (filePreview) {
       URL.revokeObjectURL(filePreview.url);
       setFilePreview(null);
+      setAttachedFile(null);
     }
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
@@ -220,8 +222,8 @@ export default function PostForm() {
       const ext = audioBlob instanceof File ? (audioBlob.name.split(".").pop() || "webm") : "webm";
       formData.set("audio", new File([audioBlob], `recording.${ext}`, { type: audioBlob.type }));
     }
-    if (type === "text" && fileInputRef.current?.files?.[0]) {
-      formData.set("file", fileInputRef.current.files[0]);
+    if (type === "text" && attachedFile) {
+      formData.set("file", attachedFile);
     }
     formAction(formData);
   }
@@ -476,6 +478,7 @@ export default function PostForm() {
                         e.target.value = "";
                         return;
                       }
+                      setAttachedFile(f);
                       setFilePreview({ url: URL.createObjectURL(f), name: f.name, type: f.type });
                     }}
                   />
@@ -505,6 +508,7 @@ export default function PostForm() {
                     onClick={() => {
                       URL.revokeObjectURL(filePreview.url);
                       setFilePreview(null);
+                      setAttachedFile(null);
                       if (fileInputRef.current) fileInputRef.current.value = "";
                     }}
                     className="text-warm-400 hover:text-warm-600"
