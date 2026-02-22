@@ -96,9 +96,9 @@ export async function createPost(previousState: unknown, formData: FormData) {
       }
       const postId = crypto.randomUUID();
       const ext = file.name?.split(".").pop() || "bin";
-      const filePath = `files/${postId}.${ext}`;
+      const filePath = `${postId}.${ext}`;
 
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabaseAdmin.storage
         .from("files")
         .upload(filePath, file, {
           contentType: file.type,
@@ -109,7 +109,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         return { error: `File upload failed: ${uploadError.message}` };
       }
 
-      const { data: publicUrlData } = supabase.storage
+      const { data: publicUrlData } = supabaseAdmin.storage
         .from("files")
         .getPublicUrl(filePath);
 
