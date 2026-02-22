@@ -98,9 +98,12 @@ export async function createPost(previousState: unknown, formData: FormData) {
       const ext = file.name?.split(".").pop() || "bin";
       const filePath = `${postId}.${ext}`;
 
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
       const { error: uploadError } = await supabaseAdmin.storage
         .from("files")
-        .upload(filePath, file, {
+        .upload(filePath, buffer, {
           contentType: file.type,
           upsert: false,
         });
