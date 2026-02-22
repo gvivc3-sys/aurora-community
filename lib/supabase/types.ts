@@ -29,6 +29,8 @@ export interface Database {
           anonymous_question: string | null;
           pinned: boolean;
           pinned_at: string | null;
+          file_url: string | null;
+          file_type: string | null;
           created_at: string;
         };
         Insert: {
@@ -46,6 +48,8 @@ export interface Database {
           anonymous_question?: string | null;
           pinned?: boolean;
           pinned_at?: string | null;
+          file_url?: string | null;
+          file_type?: string | null;
           created_at?: string;
         };
         Update: {
@@ -63,6 +67,8 @@ export interface Database {
           anonymous_question?: string | null;
           pinned?: boolean;
           pinned_at?: string | null;
+          file_url?: string | null;
+          file_type?: string | null;
           created_at?: string;
         };
         Relationships: [];

@@ -12,6 +12,7 @@ import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
 import BackLink from "@/components/back-link";
 import TimeAgo from "@/components/time-ago";
+import PostAttachment from "@/components/post-attachment";
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
@@ -190,6 +191,11 @@ export default async function BookmarksPage() {
                       className="prose prose-sm prose-zinc mt-3 max-w-none px-4"
                       dangerouslySetInnerHTML={{ __html: post.body }}
                     />
+                  )}
+
+                  {/* File attachment */}
+                  {post.type === "text" && post.file_url && (
+                    <PostAttachment fileUrl={post.file_url} fileType={post.file_type} />
                   )}
 
                   {post.type === "article" && post.body && (

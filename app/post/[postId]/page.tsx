@@ -11,6 +11,7 @@ import TimeAgo from "@/components/time-ago";
 import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
+import PostAttachment from "@/components/post-attachment";
 
 export const dynamic = "force-dynamic";
 
@@ -179,6 +180,11 @@ export default async function PostPage({ params }: { params: Params }) {
               className="prose prose-sm prose-zinc mt-3 max-w-none px-4"
               dangerouslySetInnerHTML={{ __html: post.body }}
             />
+          )}
+
+          {/* File attachment */}
+          {post.type === "text" && post.file_url && (
+            <PostAttachment fileUrl={post.file_url} fileType={post.file_type} />
           )}
 
           {/* Article */}
