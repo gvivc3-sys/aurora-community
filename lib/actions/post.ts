@@ -162,21 +162,77 @@ export async function createPost(previousState: unknown, formData: FormData) {
     const linkedBody = await linkifyMentionsInHtml(body);
     bodyForMentions = linkedBody;
 
-    const { data, error } = await supabase.from("posts").insert({
-      type: "article",
-      title,
-      body: linkedBody,
-      author_id: user.id,
-      author_name: user.user_metadata?.username ?? user.email,
-      author_avatar_url: user.user_metadata?.avatar_url ?? null,
-      tag: tag as "love" | "health" | "magic",
-      comments_enabled: commentsEnabled,
-    }).select("id").single();
+    // Handle optional file attachment
+    let fileUrl: string | null = null;
+    let fileType: string | null = null;
+    const file = formData.get("file") as File | null;
+    if (file && file.size > 0) {
+      if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
+        return { error: "Only image and PDF files are allowed." };
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        return { error: "File must be under 10 MB." };
+      }
+      const postId = crypto.randomUUID();
+      const ext = file.name?.split(".").pop() || "bin";
+      const filePath = `${postId}.${ext}`;
 
-    if (error) {
-      return { error: error.message };
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
+      const { error: uploadError } = await supabaseAdmin.storage
+        .from("files")
+        .upload(filePath, buffer, {
+          contentType: file.type,
+          upsert: false,
+        });
+
+      if (uploadError) {
+        return { error: `File upload failed: ${uploadError.message}` };
+      }
+
+      const { data: publicUrlData } = supabaseAdmin.storage
+        .from("files")
+        .getPublicUrl(filePath);
+
+      fileUrl = publicUrlData.publicUrl;
+      fileType = file.type;
+
+      const { data, error } = await supabase.from("posts").insert({
+        id: postId,
+        type: "article",
+        title,
+        body: linkedBody,
+        file_url: fileUrl,
+        file_type: fileType,
+        author_id: user.id,
+        author_name: user.user_metadata?.username ?? user.email,
+        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        tag: tag as "love" | "health" | "magic",
+        comments_enabled: commentsEnabled,
+      }).select("id").single();
+
+      if (error) {
+        return { error: error.message };
+      }
+      insertedPostId = data.id;
+    } else {
+      const { data, error } = await supabase.from("posts").insert({
+        type: "article",
+        title,
+        body: linkedBody,
+        author_id: user.id,
+        author_name: user.user_metadata?.username ?? user.email,
+        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        tag: tag as "love" | "health" | "magic",
+        comments_enabled: commentsEnabled,
+      }).select("id").single();
+
+      if (error) {
+        return { error: error.message };
+      }
+      insertedPostId = data.id;
     }
-    insertedPostId = data.id;
   } else if (type === "voice") {
     const audioFile = formData.get("audio") as File | null;
     if (!audioFile || audioFile.size === 0) {

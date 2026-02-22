@@ -1,18 +1,34 @@
 export default function PostAttachment({
   fileUrl,
   fileType,
+  variant = "inline",
 }: {
   fileUrl: string;
   fileType: string | null;
+  variant?: "inline" | "thumbnail";
 }) {
   if (fileType?.startsWith("image/")) {
+    if (variant === "thumbnail") {
+      return (
+        <div className="mt-3">
+          <a href={fileUrl} target="_blank" rel="noopener noreferrer">
+            <img
+              src={fileUrl}
+              alt="Cover image"
+              className="aspect-[2/1] w-full object-cover"
+            />
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div className="mt-3 px-4">
         <a href={fileUrl} target="_blank" rel="noopener noreferrer">
           <img
             src={fileUrl}
             alt="Attached image"
-            className="max-h-96 w-auto rounded-lg border border-warm-200 object-contain"
+            className="w-full rounded-lg border border-warm-200 object-cover"
           />
         </a>
       </div>

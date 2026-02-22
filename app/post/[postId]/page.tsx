@@ -187,6 +187,11 @@ export default async function PostPage({ params }: { params: Params }) {
             <PostAttachment fileUrl={post.file_url} fileType={post.file_type} />
           )}
 
+          {/* Article cover image */}
+          {post.type === "article" && post.file_url && (
+            <PostAttachment fileUrl={post.file_url} fileType={post.file_type} variant="thumbnail" />
+          )}
+
           {/* Article */}
           {post.type === "article" && post.body && (
             <ArticleBody title={post.title} body={post.body} />

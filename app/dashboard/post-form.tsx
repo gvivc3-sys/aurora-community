@@ -222,7 +222,7 @@ export default function PostForm() {
       const ext = audioBlob instanceof File ? (audioBlob.name.split(".").pop() || "webm") : "webm";
       formData.set("audio", new File([audioBlob], `recording.${ext}`, { type: audioBlob.type }));
     }
-    if (type === "text" && attachedFile) {
+    if ((type === "text" || type === "article") && attachedFile) {
       formData.set("file", attachedFile);
     }
     formAction(formData);
@@ -552,6 +552,77 @@ export default function PostForm() {
                 placeholder="Write your article..."
                 minHeight="10rem"
               />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-warm-700">
+                Cover image{" "}
+                <span className="font-normal text-warm-400">(optional)</span>
+              </label>
+              {!filePreview ? (
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 shadow-sm transition-all hover:border-warm-400 hover:bg-warm-50 hover:shadow-md active:scale-[0.98] sm:px-4 sm:py-2.5 sm:text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M15.621 4.379a3 3 0 0 0-4.242 0l-7 7a3 3 0 0 0 4.241 4.243h.001l.497-.5a.75.75 0 0 1 1.064 1.057l-.498.501-.002.002a4.5 4.5 0 0 1-6.364-6.364l7-7a4.5 4.5 0 0 1 6.368 6.36l-3.455 3.553A2.625 2.625 0 1 1 9.52 9.52l3.45-3.451a.75.75 0 1 1 1.061 1.06l-3.45 3.451a1.125 1.125 0 0 0 1.587 1.595l3.454-3.553a3 3 0 0 0 0-4.242Z" clipRule="evenodd" />
+                  </svg>
+                  Attach file
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*,.pdf"
+                    className="hidden"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (!f) return;
+                      if (!f.type.startsWith("image/") && f.type !== "application/pdf") {
+                        toast("Only image and PDF files are allowed.", "error");
+                        e.target.value = "";
+                        return;
+                      }
+                      if (f.size > 10 * 1024 * 1024) {
+                        toast("File must be under 10 MB.", "error");
+                        e.target.value = "";
+                        return;
+                      }
+                      setAttachedFile(f);
+                      setFilePreview({ url: URL.createObjectURL(f), name: f.name, type: f.type });
+                    }}
+                  />
+                </label>
+              ) : (
+                <div className="flex items-start gap-3 rounded-lg border border-warm-200 bg-warm-50 p-3">
+                  {filePreview.type.startsWith("image/") ? (
+                    <img
+                      src={filePreview.url}
+                      alt="Preview"
+                      className="h-20 w-20 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-20 w-20 items-center justify-center rounded-lg bg-warm-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 text-warm-500">
+                        <path fillRule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clipRule="evenodd" />
+                        <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                      </svg>
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="truncate text-sm font-medium text-warm-700">{filePreview.name}</p>
+                    <p className="text-xs text-warm-400">{filePreview.type.startsWith("image/") ? "Image" : "PDF"}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      URL.revokeObjectURL(filePreview.url);
+                      setFilePreview(null);
+                      setAttachedFile(null);
+                      if (fileInputRef.current) fileInputRef.current.value = "";
+                    }}
+                    className="text-warm-400 hover:text-warm-600"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                      <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                  </button>
+                </div>
+              )}
             </div>
           </>
         )}
