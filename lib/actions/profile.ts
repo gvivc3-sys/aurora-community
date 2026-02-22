@@ -94,7 +94,7 @@ export async function updateProfile(
         .maybeSingle();
 
       if (conflict) {
-        handle = handle.slice(0, 16) + "_" + Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+        handle = handle.slice(0, 10) + "_" + Math.floor(Math.random() * 1000).toString().padStart(3, "0");
       }
     } else {
       handle = existingHandle.handle;
@@ -103,7 +103,7 @@ export async function updateProfile(
 
   // Validate handle format
   if (handle && !isValidHandle(handle)) {
-    return { error: "Handle must be 3-20 characters, start with a letter, and contain only lowercase letters, numbers, and underscores." };
+    return { error: "Handle must be 3-14 characters, start with a letter, and contain only lowercase letters, numbers, and underscores." };
   }
 
   // Check uniqueness (exclude self)

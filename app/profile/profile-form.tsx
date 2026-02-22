@@ -153,12 +153,13 @@ export default function ProfileForm({ user }: { user: User }) {
                   name="handle"
                   type="text"
                   defaultValue={meta.handle ?? ""}
+                  maxLength={14}
                   className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
                   placeholder="auto-generated from your name"
                 />
               </div>
               <p className="mt-1 text-xs text-warm-400">
-                3-20 characters. Lowercase letters, numbers, underscores. Must start with a letter.
+                3-14 characters. Lowercase letters, numbers, underscores. Must start with a letter.
               </p>
             </div>
 

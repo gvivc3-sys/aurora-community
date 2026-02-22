@@ -1,9 +1,9 @@
 /**
  * Handle validation and auto-generation utilities.
- * Handles are lowercase, start with a letter, 3–20 chars, only [a-z0-9_].
+ * Handles are lowercase, start with a letter, 3–14 chars, only [a-z0-9_].
  */
 
-const HANDLE_REGEX = /^[a-z][a-z0-9_]{2,19}$/;
+const HANDLE_REGEX = /^[a-z][a-z0-9_]{2,13}$/;
 
 export function isValidHandle(handle: string): boolean {
   return HANDLE_REGEX.test(handle);
@@ -31,8 +31,8 @@ export function generateHandle(displayName: string): string {
     handle += "_";
   }
 
-  // Clamp to 20 chars
-  handle = handle.slice(0, 20);
+  // Clamp to 14 chars
+  handle = handle.slice(0, 14);
 
   // Trim trailing underscores from clamping
   handle = handle.replace(/_+$/, "");
