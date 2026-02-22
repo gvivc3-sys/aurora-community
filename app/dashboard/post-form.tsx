@@ -450,10 +450,11 @@ export default function PostForm() {
               </p>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-warm-700">
+              <label className="mb-0.5 block text-sm font-medium text-warm-700">
                 Attachment{" "}
                 <span className="font-normal text-warm-400">(optional)</span>
               </label>
+              <p className="mb-2 text-xs text-warm-400">Images display at full size in text posts.</p>
               {!filePreview ? (
                 <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 shadow-sm transition-all hover:border-warm-400 hover:bg-warm-50 hover:shadow-md active:scale-[0.98] sm:px-4 sm:py-2.5 sm:text-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
@@ -554,10 +555,11 @@ export default function PostForm() {
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-warm-700">
+              <label className="mb-0.5 block text-sm font-medium text-warm-700">
                 Cover image{" "}
                 <span className="font-normal text-warm-400">(optional)</span>
               </label>
+              <p className="mb-2 text-xs text-warm-400">Images are cropped to a wide banner at the top of the article.</p>
               {!filePreview ? (
                 <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-warm-300 px-3 py-2 text-xs font-medium text-warm-600 shadow-sm transition-all hover:border-warm-400 hover:bg-warm-50 hover:shadow-md active:scale-[0.98] sm:px-4 sm:py-2.5 sm:text-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
