@@ -51,7 +51,7 @@ export default async function SubscribePage() {
             <h2 className="text-lg font-medium text-warm-900">Aurora Member</h2>
             <div className="mt-4 flex items-baseline justify-center gap-1">
               <span className="text-4xl font-light tracking-tight text-warm-900">
-                $77
+                $55
               </span>
               <span className="text-sm text-warm-500">/month</span>
             </div>
