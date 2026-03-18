@@ -220,6 +220,7 @@ export default async function PostPage({ params }: { params: Params }) {
           {/* Actions + comments */}
           <PostActions
             postId={post.id}
+            postAuthorId={post.author_id}
             likeCount={likeCount}
             likedByUser={likedByUser}
             bookmarkedByUser={!!bookmark}

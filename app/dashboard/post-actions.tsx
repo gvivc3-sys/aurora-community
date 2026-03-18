@@ -56,6 +56,7 @@ type Comment = {
 
 type PostActionsProps = {
   postId: string;
+  postAuthorId?: string;
   likeCount: number;
   likedByUser: boolean;
   bookmarkedByUser: boolean;
@@ -86,6 +87,7 @@ function timeAgo(date: string): string {
 
 export default function PostActions({
   postId,
+  postAuthorId,
   likeCount,
   likedByUser,
   bookmarkedByUser,
@@ -100,6 +102,8 @@ export default function PostActions({
   hideFocusLink = false,
 }: PostActionsProps) {
   const [commentsOpen, setCommentsOpen] = useState(defaultCommentsOpen);
+  const [confirmingDeletePost, setConfirmingDeletePost] = useState(false);
+  const [confirmingDeleteCommentId, setConfirmingDeleteCommentId] = useState<string | null>(null);
 
   // Like — optimistic
   const [optimistic, setOptimistic] = useOptimistic(
@@ -275,22 +279,40 @@ export default function PostActions({
           </Link>
         )}
 
-        {/* Delete (admin only, pushed right) */}
-        {isAdmin && (
-          <form action={deleteAction} className="ml-auto">
+        {/* Delete (admin or post author, pushed right) */}
+        {(isAdmin || postAuthorId === currentUserId) && (
+          <form action={deleteAction} className="ml-auto flex items-center gap-2">
             <input type="hidden" name="postId" value={postId} />
             {deleteState?.error && (
-              <span className="mr-2 text-xs text-red-600">
-                {deleteState.error}
-              </span>
+              <span className="text-xs text-red-600">{deleteState.error}</span>
             )}
-            <button
-              type="submit"
-              disabled={deletePending}
-              className="text-sm text-red-400 transition-colors hover:text-red-600 disabled:opacity-50"
-            >
-              {deletePending ? "Deleting..." : "Delete"}
-            </button>
+            {confirmingDeletePost ? (
+              <>
+                <span className="text-xs text-warm-500">Are you sure?</span>
+                <button
+                  type="submit"
+                  disabled={deletePending}
+                  className="text-xs font-medium text-red-500 transition-colors hover:text-red-700 disabled:opacity-50"
+                >
+                  {deletePending ? "Deleting..." : "Yes, delete"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmingDeletePost(false)}
+                  className="text-xs text-warm-400 transition-colors hover:text-warm-600"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmingDeletePost(true)}
+                className="text-sm text-red-400 transition-colors hover:text-red-600"
+              >
+                Delete
+              </button>
+            )}
           </form>
         )}
       </div>
@@ -330,15 +352,35 @@ export default function PostActions({
                           {timeAgo(comment.created_at)}
                         </span>
                         {canDelete && (
-                          <form action={deleteCommentAction} className="ml-auto shrink-0">
+                          <form action={deleteCommentAction} className="ml-auto shrink-0 flex items-center gap-1.5">
                             <input type="hidden" name="commentId" value={comment.id} />
-                            <button
-                              type="submit"
-                              disabled={deleteCommentPending}
-                              className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
-                            >
-                              Delete
-                            </button>
+                            {confirmingDeleteCommentId === comment.id ? (
+                              <>
+                                <span className="text-xs text-warm-500">Sure?</span>
+                                <button
+                                  type="submit"
+                                  disabled={deleteCommentPending}
+                                  className="text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-50"
+                                >
+                                  Yes
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setConfirmingDeleteCommentId(null)}
+                                  className="text-xs text-warm-400 hover:text-warm-600"
+                                >
+                                  No
+                                </button>
+                              </>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => setConfirmingDeleteCommentId(comment.id)}
+                                className="text-xs text-red-400 hover:text-red-600"
+                              >
+                                Delete
+                              </button>
+                            )}
                           </form>
                         )}
                       </div>
@@ -396,15 +438,35 @@ export default function PostActions({
                           {timeAgo(comment.created_at)}
                         </span>
                         {canDelete && (
-                          <form action={deleteCommentAction} className="ml-auto shrink-0">
+                          <form action={deleteCommentAction} className="ml-auto shrink-0 flex items-center gap-1.5">
                             <input type="hidden" name="commentId" value={comment.id} />
-                            <button
-                              type="submit"
-                              disabled={deleteCommentPending}
-                              className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
-                            >
-                              Delete
-                            </button>
+                            {confirmingDeleteCommentId === comment.id ? (
+                              <>
+                                <span className="text-xs text-warm-500">Sure?</span>
+                                <button
+                                  type="submit"
+                                  disabled={deleteCommentPending}
+                                  className="text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-50"
+                                >
+                                  Yes
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setConfirmingDeleteCommentId(null)}
+                                  className="text-xs text-warm-400 hover:text-warm-600"
+                                >
+                                  No
+                                </button>
+                              </>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => setConfirmingDeleteCommentId(comment.id)}
+                                className="text-xs text-red-400 hover:text-red-600"
+                              >
+                                Delete
+                              </button>
+                            )}
                           </form>
                         )}
                       </div>

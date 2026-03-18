@@ -227,6 +227,7 @@ export default async function BookmarksPage() {
 
                   <PostActions
                     postId={post.id}
+                    postAuthorId={post.author_id}
                     likeCount={likeCounts[post.id] ?? 0}
                     likedByUser={!!userLiked[post.id]}
                     bookmarkedByUser={true}

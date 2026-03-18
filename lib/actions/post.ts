@@ -319,13 +319,20 @@ export async function deletePost(previousState: unknown, formData: FormData) {
     return { error: "You must be logged in." };
   }
 
-  if (!isAdmin(user)) {
-    return { error: "Only admins can delete posts." };
-  }
-
   const postId = formData.get("postId") as string;
   if (!postId) {
     return { error: "Post ID is required." };
+  }
+
+  if (!isAdmin(user)) {
+    const { data: post } = await supabase
+      .from("posts")
+      .select("author_id")
+      .eq("id", postId)
+      .single();
+    if (!post || post.author_id !== user.id) {
+      return { error: "You can only delete your own posts." };
+    }
   }
 
   const { error } = await supabase.from("posts").delete().eq("id", postId);
