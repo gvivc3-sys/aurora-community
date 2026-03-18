@@ -67,7 +67,7 @@ const pillars = [
   },
   {
     emoji: "\uD83C\uDF00",
-    title: "The Circle",
+    title: "Telegram Group",
     description:
       "A private Telegram group chat with like-minded, aligned women who are on the same path as you.",
   },
@@ -726,7 +726,7 @@ export default async function Home() {
           <p className="mt-5 text-base leading-relaxed text-warm-500">
             Step into a sanctuary of women reclaiming their feminine energy,
             elevating their health, and rising together &mdash; through the
-            Portal, the Circle, monthly live calls, and a sisterhood that
+            Portal, the Telegram Group, monthly live calls, and a sisterhood that
             truly understands.
           </p>
           <div className="mt-10">
