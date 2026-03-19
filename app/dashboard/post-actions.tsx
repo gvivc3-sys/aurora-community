@@ -356,7 +356,7 @@ export default function PostActions({
                             <input type="hidden" name="commentId" value={comment.id} />
                             {confirmingDeleteCommentId === comment.id ? (
                               <>
-                                <span className="text-xs text-warm-500">Sure?</span>
+                                <span className="text-xs text-warm-500">Are you sure?</span>
                                 <button
                                   type="submit"
                                   disabled={deleteCommentPending}
@@ -442,7 +442,7 @@ export default function PostActions({
                             <input type="hidden" name="commentId" value={comment.id} />
                             {confirmingDeleteCommentId === comment.id ? (
                               <>
-                                <span className="text-xs text-warm-500">Sure?</span>
+                                <span className="text-xs text-warm-500">Are you sure?</span>
                                 <button
                                   type="submit"
                                   disabled={deleteCommentPending}
