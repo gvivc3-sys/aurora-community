@@ -121,7 +121,7 @@ export default async function Home() {
               className="animate-fade-in-up mt-8 text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
               style={{ animationDelay: "150ms" }}
             >
-              Reclaim your <span className="font-medium">feminine energy.</span>
+              Reclaim your <span className="font-medium">energy.</span>
               <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
             </h1>
 
@@ -130,9 +130,9 @@ export default async function Home() {
               style={{ animationDelay: "300ms" }}
             >
               Aurora is a sanctuary for women who are ready to step into their
-              most magnetic, radiant, and naturally beautiful selves &mdash;
-              through holistic health, ancient feminine wisdom, and a community
-              of women rising and aligning together.
+              most radiant, magnetic, and naturally beautiful selves &mdash;
+              through true health, feminine wisdom, and the power of a community
+              of women rising together.
             </p>
 
             <div
@@ -191,22 +191,22 @@ export default async function Home() {
               Meet <span className="font-medium">Ashley</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-warm-600">
-              Ashley has spent years immersed in ancestral beauty practices,
-              whole-food nutrition, energy cultivation, and the quiet art of
-              feminine living. She spends her days in nature, experimenting with
-              traditional recipes, and studying what women throughout history
-              have always known.
+              Ashley has spent years immersed in ancient beauty practices, deep
+              nourishment, energy cultivation, and living in alignment with true
+              health. She spends her days in nature, creating natural skincare,
+              painting, and connecting to the natural ways of living on Earth.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              This is for the woman who is ready to nourish her body, live
-              naturally in alignment with her true health, build a strong and
-              feminine physique, harness her life-force energy, and step into
-              the frequency of the life she has always known is meant for her.
+              This is for the woman who is ready to nourish her body, step into
+              true health, build a strong and feminine physique, harness her
+              life-force energy, and shift into the higher timeline she knows
+              she is meant for.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Aurora was born from that calling &mdash; a sanctuary where women
-              gather to share everything they&apos;re learning, so we can all
-              rise together.
+              Aurora was born from the deep knowing that each of us holds the
+              power to elevate our energy and create the life we feel called to
+              live &mdash; a sanctuary where we come together to create powerful
+              shifts within a safe, supportive, and nurturing container.
             </p>
           </AnimateOnScroll>
         </div>
@@ -226,15 +226,16 @@ export default async function Home() {
               <span className="block italic">not <span className="font-medium">preached</span></span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
-              Every week, Ashley records raw, honest voice notes on primal
-              beauty, ancestral health, and the quiet art of feminine living.
-              They&apos;re not lectures &mdash; they&apos;re the kind of
-              conversations you&apos;d have with your closest friend over tea.
+              Every week, Ashley records heart-led voice notes on true health,
+              natural beauty, and elevating your energy. They&apos;re not
+              lectures &mdash; they&apos;re the kind of conversations you&apos;d
+              have with your closest friend over a cup of tea.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Press play during your morning ritual. Listen on your walk.
-              Share your thoughts in the feed. This is how women have always
-              learned &mdash; together, through story and shared experience.
+              Press play during your morning ritual. Listen on your walk. Share
+              your thoughts in the feed. This is how women have always learned
+              &mdash; through story, shared experience, and the magic of coming
+              together.
             </p>
             <p className="mt-6 border-l-2 border-warm-300 pl-4 text-sm italic leading-relaxed text-warm-500">
               &ldquo;It feels like sitting in a portal with women who just get
@@ -321,7 +322,7 @@ export default async function Home() {
               The Whisper
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Your sacred portal should be safe enough to <span className="font-medium">speak freely</span>
+              Some questions are better <span className="font-medium">asked in a whisper</span>
             </h2>
           </AnimateOnScroll>
 

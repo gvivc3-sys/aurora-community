@@ -5,9 +5,9 @@ import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 
 const topics = [
   { key: "all", label: "All Topics" },
-  { key: "love", label: "Love" },
-  { key: "health", label: "Health" },
-  { key: "magic", label: "Magic" },
+  { key: "love", label: "Nourishment" },
+  { key: "health", label: "Health + Beauty" },
+  { key: "magic", label: "Frequency" },
   { key: "ask", label: "Whisper" },
 ] as const;
 
