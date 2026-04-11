@@ -52,13 +52,7 @@ function SparklesIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function LeafIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z" clipRule="evenodd" />
-    </svg>
-  );
-}
+
 
 const pillars = [
   {
@@ -228,7 +222,8 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
-      <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
+      <section className="border-t border-warm-200 px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
           <AnimateOnScroll>
@@ -276,7 +271,7 @@ export default async function Home() {
 
               <div className="mt-4 rounded-xl bg-warm-50 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#c9b8e8] text-warm-900 shadow-md">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fuchsia-200 text-warm-900 shadow-md">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -300,6 +295,7 @@ export default async function Home() {
               </p>
             </div>
           </AnimateOnScroll>
+        </div>
         </div>
       </section>
 
@@ -341,7 +337,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    🤍 whisper
+                    <HeartIcon className="h-3 w-3" /> whisper
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -398,7 +394,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    🤍 whisper
+                    <HeartIcon className="h-3 w-3" /> whisper
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -455,7 +451,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    🤍 whisper
+                    <HeartIcon className="h-3 w-3" /> whisper
                   </span>
                 </div>
                 {/* Nested named whisper */}
@@ -506,72 +502,6 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── THREE PILLARS ─── */}
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
-        <AnimateOnScroll className="text-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            What We Gather Around
-          </p>
-          <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            Three pillars of our <span className="font-medium">sisterhood</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-warm-500">
-            Everything inside Aurora is rooted in timeless principles that
-            women have carried for generations &mdash; now shared and explored
-            together.
-          </p>
-        </AnimateOnScroll>
-
-        <div className="mt-16 grid gap-6 sm:grid-cols-3">
-          <AnimateOnScroll delay={0} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-green-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-50 transition-transform duration-300 group-hover:scale-110">
-                <LeafIcon className="h-6 w-6 text-green-500" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                <span className="font-semibold">Nourishment</span>
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Deep, intentional nourishment for body and soul. Whole foods,
-                seasonal eating, and the ancient wisdom of feeding yourself in
-                ways that truly restore your energy.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={150} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-rose-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-50 transition-transform duration-300 group-hover:scale-110">
-                <HeartIcon className="h-6 w-6 text-rose-400" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Health + <span className="font-semibold">Beauty</span>
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                True health radiates outward. Holistic wellness, natural
-                skincare, and the powerful connection between how you feel
-                inside and how you shine outside.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={300} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-fuchsia-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-100 to-fuchsia-50 transition-transform duration-300 group-hover:scale-110">
-                <SparklesIcon className="h-6 w-6 text-fuchsia-500" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                <span className="font-semibold">Frequency</span>
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Your energy is your greatest asset. Cultivating feminine
-                vitality, shifting your mindset, and stepping into the highest
-                version of yourself through practice and sisterhood.
-              </p>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
 
       {/* ─── QUOTE / DARK SECTION ─── */}
       <section className="dark-gradient relative overflow-hidden px-6 py-24 sm:py-32">
@@ -693,23 +623,6 @@ export default async function Home() {
         </AnimateOnScroll>
       </section>
 
-      {/* ─── CLOSING STATEMENT ─── */}
-      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
-        <div className="hero-gradient absolute inset-0 opacity-60" />
-        <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl md:text-6xl">
-            Reclaim your <span className="font-medium">energy.</span>
-            <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
-          </h2>
-          <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500">
-            Aurora is a sanctuary for women who are ready to step into their
-            most radiant, magnetic, and naturally beautiful selves &mdash;
-            through true health, feminine wisdom, and the power of a community
-            of women rising together.
-          </p>
-        </AnimateOnScroll>
-      </section>
-
       {/* ─── FINAL CTA ─── */}
       <section className="relative overflow-hidden px-6 py-28 sm:py-40">
         <div className="hero-gradient absolute inset-0 opacity-50" />
@@ -724,17 +637,14 @@ export default async function Home() {
         />
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            Your invitation
-          </p>
-          <h2 className="mt-5 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            You don&apos;t have to walk
-            <span className="block italic">this path <span className="font-medium">alone</span></span>
+          <h2 className="text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
+            Reclaim your <span className="font-medium">energy.</span>
+            <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-warm-500">
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
             Step into a sanctuary of women reclaiming their feminine energy,
             elevating their health, and rising together &mdash; through the
-            Portal, the Telegram Group, monthly live calls, and a sisterhood that
+            Portal, the Telegram group, monthly live calls, and a sisterhood that
             truly understands.
           </p>
           <div className="mt-10">
@@ -764,13 +674,26 @@ export default async function Home() {
 
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-warm-200 bg-warm-50 px-6 py-10">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="font-display text-sm font-bold italic tracking-tight text-warm-700">
-            Aurora Community
-          </p>
-          <p className="text-xs text-warm-400">
-            &copy; {new Date().getFullYear()} Aurora. All rights reserved.
-          </p>
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <p className="font-display text-sm font-bold italic tracking-tight text-warm-700">
+              Aurora Community
+            </p>
+            <nav className="flex items-center gap-6">
+              <Link href="/signup" className="text-xs text-warm-500 transition-colors hover:text-warm-800">
+                Join Aurora
+              </Link>
+              <Link href="/login" className="text-xs text-warm-500 transition-colors hover:text-warm-800">
+                Sign In
+              </Link>
+              <Link href="/privacy" className="text-xs text-warm-500 transition-colors hover:text-warm-800">
+                Privacy
+              </Link>
+            </nav>
+            <p className="text-xs text-warm-400">
+              &copy; {new Date().getFullYear()} Aurora. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

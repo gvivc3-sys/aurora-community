@@ -25,8 +25,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aurora Community",
-  description: "Membership and community platform",
+  title: "Aurora Community — A Private Sanctuary for Women",
+  description: "A private membership community for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
+  openGraph: {
+    title: "Aurora Community — A Private Sanctuary for Women",
+    description: "A private membership community for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
+    type: "website",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
