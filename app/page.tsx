@@ -92,11 +92,11 @@ export default async function Home() {
 
   return (
     <div className="bg-warm-50">
-      {/* ─── HERO ─── */}
+      {/* ─── HERO (VSL-LED) ─── */}
       <section className="relative overflow-hidden">
         <div className="hero-gradient absolute inset-0" />
 
-        <div className="relative mx-auto max-w-4xl px-6 pb-28 pt-24 text-center sm:pb-40 sm:pt-36">
+        <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-16 text-center sm:pb-20 sm:pt-20">
           <AvatarCircle />
 
           <div className="relative z-10">
@@ -104,72 +104,56 @@ export default async function Home() {
               A Private Community for Women
             </p>
 
-            <h1
-              className="animate-fade-in-up mt-8 text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
-              style={{ animationDelay: "150ms" }}
-            >
-              Reclaim your <span className="font-medium">energy.</span>
-              <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
-            </h1>
+            {/* Video */}
+            <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
+              <VideoCard src="/videos/placeholder.mp4" vsl />
+            </div>
 
-            <p
-              className="animate-fade-in-up mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500"
+            {/* CTA buttons */}
+            <div
+              className="animate-fade-in-up mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
               style={{ animationDelay: "300ms" }}
             >
-              Aurora is a sanctuary for women who are ready to step into their
-              most radiant, magnetic, and naturally beautiful selves &mdash;
-              through true health, feminine wisdom, and the power of a community
-              of women rising together.
-            </p>
-
-            <div
-              className="animate-fade-in-up mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              style={{ animationDelay: "450ms" }}
-            >
-            {user ? (
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center gap-2 rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-              >
-                Enter the Portal
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            ) : (
-              <>
+              {user ? (
                 <Link
-                  href="/signup"
-                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  href="/dashboard"
+                  className="inline-flex items-center gap-2 rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                 >
-                  Join Aurora
+                  Enter the Portal
                   <ArrowRightIcon className="h-4 w-4" />
                 </Link>
-                <Link
-                  href="/login"
-                  className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
-                >
-                  Sign In
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
-              </>
+              ) : (
+                <>
+                  <Link
+                    href="/signup"
+                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  >
+                    Join Aurora
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                  >
+                    Sign In
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </>
+              )}
+            </div>
+            {!user && (
+              <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "450ms" }}>
+                $55 / month &middot; Cancel anytime
+              </p>
             )}
-          </div>
-          {!user && (
-            <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "600ms" }}>
-              $55 / month &middot; Cancel anytime
-            </p>
-          )}
           </div>
         </div>
       </section>
 
 
-      {/* ─── VSL + COPY ─── */}
-      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      {/* ─── SISTERHOOD COPY ─── */}
+      <section className="mx-auto max-w-2xl px-6 py-16 text-center sm:py-24">
         <AnimateOnScroll>
-          <VideoCard src="/videos/placeholder.mp4" vsl />
-        </AnimateOnScroll>
-
-        <AnimateOnScroll delay={150} className="mx-auto mt-16 max-w-2xl text-center">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
             You Are Not Alone
           </p>
@@ -188,18 +172,6 @@ export default async function Home() {
             energy, their radiance &mdash; together. Not through perfection, but through presence,
             honesty, and the kind of encouragement that only a sister can give.
           </p>
-          {!user && (
-            <div className="mt-10">
-              <Link
-                href="/signup"
-                className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
-              >
-                Join the Circle
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-              <p className="mt-3 text-xs text-warm-400">$55 / month &middot; Cancel anytime</p>
-            </div>
-          )}
         </AnimateOnScroll>
       </section>
 
@@ -712,6 +684,23 @@ export default async function Home() {
               </span>
             </div>
           </div>
+        </AnimateOnScroll>
+      </section>
+
+      {/* ─── CLOSING STATEMENT ─── */}
+      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
+        <div className="hero-gradient absolute inset-0 opacity-60" />
+        <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl md:text-6xl">
+            Reclaim your <span className="font-medium">energy.</span>
+            <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
+          </h2>
+          <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-warm-500">
+            Aurora is a sanctuary for women who are ready to step into their
+            most radiant, magnetic, and naturally beautiful selves &mdash;
+            through true health, feminine wisdom, and the power of a community
+            of women rising together.
+          </p>
         </AnimateOnScroll>
       </section>
 

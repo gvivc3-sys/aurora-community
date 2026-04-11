@@ -58,21 +58,22 @@ export function PinnedIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-// Map Pin outline — used for admin "pin post" action (inactive)
+// Thumbtack / Pin (Lucide) — used for admin "pin post" action (inactive)
 export function MapPinIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1 -6 0 3 3 0 0 1 6 0Z" strokeWidth="1.5" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142 -7.5 11.25 -7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" strokeWidth="1.5" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="m12 17 0 5" strokeWidth="1.5" />
+      <path d="M5 17h14v-1.76a2 2 0 0 0 -1.11 -1.79l-1.78 -0.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0 -4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1 -1.11 1.79l-1.78 0.9A2 2 0 0 0 5 15.24Z" strokeWidth="1.5" />
     </svg>
   );
 }
 
-// Map Pin solid — used for admin "pin post" action (active/pinned)
+// Thumbtack filled — used for admin "pin post" action (active/pinned)
 export function MapPinSolidIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path fillRule="evenodd" d="m11.54 22.351 0.07 0.04 0.028 0.016a0.76 0.76 0 0 0 0.723 0l0.028 -0.015 0.071 -0.041a16.975 16.975 0 0 0 1.144 -0.742 19.58 19.58 0 0 0 2.683 -2.282c1.944 -1.99 3.963 -4.98 3.963 -8.827a8.25 8.25 0 0 0 -16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145 0.742ZM12 13.5a3 3 0 1 0 0 -6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="m12 17 0 5" strokeWidth="1.5" fill="none" />
+      <path d="M5 17h14v-1.76a2 2 0 0 0 -1.11 -1.79l-1.78 -0.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0 -4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1 -1.11 1.79l-1.78 0.9A2 2 0 0 0 5 15.24Z" strokeWidth="1.5" />
     </svg>
   );
 }
