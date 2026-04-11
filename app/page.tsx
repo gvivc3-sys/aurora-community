@@ -102,9 +102,15 @@ export default async function Home() {
               A Private Community for Women
             </p>
 
-            {/* Video */}
+            {/* Video — stripped to bare minimum for debugging */}
             <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
-              <VideoCard src="/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
+              <video
+                src="/videos/placeholder.mp4"
+                poster="/images/portrait_image_wide.jpg"
+                controls
+                playsInline
+                style={{ width: "100%" }}
+              />
             </div>
 
             {/* CTA buttons */}
