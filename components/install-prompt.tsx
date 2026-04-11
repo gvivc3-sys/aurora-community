@@ -92,26 +92,21 @@ export default function InstallPrompt() {
   // iOS: show instruction
   if (isIOS) {
     return (
-      <div className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-warm-500">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="h-4 w-4 shrink-0"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 2a.75.75 0 0 1 .75.75v7.44l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L6.22 9.28a.75.75 0 0 1 1.06-1.06l1.97 1.97V2.75A.75.75 0 0 1 10 2ZM5.25 13a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 0-1.5h-9.5Z"
-            clipRule="evenodd"
-          />
-        </svg>
-        <span>
-          Tap{" "}
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="inline h-4 w-4 align-text-bottom">
+      <div className="rounded-md px-3 py-2 text-sm text-warm-500">
+        <p className="font-medium text-warm-700">Add to Home Screen</p>
+        <p className="mt-1 leading-snug">
+          In Safari, tap the{" "}
+          {/* Safari share icon — box with upward arrow */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="inline h-4 w-4 align-text-bottom text-warm-700">
             <path d="M13 4.5a2.5 2.5 0 1 1 .702 1.737L6.97 9.604a2.5 2.5 0 0 1 0 .792l6.733 3.367a2.5 2.5 0 1 1-.671 1.341l-6.733-3.367a2.5 2.5 0 1 1 0-3.474l6.733-3.367A2.5 2.5 0 0 1 13 4.5Z" />
           </svg>{" "}
-          then &ldquo;Add to Home Screen&rdquo;
-        </span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="inline h-4 w-4 align-text-bottom text-warm-700">
+            <path d="M9.25 3.75a.75.75 0 0 1 1.5 0v7.44l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L6.22 10.28a.75.75 0 1 1 1.06-1.06l1.97 1.97V3.75Z" />
+            <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
+          </svg>{" "}
+          <strong className="font-medium text-warm-700">Share</strong> button at the bottom of the screen, then scroll down and tap{" "}
+          <strong className="font-medium text-warm-700">&ldquo;Add to Home Screen&rdquo;</strong>.
+        </p>
       </div>
     );
   }
