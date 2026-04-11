@@ -40,24 +40,28 @@ export default function VideoCard({
 
   if (vsl) {
     return (
-      <div className="group relative w-full overflow-hidden rounded-2xl shadow-2xl">
-        <div className="relative aspect-video w-full overflow-hidden bg-warm-900">
+      <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl">
+        <div className="relative aspect-video w-full bg-warm-900">
+          {/* Video is the tap target — iOS Safari touch events on overlaid buttons are unreliable */}
           <video
             ref={videoRef}
             src={src}
             poster={poster}
-            className="h-full w-full object-cover"
+            className="h-full w-full cursor-pointer object-cover"
             playsInline
             preload="none"
+            onClick={handlePlay}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
             onEnded={handleEnded}
           />
+          {/* Visual play indicator — pointer-events-none so taps reach the video */}
           {!playing && (
-            <button
-              onClick={handlePlay}
-              aria-label="Play video"
-              className="absolute inset-0 flex items-center justify-center bg-warm-900/30 transition-colors hover:bg-warm-900/20"
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/25"
             >
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 shadow-xl transition-transform hover:scale-105 active:scale-95">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 shadow-xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -71,29 +75,7 @@ export default function VideoCard({
                   />
                 </svg>
               </div>
-            </button>
-          )}
-          {playing && (
-            <button
-              onClick={handlePlay}
-              aria-label="Pause video"
-              className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity hover:opacity-100"
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/80 shadow-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6 text-warm-900"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-            </button>
+            </div>
           )}
         </div>
       </div>
