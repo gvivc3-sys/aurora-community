@@ -5,6 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
+import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon } from "@/components/icons";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -61,19 +62,22 @@ function LeafIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 const pillars = [
   {
-    emoji: "\u2728",
+    icon: StreamlineSparklesIcon,
+    iconColor: "bg-fuchsia-50 text-fuchsia-600",
     title: "The Portal",
     description:
       "Daily blog posts and articles, weekly exclusive video content, and a space to send your questions directly \u2014 answered inside the Portal for the whole community to receive.",
   },
   {
-    emoji: "\uD83C\uDF00",
+    icon: UsersIcon,
+    iconColor: "bg-warm-100 text-warm-600",
     title: "Telegram Group",
     description:
       "A private Telegram group chat with like-minded, aligned women who are on the same path as you.",
   },
   {
-    emoji: "\u26A1",
+    icon: VideoCameraIcon,
+    iconColor: "bg-rose-50 text-rose-500",
     title: "Monthly Live Group Call",
     description:
       "A live monthly call with the Aurora community \u2014 connect face-to-face, ask questions in real time, and deepen your sisterhood.",
@@ -153,6 +157,14 @@ export default async function Home() {
           )}
           </div>
         </div>
+      </section>
+
+
+      {/* ─── VSL ─── */}
+      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+        <AnimateOnScroll>
+          <VideoCard src="/videos/placeholder.mp4" vsl />
+        </AnimateOnScroll>
       </section>
 
 
@@ -274,50 +286,6 @@ export default async function Home() {
               </p>
             </div>
           </AnimateOnScroll>
-        </div>
-      </section>
-
-
-      {/* ─── VIDEO INSIGHTS ─── */}
-      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
-        <div className="mx-auto max-w-5xl">
-          <AnimateOnScroll className="text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Insight from Ashley
-            </p>
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              A glimpse <span className="italic">inside the <span className="font-medium">portal</span></span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-lg text-warm-500">
-              Short reflections on true health, natural beauty, and the art of
-              elevating your everyday — the kind of guidance waiting for you
-              inside Aurora every week.
-            </p>
-          </AnimateOnScroll>
-
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                src: "/videos/placeholder.mp4",
-                title: "How I start every morning",
-                duration: "3:12",
-              },
-              {
-                src: "/videos/placeholder.mp4",
-                title: "The truth about natural skincare",
-                duration: "4:47",
-              },
-              {
-                src: "/videos/placeholder.mp4",
-                title: "Nourishing your body with the seasons",
-                duration: "5:20",
-              },
-            ].map((video, i) => (
-              <AnimateOnScroll key={i} delay={i * 120}>
-                <VideoCard {...video} />
-              </AnimateOnScroll>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -626,7 +594,9 @@ export default async function Home() {
             {pillars.map((pillar, i) => (
               <AnimateOnScroll key={i} delay={i * 120}>
                 <div className="h-full rounded-2xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
-                  <div className="text-4xl">{pillar.emoji}</div>
+                  <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-xl ${pillar.iconColor}`}>
+                    <pillar.icon className="h-6 w-6" />
+                  </div>
                   <h3 className="mt-4 text-lg font-bold text-warm-900">
                     {pillar.title}
                   </h3>

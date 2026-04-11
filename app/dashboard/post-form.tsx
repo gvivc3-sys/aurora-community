@@ -5,6 +5,7 @@ import { createPost } from "@/lib/actions/post";
 import RichTextEditor from "@/components/rich-text-editor";
 import AudioPlayer from "@/components/audio-player";
 import { useToast } from "@/components/toast";
+import { LeafIcon, HeartIcon, BoltIcon } from "@/components/icons";
 
 const postTypes = [
   { key: "voice", label: "Voice" },
@@ -14,9 +15,9 @@ const postTypes = [
 ] as const;
 
 const tags = [
-  { key: "love", label: "Nourishment", emoji: "\uD83C\uDF3F", color: "border-green-300 bg-green-50 text-green-700", activeColor: "border-green-500 bg-green-100 text-green-800 ring-2 ring-green-200" },
-  { key: "health", label: "Health + Beauty", emoji: "\uD83C\uDF38", color: "border-rose-300 bg-rose-50 text-rose-700", activeColor: "border-rose-500 bg-rose-100 text-rose-800 ring-2 ring-rose-200" },
-  { key: "magic", label: "Frequency", emoji: "\u26A1", color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700", activeColor: "border-fuchsia-500 bg-fuchsia-100 text-fuchsia-800 ring-2 ring-fuchsia-200" },
+  { key: "love", label: "Nourishment", icon: LeafIcon, color: "border-green-300 bg-green-50 text-green-700", activeColor: "border-green-500 bg-green-100 text-green-800 ring-2 ring-green-200" },
+  { key: "health", label: "Health + Beauty", icon: HeartIcon, color: "border-rose-300 bg-rose-50 text-rose-700", activeColor: "border-rose-500 bg-rose-100 text-rose-800 ring-2 ring-rose-200" },
+  { key: "magic", label: "Frequency", icon: BoltIcon, color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700", activeColor: "border-fuchsia-500 bg-fuchsia-100 text-fuchsia-800 ring-2 ring-fuchsia-200" },
 ] as const;
 
 type PostType = (typeof postTypes)[number]["key"];
@@ -286,7 +287,7 @@ export default function PostForm() {
                   tag === t.key ? t.activeColor : t.color
                 }`}
               >
-                <span className="text-sm sm:text-base">{t.emoji}</span>
+                <t.icon className="h-4 w-4 shrink-0" />
                 {t.label}
               </button>
             ))}

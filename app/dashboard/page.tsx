@@ -1,3 +1,4 @@
+import type React from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
@@ -15,16 +16,17 @@ import ScrollToTop from "./scroll-to-top";
 import WelcomeCard from "./welcome-card";
 import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
+import { LeafIcon, HeartIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
 
 const PAGE_SIZE = 20;
 
-const tagStyles: Record<string, { badge: string; emoji: string; label: string }> = {
-  love: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F", label: "Nourishment" },
-  health: { badge: "bg-rose-50 text-rose-700", emoji: "\uD83C\uDF38", label: "Health + Beauty" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u26A1", label: "Frequency" },
-  ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D", label: "whisper" },
+const tagStyles: Record<string, { badge: string; icon: React.ComponentType<{ className?: string }>; label: string }> = {
+  love: { badge: "bg-green-50 text-green-700", icon: LeafIcon, label: "Nourishment" },
+  health: { badge: "bg-rose-50 text-rose-700", icon: HeartIcon, label: "Health + Beauty" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", icon: BoltIcon, label: "Frequency" },
+  ask: { badge: "bg-amber-50 text-amber-700", icon: ChatBubbleIcon, label: "whisper" },
 };
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -247,13 +249,13 @@ export default async function DashboardPage({
                     <div className="flex items-center gap-2">
                       {!!post.pinned && (
                         <span className="flex items-center gap-1 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
-                          📌 Pinned
+                          <PinnedIcon className="h-3 w-3" /> Pinned
                         </span>
                       )}
                       <span
                         className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                       >
-                        <span>{tag?.emoji}</span>
+                        {tag && <tag.icon className="h-3 w-3" />}
                         {tagStyles[post.tag]?.label ?? post.tag}
                       </span>
                     </div>
