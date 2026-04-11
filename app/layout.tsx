@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Nav from "@/components/nav";
 import { ToastProvider } from "@/components/toast";
+import { IOSInstallBanner } from "@/components/install-prompt";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -55,6 +56,7 @@ export default function RootLayout({
         <ToastProvider>
           <Nav />
           {children}
+          <IOSInstallBanner />
         </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
