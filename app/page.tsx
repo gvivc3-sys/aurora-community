@@ -89,24 +89,16 @@ export default async function Home() {
     <div className="bg-warm-50">
       {/* ─── HERO ─── */}
       <section className="relative overflow-hidden">
-        <div className="hero-gradient absolute inset-0" />
-
-        {/* Decorative gaussian blur blobs */}
-        <div className="animate-float absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-fuchsia-200/25 blur-[80px]" />
-        <div
-          className="animate-float absolute -bottom-28 -left-28 h-[28rem] w-[28rem] rounded-full bg-fuchsia-200/25 blur-[80px]"
-          style={{ animationDelay: "3.5s" }}
-        />
-        <div
-          className="animate-float absolute left-1/2 top-1/4 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full bg-pink-100/30 blur-[100px]"
-          style={{ animationDelay: "1.5s" }}
-        />
-
-        {/* Logo watermark */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
-          <svg viewBox="0 0 258.22298 283.80057" className="h-[42rem] w-auto animate-[spin_60s_linear_infinite] opacity-[0.04]" fill="#9b3aed">
-            <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-          </svg>
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/portrait_image_wide.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6fc] via-[#faf6fc]/88 to-[#faf6fc]/55" />
         </div>
 
         <div className="relative mx-auto max-w-4xl px-6 pb-28 pt-24 text-center sm:pb-40 sm:pt-36">
@@ -152,7 +144,7 @@ export default async function Home() {
                   href="/signup"
                   className="cta-gradient-btn rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
-                  Enter the Portal
+                  Join Aurora
                 </Link>
                 <Link
                   href="/login"
@@ -163,6 +155,11 @@ export default async function Home() {
               </>
             )}
           </div>
+          {!user && (
+            <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "600ms" }}>
+              $55 / month &middot; Cancel anytime
+            </p>
+          )}
           </div>
         </div>
       </section>
@@ -237,10 +234,6 @@ export default async function Home() {
               &mdash; through story, shared experience, and the magic of coming
               together.
             </p>
-            <p className="mt-6 border-l-2 border-warm-300 pl-4 text-sm italic leading-relaxed text-warm-500">
-              &ldquo;It feels like sitting in a portal with women who just get
-              it. I&apos;ve never felt less alone on this path.&rdquo;
-            </p>
           </AnimateOnScroll>
 
           {/* Voice note mockup card */}
@@ -298,21 +291,10 @@ export default async function Home() {
       <section className="relative overflow-hidden px-6 py-24 sm:py-36">
         {/* Rotating logo — decorative background */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <svg viewBox="0 0 258.22298 283.80057" className="absolute -left-20 top-1/4 h-[32rem] w-auto animate-[spin_30s_linear_infinite] opacity-[0.07]" fill="#9b3aed">
-            <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-          </svg>
-          <svg viewBox="0 0 258.22298 283.80057" className="absolute -right-16 bottom-1/4 h-[28rem] w-auto animate-[spin_25s_linear_infinite_reverse] opacity-[0.05]" fill="#9b3aed">
-            <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-          </svg>
-          {/* Gaussian blur blobs */}
           <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]" />
           <div
             className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]"
             style={{ animationDelay: "4s" }}
-          />
-          <div
-            className="animate-float absolute left-1/2 top-1/2 h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-100/15 blur-[80px]"
-            style={{ animationDelay: "2s" }}
           />
         </div>
 
@@ -525,33 +507,33 @@ export default async function Home() {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
           <AnimateOnScroll delay={0} className="group">
-            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-pink-200 hover:shadow-lg">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-pink-100 to-pink-50 transition-transform duration-300 group-hover:scale-110">
-                <HeartIcon className="h-6 w-6 text-pink-400" />
-              </div>
-              <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Primal <span className="font-semibold">Beauty</span>
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Radiance that can&apos;t be bought in a bottle. Skin rituals,
-                hair care, and beauty practices that honour your body&apos;s
-                natural intelligence.
-              </p>
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={150} className="group">
             <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-green-200 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-100 to-green-50 transition-transform duration-300 group-hover:scale-110">
                 <LeafIcon className="h-6 w-6 text-green-500" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Ancestral <span className="font-semibold">Health</span>
+                <span className="font-semibold">Nourishment</span>
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Whole foods, seasonal rhythms, and toxin-free living. Reconnect
-                with the wisdom your great-grandmother knew by heart &mdash;
-                together.
+                Deep, intentional nourishment for body and soul. Whole foods,
+                seasonal eating, and the ancient wisdom of feeding yourself in
+                ways that truly restore your energy.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={150} className="group">
+            <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-rose-200 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-50 transition-transform duration-300 group-hover:scale-110">
+                <HeartIcon className="h-6 w-6 text-rose-400" />
+              </div>
+              <h3 className="mt-5 text-lg font-medium text-warm-900">
+                Health + <span className="font-semibold">Beauty</span>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-warm-600">
+                True health radiates outward. Holistic wellness, natural
+                skincare, and the powerful connection between how you feel
+                inside and how you shine outside.
               </p>
             </div>
           </AnimateOnScroll>
@@ -559,15 +541,15 @@ export default async function Home() {
           <AnimateOnScroll delay={300} className="group">
             <div className="h-full rounded-2xl border border-warm-200 bg-white/70 p-8 text-center transition-all duration-300 hover:border-fuchsia-200 hover:shadow-lg">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-100 to-fuchsia-50 transition-transform duration-300 group-hover:scale-110">
-                <SunIcon className="h-6 w-6 text-fuchsia-500" />
+                <SparklesIcon className="h-6 w-6 text-fuchsia-500" />
               </div>
               <h3 className="mt-5 text-lg font-medium text-warm-900">
-                Feminine <span className="font-semibold">Energy</span>
+                <span className="font-semibold">Frequency</span>
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                Cultivating your natural magnetism through deep rest, nature
-                connection, and the quiet confidence that comes from being held
-                by a community.
+                Your energy is your greatest asset. Cultivating feminine
+                vitality, shifting your mindset, and stepping into the highest
+                version of yourself through practice and sisterhood.
               </p>
             </div>
           </AnimateOnScroll>
@@ -598,7 +580,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Welcome Home ✨
+              Welcome Home
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               What Awaits You Inside the <span className="font-medium">Aurora Community</span>
