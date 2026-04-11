@@ -4,6 +4,7 @@ import { useActionState, useOptimistic, useRef, useState } from "react";
 import Link from "next/link";
 import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark, togglePinPost } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
+import { HeartIcon, ChatBubbleIcon, MapPinIcon, MapPinSolidIcon, ArrowTopRightIcon } from "@/components/icons";
 
 /** Render @handles in comment text as links using pre-resolved handle map */
 function CommentBody({ text, userHandles }: { text: string; userHandles: Record<string, string> }) {
@@ -157,31 +158,7 @@ export default function PostActions({
             type="submit"
             className="flex items-center gap-1 text-sm transition-colors"
           >
-            {liked ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-5 w-5 text-red-500"
-              >
-                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-5 w-5 text-warm-400 hover:text-red-400"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                />
-              </svg>
-            )}
+            <HeartIcon className={`h-5 w-5 transition-colors ${liked ? "fill-red-500 stroke-red-500" : "stroke-warm-400 hover:stroke-red-400 fill-none"}`} />
             <span className={liked ? "text-red-500" : "text-warm-400"}>
               {displayLikeCount > 0 ? displayLikeCount : ""}
             </span>
@@ -196,20 +173,7 @@ export default function PostActions({
           className="ml-4 flex items-center gap-1 text-sm text-warm-400 transition-colors hover:text-warm-600 disabled:cursor-not-allowed disabled:opacity-40"
           title={commentsEnabled ? "Comments" : "Comments disabled"}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-5 w-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
-            />
-          </svg>
+          <ChatBubbleIcon className="h-5 w-5" />
           {commentCount > 0 && <span>{commentCount}</span>}
         </button>
 
@@ -228,13 +192,9 @@ export default function PostActions({
               title={optimisticPinned ? "Unpin post" : "Pin post"}
             >
               {optimisticPinned ? (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-warm-600">
-                  <path d="M16 2l-4 4-5-2-3 3 4.5 4.5L2 18l.5.5L9 12l4.5 4.5 3-3-2-5 4-4L16 2z" />
-                </svg>
+                <MapPinSolidIcon className="h-5 w-5 text-warm-700" />
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-warm-400 hover:text-warm-600">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 2l-4 4-5-2-3 3 4.5 4.5L2 18l.5.5L9 12l4.5 4.5 3-3-2-5 4-4L16 2z" />
-                </svg>
+                <MapPinIcon className="h-5 w-5 text-warm-400 hover:text-warm-600" />
               )}
             </button>
             {pinState?.error && (
@@ -273,9 +233,7 @@ export default function PostActions({
             className="ml-4 flex items-center text-sm text-warm-400 transition-colors hover:text-warm-600"
             title="View post"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
+            <ArrowTopRightIcon className="h-5 w-5" />
           </Link>
         )}
 

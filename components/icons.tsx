@@ -49,10 +49,57 @@ export function BoltIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
+// Bookmark solid — used in "Pinned" badge on posts
 export function PinnedIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path fillRule="evenodd" d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497 0.174 2.57 1.46 2.57 2.93V21a0.75 0.75 0 0 1 -1.085 0.67L12 18.089l-7.165 3.583A0.75 0.75 0 0 1 3.75 21V5.507c0 -1.47 1.073 -2.756 2.57 -2.93Z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
+// Map Pin outline — used for admin "pin post" action (inactive)
+export function MapPinIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1 -6 0 3 3 0 0 1 6 0Z" strokeWidth="1.5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142 -7.5 11.25 -7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+// Map Pin solid — used for admin "pin post" action (active/pinned)
+export function MapPinSolidIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path fillRule="evenodd" d="m11.54 22.351 0.07 0.04 0.028 0.016a0.76 0.76 0 0 0 0.723 0l0.028 -0.015 0.071 -0.041a16.975 16.975 0 0 0 1.144 -0.742 19.58 19.58 0 0 0 2.683 -2.282c1.944 -1.99 3.963 -4.98 3.963 -8.827a8.25 8.25 0 0 0 -16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145 0.742ZM12 13.5a3 3 0 1 0 0 -6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
+// Arrow Right — for CTA buttons
+export function ArrowRightIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0 -7.5 7.5M21 12H3" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+// Arrow Top Right on Square — for "view post" link
+export function ArrowTopRightIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+// Share — for sharing posts
+export function ShareIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0 -2.186c0.18 0.324 0.283 0.696 0.283 1.093s-0.103 0.77 -0.283 1.093m0 -2.186 9.566 -5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0 -3.935 -2.186Zm0 -12.814a2.25 2.25 0 1 0 3.933 -2.185 2.25 2.25 0 0 0 -3.933 2.185Z" strokeWidth="1.5" />
     </svg>
   );
 }

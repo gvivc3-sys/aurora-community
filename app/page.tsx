@@ -5,7 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
-import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon } from "@/components/icons";
+import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon } from "@/components/icons";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -129,23 +129,26 @@ export default async function Home() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Enter the Portal
+                <ArrowRightIcon className="h-4 w-4" />
               </Link>
             ) : (
               <>
                 <Link
                   href="/signup"
-                  className="cta-gradient-btn rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                 >
                   Join Aurora
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/login"
-                  className="rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
                 >
                   Sign In
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
               </>
             )}
@@ -160,10 +163,43 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── VSL ─── */}
+      {/* ─── VSL + COPY ─── */}
       <section className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
         <AnimateOnScroll>
           <VideoCard src="/videos/placeholder.mp4" vsl />
+        </AnimateOnScroll>
+
+        <AnimateOnScroll delay={150} className="mx-auto mt-16 max-w-2xl text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+            You Are Not Alone
+          </p>
+          <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
+            We were never meant to<br className="hidden sm:block" />
+            <span className="italic"> figure this out alone.</span>
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-warm-600">
+            There is something that happens when women come together with shared intention &mdash;
+            the clarity that felt out of reach suddenly arrives. The habits that never stuck begin
+            to hold. The version of yourself you&apos;ve been quietly working toward starts to feel
+            real.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-warm-600">
+            Aurora is a circle of women who are choosing themselves &mdash; their health, their
+            energy, their radiance &mdash; together. Not through perfection, but through presence,
+            honesty, and the kind of encouragement that only a sister can give.
+          </p>
+          {!user && (
+            <div className="mt-10">
+              <Link
+                href="/signup"
+                className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+              >
+                Join the Circle
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+              <p className="mt-3 text-xs text-warm-400">$55 / month &middot; Cancel anytime</p>
+            </div>
+          )}
         </AnimateOnScroll>
       </section>
 
