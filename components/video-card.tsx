@@ -25,8 +25,12 @@ export default function VideoCard({
       v.pause();
       setPlaying(false);
     } else {
-      v.play();
-      setPlaying(true);
+      const promise = v.play();
+      if (promise !== undefined) {
+        promise.then(() => setPlaying(true)).catch(() => setPlaying(false));
+      } else {
+        setPlaying(true);
+      }
     }
   }
 
