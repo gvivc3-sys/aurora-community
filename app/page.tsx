@@ -89,17 +89,7 @@ export default async function Home() {
     <div className="bg-warm-50">
       {/* ─── HERO ─── */}
       <section className="relative overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/portrait_image_wide.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6fc] via-[#faf6fc]/88 to-[#faf6fc]/55" />
-        </div>
+        <div className="hero-gradient absolute inset-0" />
 
         <div className="relative mx-auto max-w-4xl px-6 pb-28 pt-24 text-center sm:pb-40 sm:pt-36">
           <AvatarCircle />
@@ -283,6 +273,78 @@ export default async function Home() {
               </p>
             </div>
           </AnimateOnScroll>
+        </div>
+      </section>
+
+
+      {/* ─── VIDEO INSIGHTS ─── */}
+      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
+        <div className="mx-auto max-w-5xl">
+          <AnimateOnScroll className="text-center">
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
+              Insight from Ashley
+            </p>
+            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+              A glimpse <span className="italic">inside the <span className="font-medium">portal</span></span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-warm-500">
+              Short reflections on true health, natural beauty, and the art of
+              elevating your everyday — the kind of guidance waiting for you
+              inside Aurora every week.
+            </p>
+          </AnimateOnScroll>
+
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                src: "/videos/placeholder.mp4",
+                title: "How I start every morning",
+                duration: "3:12",
+              },
+              {
+                src: "/videos/placeholder.mp4",
+                title: "The truth about natural skincare",
+                duration: "4:47",
+              },
+              {
+                src: "/videos/placeholder.mp4",
+                title: "Nourishing your body with the seasons",
+                duration: "5:20",
+              },
+            ].map((video, i) => (
+              <AnimateOnScroll key={i} delay={i * 120}>
+                <div className="group overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
+                  <div className="relative aspect-video w-full overflow-hidden bg-warm-100">
+                    <video
+                      src={video.src}
+                      className="h-full w-full object-cover"
+                      playsInline
+                      muted
+                      loop
+                      preload="metadata"
+                      onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
+                      onMouseLeave={(e) => {
+                        const v = e.currentTarget as HTMLVideoElement;
+                        v.pause();
+                        v.currentTime = 0;
+                      }}
+                    />
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-warm-900/10 transition-opacity duration-300 group-hover:opacity-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-5 w-5 text-warm-800">
+                          <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <p className="font-medium text-warm-900">{video.title}</p>
+                    <p className="mt-1 text-xs text-warm-400">{video.duration}</p>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
         </div>
       </section>
 
