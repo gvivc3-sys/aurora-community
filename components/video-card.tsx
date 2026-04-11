@@ -4,11 +4,13 @@ import { useRef, useState } from "react";
 
 export default function VideoCard({
   src,
+  poster,
   title,
   duration,
   vsl = false,
 }: {
   src: string;
+  poster?: string;
   title?: string;
   duration?: string;
   vsl?: boolean;
@@ -39,9 +41,10 @@ export default function VideoCard({
           <video
             ref={videoRef}
             src={src}
+            poster={poster}
             className="h-full w-full object-cover"
             playsInline
-            preload="metadata"
+            preload="none"
             onEnded={handleEnded}
           />
           {!playing && (

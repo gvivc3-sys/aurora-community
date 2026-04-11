@@ -104,7 +104,7 @@ export default async function Home() {
 
             {/* Video */}
             <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
-              <VideoCard src="/videos/placeholder.mp4" vsl />
+              <VideoCard src="/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
             </div>
 
             {/* CTA buttons */}
@@ -150,9 +150,11 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="relative py-24 text-center sm:py-36">
-        {/* Avatar circle — overflows into sections above and below */}
-        <AvatarCircle />
+      <section className="relative overflow-x-clip py-24 text-center sm:py-36">
+        {/* Avatar circle — hidden on mobile to prevent horizontal overflow */}
+        <div className="hidden sm:block">
+          <AvatarCircle />
+        </div>
 
         <AnimateOnScroll className="relative z-10 mx-auto max-w-2xl px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
