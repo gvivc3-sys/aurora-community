@@ -16,8 +16,8 @@ const avatars = [
   "/images/avatar_pool/woman_blonde_2.jpeg",
 ];
 
-// Pre-compute positions as rounded integers so server and client match exactly
-const RADIUS = 280;
+// 120% larger than original (280 → 336)
+const RADIUS = 336;
 const positions = avatars.map((_, i) => {
   const rad = ((i / avatars.length) * 360 * Math.PI) / 180;
   return {
@@ -91,12 +91,12 @@ export default function AvatarCircle() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+      className="pointer-events-none absolute inset-0 flex items-center justify-center"
       aria-hidden="true"
     >
       <div
         data-tilt-target
-        className="relative h-[620px] w-[620px] sm:h-[700px] sm:w-[700px]"
+        className="relative h-[780px] w-[780px] sm:h-[880px] sm:w-[880px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <div className="absolute inset-0 animate-[spin_30s_linear_infinite]">
@@ -109,7 +109,7 @@ export default function AvatarCircle() {
               }}
             >
               <div
-                className="h-[88px] w-[88px] overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-20 sm:w-20"
+                className="h-[106px] w-[106px] overflow-hidden rounded-full shadow-lg blur-[2px] opacity-60 sm:h-[106px] sm:w-[106px]"
                 style={{
                   animation: "spin 30s linear infinite reverse",
                 }}
@@ -117,8 +117,8 @@ export default function AvatarCircle() {
                 <Image
                   src={src}
                   alt=""
-                  width={88}
-                  height={88}
+                  width={106}
+                  height={106}
                   className="h-full w-full object-cover"
                 />
               </div>

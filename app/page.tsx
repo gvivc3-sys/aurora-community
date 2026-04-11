@@ -93,12 +93,10 @@ export default async function Home() {
   return (
     <div className="bg-warm-50">
       {/* ─── HERO (VSL-LED) ─── */}
-      <section className="relative overflow-hidden">
+      <section className="relative z-10 overflow-hidden">
         <div className="hero-gradient absolute inset-0" />
 
         <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-16 text-center sm:pb-20 sm:pt-20">
-          <AvatarCircle />
-
           <div className="relative z-10">
             <p className="animate-fade-in-up font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
               A Private Community for Women
@@ -152,8 +150,11 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="mx-auto max-w-2xl px-6 py-16 text-center sm:py-24">
-        <AnimateOnScroll>
+      <section className="relative py-24 text-center sm:py-36">
+        {/* Avatar circle — overflows into sections above and below */}
+        <AvatarCircle />
+
+        <AnimateOnScroll className="relative z-10 mx-auto max-w-2xl px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
             You Are Not Alone
           </p>
@@ -177,7 +178,8 @@ export default async function Home() {
 
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-36">
+      <section className="relative z-10 bg-warm-50 px-6 py-24 sm:py-36">
+        <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-12 md:grid-cols-5">
           <AnimateOnScroll className="md:col-span-2">
             <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl shadow-lg">
@@ -217,6 +219,7 @@ export default async function Home() {
               shifts within a safe, supportive, and nurturing container.
             </p>
           </AnimateOnScroll>
+        </div>
         </div>
       </section>
 
