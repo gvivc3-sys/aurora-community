@@ -150,7 +150,7 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="relative overflow-x-clip py-16 text-center sm:py-24">
+      <section className="relative overflow-x-clip border-b border-warm-200 py-16 text-center sm:py-24">
         {/* Avatar circle — hidden on mobile to prevent horizontal overflow */}
         <div className="hidden sm:block">
           <AvatarCircle />
@@ -177,8 +177,6 @@ export default async function Home() {
           </p>
         </AnimateOnScroll>
 
-        {/* Bottom divider */}
-        <div className="relative z-10 mx-auto mt-14 max-w-xs border-t border-warm-200" />
       </section>
 
 
