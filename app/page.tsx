@@ -102,15 +102,9 @@ export default async function Home() {
               A Private Community for Women
             </p>
 
-            {/* Video — stripped to bare minimum for debugging */}
+            {/* Video */}
             <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
-              <video
-                src="/videos/placeholder.mp4"
-                poster="/images/portrait_image_wide.jpg"
-                controls
-                playsInline
-                style={{ width: "100%" }}
-              />
+              <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
             </div>
 
             {/* CTA buttons */}
