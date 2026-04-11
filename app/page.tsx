@@ -150,7 +150,7 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="relative overflow-x-clip border-b border-warm-200 py-16 text-center sm:py-24">
+      <section className="relative overflow-x-clip border-b border-t border-warm-200 py-16 text-center sm:py-24">
         {/* Avatar circle — hidden on mobile to prevent horizontal overflow */}
         <div className="hidden sm:block">
           <AvatarCircle />
@@ -181,7 +181,7 @@ export default async function Home() {
 
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="relative z-10 bg-warm-50 px-6 py-24 sm:py-36">
+      <section className="relative z-10 px-6 py-24 sm:py-36" style={{ background: "linear-gradient(160deg, #fdf6ee 0%, #f5e9d8 50%, #fdf6ee 100%)" }}>
         <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-12 md:grid-cols-5">
           <AnimateOnScroll className="md:col-span-2">
