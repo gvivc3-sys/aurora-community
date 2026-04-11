@@ -150,13 +150,13 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="relative overflow-x-clip py-24 text-center sm:py-36">
+      <section className="relative overflow-x-clip py-16 text-center sm:py-24">
         {/* Avatar circle — hidden on mobile to prevent horizontal overflow */}
         <div className="hidden sm:block">
           <AvatarCircle />
         </div>
 
-        <AnimateOnScroll className="relative z-10 mx-auto max-w-2xl px-6">
+        <AnimateOnScroll className="relative z-10 mx-auto max-w-xl px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
             You Are Not Alone
           </p>
@@ -164,7 +164,7 @@ export default async function Home() {
             We were never meant to<br className="hidden sm:block" />
             <span className="italic"> figure this out alone.</span>
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-warm-600">
+          <p className="mt-5 text-base leading-relaxed text-warm-600">
             There is something that happens when women come together with shared intention &mdash;
             the clarity that felt out of reach suddenly arrives. The habits that never stuck begin
             to hold. The version of yourself you&apos;ve been quietly working toward starts to feel
@@ -176,6 +176,9 @@ export default async function Home() {
             honesty, and the kind of encouragement that only a sister can give.
           </p>
         </AnimateOnScroll>
+
+        {/* Bottom divider */}
+        <div className="relative z-10 mx-auto mt-14 max-w-xs border-t border-warm-200" />
       </section>
 
 
