@@ -29,8 +29,8 @@ const highlightStyles: Record<NoticeBg, string> = {
 
 /** Parses ==highlighted== syntax into React spans safely (no dangerouslySetInnerHTML) */
 function renderBody(body: string, highlightCls: string) {
-  return body.split(/(==.+?==)/g).map((chunk, i) => {
-    if (chunk.startsWith("==") && chunk.endsWith("==")) {
+  return body.split(/(\*\*.+?\*\*)/g).map((chunk, i) => {
+    if (chunk.startsWith("**") && chunk.endsWith("**")) {
       return (
         <mark key={i} className={`rounded px-0.5 not-italic ${highlightCls}`}>
           {chunk.slice(2, -2)}

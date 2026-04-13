@@ -30,11 +30,12 @@ const highlightStyles: Record<NoticeBg, string> = {
 
 function renderPreview(body: string, bg: NoticeBg) {
   const hl = highlightStyles[bg];
-  return body.split(/(==.+?==)/g).map((chunk, i) => {
-    if (chunk.startsWith("==") && chunk.endsWith("==")) {
+  return body.split(/(\*\*.+?\*\*)/g).map((chunk, i) => {
+    if (chunk.startsWith("**") && chunk.endsWith("**")) {
       return (
         <mark key={i} className={`rounded px-0.5 ${hl}`}>
           {chunk.slice(2, -2)}
+
         </mark>
       );
     }
@@ -108,14 +109,14 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           Notice text
         </label>
         <p className="mb-2 text-xs text-warm-500">
-          Use <code className="rounded bg-warm-100 px-1 py-0.5 font-mono">==text==</code> to highlight words.
-          e.g. <code className="rounded bg-warm-100 px-1 py-0.5 font-mono">==20% off== this week only</code>
+          Use <code className="rounded bg-warm-100 px-1 py-0.5 font-mono">**text**</code> to highlight words.
+          e.g. <code className="rounded bg-warm-100 px-1 py-0.5 font-mono">**20% off** this week only</code>
         </p>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
           rows={3}
-          placeholder="e.g. 🎉 ==Founding member discount== — join before Friday for 20% off your first month."
+          placeholder="e.g. 🎉 **Founding member discount** — join before Friday for 20% off your first month."
           className="w-full rounded-xl border border-warm-200 bg-white px-4 py-3 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200 resize-none"
         />
       </div>

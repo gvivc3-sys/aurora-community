@@ -79,7 +79,7 @@ export default async function ManagementPage({
         <div className="mt-6">
           {tab === "notice" && (
             <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
-              <NoticeForm active={activeNotice as unknown as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green" } | null} />
+              <NoticeForm active={activeNotice as unknown as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green"; from_name: string } | null} />
             </div>
           )}
 
