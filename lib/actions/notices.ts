@@ -1,7 +1,12 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import { supabaseAdmin as _supabaseAdmin } from "@/lib/supabase/admin";
+
+// Cast away strict table types until `notices` is added to the generated types
+// (run the SQL migration in Supabase, then regenerate types to remove this cast)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const supabaseAdmin = _supabaseAdmin as any;
 import { isAdmin } from "@/lib/roles";
 import { revalidatePath } from "next/cache";
 
