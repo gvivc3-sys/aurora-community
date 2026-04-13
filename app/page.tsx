@@ -514,6 +514,10 @@ export default async function Home() {
               We were meant to walk this path together.&rdquo;
             </span>
           </blockquote>
+          <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed text-warm-400">
+            Real healing happens in community &mdash; in the warmth of relating, connection, and in
+            the quiet magic of being truly seen.
+          </p>
           <div className="mt-8 flex items-center justify-center gap-3">
             <div className="h-px w-8 bg-warm-600" />
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-500">
