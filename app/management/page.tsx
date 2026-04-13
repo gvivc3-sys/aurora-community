@@ -34,7 +34,7 @@ export default async function ManagementPage({
       .then((r) => r.data ?? []),
   ]);
 
-  const unread = messages.filter((m: { read: boolean }) => !m.read).length;
+  const unread = messages.filter((m) => m.status === "unread").length;
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
