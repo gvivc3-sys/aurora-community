@@ -135,11 +135,11 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                         <div className="mx-3 my-1 border-t border-warm-100" />
                         <p className="px-4 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
                         <Link
-                          href="/inbox"
+                          href="/management"
                           onClick={() => setDropdownOpen(false)}
                           className="flex items-center gap-2 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                         >
-                          Whispers
+                          Management
                           {unreadInboxCount > 0 && (
                             <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
                               {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
@@ -328,11 +328,11 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                     <div className="mx-3 my-1 border-t border-warm-100" />
                     <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
                     <Link
-                      href="/inbox"
+                      href="/management"
                       onClick={() => setMenuOpen(false)}
                       className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                     >
-                      Whispers
+                      Management
                       {unreadInboxCount > 0 && (
                         <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
                           {unreadInboxCount > 9 ? "9+" : unreadInboxCount}

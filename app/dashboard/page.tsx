@@ -14,8 +14,10 @@ import AudioPlayer from "@/components/audio-player";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import ScrollToTop from "./scroll-to-top";
 import WelcomeCard from "./welcome-card";
+import NoticeBanner from "@/components/notice-banner";
 import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
+import { getActiveNotice } from "@/lib/actions/notices";
 import { LeafIcon, HeartIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
@@ -65,6 +67,9 @@ export default async function DashboardPage({
     1,
     typeof params.page === "string" ? parseInt(params.page, 10) || 1 : 1,
   );
+
+  // Fetch active notice in parallel with posts
+  const activeNotice = await getActiveNotice();
 
   // Build query
   let query = supabase.from("posts").select("*", { count: "exact" });
@@ -179,6 +184,12 @@ export default async function DashboardPage({
         <div className="mt-4">
           <WelcomeCard />
         </div>
+
+        {activeNotice && (
+          <div className="mt-4">
+            <NoticeBanner notice={activeNotice as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green" }} />
+          </div>
+        )}
 
         {!user.user_metadata?.username && (
           <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
