@@ -187,7 +187,7 @@ export default async function DashboardPage({
 
         {activeNotice && (
           <div className="mt-4">
-            <NoticeBanner notice={activeNotice as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green" }} />
+            <NoticeBanner notice={activeNotice as unknown as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green" }} />
           </div>
         )}
 
