@@ -60,21 +60,21 @@ const pillars = [
     iconColor: "bg-fuchsia-50 text-fuchsia-600",
     title: "The Portal",
     description:
-      "Daily blog posts and articles, weekly exclusive video content, and a space to send your questions directly \u2014 answered inside the Portal for the whole community to receive.",
+      "A curated space of blog posts and articles on the topics that matter most, written by Ashley. Read, reflect, and share your own experiences and thoughts directly with the community.",
   },
   {
     icon: UsersIcon,
     iconColor: "bg-warm-100 text-warm-600",
     title: "Telegram Group",
     description:
-      "A private Telegram group chat with like-minded, aligned women who are on the same path as you.",
+      "A private Telegram group of aligned, like-minded women. Share your insights, ask questions, and learn from the real journeys of women who are walking this path alongside you.",
   },
   {
     icon: VideoCameraIcon,
     iconColor: "bg-rose-50 text-rose-500",
-    title: "Monthly Live Group Call",
+    title: "Ashley's Library",
     description:
-      "A live monthly call with the Aurora community \u2014 connect face-to-face, ask questions in real time, and deepen your sisterhood.",
+      "Lifetime access to all of Ashley's guides and books — including her future releases. Yours forever.",
   },
 ];
 
@@ -156,19 +156,21 @@ export default async function Home() {
           </p>
           <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
             We were never meant to<br className="hidden sm:block" />
-            <span className="italic"> figure this out alone.</span>
+            <span className="italic"> walk this path alone.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            There is something that happens when women come together with shared intention &mdash;
-            the clarity that felt out of reach suddenly arrives. The habits that never stuck begin
-            to hold. The version of yourself you&apos;ve been quietly working toward starts to feel
-            real.
+            Real healing happens in community &mdash; in the warmth of relating, connection, and in
+            the quiet magic of being truly seen.
           </p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
-            Aurora is a circle of women who are choosing themselves &mdash; their health, their
-            energy, their radiance &mdash; together. Not through perfection, but through presence,
-            honesty, and the kind of encouragement that only a sister can give.
+            Healing happens in community. In being truly seen, deeply supported, and surrounded by
+            women of the same frequency and the same desire to come home to themselves.
           </p>
+          <p className="mt-4 text-base leading-relaxed text-warm-600">
+            That&apos;s why Aurora was created. To bring us together. To love, uplift, and strengthen
+            one another within a safe and sacred container.
+          </p>
+          <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
         </AnimateOnScroll>
 
       </section>
@@ -642,10 +644,12 @@ export default async function Home() {
             <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
-            Step into a sanctuary of women reclaiming their feminine energy,
-            elevating their health, and rising together &mdash; through the
-            Portal, the Telegram group, monthly live calls, and a sisterhood that
-            truly understands.
+            Aurora is a sanctuary for women who are ready to step into their most radiant, magnetic,
+            and naturally beautiful selves &mdash; through true health, feminine wisdom, and the
+            power of women rising together.
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
+            We were never meant to walk this path alone.
           </p>
           <div className="mt-10">
             {user ? (
