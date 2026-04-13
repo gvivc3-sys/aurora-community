@@ -9,6 +9,7 @@ interface ActiveNotice {
   id: string;
   body: string;
   bg: NoticeBg;
+  from_name: string;
 }
 
 const bgOptions: { value: NoticeBg; label: string; preview: string }[] = [
@@ -44,6 +45,7 @@ function renderPreview(body: string, bg: NoticeBg) {
 export default function NoticeForm({ active }: { active: ActiveNotice | null }) {
   const [body, setBody] = useState(active?.body ?? "");
   const [bg, setBg] = useState<NoticeBg>(active?.bg ?? "default");
+  const [fromName, setFromName] = useState(active?.from_name ?? "Ashley");
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -52,7 +54,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
     if (!body.trim()) return;
     setSuccess(""); setError("");
     startTransition(async () => {
-      const result = await upsertNotice({ body: body.trim(), bg });
+      const result = await upsertNotice({ body: body.trim(), bg, from_name: fromName.trim() || "Ashley" });
       if (result?.error) setError(result.error);
       else setSuccess("Notice saved and activated.");
     });
@@ -87,6 +89,18 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           <p className="text-sm text-warm-500">No active notice. Write one below to publish it.</p>
         </div>
       )}
+
+      {/* From name */}
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-warm-800">From</label>
+        <input
+          type="text"
+          value={fromName}
+          onChange={(e) => setFromName(e.target.value)}
+          placeholder="Ashley"
+          className="w-full rounded-xl border border-warm-200 bg-white px-4 py-2.5 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200"
+        />
+      </div>
 
       {/* Body */}
       <div>

@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache";
 
 type NoticeBg = "default" | "amber" | "rose" | "fuchsia" | "green";
 
-export async function upsertNotice({ body, bg }: { body: string; bg: NoticeBg }) {
+export async function upsertNotice({ body, bg, from_name }: { body: string; bg: NoticeBg; from_name: string }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user || !isAdmin(user)) return { error: "Unauthorized" };
@@ -23,7 +23,7 @@ export async function upsertNotice({ body, bg }: { body: string; bg: NoticeBg })
   // Insert new active notice
   const { error } = await supabaseAdmin
     .from("notices")
-    .insert({ body, bg, active: true });
+    .insert({ body, bg, from_name, active: true });
 
   if (error) return { error: error.message };
   revalidatePath("/dashboard");
@@ -48,7 +48,7 @@ export async function deactivateNotice() {
 export async function getActiveNotice() {
   const { data } = await supabaseAdmin
     .from("notices")
-    .select("id, body, bg")
+    .select("id, body, bg, from_name")
     .eq("active", true)
     .order("created_at", { ascending: false })
     .limit(1)

@@ -8,6 +8,7 @@ interface Notice {
   id: string;
   body: string;
   bg: NoticeBg;
+  from_name?: string;
 }
 
 const bgStyles: Record<NoticeBg, { wrapper: string; bar: string }> = {
@@ -74,14 +75,18 @@ export default function NoticeBanner({ notice }: { notice: Notice }) {
         className={`flex w-full items-center justify-between px-4 py-2.5 text-left transition-colors hover:brightness-95 ${bg.bar}`}
         aria-expanded={!minimized}
       >
-        <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-warm-600">
-          Notice
+        <span className="flex items-center gap-2 text-sm font-medium text-warm-700">
+          {/* Note / document icon */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-warm-500">
+            <path fillRule="evenodd" d="M4 4a2 2 0 0 1 2-2h4.586A2 2 0 0 1 12 2.586L15.414 6A2 2 0 0 1 16 7.414V16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4Zm2 6a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 6 10Zm.75 2.75a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z" clipRule="evenodd" />
+          </svg>
+          Special note from {notice.from_name || "Ashley"}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`h-4 w-4 text-warm-500 transition-transform duration-200 ${minimized ? "rotate-180" : ""}`}
+          className={`h-4 w-4 shrink-0 text-warm-500 transition-transform duration-200 ${minimized ? "rotate-180" : ""}`}
         >
           <path fillRule="evenodd" d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z" clipRule="evenodd" />
         </svg>

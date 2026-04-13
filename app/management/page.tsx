@@ -23,7 +23,7 @@ export default async function ManagementPage({
   if (!user || !isAdmin(user)) redirect("/dashboard");
 
   const params = await searchParams;
-  const tab: Tab = params.tab === "whispers" ? "whispers" : "notice";
+  const tab: Tab = params.tab === "notice" ? "notice" : "whispers";
 
   const [activeNotice, messages] = await Promise.all([
     getActiveNotice(),
