@@ -117,6 +117,13 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                       Telegram
                     </Link>
                     <Link
+                      href="/library"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Ashley&apos;s Library
+                    </Link>
+                    <Link
                       href="/bookmarks"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
@@ -307,6 +314,13 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/chat") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Telegram
+                </Link>
+                <Link
+                  href="/library"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                >
+                  Ashley&apos;s Library
                 </Link>
                 <Link
                   href="/bookmarks"
