@@ -20,7 +20,7 @@ const PUBLIC_EXACT = [
 // Prefix public routes (matched with startsWith)
 const PUBLIC_PREFIXES = ["/api/", "/auth/"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Always refresh the Supabase session
   const { response, user } = await updateSession(request);
 
