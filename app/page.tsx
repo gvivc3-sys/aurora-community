@@ -74,7 +74,7 @@ const pillars = [
     iconColor: "bg-rose-50 text-rose-500",
     title: "Ashley's Library",
     description:
-      "Lifetime access to all of Ashley's guides and books, including every future release — yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living, growing library you'll return to again and again.",
+      "Lifetime access to all of Ashley's guides and books, including every future release, yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living and growing library you'll return to again and again.",
   },
 ];
 
@@ -160,7 +160,7 @@ export default async function Home() {
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
             The Aurora Circle is a sanctuary for women who are ready to step into their most
-            radiant, magnetic, and naturally beautiful selves &mdash; through true health, feminine
+            radiant, magnetic, and naturally beautiful selves - through true health, feminine
             wisdom, and the power of women rising together.
           </p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
@@ -240,13 +240,13 @@ export default async function Home() {
             <p className="mt-6 text-base leading-relaxed text-warm-600">
               Every week, Ashley records heart-led voice notes on true health,
               natural beauty, and elevating your energy. These aren&apos;t
-              lectures &mdash; they&apos;re the kind of conversations you&apos;d
+              lectures, they&apos;re the kind of conversations you&apos;d
               have with your closest friend over a cup of tea.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
               Press play during your morning ritual, listen on your walk, and share
               your thoughts in the feed. This is how women have always learned
-              &mdash; through story, shared experience, and the magic of coming
+              through story, shared experience, and the magic of coming
               together.
             </p>
           </AnimateOnScroll>
@@ -573,7 +573,7 @@ export default async function Home() {
             A private group, <span className="italic">just for <span className="font-medium">us</span></span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-            Every Aurora member gets access to our private Telegram group &mdash;
+            Every Aurora member gets access to our private Telegram group. This is
             a space for real-time conversations, shared discoveries, and the kind
             of conversations that make you feel supported and seen on your path.
           </p>
@@ -645,7 +645,7 @@ export default async function Home() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
             The Aurora Circle is a sanctuary for women who are ready to step into their most
-            radiant, magnetic, and naturally beautiful selves &mdash; through true health,
+            radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
