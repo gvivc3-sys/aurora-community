@@ -5,7 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
-import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon } from "@/components/icons";
+import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon } from "@/components/icons";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -657,9 +657,12 @@ export default async function Home() {
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
             We were never meant to walk this path alone.
           </p>
-          <div className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/70 px-8 py-6 text-left shadow-sm">
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
-            <ul className="space-y-3">
+          <div className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
+            <div className="mb-5 flex justify-center">
+              <Image src="/logo.svg" alt="Aurora" width={36} height={40} className="opacity-80" />
+            </div>
+            <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
+            <ul className="space-y-3 text-left">
               {[
                 "Weekly voice notes from Ashley",
                 "Ashley's Library — guides, books & audio tracks",
@@ -667,34 +670,33 @@ export default async function Home() {
                 "The Portal — articles & reflections",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
-                  <span className="mt-0.5 text-rose-400">✓</span>
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="mt-8">
-            {user ? (
-              <Link
-                href="/dashboard"
-                className="inline-block rounded-full bg-warm-800 px-12 py-4 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-              >
-                Go to Your Portal
-              </Link>
-            ) : (
-              <div className="flex flex-col items-center gap-3">
+            <div className="mt-6">
+              {user ? (
                 <Link
-                  href="/signup"
-                  className="cta-gradient-btn inline-block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-12 py-4 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  href="/dashboard"
+                  className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                 >
-                  Join Aurora &mdash; $55/month
+                  Go to Your Portal
                 </Link>
-                <p className="text-xs text-warm-400">
-                  Cancel anytime. No contracts. No questions asked.
-                </p>
-              </div>
-            )}
+              ) : (
+                <div className="flex flex-col items-center gap-2">
+                  <Link
+                    href="/signup"
+                    className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                  >
+                    Join Aurora &mdash; $55/month
+                  </Link>
+                  <p className="text-xs text-warm-400">
+                    Cancel anytime. No contracts. No questions asked.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </AnimateOnScroll>
       </section>
