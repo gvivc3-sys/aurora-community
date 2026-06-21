@@ -223,6 +223,11 @@ export default async function Home() {
           </AnimateOnScroll>
         </div>
         </div>
+        <AnimateOnScroll className="mt-12 text-center">
+          <a href="#join" className="inline-block rounded-full border border-warm-300 px-8 py-3 text-sm font-medium text-warm-700 transition-all hover:border-warm-500 hover:text-warm-900 active:scale-[0.98]">
+            Join The Aurora Circle
+          </a>
+        </AnimateOnScroll>
       </section>
 
 
@@ -556,6 +561,11 @@ export default async function Home() {
               </AnimateOnScroll>
             ))}
           </div>
+          <AnimateOnScroll className="mt-12 text-center">
+            <a href="#join" className="inline-block rounded-full border border-warm-300 px-8 py-3 text-sm font-medium text-warm-700 transition-all hover:border-warm-500 hover:text-warm-900 active:scale-[0.98]">
+              Join The Aurora Circle
+            </a>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -586,46 +596,6 @@ export default async function Home() {
         </AnimateOnScroll>
       </section>
 
-      {/* ─── COMMUNITY ETHOS STRIP ─── */}
-      <section className="border-y border-warm-200 bg-warm-100/60 px-6 py-16 sm:py-20">
-        <AnimateOnScroll className="mx-auto max-w-4xl">
-          <div className="grid gap-8 sm:grid-cols-4">
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-200/60">
-                <UserGroupIcon className="h-5 w-5 text-warm-600" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-warm-500">
-                Private sisterhood
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-200/60">
-                <MicrophoneIcon className="h-5 w-5 text-warm-600" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-warm-500">
-                52+ voice notes a year
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-200/60">
-                <SparklesIcon className="h-5 w-5 text-warm-600" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-warm-500">
-                New content weekly
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-200/60">
-                <HeartIcon className="h-5 w-5 text-warm-600" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-warm-500">
-                Cancel anytime
-              </span>
-            </div>
-          </div>
-        </AnimateOnScroll>
-      </section>
-
       {/* ─── FINAL CTA ─── */}
       <section className="relative overflow-hidden px-6 py-28 sm:py-40">
         <div className="hero-gradient absolute inset-0 opacity-50" />
@@ -652,7 +622,7 @@ export default async function Home() {
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
             We were never meant to walk this path alone.
           </p>
-          <div className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
+          <div id="join" className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
             <div className="mb-5 flex justify-center">
               <Image src="/logo.svg" alt="Aurora" width={36} height={40} className="opacity-80" />
             </div>
