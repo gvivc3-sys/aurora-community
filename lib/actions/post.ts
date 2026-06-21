@@ -246,7 +246,8 @@ export async function createPost(previousState: unknown, formData: FormData) {
     }
 
     const title = (formData.get("title") as string)?.trim() || null;
-    const body = (formData.get("body") as string)?.trim() || null;
+    const rawBody = (formData.get("body") as string)?.trim() || null;
+    const body = rawBody ? await linkifyMentionsInHtml(rawBody) : null;
     bodyForMentions = body;
     const postId = crypto.randomUUID();
     const ext = audioFile.name?.split(".").pop() || "webm";
