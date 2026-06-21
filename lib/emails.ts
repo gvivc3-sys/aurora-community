@@ -1,6 +1,6 @@
 import { getResend } from "@/lib/resend";
 
-const FROM = "Aurora Community <hello@myaurora.io>";
+const FROM = "The Aurora Circle <hello@myaurora.io>";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://myaurora.io";
 
 // ---------------------------------------------------------------------------
@@ -16,14 +16,14 @@ function emailLayout(title: string, body: string): string {
 <tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;">
   <tr><td style="padding:32px 40px 24px;border-bottom:1px solid #f0ece8;">
-    <p style="margin:0;font-size:24px;font-style:italic;color:#1c1917;">Aurora</p>
+    <p style="margin:0;font-size:24px;font-style:italic;color:#1c1917;">The Aurora Circle</p>
   </td></tr>
   <tr><td style="padding:32px 40px;">
     ${body}
   </td></tr>
   <tr><td style="padding:24px 40px;border-top:1px solid #f0ece8;">
     <p style="margin:0;font-size:13px;color:#a8a29e;text-align:center;">
-      &copy; ${new Date().getFullYear()} Aurora Community &mdash; You received this email because you have an account with us.
+      &copy; ${new Date().getFullYear()} The Aurora Circle &mdash; You received this email because you have an account with us.
     </p>
   </td></tr>
 </table>
@@ -50,11 +50,11 @@ export async function sendWelcomeEmail(email: string) {
     await getResend().emails.send({
       from: FROM,
       to: email,
-      subject: "Welcome to Aurora",
+      subject: "Welcome to The Aurora Circle",
       html: emailLayout(
-        "Welcome to Aurora",
-        `<p ${textStyle}>Thanks for joining Aurora Community — we're glad you're here.</p>
-         <p ${textStyle}>Aurora is a space for thoughtful conversation, shared learning, and genuine connection. Here's what to expect:</p>
+        "Welcome to The Aurora Circle",
+        `<p ${textStyle}>Thanks for joining The Aurora Circle — we're so glad you're here.</p>
+         <p ${textStyle}>The Aurora Circle is a sanctuary for women who are ready to step into their most radiant, magnetic, and naturally beautiful selves. Here's what to expect:</p>
          <ul style="margin:0 0 16px;padding-left:20px;font-size:16px;line-height:1.6;color:#1c1917;">
            <li>Curated discussions and resources</li>
            <li>Access to our private Telegram group (with a membership)</li>
@@ -77,8 +77,8 @@ export async function sendSubscriptionConfirmedEmail(email: string) {
       subject: "You're in! Membership confirmed",
       html: emailLayout(
         "Membership Confirmed",
-        `<p ${textStyle}>Your Aurora membership is confirmed — welcome to the inner portal.</p>
-         <p ${textStyle}>You now have full access to everything Aurora has to offer, including our private Telegram group.</p>
+        `<p ${textStyle}>Your Aurora Circle membership is confirmed — welcome to the inner portal.</p>
+         <p ${textStyle}>You now have full access to everything The Aurora Circle has to offer, including our private Telegram group.</p>
          ${button("Set up Telegram access", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>If you have any questions, just reply to this email. We're happy to help.</p>`,
       ),
@@ -96,7 +96,7 @@ export async function sendPaymentFailedEmail(email: string) {
       subject: "Payment update needed",
       html: emailLayout(
         "Payment Update Needed",
-        `<p ${textStyle}>We had trouble processing your latest payment for Aurora.</p>
+        `<p ${textStyle}>We had trouble processing your latest payment for The Aurora Circle.</p>
          <p ${textStyle}>This can happen when a card expires or your bank flags the charge. No worries — you can update your payment details below and keep your membership active.</p>
          ${button("Update billing info", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>If you think this is a mistake, just reply to this email and we'll sort it out.</p>`,
@@ -115,7 +115,7 @@ export async function sendSubscriptionCanceledEmail(email: string) {
       subject: "We'll miss you",
       html: emailLayout(
         "Subscription Canceled",
-        `<p ${textStyle}>Your Aurora membership has been canceled. We're sorry to see you go.</p>
+        `<p ${textStyle}>Your Aurora Circle membership has been canceled. We're sorry to see you go.</p>
          <p ${textStyle}>You'll continue to have access to your account, but premium features and Telegram access will be removed.</p>
          <p ${textStyle}>The door is always open if you'd like to come back — you can resubscribe anytime.</p>
          ${button("Resubscribe", `${SITE_URL}/dashboard`)}
