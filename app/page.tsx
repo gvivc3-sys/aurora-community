@@ -74,7 +74,7 @@ const pillars = [
     iconColor: "bg-rose-50 text-rose-500",
     title: "Ashley's Library",
     description:
-      "Lifetime access to all of Ashley's guides and books — including her future releases. Yours forever.",
+      "Lifetime access to all of Ashley's guides and books, including every future release — yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living, growing library you'll return to again and again.",
   },
 ];
 
@@ -159,15 +159,16 @@ export default async function Home() {
             <span className="italic"> walk this path alone.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            Real healing happens in community &mdash; in the warmth of relating, connection, and in
-            the quiet magic of being truly seen.
+            The Aurora Circle is a sanctuary for women who are ready to step into their most
+            radiant, magnetic, and naturally beautiful selves &mdash; through true health, feminine
+            wisdom, and the power of women rising together.
           </p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
             Healing happens in community. In being truly seen, deeply supported, and surrounded by
             women of the same frequency and the same desire to come home to themselves.
           </p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
-            That&apos;s why Aurora was created. To bring us together. To love, uplift, and strengthen
+            That&apos;s why The Aurora Circle was created. To bring us together. To love, uplift, and strengthen
             one another within a safe and sacred container.
           </p>
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
@@ -194,7 +195,7 @@ export default async function Home() {
 
           <AnimateOnScroll delay={150} className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              The Woman Behind Aurora
+              The Woman Behind The Aurora Circle
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               Meet <span className="font-medium">Ashley</span>
@@ -202,8 +203,9 @@ export default async function Home() {
             <p className="mt-5 text-base leading-relaxed text-warm-600">
               Ashley has spent years immersed in ancient beauty practices, deep
               nourishment, energy cultivation, and living in alignment with true
-              health. She spends her days in nature, creating natural skincare,
-              painting, and connecting to the natural ways of living on Earth.
+              health. She spends her days in nature, creating natural skincare and
+              beauty products, painting, and connecting to the natural ways of
+              living on Earth.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
               This is for the woman who is ready to nourish her body, step into
@@ -212,9 +214,9 @@ export default async function Home() {
               she is meant for.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Aurora was born from the deep knowing that each of us holds the
+              The Aurora Circle was born from the deep knowing that each of us holds the
               power to elevate our energy and create the life we feel called to
-              live &mdash; a sanctuary where we come together to create powerful
+              live. This is a sanctuary where we come together to create powerful
               shifts within a safe, supportive, and nurturing container.
             </p>
           </AnimateOnScroll>
@@ -230,20 +232,19 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll>
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Gather Around
+              Enter The Portal
             </p>
             <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Wisdom shared,
-              <span className="block italic">not <span className="font-medium">preached</span></span>
+              Wisdom shared.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
               Every week, Ashley records heart-led voice notes on true health,
-              natural beauty, and elevating your energy. They&apos;re not
+              natural beauty, and elevating your energy. These aren&apos;t
               lectures &mdash; they&apos;re the kind of conversations you&apos;d
               have with your closest friend over a cup of tea.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Press play during your morning ritual. Listen on your walk. Share
+              Press play during your morning ritual, listen on your walk, and share
               your thoughts in the feed. This is how women have always learned
               &mdash; through story, shared experience, and the magic of coming
               together.
@@ -292,8 +293,8 @@ export default async function Home() {
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-warm-500">
-                When we eat with the rhythms of nature, everything shifts
-                &mdash; our skin, our energy, the way we carry ourselves&hellip;
+                When we eat with the seasons, everything shifts. Our bodies receive
+                the quantum information encoded&hellip;
               </p>
             </div>
           </AnimateOnScroll>
@@ -509,15 +510,12 @@ export default async function Home() {
       <section className="dark-gradient relative overflow-hidden px-6 py-24 sm:py-32">
         <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
           <blockquote className="text-2xl font-extralight leading-relaxed tracking-tight text-warm-100 sm:text-3xl md:text-4xl">
-            &ldquo;We weren&apos;t meant to figure this out alone.
+            &ldquo;We were never meant to walk this path alone.
             <span className="mt-2 block">
-              We were meant to walk this path together.&rdquo;
+              Real healing happens in community &mdash; in the warmth of relating,
+              connection, and in the quiet magic of being truly seen.&rdquo;
             </span>
           </blockquote>
-          <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed text-warm-400">
-            Real healing happens in community &mdash; in the warmth of relating, connection, and in
-            the quiet magic of being truly seen.
-          </p>
           <div className="mt-8 flex items-center justify-center gap-3">
             <div className="h-px w-8 bg-warm-600" />
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-500">
@@ -575,16 +573,14 @@ export default async function Home() {
             A private group, <span className="italic">just for <span className="font-medium">us</span></span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-            Every Aurora member gets access to our private Telegram group
-            &mdash; a space for real-time conversations, shared discoveries,
-            and the kind of daily connection that makes this path feel less
-            solitary.
+            Every Aurora member gets access to our private Telegram group &mdash;
+            a space for real-time conversations, shared discoveries, and the kind
+            of conversations that make you feel supported and seen on your path.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-600">
-            Share a recipe that changed your morning. Ask for advice on a
-            new ritual. Celebrate the small wins with women who truly
-            understand. No algorithms deciding what you see &mdash; just
-            honest, unhurried conversation.
+            Share your favorite breakfast recipe. A nighttime ritual that helps
+            you sleep. A lifestyle shift that elevated your energy. Here you can
+            connect with women of the same frequency.
           </p>
         </AnimateOnScroll>
       </section>
@@ -648,9 +644,9 @@ export default async function Home() {
             <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
-            Aurora is a sanctuary for women who are ready to step into their most radiant, magnetic,
-            and naturally beautiful selves &mdash; through true health, feminine wisdom, and the
-            power of women rising together.
+            The Aurora Circle is a sanctuary for women who are ready to step into their most
+            radiant, magnetic, and naturally beautiful selves &mdash; through true health,
+            feminine wisdom, and the power of women rising together.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
             We were never meant to walk this path alone.
