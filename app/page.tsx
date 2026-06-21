@@ -73,7 +73,7 @@ const pillars = [
     icon: VideoCameraIcon,
     iconColor: "bg-rose-50 text-rose-500",
     title: "Ashley's Library",
-    badge: "$125 value",
+
     description:
       "Lifetime access to all of Ashley's guides and books, including every future release, yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living and growing library you'll return to again and again.",
   },
@@ -542,12 +542,7 @@ export default async function Home() {
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {pillars.map((pillar, i) => (
               <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="relative h-full rounded-2xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
-                  {"badge" in pillar && pillar.badge && (
-                    <span className="absolute right-4 top-4 rounded-full bg-rose-50 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-rose-500">
-                      {pillar.badge}
-                    </span>
-                  )}
+                <div className="h-full rounded-2xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
                   <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-xl ${pillar.iconColor}`}>
                     <pillar.icon className="h-6 w-6" />
                   </div>
@@ -665,7 +660,7 @@ export default async function Home() {
             <ul className="space-y-3 text-left">
               {[
                 "Weekly voice notes from Ashley",
-                "Ashley's Library — guides, books & audio tracks",
+                "Ashley's Library — guides, books & audio tracks (over $125 in value!)",
                 "Private Telegram community",
                 "The Portal — articles & reflections",
               ].map((item) => (
