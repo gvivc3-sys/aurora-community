@@ -224,8 +224,9 @@ export default async function Home() {
         </div>
         </div>
         <AnimateOnScroll className="mt-12 text-center">
-          <a href="#join" className="cta-gradient-btn inline-block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
+          <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
             Join The Aurora Circle
+            <ArrowRightIcon className="h-4 w-4 rotate-90" />
           </a>
         </AnimateOnScroll>
       </section>
