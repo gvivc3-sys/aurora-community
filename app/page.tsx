@@ -136,7 +136,7 @@ export default async function Home() {
             </div>
             {!user && (
               <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "450ms" }}>
-                $55 / month &middot; Cancel anytime
+                <span className="line-through opacity-50">$55</span> $38 / month &middot; Early pricing &middot; Cancel anytime
               </p>
             )}
           </div>
@@ -656,7 +656,7 @@ export default async function Home() {
                     href="/signup"
                     className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                   >
-                    Join Aurora &mdash; $55/month
+                    Join Aurora &mdash; <span className="line-through opacity-60">$55</span> $38/month
                   </Link>
                   <p className="text-xs text-warm-400">
                     Cancel anytime. No contracts. No questions asked.
