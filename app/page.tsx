@@ -348,13 +348,13 @@ export default async function Home() {
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;How do you stay rooted in your rituals when life gets overwhelming? I keep losing my routine and it feels like I&apos;m starting over every time.&rdquo;
+                    &ldquo;I&apos;ve been trying to lose weight for years and feel inflamed and exhausted. It feels like my metabolism is completely broken.&rdquo;
                   </p>
                 </div>
                 {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
-                    You&apos;re not starting over &mdash; you&apos;re returning. That&apos;s different. When everything feels chaotic, come back to the smallest anchor: one glass of warm water in the morning, one minute of stillness. The ritual doesn&apos;t have to be grand to hold you.
+                    I really feel you with this. So many women experience this after years of dieting and restricting food...
                   </p>
                 </div>
                 {/* Divider */}
@@ -405,13 +405,13 @@ export default async function Home() {
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;Has anyone else set boundaries with family around the way they eat? I feel so alone in this sometimes.&rdquo;
+                    &ldquo;I want to shift my wardrobe to natural materials but I&apos;m on a tight budget. Is it actually possible?&rdquo;
                   </p>
                 </div>
                 {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
-                    You are not alone in this. Setting boundaries around how you nourish yourself is one of the most courageous acts of self-love. It can feel isolating, but know that this portal is full of women walking the same path &mdash; quietly, bravely.
+                    That is amazing to hear and it is 100% possible! A few great places to start are local thrift stores and op shops. So many of my staple pieces are from...
                   </p>
                 </div>
                 {/* Divider */}
@@ -458,22 +458,17 @@ export default async function Home() {
                     <HeartIcon className="h-3 w-3" /> whisper
                   </span>
                 </div>
-                {/* Nested named whisper */}
+                {/* Nested anonymous whisper */}
                 <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-200 text-[8px] font-semibold text-warm-700">
-                      EM
-                    </div>
-                    <p className="text-xs font-medium text-warm-500">Elena Morales asked:</p>
-                  </div>
+                  <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;What&apos;s one ancient beauty ritual you think every woman should try at least once?&rdquo;
+                    &ldquo;I&apos;ve stopped using harsh cleansers on my skin but I&apos;m not sure what to use instead.&rdquo;
                   </p>
                 </div>
                 {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
-                    Oil cleansing. It&apos;s one of the oldest beauty practices in the world &mdash; a revival of ancestral skincare that modern routines forgot. Warm oil, gentle hands, and a moment of intention. Your skin already knows what to do.
+                    So glad you&apos;ve stopped using cleansers that strip the skin&apos;s natural barrier and healthy bacteria. These are actually so important for skin health and that bright glowing complexion...
                   </p>
                 </div>
                 {/* Divider */}
@@ -625,6 +620,9 @@ export default async function Home() {
             We were never meant to walk this path alone.
           </p>
           <div id="join" className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
+            <div className="mb-4 flex justify-center">
+              <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
+            </div>
             <div className="mb-5 flex justify-center">
               <Image src="/logo.svg" alt="Aurora" width={36} height={40} className="opacity-80" />
             </div>
