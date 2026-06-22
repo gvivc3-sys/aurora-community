@@ -367,7 +367,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Sofia Lin</span> <span className="text-warm-400">&middot; 1d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Needed this today. Returning, not starting over.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">This is exactly where I am right now. So relieved to hear I&apos;m not alone in this.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -376,7 +376,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Rina K.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">The warm water ritual changed my mornings completely.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Years of yo-yo dieting left me feeling the same way. Ashley&apos;s approach completely changed things for me.</p>
                     </div>
                   </div>
                 </div>
@@ -424,7 +424,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Jasmine M.</span> <span className="text-warm-400">&middot; 4d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I went through the same thing last year. It does get easier.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I started at my local op shop last month — found the most beautiful linen pieces for almost nothing!</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -433,7 +433,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Nadia W.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Boundaries are sacred. Thank you for this reminder.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Slow fashion is so worth it. My wardrobe feels so much more intentional now.</p>
                     </div>
                   </div>
                 </div>
@@ -481,7 +481,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Elena Morales</span> <span className="text-warm-400">&middot; 6d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I tried it last night and my skin feels incredible. Thank you!</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Same! I switched to just water and a soft cloth and my skin has never looked better.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -490,7 +490,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Diana T.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">My grandmother used to do this. Full circle moment.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">The microbiome angle blew my mind. Makes so much sense now.</p>
                     </div>
                   </div>
                 </div>
