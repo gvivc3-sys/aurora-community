@@ -85,6 +85,21 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  let hasActiveSub = false;
+  if (user) {
+    const appMeta = (user as { app_metadata?: { role?: string; access_granted?: boolean } }).app_metadata;
+    if (appMeta?.role === "admin" || appMeta?.access_granted) {
+      hasActiveSub = true;
+    } else {
+      const { data: sub } = await supabase
+        .from("subscriptions")
+        .select("status")
+        .eq("user_id", user.id)
+        .single();
+      hasActiveSub = sub?.status === "active" || sub?.status === "past_due";
+    }
+  }
+
   return (
     <div className="bg-warm-50">
       {/* ─── HERO (VSL-LED) ─── */}
@@ -107,7 +122,7 @@ export default async function Home() {
               className="animate-fade-in-up mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
               style={{ animationDelay: "300ms" }}
             >
-              {user ? (
+              {hasActiveSub ? (
                 <Link
                   href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
@@ -134,7 +149,7 @@ export default async function Home() {
                 </>
               )}
             </div>
-            {!user && (
+            {!hasActiveSub && (
               <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "450ms" }}>
                 <span className="line-through opacity-50">$55</span> $38 / month &middot; Early pricing &middot; Cancel anytime
               </p>
@@ -641,7 +656,7 @@ export default async function Home() {
               ))}
             </ul>
             <div className="mt-6">
-              {user ? (
+              {hasActiveSub ? (
                 <Link
                   href="/dashboard"
                   className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"

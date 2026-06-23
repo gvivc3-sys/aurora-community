@@ -9,6 +9,21 @@ export default async function Nav() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  let hasActiveSub = false;
+  if (user) {
+    const appMeta = (user as { app_metadata?: { role?: string; access_granted?: boolean } }).app_metadata;
+    if (appMeta?.role === "admin" || appMeta?.access_granted) {
+      hasActiveSub = true;
+    } else {
+      const { data: sub } = await supabase
+        .from("subscriptions")
+        .select("status")
+        .eq("user_id", user.id)
+        .single();
+      hasActiveSub = sub?.status === "active" || sub?.status === "past_due";
+    }
+  }
+
   let unreadCount = 0;
   if (user && isAdmin(user)) {
     const { count } = await supabase
@@ -40,6 +55,7 @@ export default async function Nav() {
             }
           : null
       }
+      hasActiveSub={hasActiveSub}
       unreadInboxCount={unreadCount}
       unreadNotificationCount={unreadNotificationCount}
     />

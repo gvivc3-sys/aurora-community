@@ -15,7 +15,7 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-export default function NavInner({ user, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; unreadInboxCount?: number; unreadNotificationCount?: number }) {
+export default function NavInner({ user, hasActiveSub = false, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; hasActiveSub?: boolean; unreadInboxCount?: number; unreadNotificationCount?: number }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -62,7 +62,22 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-4 md:flex">
-          {user ? (
+          {user && !hasActiveSub && (
+            <>
+              <Link
+                href="/subscribe"
+                className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] active:scale-[0.97]"
+              >
+                Join The Aurora Circle
+              </Link>
+              <form action={signOut}>
+                <button type="submit" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
+                  Log out
+                </button>
+              </form>
+            </>
+          )}
+          {hasActiveSub ? (
             <>
               <Link
                 href="/dashboard"
@@ -223,7 +238,7 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
 
         {/* Mobile: bell + burger */}
         <div className="flex items-center gap-1 md:hidden">
-          {user && <NotificationDropdown unreadCount={unreadNotificationCount} />}
+          {hasActiveSub && <NotificationDropdown unreadCount={unreadNotificationCount} />}
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -268,7 +283,23 @@ export default function NavInner({ user, unreadInboxCount = 0, unreadNotificatio
       {/* Mobile dropdown */}
       {menuOpen && (
         <div className="animate-slide-down border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
-          {user ? (
+          {user && !hasActiveSub && (
+            <div className="space-y-2">
+              <Link
+                href="/subscribe"
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 px-3 py-2 text-center text-sm font-medium text-white shadow-md"
+              >
+                Join The Aurora Circle
+              </Link>
+              <form action={signOut}>
+                <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
+                  Log out
+                </button>
+              </form>
+            </div>
+          )}
+          {hasActiveSub ? (
             <div className="space-y-3">
               <Link
                 href="/profile"
