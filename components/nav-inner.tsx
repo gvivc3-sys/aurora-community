@@ -236,9 +236,19 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
           )}
         </div>
 
-        {/* Mobile: bell + burger */}
+        {/* Mobile: avatar + bell + burger */}
         <div className="flex items-center gap-1 md:hidden">
           {hasActiveSub && <NotificationDropdown unreadCount={unreadNotificationCount} />}
+          {user && (
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="rounded-full p-0.5 transition-opacity hover:opacity-80"
+              aria-label="Toggle menu"
+            >
+              <Avatar src={user.avatarUrl} name={user.username} email={user.email} size="sm" />
+            </button>
+          )}
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -283,22 +293,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
       {/* Mobile dropdown */}
       {menuOpen && (
         <div className="animate-slide-down border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
-          {user && !hasActiveSub && (
-            <div className="space-y-2">
-              <Link
-                href="/subscribe"
-                onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 px-3 py-2 text-center text-sm font-medium text-white shadow-md"
-              >
-                Join The Aurora Circle
-              </Link>
-              <form action={signOut}>
-                <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
-                  Log out
-                </button>
-              </form>
-            </div>
-          )}
           {(hasActiveSub && user) ? (
             <div className="space-y-3">
               <Link
@@ -409,6 +403,21 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   </button>
                 </form>
               </div>
+            </div>
+          ) : user ? (
+            <div className="space-y-2">
+              <Link
+                href="/subscribe"
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 px-3 py-2 text-center text-sm font-medium text-white shadow-md"
+              >
+                Join The Aurora Circle
+              </Link>
+              <form action={signOut}>
+                <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
+                  Log out
+                </button>
+              </form>
             </div>
           ) : (
             <div className="space-y-2">
