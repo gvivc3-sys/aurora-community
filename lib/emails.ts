@@ -53,14 +53,15 @@ export async function sendWelcomeEmail(email: string) {
       subject: "Welcome to The Aurora Circle",
       html: emailLayout(
         "Welcome to The Aurora Circle",
-        `<p ${textStyle}>Thanks for joining The Aurora Circle — we're so glad you're here.</p>
-         <p ${textStyle}>The Aurora Circle is a sanctuary for women who are ready to step into their most radiant, magnetic, and naturally beautiful selves. Here's what to expect:</p>
+        `<p ${textStyle}>Thanks for joining The Aurora Circle. We're so glad you're here.</p>
+         <p ${textStyle}>The Aurora Circle is a sanctuary for women who are ready to step into their most radiant, magnetic, healthy, and naturally beautiful selves.</p>
+         <p ${textStyle}>Here's what to expect:</p>
          <ul style="margin:0 0 16px;padding-left:20px;font-size:16px;line-height:1.6;color:#1c1917;">
-           <li>Curated discussions and resources</li>
+           <li>Curated discussions and resource library</li>
            <li>Access to our private Telegram group (with a membership)</li>
-           <li>Regular community events</li>
+           <li>Direct messaging with Ashley</li>
          </ul>
-         ${button("Go to your dashboard", `${SITE_URL}/dashboard`)}
+         ${button("Enter the Portal", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>See you inside.</p>`,
       ),
     });
