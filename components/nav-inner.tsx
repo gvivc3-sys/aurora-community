@@ -411,7 +411,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               <Link
                 href="/subscribe"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 px-3 py-2 text-center text-sm font-medium text-white shadow-md"
+                className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Join The Aurora Circle — {MEMBERSHIP_PRICE}
               </Link>
