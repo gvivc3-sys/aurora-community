@@ -50,7 +50,7 @@ export default async function Nav() {
           ? {
               email: user.email ?? "",
               username: user.user_metadata?.username ?? null,
-              avatarUrl: user.user_metadata?.avatar_url ?? null,
+              avatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
               isAdmin: isAdmin(user),
             }
           : null

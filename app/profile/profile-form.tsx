@@ -29,7 +29,7 @@ export default function ProfileForm({ user }: { user: User }) {
   const meta = user.user_metadata ?? {};
   const [state, formAction, pending] = useActionState(updateProfile, null);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(
-    meta.avatar_url ?? null,
+    meta.custom_avatar_url ?? meta.avatar_url ?? null,
   );
   const [uploading, setUploading] = useState(false);
   const [birthday, setBirthday] = useState<string>(meta.birthday ?? "");
@@ -63,14 +63,13 @@ export default function ProfileForm({ user }: { user: User }) {
     const freshUrl = `${publicUrl}?t=${Date.now()}`;
 
     const oldAvatarUrl = avatarUrl;
-    await supabase.auth.updateUser({ data: { avatar_url: freshUrl } });
+    await supabase.auth.updateUser({ data: { custom_avatar_url: freshUrl } });
     setAvatarUrl(freshUrl);
 
     const result = await updateAvatar();
     if (result && "error" in result) {
       toast(result.error ?? "Avatar update failed.", "error");
-      // Revert avatar in metadata
-      await supabase.auth.updateUser({ data: { avatar_url: oldAvatarUrl ?? undefined } });
+      await supabase.auth.updateUser({ data: { custom_avatar_url: oldAvatarUrl ?? undefined } });
       setAvatarUrl(oldAvatarUrl);
     }
 

@@ -144,7 +144,7 @@ export async function updateProfile(
 
   // Upsert user_handles
   if (handle) {
-    const avatarUrl = user.user_metadata?.avatar_url ?? null;
+    const avatarUrl = user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null;
     const displayName = username || oldUsername || null;
 
     await supabaseAdmin
@@ -159,7 +159,7 @@ export async function updateProfile(
   }
 
   if (usernameChanged) {
-    const avatarUrl = user.user_metadata?.avatar_url ?? "";
+    const avatarUrl = user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? "";
     await backfillIdentity(user.id, username, avatarUrl);
     await supabaseAdmin.auth.admin.updateUserById(user.id, {
       user_metadata: { name_changed_at: new Date().toISOString() },
@@ -188,7 +188,7 @@ export async function updateAvatar() {
   }
 
   const name = user.user_metadata?.username ?? "";
-  const avatarUrl = user.user_metadata?.avatar_url ?? "";
+  const avatarUrl = user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? "";
 
   await backfillIdentity(user.id, name, avatarUrl);
   await supabaseAdmin.auth.admin.updateUserById(user.id, {
