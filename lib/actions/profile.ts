@@ -39,7 +39,7 @@ export async function updateProfile(
 ) {
   const supabase = await createClient();
 
-  const username = formData.get("username") as string;
+  const username = (formData.get("username") as string)?.trim();
   const birthday = formData.get("birthday") as string;
   const bio = (formData.get("bio") as string)?.trim() ?? "";
   const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
@@ -51,6 +51,14 @@ export async function updateProfile(
     if (isNaN(date.getTime()) || date.getFullYear() < 1920 || date > now) {
       return { error: "Please enter a valid birthday." };
     }
+  }
+
+  if (username && username.length > 16) {
+    return { error: "Username must be 16 characters or fewer." };
+  }
+
+  if (username && /\s/.test(username)) {
+    return { error: "Username cannot contain spaces." };
   }
 
   if (rawTelegram && !/^[a-zA-Z0-9_]{5,32}$/.test(rawTelegram)) {
