@@ -77,7 +77,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               </form>
             </>
           )}
-          {hasActiveSub ? (
+          {(hasActiveSub && user) ? (
             <>
               <Link
                 href="/dashboard"
@@ -299,7 +299,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               </form>
             </div>
           )}
-          {hasActiveSub ? (
+          {(hasActiveSub && user) ? (
             <div className="space-y-3">
               <Link
                 href="/profile"
