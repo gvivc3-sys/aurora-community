@@ -219,7 +219,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 </button>
               </form>
             </>
-          ) : (
+          ) : !user ? (
             <>
               <Link
                 href="/login"
@@ -234,7 +234,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 Sign up
               </Link>
             </>
-          )}
+          ) : null}
         </div>
 
         {/* Mobile: avatar + bell + burger */}

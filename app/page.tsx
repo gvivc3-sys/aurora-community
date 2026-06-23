@@ -133,19 +133,21 @@ export default async function Home() {
               ) : (
                 <>
                   <Link
-                    href="/signup"
+                    href={user ? "/subscribe" : "/signup"}
                     className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                   >
                     Join Aurora
                     <ArrowRightIcon className="h-4 w-4" />
                   </Link>
-                  <Link
-                    href="/login"
-                    className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
-                  >
-                    Sign In
-                    <ArrowRightIcon className="h-4 w-4" />
-                  </Link>
+                  {!user && (
+                    <Link
+                      href="/login"
+                      className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                    >
+                      Sign In
+                      <ArrowRightIcon className="h-4 w-4" />
+                    </Link>
+                  )}
                 </>
               )}
             </div>
@@ -666,7 +668,7 @@ export default async function Home() {
               ) : (
                 <div className="flex flex-col items-center gap-2">
                   <Link
-                    href="/signup"
+                    href={user ? "/subscribe" : "/signup"}
                     className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                   >
                     Join Aurora &mdash; <span className="line-through opacity-60">$55</span> $38/month
