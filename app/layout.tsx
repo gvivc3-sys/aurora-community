@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     title: "Aurora Community — A Private Sanctuary for Women",
     description: "A private membership community for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
     type: "website",
+    images: [{ url: "https://myaurora.io/images/portrait_image_wide.jpg" }],
   },
   appleWebApp: {
     capable: true,
