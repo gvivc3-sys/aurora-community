@@ -26,11 +26,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aurora Community — A Private Sanctuary for Women",
-  description: "A private membership community for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
+  title: "Aurora Circle — A Private Sanctuary for Women",
+  description: "A private membership circle for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
   openGraph: {
-    title: "Aurora Community — A Private Sanctuary for Women",
-    description: "A private membership community for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
+    title: "Aurora Circle — A Private Sanctuary for Women",
+    description: "A private membership circle for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
     type: "website",
     images: [{ url: "https://myaurora.io/images/portrait_image_wide.jpg" }],
   },
