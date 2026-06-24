@@ -553,7 +553,7 @@ export default async function Home() {
               Welcome Home
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside the <span className="font-medium">Aurora Community</span>
+              What Awaits You Inside the <span className="font-medium">Aurora Circle</span>
             </h2>
           </AnimateOnScroll>
 
