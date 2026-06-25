@@ -40,12 +40,10 @@ export async function POST(request: NextRequest) {
               ? obj.subscription
               : obj.subscription.id;
 
-          // Resolve userId from session or subscription metadata
-          let userId = obj.metadata?.supabase_user_id;
-          if (!userId) {
-            const sub = await stripe.subscriptions.retrieve(subId);
-            userId = sub.metadata.supabase_user_id;
-          }
+          const stripeSub = await stripe.subscriptions.retrieve(subId);
+          const userId =
+            obj.metadata?.supabase_user_id ||
+            stripeSub.metadata.supabase_user_id;
 
           if (userId) {
             await supabaseAdmin.from("subscriptions").upsert(
@@ -57,6 +55,7 @@ export async function POST(request: NextRequest) {
                     : obj.customer.id,
                 stripe_subscription_id: subId,
                 status: "active",
+                current_period_end: new Date(getPeriodEnd(stripeSub) * 1000).toISOString(),
                 updated_at: new Date().toISOString(),
               },
               { onConflict: "user_id" },
@@ -118,6 +117,7 @@ export async function POST(request: NextRequest) {
           .from("subscriptions")
           .update({
             status,
+            current_period_end: new Date(getPeriodEnd(obj) * 1000).toISOString(),
             updated_at: new Date().toISOString(),
           })
           .eq("stripe_subscription_id", obj.id);
@@ -181,6 +181,12 @@ function getSubscriptionIdFromInvoice(invoice: any): string | null {
     return typeof sub === "string" ? sub : sub.id;
   }
   return null;
+}
+
+// current_period_end moved to items.data[0] in Stripe's flexible billing model
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getPeriodEnd(sub: any): number {
+  return sub.current_period_end ?? sub.items?.data?.[0]?.current_period_end ?? 0;
 }
 
 function mapStripeStatus(
