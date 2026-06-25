@@ -106,7 +106,7 @@ export function IOSInstallBanner() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 rounded-xl shadow-sm" />
               <div>
-                <p className="text-sm font-semibold text-warm-900">Aurora Community</p>
+                <p className="text-sm font-semibold text-warm-900">Aurora Circle</p>
                 <p className="text-xs text-warm-500">Add to your Home Screen</p>
               </div>
             </div>

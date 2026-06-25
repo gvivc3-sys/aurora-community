@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Aurora Community",
+    name: "Aurora Circle",
     short_name: "Aurora",
     start_url: "/dashboard",
     display: "standalone",

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Aurora Community",
+  title: "Privacy Policy — Aurora Circle",
 };
 
 const CONTACT_EMAIL = "hello@myaurora.io";
-const SITE_NAME = "Aurora Community";
+const SITE_NAME = "Aurora Circle";
 const SITE_URL = "https://myaurora.io";
 
 export default function PrivacyPage() {
