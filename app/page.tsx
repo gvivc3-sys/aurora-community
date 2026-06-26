@@ -647,9 +647,9 @@ export default async function Home() {
             <ul className="space-y-3 text-left">
               {[
                 "Weekly voice notes from Ashley",
-                "Ashley's Library — guides, books & audio tracks (over $125 in value!)",
+                "Ashley's Library — guides, books, and audio tracks (over $125 in value!)",
+                "The Portal — exclusive articles, reflections, and community connection",
                 "Private Telegram community",
-                "The Portal — articles & reflections",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
