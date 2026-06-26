@@ -5,7 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
-import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon } from "@/components/icons";
+import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -357,8 +357,8 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    <HeartIcon className="h-3 w-3" /> Nourishment
+                  <span className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                    <LeafIcon className="h-3 w-3" /> Nourishment
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -414,8 +414,8 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">5d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    <HeartIcon className="h-3 w-3" /> Frequency
+                  <span className="flex items-center gap-1 rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-medium text-fuchsia-700">
+                    <BoltIcon className="h-3 w-3" /> Frequency
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -471,7 +471,7 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">1w ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
+                  <span className="flex items-center gap-1 rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-medium text-rose-700">
                     <HeartIcon className="h-3 w-3" /> Health + Beauty
                   </span>
                 </div>
