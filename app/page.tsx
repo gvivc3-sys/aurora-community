@@ -358,7 +358,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    <HeartIcon className="h-3 w-3" /> whisper
+                    <HeartIcon className="h-3 w-3" /> Nourishment
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -415,7 +415,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    <HeartIcon className="h-3 w-3" /> whisper
+                    <HeartIcon className="h-3 w-3" /> Frequency
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -472,7 +472,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-pink-50 px-2.5 py-0.5 text-xs font-medium text-pink-700">
-                    <HeartIcon className="h-3 w-3" /> whisper
+                    <HeartIcon className="h-3 w-3" /> Health + Beauty
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
