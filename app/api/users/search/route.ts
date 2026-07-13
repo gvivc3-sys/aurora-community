@@ -18,15 +18,32 @@ export async function GET(request: NextRequest) {
     return NextResponse.json([]);
   }
 
-  const { data, error } = await supabaseAdmin
-    .from("user_handles")
-    .select("user_id, handle, display_name, avatar_url")
-    .or(`handle.ilike.${q}%,display_name.ilike.%${q}%`)
-    .limit(8);
+  const [byHandle, byDisplayName] = await Promise.all([
+    supabaseAdmin
+      .from("user_handles")
+      .select("user_id, handle, display_name, avatar_url")
+      .ilike("handle", `${q}%`)
+      .limit(8),
+    supabaseAdmin
+      .from("user_handles")
+      .select("user_id, handle, display_name, avatar_url")
+      .ilike("display_name", `%${q}%`)
+      .limit(8),
+  ]);
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (byHandle.error) {
+    return NextResponse.json({ error: byHandle.error.message }, { status: 500 });
+  }
+  if (byDisplayName.error) {
+    return NextResponse.json({ error: byDisplayName.error.message }, { status: 500 });
   }
 
-  return NextResponse.json(data ?? []);
+  const seen = new Set<string>();
+  const results = [...byHandle.data, ...byDisplayName.data].filter((row) => {
+    if (seen.has(row.user_id)) return false;
+    seen.add(row.user_id);
+    return true;
+  });
+
+  return NextResponse.json(results.slice(0, 8));
 }
