@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { stripe } from "@/lib/stripe";
+import MonthlyCustomersChart from "@/components/monthly-customers-chart";
 
 const PRICE_PER_MONTH = 77;
 
@@ -108,6 +109,28 @@ export default async function AdminPage() {
   const estimatedLtv =
     monthlyChurnRate > 0 ? PRICE_PER_MONTH / monthlyChurnRate : 0;
 
+  // New paying customers per month (last 12 months), based on currently
+  // active/trialing subscriptions only.
+  const monthlyCustomers = (() => {
+    const today = new Date();
+    const buckets = Array.from({ length: 12 }, (_, i) => {
+      const d = new Date(today.getFullYear(), today.getMonth() - (11 - i), 1);
+      return {
+        key: `${d.getFullYear()}-${d.getMonth()}`,
+        label: d.toLocaleDateString("en-US", { month: "short" }),
+        fullLabel: d.toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+        count: 0,
+      };
+    });
+    const indexByKey = new Map(buckets.map((b, i) => [b.key, i]));
+    for (const sub of activeSubs) {
+      const d = new Date(sub.start_date * 1000);
+      const idx = indexByKey.get(`${d.getFullYear()}-${d.getMonth()}`);
+      if (idx !== undefined) buckets[idx].count += 1;
+    }
+    return buckets;
+  })();
+
   const revenueStats = [
     { label: "MRR", value: currency(mrr) },
     { label: "Projected Annual", value: currency(projectedAnnual) },
@@ -182,6 +205,16 @@ export default async function AdminPage() {
                 <p className="mt-2 text-sm text-warm-500">{stat.label}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Growth */}
+        <div className="mt-12">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
+            New Paying Customers by Month
+          </p>
+          <div className="mt-4">
+            <MonthlyCustomersChart data={monthlyCustomers} />
           </div>
         </div>
 
