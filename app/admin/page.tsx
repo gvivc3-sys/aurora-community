@@ -27,14 +27,6 @@ async function fetchAllSubscriptions() {
   return subs;
 }
 
-async function fetchAllCharges() {
-  const charges: Awaited<ReturnType<typeof stripe.charges.list>>["data"] = [];
-  for await (const charge of stripe.charges.list({ limit: 100 })) {
-    charges.push(charge);
-  }
-  return charges;
-}
-
 async function fetchAllBalanceTransactions() {
   const txns: Awaited<ReturnType<typeof stripe.balanceTransactions.list>>["data"] = [];
   for await (const txn of stripe.balanceTransactions.list({ limit: 100, type: "charge" })) {
@@ -54,18 +46,13 @@ export default async function AdminPage() {
   }
 
   // Fetch everything in parallel
-  const [usersRes, allSubs, allCharges, allTxns] = await Promise.all([
+  const [usersRes, allSubs, allTxns] = await Promise.all([
     supabaseAdmin.auth.admin.listUsers({ perPage: 1000 }),
     fetchAllSubscriptions(),
-    fetchAllCharges(),
     fetchAllBalanceTransactions(),
   ]);
 
   const totalMembers = usersRes.data?.users?.length ?? 0;
-  const adminCount =
-    usersRes.data?.users?.filter(
-      (u) => u.app_metadata?.role === "admin",
-    ).length ?? 0;
 
   // Subscriber counts
   const activeSubs = allSubs.filter(
@@ -87,11 +74,6 @@ export default async function AdminPage() {
   const mrr = activeSubs.length * PRICE_PER_MONTH;
   const projectedAnnual = mrr * 12;
   const churnAdjustedAnnual = projectedAnnual * (1 - monthlyChurnRate);
-
-  const totalRevenue =
-    allCharges
-      .filter((c) => c.status === "succeeded")
-      .reduce((sum, c) => sum + c.amount, 0) / 100;
 
   const netRevenue =
     allTxns.reduce((sum, t) => sum + t.net, 0) / 100;
@@ -133,9 +115,7 @@ export default async function AdminPage() {
 
   const revenueStats = [
     { label: "MRR", value: currency(mrr) },
-    { label: "Projected Annual", value: currency(projectedAnnual) },
     { label: "Churn-Adjusted Annual", value: currency(Math.round(churnAdjustedAnnual)) },
-    { label: "Total Revenue", value: currency(Math.round(totalRevenue)) },
     { label: "Net Revenue", value: currency(Math.round(netRevenue)) },
   ];
 
@@ -144,7 +124,6 @@ export default async function AdminPage() {
     { label: "Past Due", value: pastDueSubs.length },
     { label: "Canceled", value: canceledSubs.length },
     { label: "Total Members", value: totalMembers },
-    { label: "Admins", value: adminCount },
   ];
 
   const healthStats = [
@@ -166,6 +145,16 @@ export default async function AdminPage() {
           <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
             Community Stats
           </h1>
+        </div>
+
+        {/* Growth */}
+        <div className="mt-12">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
+            New Paying Customers by Month
+          </p>
+          <div className="mt-4">
+            <MonthlyCustomersChart data={monthlyCustomers} />
+          </div>
         </div>
 
         {/* Revenue */}
@@ -193,7 +182,7 @@ export default async function AdminPage() {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
             Subscribers
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <div className="mt-4 grid gap-4 sm:grid-cols-4">
             {subscriberStats.map((stat) => (
               <div
                 key={stat.label}
@@ -205,16 +194,6 @@ export default async function AdminPage() {
                 <p className="mt-2 text-sm text-warm-500">{stat.label}</p>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Growth */}
-        <div className="mt-12">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            New Paying Customers by Month
-          </p>
-          <div className="mt-4">
-            <MonthlyCustomersChart data={monthlyCustomers} />
           </div>
         </div>
 
