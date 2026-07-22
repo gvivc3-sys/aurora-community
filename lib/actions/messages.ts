@@ -52,7 +52,7 @@ export async function sendMessage(
   const { error } = await supabase.from("messages").insert({
     sender_id: user.id,
     sender_name: anonymous ? null : (user.user_metadata?.username ?? user.email),
-    sender_avatar_url: anonymous ? null : (user.user_metadata?.avatar_url ?? null),
+    sender_avatar_url: anonymous ? null : (user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null),
     body,
   });
 
@@ -233,7 +233,7 @@ export async function replyToMessage(
       comments_enabled: true,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
-      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
     });
 
     if (postError) {
@@ -270,7 +270,7 @@ export async function replyToMessage(
     await createMentionNotifications({
       actorId: user.id,
       actorName: user.user_metadata?.username ?? user.email ?? null,
-      actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+      actorAvatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
       mentionedUserIds,
       type: "mention_reply",
       resourceType: "message",
@@ -357,7 +357,7 @@ export async function replyToReply(
       await createMentionNotifications({
         actorId: user.id,
         actorName: user.user_metadata?.username ?? user.email ?? null,
-        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        actorAvatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         mentionedUserIds,
         type: "mention_reply",
         resourceType: "message",

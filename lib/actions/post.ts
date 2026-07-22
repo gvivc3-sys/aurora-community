@@ -60,7 +60,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       video_url: videoUrl,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
-      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
     }).select("id").single();
@@ -127,7 +127,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         file_type: fileType,
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
-        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         tag: tag as "love" | "health" | "magic",
         comments_enabled: commentsEnabled,
       }).select("id").single();
@@ -142,7 +142,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         body: linkedBody,
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
-        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         tag: tag as "love" | "health" | "magic",
         comments_enabled: commentsEnabled,
       }).select("id").single();
@@ -207,7 +207,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         file_type: fileType,
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
-        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         tag: tag as "love" | "health" | "magic",
         comments_enabled: commentsEnabled,
       }).select("id").single();
@@ -223,7 +223,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         body: linkedBody,
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
-        author_avatar_url: user.user_metadata?.avatar_url ?? null,
+        author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         tag: tag as "love" | "health" | "magic",
         comments_enabled: commentsEnabled,
       }).select("id").single();
@@ -276,7 +276,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       audio_url: publicUrlData.publicUrl,
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
-      author_avatar_url: user.user_metadata?.avatar_url ?? null,
+      author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
       tag: tag as "love" | "health" | "magic",
       comments_enabled: commentsEnabled,
     }).select("id").single();
@@ -296,7 +296,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       await createMentionNotifications({
         actorId: user.id,
         actorName: user.user_metadata?.username ?? user.email ?? null,
-        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        actorAvatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         mentionedUserIds,
         type: "mention_post",
         resourceType: "post",
@@ -475,7 +475,7 @@ export async function addComment(previousState: unknown, formData: FormData) {
     post_id: postId,
     user_id: user.id,
     author_name: user.user_metadata?.username ?? user.email,
-    author_avatar_url: user.user_metadata?.avatar_url ?? null,
+    author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
     body,
   }).select("id").single();
 
@@ -491,7 +491,7 @@ export async function addComment(previousState: unknown, formData: FormData) {
       await createMentionNotifications({
         actorId: user.id,
         actorName: user.user_metadata?.username ?? user.email ?? null,
-        actorAvatarUrl: user.user_metadata?.avatar_url ?? null,
+        actorAvatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
         mentionedUserIds,
         type: "mention_comment",
         resourceType: "post",
