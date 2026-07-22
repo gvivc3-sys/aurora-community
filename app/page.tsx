@@ -109,7 +109,7 @@ export default async function Home() {
         <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-16 text-center sm:pb-20 sm:pt-20">
           <div className="relative z-10">
             <p className="animate-fade-in-up font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              A Private Community for Women
+              A Private Space for Women
             </p>
 
             {/* Video */}
