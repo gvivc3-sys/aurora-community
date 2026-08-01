@@ -22,7 +22,7 @@ export default function WelcomeCard() {
   if (!visible) return null;
 
   return (
-    <div className="relative rounded-2xl border border-warm-200 bg-gradient-to-br from-white to-warm-50 p-5 shadow-sm">
+    <div className="relative rounded-xl border border-warm-200 bg-gradient-to-br from-white to-warm-50 p-5 shadow-sm">
       <button
         type="button"
         onClick={dismiss}

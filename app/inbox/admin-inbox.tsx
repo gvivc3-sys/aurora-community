@@ -149,7 +149,7 @@ function ReplyForm({ messageId }: { messageId: string }) {
           <input type="hidden" name="mode" value={mode} />
 
           {/* Mode toggle */}
-          <div className="flex rounded-lg border border-warm-200 p-0.5">
+          <div className="flex rounded-md border border-warm-200 p-0.5">
             <button
               type="button"
               onClick={() => setMode("private")}
@@ -266,7 +266,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
             return (
               <div
                 key={msg.id}
-                className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition-shadow hover:shadow-md ${
+                className={`overflow-hidden rounded-xl border bg-white shadow-sm transition-shadow hover:shadow-md ${
                   msg.status === "unread"
                     ? "border-warm-300"
                     : "border-warm-200"
@@ -334,7 +334,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       return replies.length > 0 ? (
                         <div className="mt-3 space-y-2">
                           {replies.map((reply, i) => (
-                            <div key={i} className={`rounded-lg px-3 py-2 ${
+                            <div key={i} className={`rounded-md px-3 py-2 ${
                               reply.role === "user"
                                 ? "border-l-2 border-warm-300 bg-warm-100/50"
                                 : "bg-warm-50"

@@ -123,7 +123,7 @@ export default async function BookmarksPage() {
               return (
                 <div
                   key={post.id}
-                  className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
@@ -178,7 +178,7 @@ export default async function BookmarksPage() {
                   )}
 
                   {post.anonymous_question && (
-                    <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                    <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                       <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                       <p className="mt-1 text-sm italic text-warm-600">
                         {post.anonymous_question}

@@ -85,7 +85,7 @@ export default function ProfileForm({ user }: { user: User }) {
         <p className="mt-1 text-sm text-warm-500">{user.email}</p>
 
         {/* Avatar card */}
-        <div className="mt-8 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">Profile picture</h2>
           <div className="mt-4 flex items-center gap-5">
             <Avatar
@@ -113,7 +113,7 @@ export default function ProfileForm({ user }: { user: User }) {
         </div>
 
         {/* Info card */}
-        <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">
             Personal information
           </h2>
@@ -136,7 +136,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 maxLength={16}
                 pattern="\S+"
                 title="No spaces allowed"
-                className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Pick a display name"
               />
               <p className="mt-1 text-xs text-warm-400">Max 16 characters, no spaces.</p>
@@ -149,7 +149,7 @@ export default function ProfileForm({ user }: { user: User }) {
               >
                 Handle
               </label>
-              <div className="flex items-center rounded-lg border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
                 <span className="pl-3 text-sm text-warm-400">@</span>
                 <input
                   id="handle"
@@ -181,12 +181,12 @@ export default function ProfileForm({ user }: { user: User }) {
                 max={new Date().toISOString().split("T")[0]}
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
-                className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
               />
             </div>
 
             {zodiac && (
-              <div className="rounded-lg bg-warm-100 p-3 text-sm text-warm-700">
+              <div className="rounded-md bg-warm-100 p-3 text-sm text-warm-700">
                 <span className="text-lg">{zodiac.symbol}</span>{" "}
                 <strong>{zodiac.name}</strong> — {zodiac.element} sign (
                 {zodiac.dateRange})
@@ -206,7 +206,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 rows={3}
                 maxLength={300}
                 defaultValue={meta.bio ?? ""}
-                className="w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Tell the portal a little about yourself..."
               />
             </div>
@@ -218,7 +218,7 @@ export default function ProfileForm({ user }: { user: User }) {
               >
                 Telegram
               </label>
-              <div className="flex items-center rounded-lg border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
                 <span className="pl-3 text-sm text-warm-400">@</span>
                 <input
                   id="telegram_handle"
@@ -244,7 +244,7 @@ export default function ProfileForm({ user }: { user: User }) {
           </form>
         </div>
         {/* Subscription card */}
-        <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">Subscription</h2>
           <p className="mt-2 text-sm text-warm-700">
             Manage your billing, update payment method, or cancel your

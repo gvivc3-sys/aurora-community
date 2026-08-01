@@ -1,7 +1,7 @@
 function Shimmer({ className }: { className?: string }) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-warm-200 ${className ?? ""}`}
+      className={`animate-pulse rounded-md bg-warm-200 ${className ?? ""}`}
     />
   );
 }
@@ -15,7 +15,7 @@ export default function ProfileLoading() {
         <Shimmer className="mt-1 h-4 w-48" />
 
         {/* Avatar card skeleton */}
-        <div className="mt-8 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <Shimmer className="h-4 w-24" />
           <div className="mt-4 flex items-center gap-5">
             <Shimmer className="h-20 w-20 rounded-full" />
@@ -27,13 +27,13 @@ export default function ProfileLoading() {
         </div>
 
         {/* Info card skeleton */}
-        <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <Shimmer className="h-4 w-36" />
           <div className="mt-4 space-y-4">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="space-y-1.5">
                 <Shimmer className="h-3 w-20" />
-                <Shimmer className="h-9 w-full rounded-lg" />
+                <Shimmer className="h-9 w-full rounded-md" />
               </div>
             ))}
           </div>

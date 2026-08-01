@@ -453,7 +453,7 @@ export default function PostActions({
             className="mt-4"
           >
             <input type="hidden" name="postId" value={postId} />
-            <div className="overflow-hidden rounded-lg border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+            <div className="overflow-hidden rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
               <div className="flex w-full items-center gap-1 px-2">
                 <input
                   ref={commentInputRef}

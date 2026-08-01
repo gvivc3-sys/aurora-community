@@ -47,10 +47,10 @@ export default async function ManagementPage({
         </h1>
 
         {/* Tabs */}
-        <div className="mt-6 flex gap-1 rounded-xl border border-warm-200 bg-white p-1 shadow-sm">
+        <div className="mt-6 flex gap-1 rounded-lg border border-warm-200 bg-white p-1 shadow-sm">
           <a
             href="/management?tab=notice"
-            className={`flex-1 rounded-lg py-2 text-center text-sm font-medium transition-colors ${
+            className={`flex-1 rounded-md py-2 text-center text-sm font-medium transition-colors ${
               tab === "notice"
                 ? "bg-warm-900 text-white shadow-sm"
                 : "text-warm-600 hover:text-warm-900"
@@ -60,7 +60,7 @@ export default async function ManagementPage({
           </a>
           <a
             href="/management?tab=whispers"
-            className={`relative flex-1 rounded-lg py-2 text-center text-sm font-medium transition-colors ${
+            className={`relative flex-1 rounded-md py-2 text-center text-sm font-medium transition-colors ${
               tab === "whispers"
                 ? "bg-warm-900 text-white shadow-sm"
                 : "text-warm-600 hover:text-warm-900"
@@ -78,7 +78,7 @@ export default async function ManagementPage({
         {/* Tab content */}
         <div className="mt-6">
           {tab === "notice" && (
-            <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+            <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
               <NoticeForm active={activeNotice as unknown as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green"; from_name: string } | null} />
             </div>
           )}

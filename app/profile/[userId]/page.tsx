@@ -116,7 +116,7 @@ export default async function PublicProfilePage({
 
         {/* Bio */}
         {meta.bio && (
-          <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">About</h2>
             <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">
               {meta.bio}
@@ -126,7 +126,7 @@ export default async function PublicProfilePage({
 
         {/* Telegram */}
         {meta.telegram_handle && (
-          <div className="mt-4 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-4 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Telegram</h2>
             <a
               href={`https://t.me/${meta.telegram_handle}`}
@@ -141,7 +141,7 @@ export default async function PublicProfilePage({
 
         {/* Saved posts */}
         {savedPosts.length > 0 && (
-          <div className="mt-6 rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Saved</h2>
             <div className="mt-3 space-y-3">
               {savedPosts.map((post) => {
@@ -157,7 +157,7 @@ export default async function PublicProfilePage({
                   <Link
                     key={post.id}
                     href="/dashboard"
-                    className="flex items-center gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-warm-50"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-warm-50"
                   >
                     <span
                       className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
@@ -180,7 +180,7 @@ export default async function PublicProfilePage({
 
         {/* Owner hint */}
         {isOwner && (
-          <div className="mt-6 rounded-2xl border border-warm-200 bg-warm-100 px-4 py-3 text-center">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-warm-100 px-4 py-3 text-center">
             <p className="text-sm text-warm-600">
               This is your profile.{" "}
               <Link

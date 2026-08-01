@@ -56,7 +56,7 @@ export default function MonthlyCustomersChart({
       : "";
 
   return (
-    <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+    <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
       <div className="relative">
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -117,7 +117,7 @@ export default function MonthlyCustomersChart({
 
         {hovered !== null && (
           <div
-            className="pointer-events-none absolute -top-1 z-10 whitespace-nowrap rounded-lg bg-warm-900 px-2 py-1 text-xs text-warm-50 shadow-sm"
+            className="pointer-events-none absolute -top-1 z-10 whitespace-nowrap rounded-md bg-warm-900 px-2 py-1 text-xs text-warm-50 shadow-sm"
             style={{
               left: `${(points[hovered].x / WIDTH) * 100}%`,
               top: `${(points[hovered].y / HEIGHT) * 100}%`,

@@ -166,7 +166,7 @@ export default async function AdminPage() {
             {revenueStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-warm-200 bg-white p-6 text-center shadow-sm"
+                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
               >
                 <p className="text-3xl font-light tracking-tight text-warm-900">
                   {stat.value}
@@ -186,7 +186,7 @@ export default async function AdminPage() {
             {subscriberStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-warm-200 bg-white p-6 text-center shadow-sm"
+                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
               >
                 <p className="text-3xl font-light tracking-tight text-warm-900">
                   {stat.value}
@@ -206,7 +206,7 @@ export default async function AdminPage() {
             {healthStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-warm-200 bg-white p-6 text-center shadow-sm"
+                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
               >
                 <p className="text-3xl font-light tracking-tight text-warm-900">
                   {stat.value}

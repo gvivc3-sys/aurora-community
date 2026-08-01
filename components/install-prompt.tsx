@@ -93,7 +93,7 @@ export function IOSInstallBanner() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 animate-slide-up px-4 pb-4">
-      <div className="mx-auto max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-warm-200">
+      <div className="mx-auto max-w-sm overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-warm-200">
         {/* Arrow pointing down toward Safari toolbar */}
         <div className="flex justify-center pt-3">
           <div className="h-1 w-10 rounded-full bg-warm-200" />
@@ -104,7 +104,7 @@ export function IOSInstallBanner() {
             <div className="flex items-center gap-3">
               {/* App icon */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 rounded-xl shadow-sm" />
+              <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 rounded-lg shadow-sm" />
               <div>
                 <p className="text-sm font-semibold text-warm-900">Aurora Circle</p>
                 <p className="text-xs text-warm-500">Add to your Home Screen</p>

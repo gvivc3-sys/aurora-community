@@ -192,7 +192,7 @@ export default async function DashboardPage({
         )}
 
         {!user.user_metadata?.username && (
-          <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
+          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
             <p className="text-sm text-amber-800">
               You haven&apos;t set a display name yet.{" "}
               <a
@@ -229,7 +229,7 @@ export default async function DashboardPage({
                 <div
                   key={post.id}
                   id={`post-${post.id}`}
-                  className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md scroll-mt-16"
+                  className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md scroll-mt-16"
                 >
                   {/* Header: author info + tags */}
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
@@ -294,7 +294,7 @@ export default async function DashboardPage({
 
                   {/* Anonymous question quote */}
                   {post.anonymous_question && (
-                    <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                    <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                       <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                       <p className="mt-1 text-sm italic text-warm-600">
                         {post.anonymous_question}

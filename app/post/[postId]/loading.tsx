@@ -1,7 +1,7 @@
 function Shimmer({ className }: { className?: string }) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-warm-200 ${className ?? ""}`}
+      className={`animate-pulse rounded-md bg-warm-200 ${className ?? ""}`}
     />
   );
 }
@@ -11,7 +11,7 @@ export default function PostLoading() {
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
         <Shimmer className="h-4 w-28" />
-        <div className="mt-6 overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+        <div className="mt-6 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
           <div className="flex items-center gap-3 px-4 pt-4">
             <Shimmer className="h-8 w-8 shrink-0 rounded-full" />
             <div className="flex-1 space-y-1.5">

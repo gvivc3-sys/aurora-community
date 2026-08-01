@@ -67,7 +67,7 @@ export default function NoticeBanner({ notice }: { notice: Notice }) {
   const hl = highlightStyles[notice.bg] ?? highlightStyles.default;
 
   return (
-    <div className={`overflow-hidden rounded-2xl border shadow-sm ${bg.wrapper}`}>
+    <div className={`overflow-hidden rounded-xl border shadow-sm ${bg.wrapper}`}>
       {/* Header bar */}
       <button
         type="button"

@@ -74,7 +74,7 @@ export default function RichTextEditor({
   if (!editor) return null;
 
   return (
-    <div className="overflow-hidden rounded-lg border border-warm-300 shadow-sm focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+    <div className="overflow-hidden rounded-md border border-warm-300 shadow-sm focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-0.5 border-b border-warm-200 bg-warm-50 px-2 py-1.5">
         <ToolbarButton

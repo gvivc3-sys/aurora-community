@@ -49,7 +49,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             key={t.id}
             role="alert"
             onClick={() => dismiss(t.id)}
-            className={`animate-fade-in-up cursor-pointer rounded-xl px-5 py-3 text-sm font-medium shadow-lg backdrop-blur-sm transition-all ${
+            className={`animate-fade-in-up cursor-pointer rounded-lg px-5 py-3 text-sm font-medium shadow-lg backdrop-blur-sm transition-all ${
               t.type === "success"
                 ? "border border-green-200 bg-green-50/95 text-green-800"
                 : t.type === "error"

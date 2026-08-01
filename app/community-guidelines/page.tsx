@@ -28,7 +28,7 @@ export default async function CommunityGuidelinesPage() {
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-sm rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
+        <div className="mx-auto mt-12 max-w-sm rounded-xl border border-warm-200 bg-white p-8 shadow-sm">
           <ul className="space-y-4">
             {[
               {

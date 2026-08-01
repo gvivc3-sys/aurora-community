@@ -34,10 +34,10 @@ export default async function ChatPage() {
         </p>
 
         {/* Telegram connect card */}
-        <div className="mt-8 rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
+        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-8 shadow-sm">
           <div className="flex flex-col items-center text-center">
             {/* Telegram icon */}
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#2AABEE]/10">
+            <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#2AABEE]/10">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -62,7 +62,7 @@ export default async function ChatPage() {
 
           {/* Feature highlights */}
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-xl bg-warm-50 p-4 text-center">
+            <div className="rounded-lg bg-warm-50 p-4 text-center">
               <span className="text-2xl">{"\uD83D\uDD12"}</span>
               <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-warm-700">
                 Private
@@ -71,7 +71,7 @@ export default async function ChatPage() {
                 Members-only group
               </p>
             </div>
-            <div className="rounded-xl bg-warm-50 p-4 text-center">
+            <div className="rounded-lg bg-warm-50 p-4 text-center">
               <span className="text-2xl">{"\u26A1"}</span>
               <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-warm-700">
                 Real-time
@@ -80,7 +80,7 @@ export default async function ChatPage() {
                 Instant conversations
               </p>
             </div>
-            <div className="rounded-xl bg-warm-50 p-4 text-center">
+            <div className="rounded-lg bg-warm-50 p-4 text-center">
               <span className="text-2xl">{"\uD83C\uDF3F"}</span>
               <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-warm-700">
                 Curated
@@ -101,7 +101,7 @@ export default async function ChatPage() {
         </div>
 
         {/* How it works */}
-        <div className="mt-8 rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
+        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-8 shadow-sm">
           <h3 className="text-center text-sm font-semibold uppercase tracking-wider text-warm-700">
             How it works
           </h3>

@@ -5,6 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
+import Marquee from "@/components/marquee";
 import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
 
 
@@ -112,6 +113,15 @@ export default async function Home() {
               A Private Space for Women
             </p>
 
+            {/* Headline */}
+            <h1
+              className="animate-fade-in-up mt-6 font-display text-5xl leading-[1.05] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
+              style={{ animationDelay: "80ms" }}
+            >
+              <span className="block font-normal italic">Reclaim your energy.</span>
+              <span className="block font-bold">Elevate your life.</span>
+            </h1>
+
             {/* Video */}
             <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
               <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
@@ -160,6 +170,11 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── MARQUEE ─── */}
+      <section className="border-y border-warm-200 py-8">
+        <Marquee />
+      </section>
+
 
       {/* ─── SISTERHOOD COPY ─── */}
       <section className="relative overflow-x-clip border-b border-t border-warm-200 py-16 text-center sm:py-24">
@@ -200,9 +215,9 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-12 md:grid-cols-5">
           <AnimateOnScroll className="md:col-span-2">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl shadow-lg">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-xl shadow-lg">
               <Image
-                src="/images/profile_image_of_ashley.jpg"
+                src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192"
                 alt="Ashley Aurora"
                 fill
                 className="object-cover"
@@ -271,10 +286,10 @@ export default async function Home() {
 
           {/* Voice note mockup card */}
           <AnimateOnScroll delay={200}>
-            <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
+            <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                  <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="44px" />
+                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="44px" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-warm-900">
@@ -290,7 +305,7 @@ export default async function Home() {
                 Nourishing your body with the seasons
               </h3>
 
-              <div className="mt-4 rounded-xl bg-warm-50 p-4">
+              <div className="mt-4 rounded-lg bg-warm-50 p-4">
                 <div className="flex items-center gap-3">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fuchsia-200 text-warm-900 shadow-md">
                     <svg
@@ -345,12 +360,12 @@ export default async function Home() {
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {/* Card 1 — Anonymous whisper, Ashley responds */}
             <AnimateOnScroll delay={0}>
-              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -362,7 +377,7 @@ export default async function Home() {
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
-                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;I&apos;ve been trying to lose weight for years and feel inflamed and exhausted. It feels like my metabolism is completely broken.&rdquo;
@@ -402,12 +417,12 @@ export default async function Home() {
 
             {/* Card 2 — Anonymous whisper, Ashley responds */}
             <AnimateOnScroll delay={150}>
-              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -419,7 +434,7 @@ export default async function Home() {
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
-                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;I want to shift my wardrobe to natural materials but I&apos;m on a tight budget. Is it actually possible?&rdquo;
@@ -459,12 +474,12 @@ export default async function Home() {
 
             {/* Card 3 — Named whisper (Elena), Ashley responds */}
             <AnimateOnScroll delay={300}>
-              <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="/images/profile_image_of_ashley.jpg" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
@@ -476,7 +491,7 @@ export default async function Home() {
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
-                <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+                <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
                     &ldquo;I&apos;ve stopped using harsh cleansers on my skin but I&apos;m not sure what to use instead.&rdquo;
@@ -560,8 +575,8 @@ export default async function Home() {
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {pillars.map((pillar, i) => (
               <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="h-full rounded-2xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
-                  <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-xl ${pillar.iconColor}`}>
+                <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
+                  <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-lg ${pillar.iconColor}`}>
                     <pillar.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-lg font-bold text-warm-900">
@@ -636,12 +651,14 @@ export default async function Home() {
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
             We were never meant to walk this path alone.
           </p>
-          <div id="join" className="mx-auto mt-10 max-w-sm rounded-2xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
+          <div id="join" className="mx-auto mt-10 max-w-sm rounded-xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
             <div className="mb-4 flex justify-center">
               <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
             </div>
             <div className="mb-5 flex justify-center">
-              <Image src="/logo.svg" alt="Aurora" width={36} height={40} className="opacity-80" />
+              <svg viewBox="0 0 258.22298 283.80057" className="h-10 w-auto text-warm-600 opacity-90" fill="currentColor" aria-label="Aurora">
+                <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
+              </svg>
             </div>
             <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
             <ul className="space-y-3 text-left">

@@ -111,7 +111,7 @@ function UserReplyForm({ messageId }: { messageId: string }) {
             maxLength={500}
             rows={3}
             placeholder="Write your reply..."
-            className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+            className="block w-full resize-none rounded-md border border-warm-300 px-3 py-2 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
           />
           <div className="flex gap-2">
             <button
@@ -179,7 +179,7 @@ export default function UserInbox({
   return (
     <div>
       {/* Send message section */}
-      <div className="rounded-2xl border border-warm-200 bg-white p-6 shadow-sm">
+      <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
           Whisper
         </h1>
@@ -191,7 +191,7 @@ export default function UserInbox({
         </p>
 
         {onCooldown && (
-          <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+          <div className="mt-4 rounded-md border border-amber-200 bg-amber-50 px-4 py-3">
             <p className="text-sm text-amber-800">
               You can whisper again in {formatRemaining(remaining)}.
             </p>
@@ -210,7 +210,7 @@ export default function UserInbox({
 
           {/* Anonymous / Named toggle */}
           <div>
-            <div className="flex rounded-lg border border-warm-200 p-0.5">
+            <div className="flex rounded-md border border-warm-200 p-0.5">
               <button
                 type="button"
                 onClick={() => setAnonymous(true)}
@@ -248,7 +248,7 @@ export default function UserInbox({
             rows={4}
             disabled={onCooldown}
             placeholder="Write your whisper..."
-            className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500 disabled:bg-warm-50 disabled:text-warm-400"
+            className="block w-full resize-none rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500 disabled:bg-warm-50 disabled:text-warm-400"
           />
           <div className="flex items-center justify-between">
             <p className="text-xs text-warm-400">Max 2000 characters</p>
@@ -276,7 +276,7 @@ export default function UserInbox({
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className="rounded-2xl border border-warm-200 bg-white px-4 py-3 shadow-sm"
+                className="rounded-xl border border-warm-200 bg-white px-4 py-3 shadow-sm"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-warm-400">
@@ -310,7 +310,7 @@ export default function UserInbox({
                   return replies.length > 0 ? (
                     <div className="mt-3 space-y-2">
                       {replies.map((reply, i) => (
-                        <div key={i} className={`rounded-lg border px-3 py-2.5 ${
+                        <div key={i} className={`rounded-md border px-3 py-2.5 ${
                           reply.role === "user"
                             ? "border-warm-200 bg-warm-100/50"
                             : "border-warm-200 bg-warm-50"

@@ -46,7 +46,7 @@ export default async function SubscribePage() {
         </div>
 
         {/* Pricing card */}
-        <div className="mx-auto mt-12 max-w-sm rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
+        <div className="mx-auto mt-12 max-w-sm rounded-xl border border-warm-200 bg-white p-8 shadow-sm">
           <div className="text-center">
             <h2 className="text-lg font-medium text-warm-900">The Aurora Circle</h2>
             <div className="mt-3 flex items-center justify-center gap-2">

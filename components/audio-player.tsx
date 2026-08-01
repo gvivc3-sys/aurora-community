@@ -74,7 +74,7 @@ export default function AudioPlayer({ src }: AudioPlayerProps) {
   }
 
   return (
-    <div className="flex items-center gap-3 rounded-xl bg-warm-50 px-4 py-3">
+    <div className="flex items-center gap-3 rounded-lg bg-warm-50 px-4 py-3">
       {/* Play/Pause button */}
       <button
         type="button"

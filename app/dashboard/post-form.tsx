@@ -85,7 +85,7 @@ function RecordingVisualizer({ stream }: { stream: MediaStream }) {
   return (
     <canvas
       ref={canvasRef}
-      className="h-12 w-full rounded-lg bg-warm-50"
+      className="h-12 w-full rounded-md bg-warm-50"
     />
   );
 }
@@ -242,7 +242,7 @@ export default function PostForm() {
       </button>
 
       {open && (
-      <div className="mt-4 rounded-2xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
+      <div className="mt-4 rounded-xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
         <h2 className="text-lg font-light tracking-tight text-warm-900">Create a Post</h2>
 
       {/* Post type — tab-style underline selector */}
@@ -283,7 +283,7 @@ export default function PostForm() {
                 key={t.key}
                 type="button"
                 onClick={() => setTag(t.key)}
-                className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-xs font-medium transition-all sm:flex-none sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
+                className={`flex flex-1 items-center justify-center gap-1.5 rounded-md border px-2 py-2 text-xs font-medium transition-all sm:flex-none sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
                   tag === t.key ? t.activeColor : t.color
                 }`}
               >
@@ -309,7 +309,7 @@ export default function PostForm() {
                 name="title"
                 type="text"
                 maxLength={200}
-                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="mt-1 block w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Voice note title"
               />
             </div>
@@ -394,7 +394,7 @@ export default function PostForm() {
                 maxLength={500}
                 rows={2}
                 placeholder="Add context to your voice note..."
-                className="block w-full resize-none rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="block w-full resize-none rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
               />
             </div>
           </>
@@ -414,7 +414,7 @@ export default function PostForm() {
                 name="video_url"
                 type="url"
                 required
-                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="mt-1 block w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="YouTube or Vimeo URL"
               />
             </div>
@@ -486,15 +486,15 @@ export default function PostForm() {
                   />
                 </label>
               ) : (
-                <div className="flex items-start gap-3 rounded-lg border border-warm-200 bg-warm-50 p-3">
+                <div className="flex items-start gap-3 rounded-md border border-warm-200 bg-warm-50 p-3">
                   {filePreview.type.startsWith("image/") ? (
                     <img
                       src={filePreview.url}
                       alt="Preview"
-                      className="h-20 w-20 rounded-lg object-cover"
+                      className="h-20 w-20 rounded-md object-cover"
                     />
                   ) : (
-                    <div className="flex h-20 w-20 items-center justify-center rounded-lg bg-warm-200">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-md bg-warm-200">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 text-warm-500">
                         <path fillRule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clipRule="evenodd" />
                         <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
@@ -540,7 +540,7 @@ export default function PostForm() {
                 name="title"
                 type="text"
                 maxLength={200}
-                className="mt-1 block w-full rounded-lg border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                className="mt-1 block w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 shadow-sm focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Article title"
               />
             </div>
@@ -591,15 +591,15 @@ export default function PostForm() {
                   />
                 </label>
               ) : (
-                <div className="flex items-start gap-3 rounded-lg border border-warm-200 bg-warm-50 p-3">
+                <div className="flex items-start gap-3 rounded-md border border-warm-200 bg-warm-50 p-3">
                   {filePreview.type.startsWith("image/") ? (
                     <img
                       src={filePreview.url}
                       alt="Preview"
-                      className="h-20 w-20 rounded-lg object-cover"
+                      className="h-20 w-20 rounded-md object-cover"
                     />
                   ) : (
-                    <div className="flex h-20 w-20 items-center justify-center rounded-lg bg-warm-200">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-md bg-warm-200">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 text-warm-500">
                         <path fillRule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clipRule="evenodd" />
                         <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />

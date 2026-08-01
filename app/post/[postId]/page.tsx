@@ -106,7 +106,7 @@ export default async function PostPage({ params }: { params: Params }) {
         </div>
 
         {/* Post card */}
-        <div className="overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
           {/* Header */}
           <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -166,7 +166,7 @@ export default async function PostPage({ params }: { params: Params }) {
 
           {/* Anonymous question */}
           {post.anonymous_question && (
-            <div className="mx-4 mt-3 rounded-lg bg-warm-50 px-4 py-3">
+            <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
               <p className="text-xs font-medium text-warm-500">
                 A sister whispered:
               </p>

@@ -97,7 +97,7 @@ function Dropdown({
       </button>
 
       {open && (
-        <div role="listbox" className="absolute left-0 z-50 mt-1 min-w-[140px] rounded-xl border border-warm-200 bg-white py-1 shadow-lg">
+        <div role="listbox" className="absolute left-0 z-50 mt-1 min-w-[140px] rounded-lg border border-warm-200 bg-white py-1 shadow-lg">
           {options.map((o, i) => (
             <button
               key={o.key}

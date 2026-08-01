@@ -40,7 +40,7 @@ export default function VideoCard({
 
   if (vsl) {
     return (
-      <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl">
+      <div className="relative w-full overflow-hidden rounded-xl shadow-2xl">
         <div className="relative aspect-video w-full bg-warm-900">
           {/* Video is the tap target — iOS Safari touch events on overlaid buttons are unreliable */}
           <video
@@ -83,7 +83,7 @@ export default function VideoCard({
   }
 
   return (
-    <div className="group overflow-hidden rounded-2xl border border-warm-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
+    <div className="group overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
       <div className="relative aspect-video w-full overflow-hidden bg-warm-100">
         <video
           ref={videoRef}

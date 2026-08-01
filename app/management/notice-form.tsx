@@ -74,7 +74,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
     <div className="space-y-6">
       {/* Active notice indicator */}
       {active ? (
-        <div className="flex items-center justify-between rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+        <div className="flex items-center justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-3">
           <p className="text-sm font-medium text-green-800">A notice is currently active</p>
           <button
             type="button"
@@ -86,7 +86,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           </button>
         </div>
       ) : (
-        <div className="rounded-xl border border-warm-200 bg-warm-50 px-4 py-3">
+        <div className="rounded-lg border border-warm-200 bg-warm-50 px-4 py-3">
           <p className="text-sm text-warm-500">No active notice. Write one below to publish it.</p>
         </div>
       )}
@@ -99,7 +99,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           value={fromName}
           onChange={(e) => setFromName(e.target.value)}
           placeholder="Ashley"
-          className="w-full rounded-xl border border-warm-200 bg-white px-4 py-2.5 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200"
+          className="w-full rounded-lg border border-warm-200 bg-white px-4 py-2.5 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200"
         />
       </div>
 
@@ -117,7 +117,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           onChange={(e) => setBody(e.target.value)}
           rows={3}
           placeholder="e.g. 🎉 **Founding member discount** — join before Friday for 20% off your first month."
-          className="w-full rounded-xl border border-warm-200 bg-white px-4 py-3 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200 resize-none"
+          className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200 resize-none"
         />
       </div>
 
@@ -142,7 +142,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
       {body.trim() && (
         <div>
           <p className="mb-2 text-xs font-medium uppercase tracking-wider text-warm-400">Preview</p>
-          <div className={`overflow-hidden rounded-2xl border shadow-sm ${
+          <div className={`overflow-hidden rounded-xl border shadow-sm ${
             bg === "default"  ? "border-warm-200 bg-white" :
             bg === "amber"    ? "border-amber-200 bg-amber-50" :
             bg === "rose"     ? "border-rose-200 bg-rose-50" :

@@ -1,14 +1,14 @@
 function Shimmer({ className }: { className?: string }) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-warm-200 ${className ?? ""}`}
+      className={`animate-pulse rounded-md bg-warm-200 ${className ?? ""}`}
     />
   );
 }
 
 function MessageSkeleton() {
   return (
-    <div className="rounded-2xl border border-warm-200 bg-white px-4 py-3 shadow-sm">
+    <div className="rounded-xl border border-warm-200 bg-white px-4 py-3 shadow-sm">
       <div className="flex items-center gap-3">
         <Shimmer className="h-8 w-8 shrink-0 rounded-full" />
         <div className="flex-1 space-y-1.5">

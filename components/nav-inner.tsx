@@ -124,7 +124,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-xl border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
+                  <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-lg border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
                     <Link
                       href="/chat"
                       onClick={() => setDropdownOpen(false)}
