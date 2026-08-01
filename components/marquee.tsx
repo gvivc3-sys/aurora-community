@@ -2,8 +2,10 @@ import { BoltIcon, HeartIcon, LeafIcon, SparklesIcon, UsersIcon } from "@/compon
 
 const items = [
   { icon: BoltIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "More energy, less noise" },
+  { icon: BoltIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "No more doomscrolling" },
   { icon: SparklesIcon, tint: "bg-rose-50 text-rose-500", text: "Weekly voice notes from Ashley" },
   { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Real women, real conversations" },
+  { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Friends who share your values" },
   { icon: HeartIcon, tint: "bg-rose-50 text-rose-500", text: "A place that feels like home" },
   { icon: LeafIcon, tint: "bg-green-50 text-green-700", text: "Your own private sanctuary" },
   { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Support that feels like family" },
@@ -29,7 +31,7 @@ function MarqueeCard({ item, index }: { item: (typeof items)[number]; index: num
 export default function Marquee() {
   const track = [...items, ...items];
   return (
-    <div className="overflow-hidden">
+    <div className="marquee-fade overflow-hidden">
       <div className="animate-marquee flex w-max gap-4">
         {track.map((item, i) => (
           <MarqueeCard key={i} item={item} index={i} />

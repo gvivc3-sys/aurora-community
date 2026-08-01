@@ -3,7 +3,6 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
-import AvatarCircle from "@/components/avatar-circle";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
 import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
@@ -107,29 +106,25 @@ export default async function Home() {
       <section className="relative z-10 overflow-hidden">
         <div className="hero-gradient absolute inset-0" />
 
-        <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-16 text-center sm:pb-20 sm:pt-20">
+        <div className="relative mx-auto max-w-4xl px-6 pb-8 pt-8 text-center sm:pb-10 sm:pt-10">
           <div className="relative z-10">
-            <p className="animate-fade-in-up font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              A Private Space for Women
-            </p>
-
             {/* Headline */}
             <h1
-              className="animate-fade-in-up mt-6 font-display text-5xl leading-[1.05] tracking-tight text-warm-900 sm:text-6xl md:text-7xl"
-              style={{ animationDelay: "80ms" }}
+              className="animate-fade-in-up font-display text-4xl leading-[1.05] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
+              style={{ animationDelay: "0ms" }}
             >
               <span className="block font-normal italic">Reclaim your energy.</span>
               <span className="block font-bold">Elevate your life.</span>
             </h1>
 
             {/* Video */}
-            <div className="animate-fade-in-up mt-8" style={{ animationDelay: "150ms" }}>
+            <div className="animate-fade-in-up mx-auto mt-5 max-w-lg" style={{ animationDelay: "150ms" }}>
               <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
             </div>
 
             {/* CTA buttons */}
             <div
-              className="animate-fade-in-up mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+              className="animate-fade-in-up mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row"
               style={{ animationDelay: "300ms" }}
             >
               {hasActiveSub ? (
@@ -177,13 +172,8 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD COPY ─── */}
-      <section className="relative overflow-x-clip border-b border-t border-warm-200 py-16 text-center sm:py-24">
-        {/* Avatar circle — hidden on mobile to prevent horizontal overflow */}
-        <div className="hidden sm:block">
-          <AvatarCircle />
-        </div>
-
-        <AnimateOnScroll className="relative z-10 mx-auto max-w-xl px-6">
+      <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
+        <AnimateOnScroll className="mx-auto max-w-xl px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
             You Are Not Alone
           </p>
@@ -192,26 +182,17 @@ export default async function Home() {
             <span className="italic"> walk this path alone.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            The Aurora Circle is a sanctuary for women who are ready to step into their most
-            radiant, magnetic, and naturally beautiful selves - through true health, feminine
-            wisdom, and the power of women rising together.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-warm-600">
-            Healing happens in community. In being truly seen, deeply supported, and surrounded by
-            women of the same frequency and the same desire to come home to themselves.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-warm-600">
-            That&apos;s why The Aurora Circle was created. To bring us together. To love, uplift, and strengthen
-            one another within a safe and sacred container.
+            The Aurora Circle is a sanctuary for women ready to step into their most radiant,
+            magnetic, and naturally beautiful selves - healing in community, truly seen, and
+            surrounded by women of the same frequency.
           </p>
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
         </AnimateOnScroll>
-
       </section>
 
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="relative z-10 px-6 py-24 sm:py-36" style={{ background: "linear-gradient(160deg, #fdf6ee 0%, #f5e9d8 50%, #fdf6ee 100%)" }}>
+      <section className="relative z-10 px-6 py-16 sm:py-24" style={{ background: "linear-gradient(160deg, #faf6fc 0%, #f3ebf5 50%, #faf6fc 100%)" }}>
         <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-12 md:grid-cols-5">
           <AnimateOnScroll className="md:col-span-2">
@@ -259,7 +240,7 @@ export default async function Home() {
 
 
       {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
-      <section className="border-t border-warm-200 px-6 py-16 sm:py-24">
+      <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
         <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
@@ -337,7 +318,7 @@ export default async function Home() {
 
 
       {/* ─── WHISPERS FROM THE PORTAL ─── */}
-      <section className="relative overflow-hidden px-6 py-24 sm:py-36">
+      <section className="relative overflow-hidden px-6 py-16 sm:py-24">
         {/* Rotating logo — decorative background */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]" />
@@ -541,7 +522,7 @@ export default async function Home() {
 
 
       {/* ─── QUOTE / DARK SECTION ─── */}
-      <section className="dark-gradient relative overflow-hidden px-6 py-24 sm:py-32">
+      <section className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
         <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
           <blockquote className="text-2xl font-extralight leading-relaxed tracking-tight text-warm-100 sm:text-3xl md:text-4xl">
             &ldquo;We were never meant to walk this path alone.
@@ -561,7 +542,7 @@ export default async function Home() {
       </section>
 
       {/* ─── WHAT'S INSIDE ─── */}
-      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-24 sm:py-36">
+      <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
@@ -599,7 +580,7 @@ export default async function Home() {
       </section>
 
       {/* ─── TELEGRAM GROUP ─── */}
-      <section className="mx-auto max-w-3xl px-6 py-24 sm:py-36">
+      <section className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
         <AnimateOnScroll className="text-center">
           <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#2AABEE] shadow-sm" style={{ animation: "wiggle 15s ease-in-out infinite" }}>
             <svg viewBox="0 0 24 24" className="h-8 w-8 text-white" fill="currentColor">
@@ -626,7 +607,7 @@ export default async function Home() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="relative overflow-hidden px-6 py-28 sm:py-40">
+      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
         <div className="hero-gradient absolute inset-0 opacity-50" />
         <div className="animate-float absolute -left-24 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-fuchsia-200/30 blur-[80px]" />
         <div
