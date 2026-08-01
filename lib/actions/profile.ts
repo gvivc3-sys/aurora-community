@@ -43,6 +43,7 @@ export async function updateProfile(
   const birthday = formData.get("birthday") as string;
   const bio = (formData.get("bio") as string)?.trim() ?? "";
   const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
+  const rawInstagram = (formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
 
   if (birthday) {
@@ -63,6 +64,10 @@ export async function updateProfile(
 
   if (rawTelegram && !/^[a-zA-Z0-9_]{5,32}$/.test(rawTelegram)) {
     return { error: "Telegram handle must be 5-32 characters (letters, numbers, underscores)." };
+  }
+
+  if (rawInstagram && !/^[a-zA-Z0-9._]{1,30}$/.test(rawInstagram)) {
+    return { error: "Instagram handle must be 1-30 characters (letters, numbers, periods, underscores)." };
   }
 
   // Fetch current user to detect identity changes
@@ -134,6 +139,7 @@ export async function updateProfile(
       birthday: birthday || undefined,
       bio: bio.slice(0, 300) || undefined,
       telegram_handle: rawTelegram || undefined,
+      instagram_handle: rawInstagram || undefined,
       handle: handle || undefined,
     },
   });

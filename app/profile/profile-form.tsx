@@ -234,6 +234,29 @@ export default function ProfileForm({ user }: { user: User }) {
               </p>
             </div>
 
+            <div>
+              <label
+                htmlFor="instagram_handle"
+                className="mb-1 block text-sm font-medium text-warm-700"
+              >
+                Instagram
+              </label>
+              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                <span className="pl-3 text-sm text-warm-400">@</span>
+                <input
+                  id="instagram_handle"
+                  name="instagram_handle"
+                  type="text"
+                  defaultValue={meta.instagram_handle ?? ""}
+                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                  placeholder="yourhandle"
+                />
+              </div>
+              <p className="mt-1 text-xs text-warm-400">
+                Optional. Just the handle.
+              </p>
+            </div>
+
             <button
               type="submit"
               disabled={pending}

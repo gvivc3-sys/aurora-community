@@ -139,6 +139,21 @@ export default async function PublicProfilePage({
           </div>
         )}
 
+        {/* Instagram */}
+        {meta.instagram_handle && (
+          <div className="mt-4 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Instagram</h2>
+            <a
+              href={`https://instagram.com/${meta.instagram_handle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-warm-700 underline hover:text-warm-900"
+            >
+              @{meta.instagram_handle}
+            </a>
+          </div>
+        )}
+
         {/* Saved posts */}
         {savedPosts.length > 0 && (
           <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
