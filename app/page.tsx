@@ -5,6 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
+import CommunityMap from "@/components/community-map";
 import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
 
 
@@ -171,22 +172,26 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── SISTERHOOD COPY ─── */}
+      {/* ─── FIND YOUR FREQUENCY ─── */}
       <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
         <AnimateOnScroll className="mx-auto max-w-xl px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
             You Are Not Alone
           </p>
           <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            We were never meant to<br className="hidden sm:block" />
-            <span className="italic"> walk this path alone.</span>
+            Find friends<br className="hidden sm:block" />
+            <span className="italic"> on your frequency.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            The Aurora Circle is a sanctuary for women ready to step into their most radiant,
-            magnetic, and naturally beautiful selves - healing in community, truly seen, and
-            surrounded by women of the same frequency.
+            The Aurora Circle spans continents - women from Los Angeles to London, Bali to
+            Costa Rica, all stepping into their most radiant, magnetic, and naturally beautiful
+            selves. Healing happens in community, wherever you call home.
           </p>
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll delay={150} className="mx-auto mt-10 max-w-3xl px-6">
+          <CommunityMap />
         </AnimateOnScroll>
       </section>
 
