@@ -15,6 +15,7 @@ const PUBLIC_EXACT = [
   "/auth/callback",
   "/subscribe",
   "/community-guidelines",
+  "/privacy",
 ];
 
 // Prefix public routes (matched with startsWith)
