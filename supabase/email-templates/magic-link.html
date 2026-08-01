@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Sign in to The Aurora Circle</title></head>
+<body style="margin:0;padding:0;background-color:#faf8f5;font-family:Georgia,'Times New Roman',serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#faf8f5;padding:40px 20px;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;">
+  <tr><td style="padding:32px 40px 24px;border-bottom:1px solid #f0ece8;">
+    <p style="margin:0;font-size:24px;font-style:italic;color:#1c1917;">The Aurora Circle</p>
+  </td></tr>
+  <tr><td style="padding:32px 40px;">
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1c1917;">Here's your link to sign in to The Aurora Circle.</p>
+    <table cellpadding="0" cellspacing="0" style="margin:24px 0;"><tr><td style="background-color:#1c1917;border-radius:6px;padding:12px 24px;">
+      <a href="{{ .ConfirmationURL }}" style="color:#ffffff;text-decoration:none;font-size:15px;font-weight:bold;">Sign in</a>
+    </td></tr></table>
+    <p style="margin:0 0 8px;font-size:14px;line-height:1.6;color:#57534e;">Or enter this code:</p>
+    <table cellpadding="0" cellspacing="0" style="margin:0 0 16px;"><tr><td style="background-color:#faf8f5;border:1px solid #f0ece8;border-radius:6px;padding:12px 20px;">
+      <span style="font-size:22px;letter-spacing:4px;color:#1c1917;">{{ .Token }}</span>
+    </td></tr></table>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1c1917;">This link and code will expire shortly. If you didn't request this, you can safely ignore this email.</p>
+  </td></tr>
+  <tr><td style="padding:24px 40px;border-top:1px solid #f0ece8;">
+    <p style="margin:0;font-size:13px;color:#a8a29e;text-align:center;">
+      &copy; The Aurora Circle &mdash; You received this email because you have an account with us.
+    </p>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
