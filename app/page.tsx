@@ -190,56 +190,52 @@ export default async function Home() {
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
         </AnimateOnScroll>
 
-        <AnimateOnScroll delay={150} className="mx-auto mt-10 max-w-3xl px-6">
-          <CommunityMap />
+        <AnimateOnScroll delay={150} className="mx-auto mt-6 max-w-3xl px-6">
+          <div className="rounded-xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
+            <CommunityMap />
+          </div>
         </AnimateOnScroll>
       </section>
 
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="relative z-10 px-6 py-16 sm:py-24" style={{ background: "linear-gradient(160deg, #faf6fc 0%, #f3ebf5 50%, #faf6fc 100%)" }}>
-        <div className="mx-auto max-w-5xl">
-        <div className="grid items-center gap-12 md:grid-cols-5">
-          <AnimateOnScroll className="md:col-span-2">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-xl shadow-lg">
-              <Image
-                src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192"
-                alt="Ashley"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 80vw, 320px"
-              />
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={150} className="md:col-span-3">
+      <section className="border-t border-warm-200 bg-warm-100/40 px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-xl">
+          <AnimateOnScroll className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
               The Woman Behind Aurora
             </p>
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Meet <span className="font-medium">Ashley</span>
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-warm-600">
-              Ashley has spent years immersed in ancient beauty practices, deep
-              nourishment, energy cultivation, and living in alignment with true
-              health. She spends her days in nature, creating natural skincare and
-              beauty products, painting, and connecting to the natural ways of
-              living on Earth.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
-              This is for the woman who is ready to nourish her body, step into
-              true health, build a strong and feminine physique, harness her
-              life-force energy, and shift into the higher timeline she knows
-              she is meant for.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Aurora was born from the deep knowing that each of us holds the
-              power to elevate our energy and create the life we feel called to
-              live. This is a sanctuary where we come together to create powerful
-              shifts within a safe, supportive, and nurturing container.
-            </p>
           </AnimateOnScroll>
-        </div>
+
+          <AnimateOnScroll delay={100} className="mt-6 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+            <div className="flex items-center gap-4 px-6 pt-6">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192"
+                  alt="Ashley"
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </div>
+              <div>
+                <p className="text-lg font-medium text-warm-900">Ashley</p>
+                <p className="text-xs text-warm-400">The woman behind Aurora</p>
+              </div>
+            </div>
+            <div className="px-6 pb-6 pt-4">
+              <p className="text-sm leading-relaxed text-warm-700">
+                Ashley has spent years immersed in ancient beauty practices, deep
+                nourishment, and living in alignment with true health &mdash;
+                creating natural skincare, painting, and connecting to the
+                natural ways of living on Earth.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-warm-700">
+                Aurora was born from the knowing that each of us holds the power
+                to elevate our energy and create the life we feel called to live.
+              </p>
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
