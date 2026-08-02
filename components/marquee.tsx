@@ -31,7 +31,7 @@ function MarqueeCard({ item, index }: { item: (typeof items)[number]; index: num
 export default function Marquee() {
   const track = [...items, ...items];
   return (
-    <div className="marquee-fade overflow-hidden">
+    <div className="marquee-fade mx-auto max-w-4xl overflow-hidden px-6">
       <div className="animate-marquee flex w-max gap-4">
         {track.map((item, i) => (
           <MarqueeCard key={i} item={item} index={i} />
