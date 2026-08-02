@@ -3,7 +3,9 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getZodiacSign } from "@/lib/zodiac";
+import { getProfileCompletion } from "@/lib/profile-completion";
 import Avatar from "@/components/avatar";
+import { HeartSolidIcon } from "@/components/icons";
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
@@ -79,6 +81,7 @@ export default async function PublicProfilePage({
   const zodiac = meta.birthday
     ? getZodiacSign(new Date(meta.birthday))
     : null;
+  const completion = getProfileCompletion(meta);
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
@@ -91,8 +94,11 @@ export default async function PublicProfilePage({
             email={target.email}
             size="lg"
           />
-          <h1 className="mt-4 text-2xl font-light tracking-tight text-warm-900">
+          <h1 className="mt-4 flex items-center gap-1.5 text-2xl font-light tracking-tight text-warm-900">
             {meta.username ?? "Anonymous"}
+            {completion.isComplete && (
+              <HeartSolidIcon className="h-4 w-4 text-fuchsia-500" />
+            )}
           </h1>
           {meta.handle && (
             <p className="mt-0.5 text-sm font-medium text-warm-500">
@@ -117,7 +123,9 @@ export default async function PublicProfilePage({
         {/* Bio */}
         {meta.bio && (
           <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
-            <h2 className="text-sm font-medium text-warm-500">About</h2>
+            <h2 className="text-sm font-medium text-warm-500">
+              What brings you to the Aurora community?
+            </h2>
             <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">
               {meta.bio}
             </p>

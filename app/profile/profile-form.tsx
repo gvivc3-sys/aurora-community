@@ -11,6 +11,8 @@ import Avatar from "@/components/avatar";
 import BackLink from "@/components/back-link";
 import LocationPicker, { type LocationValue } from "@/components/location-picker";
 import { useToast } from "@/components/toast";
+import { HeartSolidIcon } from "@/components/icons";
+import { getProfileCompletion } from "@/lib/profile-completion";
 
 function ProfileToastEffect({ state }: { state: { error?: string; success?: boolean } | null }) {
   const { toast } = useToast();
@@ -41,6 +43,7 @@ export default function ProfileForm({ user }: { user: User }) {
   );
 
   const zodiac = birthday ? getZodiacSign(new Date(birthday)) : null;
+  const completion = getProfileCompletion(meta);
 
   async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -87,8 +90,39 @@ export default function ProfileForm({ user }: { user: User }) {
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-xl px-4 py-8 sm:px-6 sm:py-16">
         <BackLink />
-        <h1 className="text-2xl font-light tracking-tight text-warm-900">Your Profile</h1>
+        <h1 className="flex items-center gap-2 text-2xl font-light tracking-tight text-warm-900">
+          Your Profile
+          {completion.isComplete && (
+            <HeartSolidIcon className="h-5 w-5 text-fuchsia-500" />
+          )}
+        </h1>
         <p className="mt-1 text-sm text-warm-500">{user.email}</p>
+
+        {/* Profile completeness */}
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-medium text-warm-500">Profile completeness</h2>
+            <span className="text-sm font-medium text-warm-700">
+              {completion.filled}/{completion.total}
+            </span>
+          </div>
+          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-warm-100">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-fuchsia-500 to-pink-500 transition-all duration-500"
+              style={{ width: `${completion.percent}%` }}
+            />
+          </div>
+          <p className="mt-2 flex items-center gap-1 text-xs text-warm-400">
+            {completion.isComplete ? (
+              <>
+                <HeartSolidIcon className="h-3.5 w-3.5 text-fuchsia-500" />
+                Your profile is complete — your heart badge is live on your profile.
+              </>
+            ) : (
+              "Fill in your picture, name, bio, birthday, socials, and location to earn a heart badge on your profile."
+            )}
+          </p>
+        </div>
 
         {/* Avatar card */}
         <div className="mt-8 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
@@ -204,7 +238,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 htmlFor="bio"
                 className="mb-1 block text-sm font-medium text-warm-700"
               >
-                Bio
+                What brings you to the Aurora community?
               </label>
               <textarea
                 id="bio"
