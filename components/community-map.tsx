@@ -1,60 +1,70 @@
+import { geoNaturalEarth1, geoPath } from "d3-geo";
+import { feature } from "topojson-client";
+import type { Topology, GeometryCollection } from "topojson-specification";
+import landTopology from "world-atlas/land-110m.json";
+
 const locations = [
   // USA — West Coast cluster
-  { label: "Los Angeles", x: 16, y: 37.4 },
-  { label: "San Diego", x: 16.5, y: 39.1 },
-  { label: "Orange County", x: 16.3, y: 38.0 },
-  { label: "Santa Barbara", x: 15.5, y: 36.6 },
-  { label: "San Francisco", x: 14.5, y: 35.6 },
-  { label: "Sacramento", x: 15, y: 34.5 },
-  { label: "Seattle", x: 15.5, y: 30.4 },
-  { label: "Denver", x: 19, y: 35.0 },
-  { label: "Austin", x: 20, y: 40.9 },
-  { label: "Chicago", x: 23, y: 32.7 },
+  { label: "Los Angeles", lat: 34.05, lng: -118.24 },
+  { label: "San Diego", lat: 32.72, lng: -117.16 },
+  { label: "Orange County", lat: 33.68, lng: -117.83 },
+  { label: "Santa Barbara", lat: 34.42, lng: -119.7 },
+  { label: "San Francisco", lat: 37.77, lng: -122.42 },
+  { label: "Sacramento", lat: 38.58, lng: -121.49 },
+  { label: "Seattle", lat: 47.61, lng: -122.33 },
+  { label: "Denver", lat: 39.74, lng: -104.99 },
+  { label: "Austin", lat: 30.27, lng: -97.74 },
+  { label: "Chicago", lat: 41.88, lng: -87.63 },
   // USA — East Coast cluster
-  { label: "New York", x: 26, y: 31.5 },
-  { label: "Brooklyn", x: 26.3, y: 32.0 },
-  { label: "Boston", x: 27, y: 29.8 },
-  { label: "Philadelphia", x: 25.6, y: 32.6 },
-  { label: "Miami", x: 25, y: 46.7 },
+  { label: "New York", lat: 40.71, lng: -74.01 },
+  { label: "Brooklyn", lat: 40.68, lng: -73.94 },
+  { label: "Boston", lat: 42.36, lng: -71.06 },
+  { label: "Philadelphia", lat: 39.95, lng: -75.17 },
+  { label: "Miami", lat: 25.76, lng: -80.19 },
   // Canada
-  { label: "Toronto", x: 24, y: 25.7 },
-  { label: "Vancouver", x: 14.5, y: 28.0 },
-  { label: "Montreal", x: 25.5, y: 24.5 },
+  { label: "Toronto", lat: 43.65, lng: -79.38 },
+  { label: "Vancouver", lat: 49.28, lng: -123.12 },
+  { label: "Montreal", lat: 45.5, lng: -73.57 },
   // Western Europe
-  { label: "London", x: 47, y: 23.4 },
-  { label: "Dublin", x: 45, y: 22.2 },
-  { label: "Paris", x: 48, y: 25.7 },
-  { label: "Amsterdam", x: 48.5, y: 23.4 },
-  { label: "Berlin", x: 50.5, y: 23.4 },
-  { label: "Madrid", x: 46, y: 29.2 },
-  { label: "Lisbon", x: 44, y: 29.8 },
-  { label: "Rome", x: 50, y: 30.4 },
+  { label: "London", lat: 51.51, lng: -0.13 },
+  { label: "Dublin", lat: 53.35, lng: -6.26 },
+  { label: "Paris", lat: 48.86, lng: 2.35 },
+  { label: "Amsterdam", lat: 52.37, lng: 4.9 },
+  { label: "Berlin", lat: 52.52, lng: 13.4 },
+  { label: "Madrid", lat: 40.42, lng: -3.7 },
+  { label: "Lisbon", lat: 38.72, lng: -9.14 },
+  { label: "Rome", lat: 41.9, lng: 12.5 },
   // Australia — East Coast cluster
-  { label: "Brisbane", x: 86.2, y: 70.1 },
-  { label: "Gold Coast", x: 86.4, y: 71.2 },
-  { label: "Newcastle", x: 85.4, y: 73.6 },
-  { label: "Sydney", x: 85, y: 74.8 },
-  { label: "Canberra", x: 82.5, y: 76 },
-  { label: "Melbourne", x: 80.5, y: 77 },
-  { label: "Byron Bay", x: 85.5, y: 71.8 },
-  { label: "Perth", x: 78, y: 73.6 },
+  { label: "Brisbane", lat: -27.47, lng: 153.03 },
+  { label: "Gold Coast", lat: -28.02, lng: 153.43 },
+  { label: "Newcastle", lat: -32.93, lng: 151.78 },
+  { label: "Sydney", lat: -33.87, lng: 151.21 },
+  { label: "Canberra", lat: -35.28, lng: 149.13 },
+  { label: "Melbourne", lat: -37.81, lng: 144.96 },
+  { label: "Byron Bay", lat: -28.65, lng: 153.62 },
+  { label: "Perth", lat: -31.95, lng: 115.86 },
   // New Zealand
-  { label: "Auckland", x: 93, y: 84.5 },
-  { label: "Wellington", x: 95, y: 87 },
+  { label: "Auckland", lat: -36.85, lng: 174.76 },
+  { label: "Wellington", lat: -41.29, lng: 174.78 },
   // South America
-  { label: "São Paulo", x: 30, y: 66.6 },
-  { label: "Rio de Janeiro", x: 30.7, y: 65.4 },
-  { label: "Buenos Aires", x: 28, y: 72.4 },
-  { label: "Bogotá", x: 27.5, y: 55.5 },
-  { label: "Lima", x: 27.5, y: 61.5 },
+  { label: "São Paulo", lat: -23.55, lng: -46.63 },
+  { label: "Rio de Janeiro", lat: -22.91, lng: -43.17 },
+  { label: "Buenos Aires", lat: -34.6, lng: -58.38 },
+  { label: "Bogotá", lat: 4.71, lng: -74.07 },
+  { label: "Lima", lat: -12.05, lng: -77.04 },
   // South Africa
-  { label: "Cape Town", x: 57, y: 73.6 },
-  { label: "Johannesburg", x: 59, y: 66.0 },
+  { label: "Cape Town", lat: -33.92, lng: 18.42 },
+  { label: "Johannesburg", lat: -26.2, lng: 28.05 },
   // Bali & Costa Rica
-  { label: "Bali", x: 81, y: 58.2 },
-  { label: "San José, Costa Rica", x: 20.5, y: 47.9 },
-  { label: "Nosara, Costa Rica", x: 20, y: 49.6 },
+  { label: "Bali", lat: -8.65, lng: 115.22 },
+  { label: "San José, Costa Rica", lat: 9.93, lng: -84.08 },
+  { label: "Nosara, Costa Rica", lat: 9.98, lng: -85.65 },
 ];
+
+const WIDTH = 960;
+const HEIGHT = 960;
+// Crop out Antarctica by clipping the viewBox south of this latitude.
+const SOUTH_CUTOFF_LAT = -58;
 
 function MapDot({ label, x, y, delay }: { label: string; x: number; y: number; delay: number }) {
   return (
@@ -75,26 +85,39 @@ function MapDot({ label, x, y, delay }: { label: string; x: number; y: number; d
 }
 
 export default function CommunityMap() {
+  const topology = landTopology as unknown as Topology;
+  const land = feature(topology, topology.objects.land as GeometryCollection);
+
+  const projection = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], land);
+  const pathGenerator = geoPath(projection);
+  const landPath = pathGenerator(land) ?? "";
+
+  const cropPoint = projection([0, SOUTH_CUTOFF_LAT]);
+  const cropHeight = cropPoint ? cropPoint[1] : HEIGHT;
+
+  const markers = locations
+    .map((loc) => {
+      const point = projection([loc.lng, loc.lat]);
+      return point ? { label: loc.label, x: point[0], y: point[1] } : null;
+    })
+    .filter((m): m is { label: string; x: number; y: number } => m !== null);
+
   return (
-    <div className="relative mx-auto aspect-[2.1] w-full max-w-3xl">
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-warm-300/70"
-          style={{
-            WebkitMaskImage: "url(/images/world-map.svg)",
-            maskImage: "url(/images/world-map.svg)",
-            WebkitMaskSize: "100% auto",
-            maskSize: "100% auto",
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
-            WebkitMaskPosition: "top",
-            maskPosition: "top",
-          }}
-        />
+    <div className="relative mx-auto w-full max-w-3xl">
+      <svg viewBox={`0 0 ${WIDTH} ${cropHeight}`} className="block h-auto w-full">
+        <path d={landPath} className="fill-warm-300/70" />
+      </svg>
+      <div className="absolute inset-0">
+        {markers.map((m, i) => (
+          <MapDot
+            key={m.label}
+            label={m.label}
+            x={(m.x / WIDTH) * 100}
+            y={(m.y / cropHeight) * 100}
+            delay={(i * 173) % 2000}
+          />
+        ))}
       </div>
-      {locations.map((loc, i) => (
-        <MapDot key={loc.label} {...loc} delay={(i * 173) % 2000} />
-      ))}
     </div>
   );
 }
