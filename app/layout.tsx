@@ -27,10 +27,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aurora Circle — A Private Sanctuary for Women",
+  title: "Aurora — A Private Sanctuary for Women",
   description: "A private membership circle for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
   openGraph: {
-    title: "Aurora Circle — A Private Sanctuary for Women",
+    title: "Aurora — A Private Sanctuary for Women",
     description: "A private membership circle for women reclaiming their health, feminine energy, and radiance — through nourishment, natural beauty, and the power of sisterhood.",
     type: "website",
     images: [{ url: "https://myaurora.io/images/opengraph.jpg" }],

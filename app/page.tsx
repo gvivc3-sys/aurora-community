@@ -183,7 +183,7 @@ export default async function Home() {
             <span className="italic"> on your frequency.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            The Aurora Circle is a growing network of conscious souls, stepping into their most
+            Aurora is a growing network of conscious souls, stepping into their most
             radiant, magnetic, and naturally beautiful selves. No matter where you call home,
             there&apos;s potential to find your people.
           </p>
@@ -214,7 +214,7 @@ export default async function Home() {
 
           <AnimateOnScroll delay={150} className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              The Woman Behind The Aurora Circle
+              The Woman Behind Aurora
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               Meet <span className="font-medium">Ashley</span>
@@ -233,7 +233,7 @@ export default async function Home() {
               she is meant for.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              The Aurora Circle was born from the deep knowing that each of us holds the
+              Aurora was born from the deep knowing that each of us holds the
               power to elevate our energy and create the life we feel called to
               live. This is a sanctuary where we come together to create powerful
               shifts within a safe, supportive, and nurturing container.
@@ -517,7 +517,7 @@ export default async function Home() {
           </div>
           <AnimateOnScroll className="mt-12 text-center">
             <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
-              Join The Aurora Circle
+              Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
           </AnimateOnScroll>
@@ -554,7 +554,7 @@ export default async function Home() {
               Welcome Home
             </p>
             <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside the <span className="font-medium">Aurora Circle</span>
+              What Awaits You Inside <span className="font-medium">Aurora</span>
             </h2>
           </AnimateOnScroll>
 
@@ -577,7 +577,7 @@ export default async function Home() {
           </div>
           <AnimateOnScroll className="mt-12 text-center">
             <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
-              Join The Aurora Circle
+              Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
           </AnimateOnScroll>
@@ -630,7 +630,7 @@ export default async function Home() {
             <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
-            The Aurora Circle is a sanctuary for women who are ready to step into their most
+            Aurora is a sanctuary for women who are ready to step into their most
             radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
           </p>
