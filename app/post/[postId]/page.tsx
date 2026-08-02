@@ -13,7 +13,8 @@ import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
 import PostAttachment from "@/components/post-attachment";
-import { LeafIcon, HeartIcon, BoltIcon, ChatBubbleIcon } from "@/components/icons";
+import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon } from "@/components/icons";
+import { getProfileCompletion } from "@/lib/profile-completion";
 
 export const dynamic = "force-dynamic";
 
@@ -90,6 +91,17 @@ export default async function PostPage({ params }: { params: Params }) {
     userHandles[row.user_id] = row.handle;
   }
 
+  // Profile completion (for the "complete profile" heart badge)
+  const { data: allAuthUsers } = allUserIds.length
+    ? await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 })
+    : { data: { users: [] } };
+  const userCompletion: Record<string, boolean> = {};
+  for (const authUser of allAuthUsers?.users ?? []) {
+    if (allUserIds.includes(authUser.id)) {
+      userCompletion[authUser.id] = getProfileCompletion(authUser.user_metadata ?? {}).isComplete;
+    }
+  }
+
   const admin = isAdmin(user);
   const video =
     post.type === "video" && post.video_url
@@ -121,9 +133,12 @@ export default async function PostPage({ params }: { params: Params }) {
                 <div className="flex items-center gap-1.5">
                   <Link
                     href={`/profile/${post.author_id}`}
-                    className="shrink-0 truncate text-sm font-medium text-warm-900 hover:underline"
+                    className="flex shrink-0 items-center gap-1 truncate text-sm font-medium text-warm-900 hover:underline"
                   >
                     {post.author_name ?? "Unknown"}
+                    {userCompletion[post.author_id] && (
+                      <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                    )}
                   </Link>
                   {userHandles[post.author_id] && (
                     <Link href={`/profile/${post.author_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
@@ -232,6 +247,7 @@ export default async function PostPage({ params }: { params: Params }) {
             currentUserId={user.id}
             isAdmin={admin}
             userHandles={userHandles}
+            userCompletion={userCompletion}
             pinned={!!post.pinned}
             defaultCommentsOpen
             hideFocusLink

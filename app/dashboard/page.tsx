@@ -18,7 +18,8 @@ import NoticeBanner from "@/components/notice-banner";
 import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
 import { getActiveNotice } from "@/lib/actions/notices";
-import { LeafIcon, HeartIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
+import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
+import { getProfileCompletion } from "@/lib/profile-completion";
 
 export const dynamic = "force-dynamic";
 
@@ -160,6 +161,17 @@ export default async function DashboardPage({
     userHandles[row.user_id] = row.handle;
   }
 
+  // Profile completion (for the "complete profile" heart badge)
+  const { data: allAuthUsers } = allUserIds.length
+    ? await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 })
+    : { data: { users: [] } };
+  const userCompletion: Record<string, boolean> = {};
+  for (const authUser of allAuthUsers?.users ?? []) {
+    if (allUserIds.includes(authUser.id)) {
+      userCompletion[authUser.id] = getProfileCompletion(authUser.user_metadata ?? {}).isComplete;
+    }
+  }
+
   const admin = isAdmin(user);
 
   // Build pagination URLs
@@ -243,8 +255,11 @@ export default async function DashboardPage({
                       </Link>
                       <div className="min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <Link href={`/profile/${post.author_id}`} className="shrink-0 truncate text-sm font-medium text-warm-900 hover:underline">
+                          <Link href={`/profile/${post.author_id}`} className="flex shrink-0 items-center gap-1 truncate text-sm font-medium text-warm-900 hover:underline">
                             {post.author_name ?? "Unknown"}
+                            {userCompletion[post.author_id] && (
+                              <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                            )}
                           </Link>
                           {userHandles[post.author_id] && (
                             <Link href={`/profile/${post.author_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
@@ -360,6 +375,7 @@ export default async function DashboardPage({
                     currentUserId={user.id}
                     isAdmin={admin}
                     userHandles={userHandles}
+                    userCompletion={userCompletion}
                     pinned={!!post.pinned}
                   />
                 </div>

@@ -8,12 +8,14 @@ import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import NotificationDropdown from "@/components/notification-dropdown";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
+import { HeartSolidIcon } from "@/components/icons";
 
 type NavUser = {
   email: string;
   username: string | null;
   avatarUrl: string | null;
   isAdmin: boolean;
+  isComplete: boolean;
 };
 
 export default function NavInner({ user, hasActiveSub = false, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; hasActiveSub?: boolean; unreadInboxCount?: number; unreadNotificationCount?: number }) {
@@ -69,7 +71,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 href="/subscribe"
                 className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] active:scale-[0.97]"
               >
-                Join The Aurora Circle — {MEMBERSHIP_PRICE}
+                Join Aurora — {MEMBERSHIP_PRICE}
               </Link>
               <form action={signOut}>
                 <button type="submit" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
@@ -201,8 +203,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   email={user.email}
                   size="sm"
                 />
-                <span className="text-sm text-warm-700">
+                <span className="flex items-center gap-1 text-sm text-warm-700">
                   {user.username || user.email}
+                  {user.isComplete && (
+                    <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                  )}
                 </span>
                 {user.isAdmin && (
                   <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">
@@ -308,8 +313,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   size="sm"
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-warm-900">
+                  <p className="flex items-center gap-1 truncate text-sm font-medium text-warm-900">
                     {user.username || user.email}
+                    {user.isComplete && (
+                      <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                    )}
                   </p>
                   {user.isAdmin && (
                     <span className="text-xs text-warm-500">Admin</span>
@@ -413,7 +421,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 onClick={() => setMenuOpen(false)}
                 className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
-                Join The Aurora Circle — {MEMBERSHIP_PRICE}
+                Join Aurora — {MEMBERSHIP_PRICE}
               </Link>
               <form action={signOut}>
                 <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">

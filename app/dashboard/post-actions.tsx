@@ -4,7 +4,7 @@ import { useActionState, useOptimistic, useRef, useState } from "react";
 import Link from "next/link";
 import { addComment, deleteComment, deletePost, toggleLike, toggleBookmark, togglePinPost } from "@/lib/actions/post";
 import Avatar from "@/components/avatar";
-import { HeartIcon, ChatBubbleIcon, MapPinIcon, MapPinSolidIcon, ArrowTopRightIcon } from "@/components/icons";
+import { HeartIcon, HeartSolidIcon, ChatBubbleIcon, MapPinIcon, MapPinSolidIcon, ArrowTopRightIcon } from "@/components/icons";
 
 /** Render @handles in comment text as links using pre-resolved handle map */
 function CommentBody({ text, userHandles }: { text: string; userHandles: Record<string, string> }) {
@@ -67,6 +67,7 @@ type PostActionsProps = {
   currentUserId: string;
   isAdmin: boolean;
   userHandles: Record<string, string>;
+  userCompletion?: Record<string, boolean>;
   pinned?: boolean;
   defaultCommentsOpen?: boolean;
   hideFocusLink?: boolean;
@@ -98,6 +99,7 @@ export default function PostActions({
   currentUserId,
   isAdmin,
   userHandles,
+  userCompletion = {},
   pinned = false,
   defaultCommentsOpen = false,
   hideFocusLink = false,
@@ -297,8 +299,11 @@ export default function PostActions({
                     </Link>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
-                        <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-sm font-medium text-warm-900 hover:underline">
+                        <Link href={`/profile/${comment.user_id}`} className="flex shrink-0 items-center gap-1 text-sm font-medium text-warm-900 hover:underline">
                           {comment.author_name ?? "Unknown"}
+                          {userCompletion[comment.user_id] && (
+                            <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                          )}
                         </Link>
                         {handle && (
                           <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
@@ -383,8 +388,11 @@ export default function PostActions({
                     </Link>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
-                        <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-sm font-medium text-warm-900 hover:underline">
+                        <Link href={`/profile/${comment.user_id}`} className="flex shrink-0 items-center gap-1 text-sm font-medium text-warm-900 hover:underline">
                           {comment.author_name ?? "Unknown"}
+                          {userCompletion[comment.user_id] && (
+                            <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
+                          )}
                         </Link>
                         {handle && (
                           <Link href={`/profile/${comment.user_id}`} className="shrink-0 text-xs font-medium text-warm-500 hover:underline">
