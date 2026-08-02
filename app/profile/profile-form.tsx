@@ -9,6 +9,7 @@ import { createPortalSession } from "@/lib/actions/stripe";
 import { getZodiacSign } from "@/lib/zodiac";
 import Avatar from "@/components/avatar";
 import BackLink from "@/components/back-link";
+import LocationPicker, { type LocationValue } from "@/components/location-picker";
 import { useToast } from "@/components/toast";
 
 function ProfileToastEffect({ state }: { state: { error?: string; success?: boolean } | null }) {
@@ -33,6 +34,11 @@ export default function ProfileForm({ user }: { user: User }) {
   );
   const [uploading, setUploading] = useState(false);
   const [birthday, setBirthday] = useState<string>(meta.birthday ?? "");
+  const [location, setLocation] = useState<LocationValue>(
+    meta.location_city
+      ? { city: meta.location_city, lat: meta.location_lat, lng: meta.location_lng }
+      : null,
+  );
 
   const zodiac = birthday ? getZodiacSign(new Date(birthday)) : null;
 
@@ -126,7 +132,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 htmlFor="username"
                 className="mb-1 block text-sm font-medium text-warm-700"
               >
-                Username
+                Chosen Name
               </label>
               <input
                 id="username"
@@ -147,7 +153,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 htmlFor="handle"
                 className="mb-1 block text-sm font-medium text-warm-700"
               >
-                Handle
+                Aurora Handle
               </label>
               <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
                 <span className="pl-3 text-sm text-warm-400">@</span>
@@ -254,6 +260,24 @@ export default function ProfileForm({ user }: { user: User }) {
               </div>
               <p className="mt-1 text-xs text-warm-400">
                 Optional. Just the handle.
+              </p>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-warm-700">
+                Location
+              </label>
+              <LocationPicker
+                initialCity={meta.location_city}
+                initialLat={meta.location_lat}
+                initialLng={meta.location_lng}
+                onChange={setLocation}
+              />
+              <input type="hidden" name="location_city" value={location?.city ?? ""} />
+              <input type="hidden" name="location_lat" value={location?.lat ?? ""} />
+              <input type="hidden" name="location_lng" value={location?.lng ?? ""} />
+              <p className="mt-1 text-xs text-warm-400">
+                Optional. City-level only — we never store your exact address.
               </p>
             </div>
 

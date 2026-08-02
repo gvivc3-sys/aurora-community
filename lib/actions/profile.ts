@@ -45,6 +45,9 @@ export async function updateProfile(
   const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawInstagram = (formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
+  const locationCity = (formData.get("location_city") as string)?.trim() ?? "";
+  const locationLat = formData.get("location_lat") as string;
+  const locationLng = formData.get("location_lng") as string;
 
   if (birthday) {
     const date = new Date(birthday);
@@ -68,6 +71,12 @@ export async function updateProfile(
 
   if (rawInstagram && !/^[a-zA-Z0-9._]{1,30}$/.test(rawInstagram)) {
     return { error: "Instagram handle must be 1-30 characters (letters, numbers, periods, underscores)." };
+  }
+
+  const lat = locationCity ? Number(locationLat) : NaN;
+  const lng = locationCity ? Number(locationLng) : NaN;
+  if (locationCity && (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180)) {
+    return { error: "Invalid location. Please pick your city again." };
   }
 
   // Fetch current user to detect identity changes
@@ -140,6 +149,9 @@ export async function updateProfile(
       bio: bio.slice(0, 300) || undefined,
       telegram_handle: rawTelegram || undefined,
       instagram_handle: rawInstagram || undefined,
+      location_city: locationCity || undefined,
+      location_lat: locationCity ? lat : undefined,
+      location_lng: locationCity ? lng : undefined,
       handle: handle || undefined,
     },
   });

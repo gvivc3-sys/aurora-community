@@ -154,6 +154,16 @@ export default async function PublicProfilePage({
           </div>
         )}
 
+        {/* Location */}
+        {meta.location_city && (
+          <div className="mt-4 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Location</h2>
+            <p className="mt-2 text-sm font-medium text-warm-700">
+              {meta.location_city}
+            </p>
+          </div>
+        )}
+
         {/* Saved posts */}
         {savedPosts.length > 0 && (
           <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
