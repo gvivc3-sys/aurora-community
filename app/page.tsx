@@ -204,7 +204,7 @@ export default async function Home() {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-xl shadow-lg">
               <Image
                 src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192"
-                alt="Ashley Aurora"
+                alt="Ashley"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 80vw, 320px"
@@ -275,11 +275,11 @@ export default async function Home() {
             <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="44px" />
+                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="44px" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-warm-900">
-                    Ashley Aurora
+                    Ashley
                   </p>
                   <p className="text-xs text-warm-400">
                     Voice Note &middot; 4:32
@@ -351,10 +351,10 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley</p>
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
@@ -408,10 +408,10 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley</p>
                       <p className="text-xs text-warm-400">5d ago</p>
                     </div>
                   </div>
@@ -465,10 +465,10 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley Aurora" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-warm-900">Ashley Aurora</p>
+                      <p className="text-sm font-medium text-warm-900">Ashley</p>
                       <p className="text-xs text-warm-400">1w ago</p>
                     </div>
                   </div>
@@ -539,7 +539,7 @@ export default async function Home() {
           <div className="mt-8 flex items-center justify-center gap-3">
             <div className="h-px w-8 bg-warm-600" />
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-500">
-              Ashley Aurora
+              Ashley
             </p>
             <div className="h-px w-8 bg-warm-600" />
           </div>

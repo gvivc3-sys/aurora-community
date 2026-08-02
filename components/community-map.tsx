@@ -34,24 +34,24 @@ const locations = [
   { label: "Gold Coast", x: 86.4, y: 71.2 },
   { label: "Newcastle", x: 85.4, y: 73.6 },
   { label: "Sydney", x: 85, y: 74.8 },
-  { label: "Canberra", x: 84.8, y: 76.5 },
-  { label: "Melbourne", x: 84, y: 77.7 },
+  { label: "Canberra", x: 82.5, y: 76 },
+  { label: "Melbourne", x: 80.5, y: 77 },
   { label: "Byron Bay", x: 85.5, y: 71.8 },
   { label: "Perth", x: 78, y: 73.6 },
   // New Zealand
-  { label: "Auckland", x: 89.5, y: 79.4 },
-  { label: "Wellington", x: 88.8, y: 82.3 },
+  { label: "Auckland", x: 93, y: 84.5 },
+  { label: "Wellington", x: 95, y: 87 },
   // South America
   { label: "São Paulo", x: 30, y: 66.6 },
   { label: "Rio de Janeiro", x: 30.7, y: 65.4 },
   { label: "Buenos Aires", x: 28, y: 72.4 },
-  { label: "Bogotá", x: 22, y: 53.7 },
-  { label: "Lima", x: 21, y: 58.4 },
+  { label: "Bogotá", x: 27.5, y: 55.5 },
+  { label: "Lima", x: 27.5, y: 61.5 },
   // South Africa
   { label: "Cape Town", x: 57, y: 73.6 },
   { label: "Johannesburg", x: 59, y: 66.0 },
   // Bali & Costa Rica
-  { label: "Bali", x: 74, y: 57.2 },
+  { label: "Bali", x: 81, y: 58.2 },
   { label: "San José, Costa Rica", x: 20.5, y: 47.9 },
   { label: "Nosara, Costa Rica", x: 20, y: 49.6 },
 ];
