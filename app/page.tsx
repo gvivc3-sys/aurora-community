@@ -183,9 +183,9 @@ export default async function Home() {
             <span className="italic"> on your frequency.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-600">
-            The Aurora Circle spans continents - women from Los Angeles to London, Bali to
-            Costa Rica, all stepping into their most radiant, magnetic, and naturally beautiful
-            selves. Healing happens in community, wherever you call home.
+            The Aurora Circle is a growing network of conscious souls, stepping into their most
+            radiant, magnetic, and naturally beautiful selves. No matter where you call home,
+            there&apos;s potential to find your people.
           </p>
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
         </AnimateOnScroll>
