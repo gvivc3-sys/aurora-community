@@ -168,25 +168,65 @@ export default async function Home() {
       {/* ─── FIND YOUR FREQUENCY ─── */}
       <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
         <AnimateOnScroll className="mx-auto max-w-xl px-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            You Are Not Alone
-          </p>
-          <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
+          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
             Find friends<br className="hidden sm:block" />
             <span className="italic"> on your frequency.</span>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-warm-600">
+        </AnimateOnScroll>
+
+        <AnimateOnScroll delay={150} className="mx-auto mt-8 max-w-4xl px-6">
+          <div className="relative rounded-xl border border-warm-200 bg-white p-2 shadow-sm sm:p-4">
+            <CommunityMap />
+
+            {/* Callout bubbles — anchored to this card, spilling past its edges */}
+            <div className="pointer-events-none absolute -left-4 top-6 z-20 hidden max-w-[160px] -rotate-3 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-10 md:flex lg:-left-14">
+              <Image
+                src="/images/avatar_pool/blonde_woman_candid.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                Looking for friends in LA!
+              </p>
+            </div>
+
+            <div className="pointer-events-none absolute -left-4 bottom-8 z-20 hidden max-w-[160px] rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-8 md:flex lg:-left-12">
+              <Image
+                src="/images/avatar_pool/woman_brunette_basic.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                New to NYC &mdash; say hi!
+              </p>
+            </div>
+
+            <div className="pointer-events-none absolute -right-4 top-1/2 z-20 hidden max-w-[168px] -translate-y-1/2 -rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-right-10 md:flex lg:-right-14">
+              <Image
+                src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                Visiting Australia, anyone want to grab a coffee?
+              </p>
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
+          <p className="text-sm font-medium italic text-warm-500">You belong here.</p>
+          <p className="mt-4 text-base leading-relaxed text-warm-600">
             Aurora is a growing network of conscious souls, stepping into their most
             radiant, magnetic, and naturally beautiful selves. No matter where you call home,
             there&apos;s potential to find your people.
           </p>
-          <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
-        </AnimateOnScroll>
-
-        <AnimateOnScroll delay={150} className="mx-auto mt-5 max-w-4xl px-6">
-          <div className="rounded-xl border border-warm-200 bg-white p-2 shadow-sm sm:p-4">
-            <CommunityMap />
-          </div>
         </AnimateOnScroll>
       </section>
 
