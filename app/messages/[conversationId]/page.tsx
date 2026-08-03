@@ -30,7 +30,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
   }
 
   return (
-    <div className="flex h-[calc(100dvh-6.375rem)] flex-col bg-warm-50 md:h-[calc(100dvh-3.5rem)]">
+    <div className="flex h-[calc((100dvh-6.375rem)*0.8)] flex-col bg-warm-50 md:h-[calc(100dvh-3.5rem)]">
       <RealtimeRefresh table="direct_messages" />
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-2 sm:py-4 sm:px-6">
         <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm sm:mb-3">
