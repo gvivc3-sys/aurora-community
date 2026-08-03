@@ -1,6 +1,7 @@
 import { geoNaturalEarth1, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
+import type { Feature, Polygon } from "geojson";
 import landTopology from "world-atlas/land-110m.json";
 
 const locations = [
@@ -62,9 +63,29 @@ const locations = [
 ];
 
 const WIDTH = 960;
-const HEIGHT = 960;
-// Crop out Antarctica by clipping the viewBox south of this latitude.
+const HEIGHT = 500;
+// Fit the projection to just this latitude band so there's no dead ocean
+// space above the Arctic or below Antarctica - every marker sits well
+// inside these bounds with room to spare.
+const NORTH_CUTOFF_LAT = 65;
 const SOUTH_CUTOFF_LAT = -58;
+
+const VISIBLE_BOUNDS: Feature<Polygon> = {
+  type: "Feature",
+  properties: {},
+  geometry: {
+    type: "Polygon",
+    coordinates: [
+      [
+        [-180, SOUTH_CUTOFF_LAT],
+        [180, SOUTH_CUTOFF_LAT],
+        [180, NORTH_CUTOFF_LAT],
+        [-180, NORTH_CUTOFF_LAT],
+        [-180, SOUTH_CUTOFF_LAT],
+      ],
+    ],
+  },
+};
 
 function MapDot({ label, x, y, delay }: { label: string; x: number; y: number; delay: number }) {
   return (
@@ -88,12 +109,11 @@ export default function CommunityMap() {
   const topology = landTopology as unknown as Topology;
   const land = feature(topology, topology.objects.land as GeometryCollection);
 
-  const projection = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], land);
+  // Fit to the visible latitude band directly (not the full globe) so the
+  // canvas has no dead ocean margin above the Arctic or below Antarctica.
+  const projection = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], VISIBLE_BOUNDS);
   const pathGenerator = geoPath(projection);
   const landPath = pathGenerator(land) ?? "";
-
-  const cropPoint = projection([0, SOUTH_CUTOFF_LAT]);
-  const cropHeight = cropPoint ? cropPoint[1] : HEIGHT;
 
   const markers = locations
     .map((loc) => {
@@ -103,8 +123,8 @@ export default function CommunityMap() {
     .filter((m): m is { label: string; x: number; y: number } => m !== null);
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl">
-      <svg viewBox={`0 0 ${WIDTH} ${cropHeight}`} className="block h-auto w-full">
+    <div className="relative mx-auto w-full">
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="block h-auto w-full overflow-visible">
         <path d={landPath} className="fill-warm-300/70" />
       </svg>
       <div className="absolute inset-0">
@@ -113,7 +133,7 @@ export default function CommunityMap() {
             key={m.label}
             label={m.label}
             x={(m.x / WIDTH) * 100}
-            y={(m.y / cropHeight) * 100}
+            y={(m.y / HEIGHT) * 100}
             delay={(i * 173) % 2000}
           />
         ))}

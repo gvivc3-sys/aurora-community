@@ -183,8 +183,8 @@ export default async function Home() {
           <p className="mt-5 text-sm font-medium italic text-warm-500">You belong here.</p>
         </AnimateOnScroll>
 
-        <AnimateOnScroll delay={150} className="mx-auto mt-6 max-w-3xl px-6">
-          <div className="rounded-xl border border-warm-200 bg-white p-4 shadow-sm sm:p-6">
+        <AnimateOnScroll delay={150} className="mx-auto mt-5 max-w-4xl px-6">
+          <div className="rounded-xl border border-warm-200 bg-white p-2 shadow-sm sm:p-4">
             <CommunityMap />
           </div>
         </AnimateOnScroll>
