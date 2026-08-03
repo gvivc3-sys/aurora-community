@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getConversations } from "@/lib/actions/dm";
-import BackLink from "@/components/back-link";
 import TimeAgo from "@/components/time-ago";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import { HeartSolidIcon } from "@/components/icons";
@@ -25,7 +24,6 @@ export default async function MessagesPage() {
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <RealtimeRefresh table="direct_messages" />
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <BackLink />
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Messages</h1>
 
         <div className="mt-6 space-y-2">

@@ -6,7 +6,6 @@ import { getActiveNotice } from "@/lib/actions/notices";
 import AdminInbox from "@/app/inbox/admin-inbox";
 import NoticeForm from "./notice-form";
 import RealtimeRefresh from "@/components/realtime-refresh";
-import BackLink from "@/components/back-link";
 
 export const dynamic = "force-dynamic";
 
@@ -40,9 +39,7 @@ export default async function ManagementPage({
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       {tab === "whispers" && <RealtimeRefresh table="messages" />}
       <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <BackLink />
-
-        <h1 className="mt-4 text-2xl font-light tracking-tight text-warm-900">
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">
           Management
         </h1>
 

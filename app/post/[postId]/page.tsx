@@ -6,7 +6,6 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
-import BackLink from "@/components/back-link";
 import ShareButton from "@/components/share-button";
 import TimeAgo from "@/components/time-ago";
 import ArticleBody from "@/app/dashboard/article-body";
@@ -112,8 +111,7 @@ export default async function PostPage({ params }: { params: Params }) {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <div className="flex items-center justify-between">
-          <BackLink />
+        <div className="flex justify-end">
           <ShareButton />
         </div>
 
