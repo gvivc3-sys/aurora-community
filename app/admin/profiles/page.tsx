@@ -104,7 +104,7 @@ export default async function AdminProfilesPage() {
               : 0;
             const username =
               u.user_metadata?.username ?? u.user_metadata?.name ?? null;
-            const avatarUrl = u.user_metadata?.avatar_url ?? null;
+            const avatarUrl = u.user_metadata?.custom_avatar_url ?? u.user_metadata?.avatar_url ?? null;
 
             return (
               <div

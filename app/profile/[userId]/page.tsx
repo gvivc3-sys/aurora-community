@@ -90,7 +90,7 @@ export default async function PublicProfilePage({
         {/* Avatar + name + member since */}
         <div className="flex flex-col items-center text-center">
           <Avatar
-            src={meta.avatar_url}
+            src={meta.custom_avatar_url ?? meta.avatar_url}
             name={meta.username}
             email={target.email}
             size="lg"
