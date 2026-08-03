@@ -2,6 +2,7 @@
 
 import { useActionState, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { type User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 import { updateProfile, updateAvatar } from "@/lib/actions/profile";
@@ -332,6 +333,12 @@ export default function ProfileForm({ user }: { user: User }) {
               Cancel my membership
             </button>
           </div>
+          <Link
+            href="/welcome"
+            className="mt-3 inline-block text-xs text-warm-400 underline decoration-warm-200 underline-offset-2 hover:text-warm-600"
+          >
+            Watch onboarding video
+          </Link>
         </div>
 
         {/* Get the app */}

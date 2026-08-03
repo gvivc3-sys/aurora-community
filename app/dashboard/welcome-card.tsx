@@ -36,23 +36,7 @@ export default function WelcomeCard() {
       <h3 className="text-base font-medium text-warm-900">
         Welcome to Aurora
       </h3>
-
-      {/* Placeholder for Ashley's welcome video — swap the box below for a
-          real <VideoCard src="..." /> once the video is delivered. */}
-      <div className="relative mt-3 aspect-video w-full max-w-sm overflow-hidden rounded-lg bg-warm-900">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-5 w-5 text-warm-800">
-              <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
-            </svg>
-          </div>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-warm-200">
-            A hello from Ashley &mdash; coming soon
-          </p>
-        </div>
-      </div>
-
-      <p className="mt-3 text-sm leading-relaxed text-warm-600">
+      <p className="mt-1.5 text-sm leading-relaxed text-warm-600">
         This is your sacred portal. Here you&apos;ll find posts, voice
         notes, and articles from the Aurora team. You can like, comment on,
         and save posts you love. Say hi on{" "}

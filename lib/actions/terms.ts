@@ -19,5 +19,5 @@ export async function acceptTerms() {
     .update({ terms_accepted_at: new Date().toISOString() })
     .eq("user_id", user.id);
 
-  redirect("/dashboard");
+  redirect("/welcome");
 }
