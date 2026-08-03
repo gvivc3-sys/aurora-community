@@ -12,7 +12,7 @@ export default function BackLink({
   return (
     <Link
       href={href}
-      className={`${className} inline-flex items-center gap-1.5 text-sm font-medium text-warm-500 transition-colors hover:text-warm-700`}
+      className={`${className} hidden items-center gap-1.5 text-sm font-medium text-warm-500 transition-colors hover:text-warm-700 md:inline-flex`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -6,6 +6,7 @@ import { getProfileCompletion } from "@/lib/profile-completion";
 import BackLink from "@/components/back-link";
 import FriendFlagForm from "@/components/friend-flag-form";
 import FriendFlagCard from "@/components/friend-flag-card";
+import DismissibleNote from "@/components/dismissible-note";
 
 export const dynamic = "force-dynamic";
 
@@ -27,10 +28,12 @@ export default async function FrequencyPage() {
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
         <BackLink />
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Frequency</h1>
-        <p className="mt-2 text-sm leading-relaxed text-warm-500">
-          Members looking to connect, right now. Post your city and what you&apos;re
-          up for, or reach out to someone below.
-        </p>
+        <DismissibleNote id="frequency-intro" className="mt-2">
+          <p className="pr-6 text-sm leading-relaxed text-warm-500 md:pr-0">
+            Members looking to connect, right now. Post your city and what you&apos;re
+            up for, or reach out to someone below.
+          </p>
+        </DismissibleNote>
 
         <div className="mt-6">
           {profileComplete ? (
