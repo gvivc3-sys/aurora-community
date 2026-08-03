@@ -6,7 +6,8 @@ import WaveformVisual from "@/components/waveform-visual";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
 import CommunityMap from "@/components/community-map";
-import { SparklesIcon as StreamlineSparklesIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
+import { SparklesIcon as StreamlineSparklesIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon, ChatBubbleIcon } from "@/components/icons";
+import FaqAccordion from "@/components/faq-accordion";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -66,7 +67,7 @@ const pillars = [
   {
     icon: VideoCameraIcon,
     iconColor: "bg-rose-50 text-rose-500",
-    title: "Ashley's Library",
+    title: "Ashley's Guides",
 
     description:
       "Lifetime access to all of Ashley's guides and books, including every future release, yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living and growing library you'll return to again and again.",
@@ -223,9 +224,16 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-sm font-medium italic text-warm-500">You belong here.</p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
-            Aurora is a growing network of conscious souls, stepping into their most
-            radiant, magnetic, and naturally beautiful selves. No matter where you call home,
-            there&apos;s potential to find your people.
+            Every member has her own profile &mdash; share your location, your
+            socials, and a bit about you. On Frequency, flag when you&apos;re
+            free to connect: post your city and what you&apos;re up for, then
+            message each other directly, no matter where you call home.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-warm-600">
+            This is a growing network of frequency-aligned women, all focused
+            on the same thing: stepping into a more radiant, healthy, and
+            positive life. Wherever you are in the world, there&apos;s
+            potential to find your people.
           </p>
         </AnimateOnScroll>
       </section>
@@ -241,17 +249,55 @@ export default async function Home() {
               This is <span className="italic">the Portal.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
-              The Portal is Aurora&apos;s community feed &mdash; a space to share
-              reflections, ask questions, and post what&apos;s on your mind,
-              organized around the topics that matter: Nourishment, Health
-              &amp; Beauty, Frequency, and anonymous Whispers.
+              Ashley posts her own reflections and insights regularly &mdash;
+              voice notes, short vlogs, and articles &mdash; and you can
+              comment, start a discussion thread, or just sit with what
+              resonates. It&apos;s a real, living conversation, not a
+              broadcast.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Read what other women are navigating, comment, like, and bookmark
-              the posts that resonate. Ashley shows up throughout with her own
-              reflections and voice notes, but the conversation belongs to
-              everyone.
+              Every post lives under one of four topics, so you can find
+              (or skip) exactly what speaks to you:
             </p>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
+                  <LeafIcon className="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <p className="text-xs font-medium text-warm-900">Nourishment</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Food and living in rhythm with your body.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+                  <HeartIcon className="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <p className="text-xs font-medium text-warm-900">Health + Beauty</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Natural beauty and feeling good in your skin.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600">
+                  <BoltIcon className="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <p className="text-xs font-medium text-warm-900">Energy</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Mindset and elevating your frequency.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600">
+                  <ChatBubbleIcon className="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <p className="text-xs font-medium text-warm-900">Whisper</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Ask Ashley anything, privately or publicly.</p>
+                </div>
+              </div>
+            </div>
           </AnimateOnScroll>
 
           {/* Voice note mockup card */}
@@ -322,6 +368,13 @@ export default async function Home() {
             <h2 className="text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               Some questions are better <span className="font-medium">asked in a whisper</span>
             </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-warm-600">
+              Share what&apos;s on your heart &mdash; a question, an
+              intention, or something you&apos;re navigating. Ashley will
+              read your whisper and may share her response with the sacred
+              portal for the community to reflect on. Your identity is yours
+              to reveal.
+            </p>
           </AnimateOnScroll>
 
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
@@ -397,7 +450,7 @@ export default async function Home() {
                     </div>
                   </div>
                   <span className="flex items-center gap-1 rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-medium text-fuchsia-700">
-                    <BoltIcon className="h-3 w-3" /> Frequency
+                    <BoltIcon className="h-3 w-3" /> Energy
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -558,56 +611,62 @@ export default async function Home() {
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
             Step into <span className="font-medium">Aurora.</span>
-            <span className="mt-1 block italic">Your circle is waiting.</span>
+            <span className="mt-1 block italic">Your friends are waiting.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
             Aurora is a sanctuary for women who are ready to step into their most
             radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
           </p>
-          <div id="join" className="mx-auto mt-10 max-w-sm rounded-xl border border-warm-200 bg-white/80 px-8 py-8 shadow-sm">
-            <div className="mb-4 flex justify-center">
-              <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
-            </div>
-            <div className="mb-5 flex justify-center">
-              <svg viewBox="0 0 258.22298 283.80057" className="h-10 w-auto text-warm-600 opacity-90" fill="currentColor" aria-label="Aurora">
-                <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-              </svg>
-            </div>
-            <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
-            <ul className="space-y-3 text-left">
-              {[
-                "Voice notes from Ashley",
-                "Ashley's Library — guides, books, and audio tracks (over $125 in value!)",
-                "The Portal — exclusive articles, reflections, and community connection",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
-                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6">
-              {hasActiveSub ? (
-                <Link
-                  href="/dashboard"
-                  className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-                >
-                  Go to Your Portal
-                </Link>
-              ) : (
-                <div className="flex flex-col items-center gap-2">
+
+          <div className="mx-auto mt-10 max-w-md rounded-[1.75rem] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[1.5px] shadow-xl">
+            <div id="join" className="rounded-[1.7rem] bg-white px-8 py-9 sm:px-10">
+              <div className="mb-4 flex justify-center">
+                <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
+              </div>
+              <div className="mb-5 flex justify-center">
+                <svg viewBox="0 0 258.22298 283.80057" className="h-10 w-auto text-warm-600 opacity-90" fill="currentColor" aria-label="Aurora">
+                  <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
+                </svg>
+              </div>
+              <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
+              <ul className="space-y-3 text-left">
+                {[
+                  "The Portal — Ashley's articles, voice notes, and community discussion",
+                  "Frequency — connect with frequency-aligned women, wherever you are",
+                  "Direct messaging with members around the world",
+                  "Private, anonymous Whispers with Ashley",
+                  "Ashley's Guides — guides, books, and audio tracks (over $125 in value!)",
+                  "Install Aurora as an app — your circle, right on your home screen",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
+                    <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                {hasActiveSub ? (
                   <Link
-                    href={user ? "/subscribe" : "/signup"}
-                    className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                    href="/dashboard"
+                    className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                   >
-                    Join Aurora &mdash; <span className="line-through opacity-60">$55</span> $38/month
+                    Go to Your Portal
                   </Link>
-                  <p className="text-xs text-warm-400">
-                    Cancel anytime. No contracts. No questions asked.
-                  </p>
-                </div>
-              )}
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <Link
+                      href={user ? "/subscribe" : "/signup"}
+                      className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                    >
+                      Join Aurora &mdash; <span className="line-through opacity-60">$55</span> $38/month
+                    </Link>
+                    <p className="text-xs text-warm-400">
+                      Cancel anytime. No contracts. No questions asked.
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </AnimateOnScroll>
@@ -645,6 +704,32 @@ export default async function Home() {
               </p>
             </AnimateOnScroll>
           </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="border-t border-warm-200 px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-2xl">
+          <AnimateOnScroll className="text-center">
+            <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+              Questions?
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-warm-600">
+              A little more on why women are joining &mdash; and exactly what
+              you get.
+            </p>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={150} className="mt-10">
+            <FaqAccordion />
+          </AnimateOnScroll>
+
+          <AnimateOnScroll className="mt-10 text-center">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
+              Join Aurora
+              <ArrowRightIcon className="h-4 w-4 rotate-90" />
+            </a>
+          </AnimateOnScroll>
         </div>
       </section>
 
