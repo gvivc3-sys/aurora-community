@@ -190,11 +190,7 @@ export default async function DashboardPage({
       <ScrollToTop />
       <RealtimeRefresh table="posts" />
       <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <p className="hidden text-center font-mono text-sm text-warm-500 md:block">
-          welcome {user.user_metadata?.username || user.email}
-        </p>
-
-        <div className="mt-4">
+        <div>
           <WelcomeCard />
         </div>
 
