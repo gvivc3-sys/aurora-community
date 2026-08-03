@@ -231,71 +231,26 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── ABOUT ASHLEY ─── */}
-      <section className="border-t border-warm-200 bg-warm-100/40 px-6 py-12 sm:py-16">
-        <div className="mx-auto max-w-xl">
-          <AnimateOnScroll className="text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              The Woman Behind Aurora
-            </p>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={100} className="mt-6 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
-            <div className="flex items-center gap-4 px-6 pt-6">
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full">
-                <Image
-                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
-                  alt="Ashley"
-                  fill
-                  className="object-cover"
-                  sizes="80px"
-                />
-              </div>
-              <div>
-                <p className="text-lg font-medium text-warm-900">Ashley</p>
-                <p className="text-xs text-warm-400">The woman behind Aurora</p>
-              </div>
-            </div>
-            <div className="px-6 pb-6 pt-4">
-              <p className="text-sm leading-relaxed text-warm-700">
-                Ashley has spent years immersed in ancient beauty practices, deep
-                nourishment, and living in alignment with true health &mdash;
-                creating natural skincare, painting, and connecting to the
-                natural ways of living on Earth.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-warm-700">
-                Aurora was born from the knowing that each of us holds the power
-                to elevate our energy and create the life we feel called to live.
-              </p>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
-
-
-      {/* ─── SISTERHOOD / VOICE NOTES SHOWCASE ─── */}
+      {/* ─── THE PORTAL ─── */}
       <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
         <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
           <AnimateOnScroll>
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Enter The Portal
-            </p>
-            <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Wisdom shared.
+            <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+              This is <span className="italic">the Portal.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
-              Every week, Ashley records heart-led voice notes on true health,
-              natural beauty, and elevating your energy. These aren&apos;t
-              lectures, they&apos;re the kind of conversations you&apos;d
-              have with your closest friend over a cup of tea.
+              The Portal is Aurora&apos;s community feed &mdash; a space to share
+              reflections, ask questions, and post what&apos;s on your mind,
+              organized around the topics that matter: Nourishment, Health
+              &amp; Beauty, Frequency, and anonymous Whispers.
             </p>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              Press play during your morning ritual, listen on your walk, and share
-              your thoughts in the feed. This is how women have always learned
-              through story, shared experience, and the magic of coming
-              together.
+              Read what other women are navigating, comment, like, and bookmark
+              the posts that resonate. Ashley shows up throughout with her own
+              reflections and voice notes, but the conversation belongs to
+              everyone.
             </p>
           </AnimateOnScroll>
 
@@ -364,10 +319,7 @@ export default async function Home() {
 
         <div className="relative mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              The Whisper
-            </p>
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+            <h2 className="text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               Some questions are better <span className="font-medium">asked in a whisper</span>
             </h2>
           </AnimateOnScroll>
@@ -555,34 +507,11 @@ export default async function Home() {
 
 
 
-      {/* ─── QUOTE / DARK SECTION ─── */}
-      <section className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
-        <AnimateOnScroll className="relative mx-auto max-w-3xl text-center">
-          <blockquote className="text-2xl font-extralight leading-relaxed tracking-tight text-warm-100 sm:text-3xl md:text-4xl">
-            &ldquo;We were never meant to walk this path alone.
-            <span className="mt-2 block">
-              Real healing happens in community in the warmth of relating,
-              connection, and in the quiet magic of being truly seen.&rdquo;
-            </span>
-          </blockquote>
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-warm-600" />
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-500">
-              Ashley
-            </p>
-            <div className="h-px w-8 bg-warm-600" />
-          </div>
-        </AnimateOnScroll>
-      </section>
-
       {/* ─── WHAT'S INSIDE ─── */}
       <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-              Welcome Home
-            </p>
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+            <h2 className="text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
               What Awaits You Inside <span className="font-medium">Aurora</span>
             </h2>
           </AnimateOnScroll>
@@ -627,17 +556,14 @@ export default async function Home() {
         />
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
-            Reclaim your <span className="font-medium">energy.</span>
-            <span className="mt-1 block italic">Elevate your <span className="font-medium">life.</span></span>
+          <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
+            Step into <span className="font-medium">Aurora.</span>
+            <span className="mt-1 block italic">Your circle is waiting.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
             Aurora is a sanctuary for women who are ready to step into their most
             radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
-          </p>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-500">
-            We were never meant to walk this path alone.
           </p>
           <div id="join" className="mx-auto mt-10 max-w-sm rounded-xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
             <div className="mb-4 flex justify-center">
@@ -651,7 +577,7 @@ export default async function Home() {
             <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
             <ul className="space-y-3 text-left">
               {[
-                "Weekly voice notes from Ashley",
+                "Voice notes from Ashley",
                 "Ashley's Library — guides, books, and audio tracks (over $125 in value!)",
                 "The Portal — exclusive articles, reflections, and community connection",
               ].map((item) => (
@@ -685,6 +611,41 @@ export default async function Home() {
             </div>
           </div>
         </AnimateOnScroll>
+      </section>
+
+      {/* ─── ABOUT ASHLEY ─── */}
+      <section className="border-t border-warm-200 bg-warm-100/40 px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
+            <AnimateOnScroll className="mx-auto md:mx-0">
+              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-200 shadow-xl sm:h-72 sm:w-72">
+                <Image
+                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
+                  alt="Ashley"
+                  fill
+                  className="object-cover"
+                  sizes="288px"
+                />
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={120} className="text-center md:text-left">
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+                The woman behind <span className="italic">Aurora.</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600 md:mx-0">
+                Ashley has spent years immersed in ancient beauty practices, deep
+                nourishment, and living in alignment with true health &mdash;
+                creating natural skincare, painting, and connecting to the
+                natural ways of living on Earth.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-warm-600 md:mx-0">
+                Aurora was born from the knowing that each of us holds the power
+                to elevate our energy and create the life we feel called to live.
+              </p>
+            </AnimateOnScroll>
+          </div>
+        </div>
       </section>
 
       {/* ─── FOOTER ─── */}
