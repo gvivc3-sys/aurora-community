@@ -30,12 +30,12 @@ export default async function ConversationPage({ params }: { params: Params }) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-3.5rem)] flex-col bg-warm-50">
+    <div className="flex h-[calc(100dvh-6.375rem)] flex-col bg-warm-50 md:h-[calc(100dvh-3.5rem)]">
       <RealtimeRefresh table="direct_messages" />
-      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-4 sm:px-6">
-        <BackLink href="/messages" label="Back to Messages" />
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-2 sm:py-4 sm:px-6">
+        <BackLink href="/messages" label="Back to Messages" className="mb-2 sm:mb-4" />
 
-        <div className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm">
+        <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm sm:mb-3">
           <div className="flex min-w-0 items-center gap-2.5">
             {currentUser.avatarUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -75,6 +75,11 @@ export default async function ConversationPage({ params }: { params: Params }) {
             )}
           </Link>
         </div>
+
+        <p className="mb-2 text-center text-[11px] leading-snug text-warm-400">
+          For your safety: verify who you&apos;re talking to &mdash; a video call or
+          Instagram check goes a long way before meeting up.
+        </p>
 
         <div className="flex-1 space-y-3 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-4">
           {messages.length > 0 ? (
