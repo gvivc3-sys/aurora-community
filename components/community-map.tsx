@@ -94,10 +94,10 @@ function MapDot({ label, x, y, delay }: { label: string; x: number; y: number; d
       style={{ left: `${x}%`, top: `${y}%` }}
     >
       <span
-        className="absolute inset-0 h-2 w-2 animate-ping rounded-full bg-fuchsia-400 opacity-60"
+        className="absolute inset-0 h-1.5 w-1.5 animate-ping rounded-full bg-fuchsia-400 opacity-60"
         style={{ animationDelay: `${delay}ms` }}
       />
-      <span className="relative block h-2 w-2 rounded-full bg-fuchsia-500 shadow-[0_0_8px_2px_rgba(217,70,239,0.55)]" />
+      <span className="relative block h-1.5 w-1.5 rounded-full bg-fuchsia-500 shadow-[0_0_5px_1.5px_rgba(217,70,239,0.55)]" />
       <span className="pointer-events-none absolute left-1/2 top-full z-50 mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-warm-900 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-warm-50 opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100">
         {label}
       </span>

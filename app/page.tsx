@@ -202,7 +202,7 @@ export default async function Home() {
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
               <p className="text-[11px] font-medium leading-snug text-warm-700">
-                New to NYC &mdash; say hi!
+                New to NYC, say hi!
               </p>
             </div>
 
@@ -224,7 +224,7 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-sm font-medium italic text-warm-500">You belong here.</p>
           <p className="mt-4 text-base leading-relaxed text-warm-600">
-            Every member has her own profile &mdash; share your location, your
+            Every member has her own profile: share your location, your
             socials, and a bit about you. On Frequency, flag when you&apos;re
             free to connect: post your city and what you&apos;re up for, then
             message each other directly, no matter where you call home.
@@ -244,13 +244,13 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
-          <AnimateOnScroll>
+          <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
               This is <span className="italic">the Portal.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-warm-600">
-              Ashley posts her own reflections and insights regularly &mdash;
-              voice notes, short vlogs, and articles &mdash; and you can
+              Ashley posts her own reflections and insights regularly,
+              through voice notes, short vlogs, and articles, and you can
               comment, start a discussion thread, or just sit with what
               resonates. It&apos;s a real, living conversation, not a
               broadcast.
@@ -260,7 +260,7 @@ export default async function Home() {
               (or skip) exactly what speaks to you:
             </p>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="mt-5 grid grid-cols-2 gap-3 text-left">
               <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
                   <LeafIcon className="h-3.5 w-3.5" />
@@ -363,23 +363,24 @@ export default async function Home() {
           />
         </div>
 
-        <div className="relative mx-auto max-w-5xl">
-          <AnimateOnScroll className="text-center">
-            <h2 className="text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              Some questions are better <span className="font-medium">asked in a whisper</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-warm-600">
-              Share what&apos;s on your heart &mdash; a question, an
-              intention, or something you&apos;re navigating. Ashley will
-              read your whisper and may share her response with the sacred
-              portal for the community to reflect on. Your identity is yours
-              to reveal.
-            </p>
-          </AnimateOnScroll>
+        <div className="relative mx-auto max-w-6xl">
+          <div className="grid items-center gap-16 md:grid-cols-2">
+            {/* Copy */}
+            <AnimateOnScroll className="text-center md:text-left">
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+                Some questions are better <span className="italic">asked in a whisper</span>
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-warm-600">
+                Share what&apos;s on your heart: a question, an
+                intention, or something you&apos;re navigating. Ashley will
+                read your whisper and may share her response with the sacred
+                portal for the community to reflect on. Your identity is
+                yours to reveal.
+              </p>
+            </AnimateOnScroll>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-3">
-            {/* Card 1 — Anonymous whisper, Ashley responds */}
-            <AnimateOnScroll delay={0}>
+            {/* Single whisper example */}
+            <AnimateOnScroll delay={200}>
               <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
@@ -392,8 +393,8 @@ export default async function Home() {
                       <p className="text-xs text-warm-400">2d ago</p>
                     </div>
                   </div>
-                  <span className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
-                    <LeafIcon className="h-3 w-3" /> Nourishment
+                  <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                    <ChatBubbleIcon className="h-3 w-3" /> Whisper
                   </span>
                 </div>
                 {/* Nested anonymous whisper */}
@@ -434,120 +435,6 @@ export default async function Home() {
                 </div>
               </div>
             </AnimateOnScroll>
-
-            {/* Card 2 — Anonymous whisper, Ashley responds */}
-            <AnimateOnScroll delay={150}>
-              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
-                {/* Ashley header */}
-                <div className="flex items-center justify-between px-4 pt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-warm-900">Ashley</p>
-                      <p className="text-xs text-warm-400">5d ago</p>
-                    </div>
-                  </div>
-                  <span className="flex items-center gap-1 rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-medium text-fuchsia-700">
-                    <BoltIcon className="h-3 w-3" /> Energy
-                  </span>
-                </div>
-                {/* Nested anonymous whisper */}
-                <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
-                  <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
-                  <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;I want to shift my wardrobe to natural materials but I&apos;m on a tight budget. Is it actually possible?&rdquo;
-                  </p>
-                </div>
-                {/* Ashley's response */}
-                <div className="px-4 py-3">
-                  <p className="text-sm leading-relaxed text-warm-700">
-                    That is amazing to hear and it is 100% possible! A few great places to start are local thrift stores and op shops. So many of my staple pieces are from...
-                  </p>
-                </div>
-                {/* Divider */}
-                <div className="mx-4 border-t border-warm-100" />
-                {/* Fake comments */}
-                <div className="px-4 py-3 space-y-2.5">
-                  <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-200 to-fuchsia-100 text-[9px] font-semibold text-warm-600">
-                      JM
-                    </div>
-                    <div>
-                      <p className="text-xs"><span className="font-medium text-warm-800">Jasmine M.</span> <span className="text-warm-400">&middot; 4d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I started at my local op shop last month — found the most beautiful linen pieces for almost nothing!</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-200 to-emerald-100 text-[9px] font-semibold text-warm-600">
-                      NW
-                    </div>
-                    <div>
-                      <p className="text-xs"><span className="font-medium text-warm-800">Nadia W.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Slow fashion is so worth it. My wardrobe feels so much more intentional now.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </AnimateOnScroll>
-
-            {/* Card 3 — Named whisper (Elena), Ashley responds */}
-            <AnimateOnScroll delay={300}>
-              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
-                {/* Ashley header */}
-                <div className="flex items-center justify-between px-4 pt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-warm-900">Ashley</p>
-                      <p className="text-xs text-warm-400">1w ago</p>
-                    </div>
-                  </div>
-                  <span className="flex items-center gap-1 rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-medium text-rose-700">
-                    <HeartIcon className="h-3 w-3" /> Health + Beauty
-                  </span>
-                </div>
-                {/* Nested anonymous whisper */}
-                <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
-                  <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
-                  <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;I&apos;ve stopped using harsh cleansers on my skin but I&apos;m not sure what to use instead.&rdquo;
-                  </p>
-                </div>
-                {/* Ashley's response */}
-                <div className="px-4 py-3">
-                  <p className="text-sm leading-relaxed text-warm-700">
-                    So glad you&apos;ve stopped using cleansers that strip the skin&apos;s natural barrier and healthy bacteria. These are actually so important for skin health and that bright glowing complexion...
-                  </p>
-                </div>
-                {/* Divider */}
-                <div className="mx-4 border-t border-warm-100" />
-                {/* Fake comments */}
-                <div className="px-4 py-3 space-y-2.5">
-                  <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-200 text-[9px] font-semibold text-warm-700">
-                      EM
-                    </div>
-                    <div>
-                      <p className="text-xs"><span className="font-medium text-warm-800">Elena Morales</span> <span className="text-warm-400">&middot; 6d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Same! I switched to just water and a soft cloth and my skin has never looked better.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-200 to-blue-100 text-[9px] font-semibold text-warm-600">
-                      DT
-                    </div>
-                    <div>
-                      <p className="text-xs"><span className="font-medium text-warm-800">Diana T.</span> <span className="text-warm-400">&middot; 5d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">The microbiome angle blew my mind. Makes so much sense now.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </AnimateOnScroll>
           </div>
           <AnimateOnScroll className="mt-12 text-center">
             <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
@@ -564,8 +451,8 @@ export default async function Home() {
       <section className="border-y border-warm-200 bg-warm-100/40 px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
-            <h2 className="text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside <span className="font-medium">Aurora</span>
+            <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+              What Awaits You Inside <span className="italic">Aurora</span>
             </h2>
           </AnimateOnScroll>
 
@@ -632,12 +519,12 @@ export default async function Home() {
               <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
               <ul className="space-y-3 text-left">
                 {[
-                  "The Portal — Ashley's articles, voice notes, and community discussion",
-                  "Frequency — connect with frequency-aligned women, wherever you are",
+                  "The Portal: Ashley's articles, voice notes, and community discussion",
+                  "Frequency: connect with frequency-aligned women, wherever you are",
                   "Direct messaging with members around the world",
                   "Private, anonymous Whispers with Ashley",
-                  "Ashley's Guides — guides, books, and audio tracks (over $125 in value!)",
-                  "Install Aurora as an app — your circle, right on your home screen",
+                  "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
+                  "Install Aurora as an app, right on your home screen",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
                     <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
@@ -659,7 +546,7 @@ export default async function Home() {
                       href={user ? "/subscribe" : "/signup"}
                       className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                     >
-                      Join Aurora &mdash; <span className="line-through opacity-60">$55</span> $38/month
+                      Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
                     </Link>
                     <p className="text-xs text-warm-400">
                       Cancel anytime. No contracts. No questions asked.
@@ -694,7 +581,7 @@ export default async function Home() {
               </h2>
               <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600 md:mx-0">
                 Ashley has spent years immersed in ancient beauty practices, deep
-                nourishment, and living in alignment with true health &mdash;
+                nourishment, and living in alignment with true health,
                 creating natural skincare, painting, and connecting to the
                 natural ways of living on Earth.
               </p>
@@ -715,7 +602,7 @@ export default async function Home() {
               Questions?
             </h2>
             <p className="mt-4 text-base leading-relaxed text-warm-600">
-              A little more on why women are joining &mdash; and exactly what
+              A little more on why women are joining, and exactly what
               you get.
             </p>
           </AnimateOnScroll>
