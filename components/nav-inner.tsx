@@ -49,6 +49,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
   }, []);
 
   return (
+    <>
     <nav className="sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Aurora logo with gaussian blur accent */}
@@ -244,223 +245,189 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
           ) : null}
         </div>
 
-        {/* Mobile: avatar + bell + burger */}
-        <div className="flex items-center gap-1 md:hidden">
+        {/* Mobile: bell + avatar/close toggle */}
+        <div className="flex items-center gap-2 md:hidden">
           {hasActiveSub && <NotificationDropdown unreadCount={unreadNotificationCount} />}
-          {user && (
+          {user ? (
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="rounded-full p-0.5 transition-opacity hover:opacity-80"
-              aria-label="Toggle menu"
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-80"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              <Avatar src={user.avatarUrl} name={user.username} email={user.email} size="sm" />
+              {menuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-warm-600">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <Avatar src={user.avatarUrl} name={user.username} email={user.email} size="sm" />
+              )}
             </button>
-          )}
-          <button
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-md p-2 text-warm-600 transition-colors hover:bg-warm-100"
-            aria-label="Toggle menu"
-          >
-          {menuOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-5 w-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-5 w-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
+            <>
+              <Link href="/login" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600">
+                Log in
+              </Link>
+              <Link href="/signup" className="rounded-full bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md">
+                Sign up
+              </Link>
+            </>
           )}
-          </button>
         </div>
       </div>
 
-      {/* Mobile dropdown */}
-      {menuOpen && (
-        <div className="animate-slide-down border-t border-warm-100 bg-white px-6 pb-4 pt-3 md:hidden">
-          {(hasActiveSub && user) ? (
-            <div className="space-y-3">
-              <Link
-                href="/profile"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3"
-              >
-                <Avatar
-                  src={user.avatarUrl}
-                  name={user.username}
-                  email={user.email}
-                  size="sm"
-                />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-warm-900">
-                    {user.username || user.email}
-                  </p>
-                  {user.isAdmin && (
-                    <span className="text-xs text-warm-500">Admin</span>
-                  )}
-                </div>
-              </Link>
-              <div className="border-t border-warm-100 pt-3">
-                <Link
-                  href="/frequency"
-                  onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  Frequency
-                </Link>
-                <Link
-                  href="/dashboard"
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  <svg viewBox="0 0 258.22298 283.80057" className="h-4 w-auto animate-[spin_12s_linear_infinite]" fill="#9b3aed">
-                    <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-                  </svg>
-                  Portal
-                </Link>
-                <Link
-                  href="/inbox"
-                  onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  Whisper
-                </Link>
-                <div className="my-2 border-t border-warm-100" />
-                <Link
-                  href="/profile"
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  <UserCircleIcon className="h-4 w-4 text-warm-400" />
-                  Profile
-                </Link>
-                <Link
-                  href="/messages"
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
-                  Messages
-                </Link>
-                <Link
-                  href="/bookmarks"
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  <BookmarkIcon className="h-4 w-4 text-warm-400" />
-                  Saved
-                </Link>
-                <Link
-                  href="/library"
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  <BookOpenIcon className="h-4 w-4 text-warm-400" />
-                  Guides
-                </Link>
-                <InstallPrompt />
-                {user.isAdmin && (
-                  <>
-                    <div className="mx-3 my-1 border-t border-warm-100" />
-                    <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
-                    <Link
-                      href="/management"
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                    >
-                      Management
-                      {unreadInboxCount > 0 && (
-                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                          {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                        </span>
-                      )}
-                    </Link>
-                    <Link
-                      href="/admin/profiles"
-                      onClick={() => setMenuOpen(false)}
-                      className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                    >
-                      Profiles
-                    </Link>
-                    <Link
-                      href="/admin"
-                      onClick={() => setMenuOpen(false)}
-                      className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                    >
-                      Stats
-                    </Link>
-                  </>
-                )}
-                <form action={signOut}>
-                  <button
-                    type="submit"
-                    className="mt-1 flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-                  >
-                    <ArrowRightOnRectangleIcon className="h-4 w-4 text-warm-400" />
-                    Log out
-                  </button>
-                </form>
-              </div>
-            </div>
-          ) : user ? (
-            <div className="space-y-2">
-              <p className="px-1 pb-1 text-sm font-medium text-warm-900">Welcome back! 👋</p>
-              <Link
-                href="/subscribe"
-                onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-              >
-                Join Aurora — {MEMBERSHIP_PRICE}
-              </Link>
-              <form action={signOut}>
-                <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
-                  Log out
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div className="space-y-2">
-              <Link
-                href="/login"
-                onClick={() => setMenuOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
-              >
-                Log in
-              </Link>
-              <Link
-                href="/signup"
-                onClick={() => setMenuOpen(false)}
-                className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-              >
-                Sign up
-              </Link>
-            </div>
-          )}
+      {/* Mobile secondary nav — Frequency / Portal / Whisper, shows the active page */}
+      {hasActiveSub && user && (
+        <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
+          <Link
+            href="/frequency"
+            className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+          >
+            Frequency
+          </Link>
+          <Link
+            href="/dashboard"
+            className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+          >
+            Portal
+          </Link>
+          <Link
+            href="/inbox"
+            className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+          >
+            Whisper
+          </Link>
         </div>
       )}
     </nav>
+
+    {/* Mobile drawer — rendered outside <nav> since fixed descendants of a
+        sticky ancestor get clipped to the nav's own box in some browsers */}
+    {menuOpen && user && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/30 md:hidden"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="animate-slide-in-right fixed right-0 top-0 z-50 h-full w-72 max-w-[80%] overflow-y-auto bg-white shadow-xl md:hidden">
+            {hasActiveSub ? (
+              <div className="p-5">
+                <Link
+                  href="/profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3"
+                >
+                  <Avatar src={user.avatarUrl} name={user.username} email={user.email} size="sm" />
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-warm-900">
+                      {user.username || user.email}
+                    </p>
+                    {user.isAdmin && (
+                      <span className="text-xs text-warm-500">Admin</span>
+                    )}
+                  </div>
+                </Link>
+                <div className="mt-4 space-y-1 border-t border-warm-100 pt-4">
+                  <Link
+                    href="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  >
+                    <UserCircleIcon className="h-4 w-4 text-warm-400" />
+                    Profile
+                  </Link>
+                  <Link
+                    href="/messages"
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  >
+                    <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
+                    Messages
+                  </Link>
+                  <Link
+                    href="/bookmarks"
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  >
+                    <BookmarkIcon className="h-4 w-4 text-warm-400" />
+                    Saved
+                  </Link>
+                  <Link
+                    href="/library"
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  >
+                    <BookOpenIcon className="h-4 w-4 text-warm-400" />
+                    Guides
+                  </Link>
+                  <InstallPrompt />
+                  {user.isAdmin && (
+                    <>
+                      <div className="mx-3 my-1 border-t border-warm-100" />
+                      <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
+                      <Link
+                        href="/management"
+                        onClick={() => setMenuOpen(false)}
+                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                      >
+                        Management
+                        {unreadInboxCount > 0 && (
+                          <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                            {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
+                          </span>
+                        )}
+                      </Link>
+                      <Link
+                        href="/admin/profiles"
+                        onClick={() => setMenuOpen(false)}
+                        className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                      >
+                        Profiles
+                      </Link>
+                      <Link
+                        href="/admin"
+                        onClick={() => setMenuOpen(false)}
+                        className="block rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                      >
+                        Stats
+                      </Link>
+                    </>
+                  )}
+                  <div className="mx-3 my-1 border-t border-warm-100" />
+                  <form action={signOut}>
+                    <button
+                      type="submit"
+                      className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                    >
+                      <ArrowRightOnRectangleIcon className="h-4 w-4 text-warm-400" />
+                      Log out
+                    </button>
+                  </form>
+                </div>
+              </div>
+            ) : (
+              <div className="p-5">
+                <p className="pb-3 text-sm font-medium text-warm-900">Welcome back! 👋</p>
+                <div className="space-y-2">
+                  <Link
+                    href="/subscribe"
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                  >
+                    Join Aurora — {MEMBERSHIP_PRICE}
+                  </Link>
+                  <form action={signOut}>
+                    <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
+                      Log out
+                    </button>
+                  </form>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </>
   );
 }
