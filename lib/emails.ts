@@ -58,7 +58,6 @@ export async function sendWelcomeEmail(email: string) {
          <p ${textStyle}>Here's what to expect:</p>
          <ul style="margin:0 0 16px;padding-left:20px;font-size:16px;line-height:1.6;color:#1c1917;">
            <li>Curated discussions and resource library</li>
-           <li>Access to our private Telegram group (with a membership)</li>
            <li>Direct messaging with Ashley</li>
          </ul>
          ${button("Enter the Portal", `${SITE_URL}/dashboard`)}
@@ -79,8 +78,8 @@ export async function sendSubscriptionConfirmedEmail(email: string) {
       html: emailLayout(
         "Membership Confirmed",
         `<p ${textStyle}>Your Aurora membership is confirmed — welcome to the inner portal.</p>
-         <p ${textStyle}>You now have full access to everything Aurora has to offer, including our private Telegram group.</p>
-         ${button("Set up Telegram access", `${SITE_URL}/dashboard`)}
+         <p ${textStyle}>You now have full access to everything Aurora has to offer.</p>
+         ${button("Enter the Portal", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>If you have any questions, just reply to this email. We're happy to help.</p>`,
       ),
     });
@@ -117,7 +116,7 @@ export async function sendSubscriptionCanceledEmail(email: string) {
       html: emailLayout(
         "Subscription Canceled",
         `<p ${textStyle}>Your Aurora membership has been canceled. We're sorry to see you go.</p>
-         <p ${textStyle}>You'll continue to have access to your account, but premium features and Telegram access will be removed.</p>
+         <p ${textStyle}>You'll continue to have access to your account, but premium features will be removed.</p>
          <p ${textStyle}>The door is always open if you'd like to come back — you can resubscribe anytime.</p>
          ${button("Resubscribe", `${SITE_URL}/dashboard`)}
          <p ${textStyle}>Thanks for being part of the community.</p>`,

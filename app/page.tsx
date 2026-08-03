@@ -6,7 +6,7 @@ import WaveformVisual from "@/components/waveform-visual";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
 import CommunityMap from "@/components/community-map";
-import { SparklesIcon as StreamlineSparklesIcon, UsersIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
+import { SparklesIcon as StreamlineSparklesIcon, VideoCameraIcon, ArrowRightIcon, CheckBadgeAlternateIcon, LeafIcon, BoltIcon } from "@/components/icons";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -62,13 +62,6 @@ const pillars = [
     title: "The Portal",
     description:
       "A curated space of blog posts and articles on the topics that matter most, written by Ashley. Read, reflect, and share your own experiences and thoughts directly with the community.",
-  },
-  {
-    icon: UsersIcon,
-    iconColor: "bg-warm-100 text-warm-600",
-    title: "Telegram Group",
-    description:
-      "A private Telegram group of aligned, like-minded women. Share your insights, ask questions, and learn from the real journeys of women who are walking this path alongside you.",
   },
   {
     icon: VideoCameraIcon,
@@ -554,7 +547,7 @@ export default async function Home() {
             </h2>
           </AnimateOnScroll>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-16 grid max-w-2xl gap-6 sm:grid-cols-2">
             {pillars.map((pillar, i) => (
               <AnimateOnScroll key={i} delay={i * 120}>
                 <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
@@ -578,33 +571,6 @@ export default async function Home() {
             </a>
           </AnimateOnScroll>
         </div>
-      </section>
-
-      {/* ─── TELEGRAM GROUP ─── */}
-      <section className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
-        <AnimateOnScroll className="text-center">
-          <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#2AABEE] shadow-sm" style={{ animation: "wiggle 15s ease-in-out infinite" }}>
-            <svg viewBox="0 0 24 24" className="h-8 w-8 text-white" fill="currentColor">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-            </svg>
-          </div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            Stay Connected
-          </p>
-          <h2 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            A private group, <span className="italic">just for <span className="font-medium">us</span></span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-            Every Aurora member gets access to our private Telegram group. This is
-            a space for real-time conversations, shared discoveries, and the kind
-            of conversations that make you feel supported and seen on your path.
-          </p>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-warm-600">
-            Share your favorite breakfast recipe. A nighttime ritual that helps
-            you sleep. A lifestyle shift that elevated your energy. Here you can
-            connect with women of the same frequency.
-          </p>
-        </AnimateOnScroll>
       </section>
 
       {/* ─── FINAL CTA ─── */}
@@ -648,7 +614,6 @@ export default async function Home() {
                 "Weekly voice notes from Ashley",
                 "Ashley's Library — guides, books, and audio tracks (over $125 in value!)",
                 "The Portal — exclusive articles, reflections, and community connection",
-                "Private Telegram community",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />

@@ -119,7 +119,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 Your profile is complete — your heart badge is live on your profile.
               </>
             ) : (
-              "Fill in your picture, name, bio, birthday, socials, and location to earn a heart badge on your profile."
+              "Fill in your picture, name, bio, birthday, Instagram, and location to earn a heart badge on your profile."
             )}
           </p>
         </div>
@@ -249,29 +249,6 @@ export default function ProfileForm({ user }: { user: User }) {
                 className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Tell the portal a little about yourself..."
               />
-            </div>
-
-            <div>
-              <label
-                htmlFor="telegram_handle"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                Telegram
-              </label>
-              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
-                <span className="pl-3 text-sm text-warm-400">@</span>
-                <input
-                  id="telegram_handle"
-                  name="telegram_handle"
-                  type="text"
-                  defaultValue={meta.telegram_handle ?? ""}
-                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
-                  placeholder="yourhandle"
-                />
-              </div>
-              <p className="mt-1 text-xs text-warm-400">
-                Optional. Just the handle.
-              </p>
             </div>
 
             <div>

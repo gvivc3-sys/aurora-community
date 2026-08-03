@@ -42,7 +42,6 @@ export async function updateProfile(
   const username = (formData.get("username") as string)?.trim();
   const birthday = formData.get("birthday") as string;
   const bio = (formData.get("bio") as string)?.trim() ?? "";
-  const rawTelegram = (formData.get("telegram_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawInstagram = (formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
   const locationCity = (formData.get("location_city") as string)?.trim() ?? "";
@@ -63,10 +62,6 @@ export async function updateProfile(
 
   if (username && /\s/.test(username)) {
     return { error: "Username cannot contain spaces." };
-  }
-
-  if (rawTelegram && !/^[a-zA-Z0-9_]{5,32}$/.test(rawTelegram)) {
-    return { error: "Telegram handle must be 5-32 characters (letters, numbers, underscores)." };
   }
 
   if (rawInstagram && !/^[a-zA-Z0-9._]{1,30}$/.test(rawInstagram)) {
@@ -147,7 +142,6 @@ export async function updateProfile(
       username: username || undefined,
       birthday: birthday || undefined,
       bio: bio.slice(0, 300) || undefined,
-      telegram_handle: rawTelegram || undefined,
       instagram_handle: rawInstagram || undefined,
       location_city: locationCity || undefined,
       location_lat: locationCity ? lat : undefined,

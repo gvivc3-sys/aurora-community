@@ -132,21 +132,6 @@ export default async function PublicProfilePage({
           </div>
         )}
 
-        {/* Telegram */}
-        {meta.telegram_handle && (
-          <div className="mt-4 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
-            <h2 className="text-sm font-medium text-warm-500">Telegram</h2>
-            <a
-              href={`https://t.me/${meta.telegram_handle}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-warm-700 underline hover:text-warm-900"
-            >
-              @{meta.telegram_handle}
-            </a>
-          </div>
-        )}
-
         {/* Instagram */}
         {meta.instagram_handle && (
           <div className="mt-4 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">

@@ -122,9 +122,6 @@ export async function POST(request: NextRequest) {
           })
           .eq("stripe_subscription_id", obj.id);
 
-        if (status === "canceled" || status === "unpaid") {
-          await kickFromTelegram(obj.id);
-        }
         break;
       }
 
@@ -134,8 +131,6 @@ export async function POST(request: NextRequest) {
           .select("user_id")
           .eq("stripe_subscription_id", obj.id)
           .single();
-
-        await kickFromTelegram(obj.id);
 
         await supabaseAdmin
           .from("subscriptions")
@@ -204,49 +199,5 @@ function mapStripeStatus(
       return "unpaid";
     default:
       return "inactive";
-  }
-}
-
-async function kickFromTelegram(stripeSubscriptionId: string) {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!botToken || !chatId) return;
-
-  const { data: sub } = await supabaseAdmin
-    .from("subscriptions")
-    .select("telegram_user_id")
-    .eq("stripe_subscription_id", stripeSubscriptionId)
-    .single();
-
-  if (!sub?.telegram_user_id) return;
-
-  try {
-    await fetch(
-      `https://api.telegram.org/bot${botToken}/banChatMember`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          user_id: parseInt(sub.telegram_user_id, 10),
-          revoke_messages: false,
-        }),
-      },
-    );
-    // Immediately unban so they can rejoin if they re-subscribe
-    await fetch(
-      `https://api.telegram.org/bot${botToken}/unbanChatMember`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          user_id: parseInt(sub.telegram_user_id, 10),
-          only_if_banned: true,
-        }),
-      },
-    );
-  } catch (err) {
-    console.error("Telegram kick failed:", err);
   }
 }

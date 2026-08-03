@@ -4,7 +4,6 @@ type ProfileMetadata = {
   username?: string;
   bio?: string;
   birthday?: string;
-  telegram_handle?: string;
   instagram_handle?: string;
   location_city?: string;
 };
@@ -14,7 +13,6 @@ const FIELDS: { key: string; filled: (meta: ProfileMetadata) => boolean }[] = [
   { key: "name", filled: (m) => !!m.username },
   { key: "bio", filled: (m) => !!m.bio },
   { key: "birthday", filled: (m) => !!m.birthday },
-  { key: "telegram", filled: (m) => !!m.telegram_handle },
   { key: "instagram", filled: (m) => !!m.instagram_handle },
   { key: "location", filled: (m) => !!m.location_city },
 ];

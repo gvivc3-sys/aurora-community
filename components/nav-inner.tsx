@@ -128,13 +128,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 {dropdownOpen && (
                   <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-lg border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
                     <Link
-                      href="/chat"
-                      onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                    >
-                      Telegram
-                    </Link>
-                    <Link
                       href="/library"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
@@ -341,13 +334,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Whisper
-                </Link>
-                <Link
-                  href="/chat"
-                  onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/chat") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  Telegram
                 </Link>
                 <Link
                   href="/library"

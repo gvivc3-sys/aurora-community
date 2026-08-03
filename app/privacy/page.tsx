@@ -40,7 +40,6 @@ export default function PrivacyPage() {
             <li>Profile information you choose to provide (bio, avatar, birthday)</li>
             <li>Content you post, comment on, or send within the community</li>
             <li>Payment information processed securely through Stripe (we never store card details)</li>
-            <li>Your Telegram user ID if you choose to connect your account</li>
             <li>Usage data such as pages visited and features used</li>
           </ul>
 
@@ -62,7 +61,6 @@ export default function PrivacyPage() {
             <li><strong>Supabase</strong> — database and authentication</li>
             <li><strong>Stripe</strong> — payment processing</li>
             <li><strong>Resend</strong> — transactional email delivery</li>
-            <li><strong>Telegram</strong> — private group access (only if you connect your account)</li>
           </ul>
 
           <h2>Data retention</h2>
