@@ -179,7 +179,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
 
       {/* Desktop permanent left sidebar — members only */}
       {isMember && user && (
-        <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-warm-200 bg-white/95 backdrop-blur-sm md:flex">
+        <aside className="fixed inset-y-0 left-[max(0px,calc((100vw-72rem)/2))] z-40 hidden w-60 flex-col border-r border-warm-200 bg-white/95 backdrop-blur-sm md:flex">
           <Link href="/" className="group relative px-6 py-5">
             <AuroraWordmark className="h-5 w-auto text-warm-600" />
           </Link>

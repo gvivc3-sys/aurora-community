@@ -115,7 +115,7 @@ export default async function RootLayout({
             unreadInboxCount={unreadInboxCount}
             unreadNotificationCount={unreadNotificationCount}
           />
-          <div className={isMember ? "md:pl-60" : ""}>{children}</div>
+          <div className={isMember ? "md:pl-[calc(15rem+max(0px,(100vw-72rem)/2))] md:pr-[max(0px,(100vw-72rem)/2)]" : ""}>{children}</div>
           <IOSInstallBanner />
         </ToastProvider>
         <script
