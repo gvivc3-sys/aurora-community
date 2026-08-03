@@ -131,7 +131,7 @@ export default function NotificationDropdown({
       </button>
 
       {open && (
-        <div className="fixed left-0 right-0 top-14 z-50 mx-4 overflow-hidden rounded-lg border border-warm-200 bg-white/95 shadow-lg backdrop-blur-sm sm:mx-auto sm:max-w-sm md:absolute md:left-auto md:right-0 md:top-full md:mx-0 md:mt-2 md:w-80">
+        <div className="fixed left-0 right-0 top-14 z-50 mx-4 overflow-hidden rounded-lg border border-warm-200 bg-white/95 shadow-lg backdrop-blur-sm sm:mx-auto sm:max-w-sm md:absolute md:left-full md:right-auto md:top-0 md:mx-0 md:ml-3 md:w-80">
           <div className="flex items-center justify-between border-b border-warm-100 px-4 py-3">
             <h3 className="text-sm font-medium text-warm-900">
               Notifications

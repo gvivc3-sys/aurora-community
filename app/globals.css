@@ -130,6 +130,15 @@ a[data-type="mention"]:hover {
   animation: slide-in-right 0.25s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.25s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-14px); }
