@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { supabaseAdmin } from "@/lib/supabase/admin";
-import { getProfileCompletion } from "@/lib/profile-completion";
 import NavInner from "@/components/nav-inner";
 
 export default async function Nav() {
@@ -53,7 +52,6 @@ export default async function Nav() {
               username: user.user_metadata?.username ?? null,
               avatarUrl: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
               isAdmin: isAdmin(user),
-              isComplete: getProfileCompletion(user.user_metadata ?? {}).isComplete,
             }
           : null
       }

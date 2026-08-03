@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveFriendFlags, getMyFriendFlag } from "@/lib/actions/friend-flags";
+import { getProfileCompletion } from "@/lib/profile-completion";
 import BackLink from "@/components/back-link";
 import FriendFlagForm from "@/components/friend-flag-form";
 import FriendFlagCard from "@/components/friend-flag-card";
@@ -18,6 +20,7 @@ export default async function FrequencyPage() {
   }
 
   const [flags, myFlag] = await Promise.all([getActiveFriendFlags(), getMyFriendFlag()]);
+  const profileComplete = getProfileCompletion(user.user_metadata ?? {}).isComplete;
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
@@ -30,11 +33,29 @@ export default async function FrequencyPage() {
         </p>
 
         <div className="mt-6">
-          <FriendFlagForm
-            initialLocation={myFlag?.location ?? ""}
-            initialNote={myFlag?.note ?? ""}
-            hasFlag={!!myFlag}
-          />
+          {profileComplete ? (
+            <FriendFlagForm
+              initialLocation={myFlag?.location ?? ""}
+              initialNote={myFlag?.note ?? ""}
+              hasFlag={!!myFlag}
+            />
+          ) : (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-center sm:p-6">
+              <p className="text-sm font-medium text-amber-900">
+                Complete your profile to post here
+              </p>
+              <p className="mx-auto mt-1 max-w-sm text-sm text-amber-700">
+                Add your picture, name, bio, birthday, Instagram, and location so
+                other members know who they&apos;re meeting.
+              </p>
+              <Link
+                href="/profile"
+                className="mt-4 inline-flex items-center gap-1 rounded-full bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
+              >
+                Complete your profile
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="mt-8 space-y-3">

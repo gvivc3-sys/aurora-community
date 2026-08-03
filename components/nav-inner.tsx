@@ -8,14 +8,12 @@ import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import NotificationDropdown from "@/components/notification-dropdown";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { HeartSolidIcon } from "@/components/icons";
 
 type NavUser = {
   email: string;
   username: string | null;
   avatarUrl: string | null;
   isAdmin: boolean;
-  isComplete: boolean;
 };
 
 export default function NavInner({ user, hasActiveSub = false, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; hasActiveSub?: boolean; unreadInboxCount?: number; unreadNotificationCount?: number }) {
@@ -99,7 +97,16 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 Whisper
               </Link>
 
-              {/* More dropdown (hover) */}
+              <Link
+                href="/frequency"
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/frequency") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
+              >
+                Frequency
+              </Link>
+
+              <NotificationDropdown unreadCount={unreadNotificationCount} />
+
+              {/* Avatar dropdown (hover) */}
               <div
                 ref={dropdownRef}
                 className="group/dropdown relative"
@@ -108,14 +115,27 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               >
                 <button
                   type="button"
-                  className="flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                  className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-50 hover:text-warm-900"
                 >
-                  More
+                  <Avatar
+                    src={user.avatarUrl}
+                    name={user.username}
+                    email={user.email}
+                    size="sm"
+                  />
+                  <span className="text-sm text-warm-700">
+                    {user.username || user.email}
+                  </span>
+                  {user.isAdmin && (
+                    <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">
+                      Admin
+                    </span>
+                  )}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 text-warm-400 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
                   >
                     <path
                       fillRule="evenodd"
@@ -128,25 +148,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 {dropdownOpen && (
                   <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-lg border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
                     <Link
-                      href="/library"
-                      onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                    >
-                      Ashley&apos;s Library
-                    </Link>
-                    <Link
                       href="/bookmarks"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
                       Saved
-                    </Link>
-                    <Link
-                      href="/frequency"
-                      onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                    >
-                      Frequency
                     </Link>
                     <Link
                       href="/messages"
@@ -161,6 +167,13 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
                       Profile
+                    </Link>
+                    <Link
+                      href="/library"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Guides
                     </Link>
                     {user.isAdmin && (
                       <>
@@ -194,42 +207,18 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                         </Link>
                       </>
                     )}
+                    <div className="mx-3 my-1 border-t border-warm-100" />
+                    <form action={signOut}>
+                      <button
+                        type="submit"
+                        className="block w-full px-4 py-2.5 text-left text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      >
+                        Log out
+                      </button>
+                    </form>
                   </div>
                 )}
               </div>
-
-              <NotificationDropdown unreadCount={unreadNotificationCount} />
-
-              <Link
-                href="/profile"
-                className="flex items-center gap-2 rounded-full px-2.5 py-1 transition-colors hover:bg-warm-50 hover:text-warm-900"
-              >
-                <Avatar
-                  src={user.avatarUrl}
-                  name={user.username}
-                  email={user.email}
-                  size="sm"
-                />
-                <span className="flex items-center gap-1 text-sm text-warm-700">
-                  {user.username || user.email}
-                  {user.isComplete && (
-                    <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
-                  )}
-                </span>
-                {user.isAdmin && (
-                  <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">
-                    Admin
-                  </span>
-                )}
-              </Link>
-              <form action={signOut}>
-                <button
-                  type="submit"
-                  className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900"
-                >
-                  Log out
-                </button>
-              </form>
             </>
           ) : !user ? (
             <>
@@ -320,11 +309,8 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   size="sm"
                 />
                 <div className="min-w-0">
-                  <p className="flex items-center gap-1 truncate text-sm font-medium text-warm-900">
+                  <p className="truncate text-sm font-medium text-warm-900">
                     {user.username || user.email}
-                    {user.isComplete && (
-                      <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
-                    )}
                   </p>
                   {user.isAdmin && (
                     <span className="text-xs text-warm-500">Admin</span>
@@ -350,25 +336,19 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   Whisper
                 </Link>
                 <Link
-                  href="/library"
+                  href="/frequency"
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
-                  Ashley&apos;s Library
+                  Frequency
                 </Link>
+                <div className="my-2 border-t border-warm-100" />
                 <Link
                   href="/bookmarks"
                   onClick={() => setMenuOpen(false)}
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Saved
-                </Link>
-                <Link
-                  href="/frequency"
-                  onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  Frequency
                 </Link>
                 <Link
                   href="/messages"
@@ -383,6 +363,13 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Profile
+                </Link>
+                <Link
+                  href="/library"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                >
+                  Guides
                 </Link>
                 <InstallPrompt />
                 {user.isAdmin && (

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getUserIdentity } from "@/lib/user-identity";
+import { getProfileCompletion } from "@/lib/profile-completion";
 
 const MAX_LOCATION_LENGTH = 60;
 const MAX_NOTE_LENGTH = 140;
@@ -79,6 +80,10 @@ export async function postFriendFlag(
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) return { error: "You must be signed in." };
+
+  if (!getProfileCompletion(user.user_metadata ?? {}).isComplete) {
+    return { error: "Complete your profile before posting to Frequency." };
+  }
 
   const location = (formData.get("location") as string)?.trim() ?? "";
   const note = (formData.get("note") as string)?.trim() ?? "";
