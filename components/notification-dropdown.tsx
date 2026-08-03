@@ -40,12 +40,17 @@ function getTypeLabel(type: string): string {
       return "mentioned you in a comment";
     case "mention_reply":
       return "mentioned you in a reply";
+    case "direct_message":
+      return "sent you a message";
     default:
       return "mentioned you";
   }
 }
 
 function getNavigationHref(notification: Notification): string {
+  if (notification.resource_type === "conversation" && notification.resource_id) {
+    return `/messages/${notification.resource_id}`;
+  }
   if (notification.resource_type === "message") {
     return "/inbox";
   }

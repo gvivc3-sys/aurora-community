@@ -283,6 +283,90 @@ export interface Database {
         };
         Relationships: [];
       };
+      conversations: {
+        Row: {
+          id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      conversation_participants: {
+        Row: {
+          conversation_id: string;
+          user_id: string;
+          last_read_at: string | null;
+        };
+        Insert: {
+          conversation_id: string;
+          user_id: string;
+          last_read_at?: string | null;
+        };
+        Update: {
+          conversation_id?: string;
+          user_id?: string;
+          last_read_at?: string | null;
+        };
+        Relationships: [];
+      };
+      direct_messages: {
+        Row: {
+          id: string;
+          conversation_id: string;
+          sender_id: string;
+          body: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          conversation_id: string;
+          sender_id: string;
+          body: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          conversation_id?: string;
+          sender_id?: string;
+          body?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      friend_flags: {
+        Row: {
+          id: string;
+          user_id: string;
+          location: string;
+          note: string;
+          created_at: string;
+          expires_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          location: string;
+          note: string;
+          created_at?: string;
+          expires_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          location?: string;
+          note?: string;
+          created_at?: string;
+          expires_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

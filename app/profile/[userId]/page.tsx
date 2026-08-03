@@ -5,6 +5,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getZodiacSign } from "@/lib/zodiac";
 import { getProfileCompletion } from "@/lib/profile-completion";
 import Avatar from "@/components/avatar";
+import MessageButton from "@/components/message-button";
 import { HeartSolidIcon } from "@/components/icons";
 
 const tagStyles: Record<string, { badge: string; emoji: string }> = {
@@ -108,6 +109,14 @@ export default async function PublicProfilePage({
           <p className="mt-1 text-sm text-warm-400">
             Member since {memberSince}
           </p>
+          {!isOwner && (
+            <MessageButton
+              userId={target.id}
+              className="mt-4 rounded-full bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+            >
+              Message
+            </MessageButton>
+          )}
         </div>
 
         {/* Zodiac badge */}

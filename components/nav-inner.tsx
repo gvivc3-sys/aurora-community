@@ -142,6 +142,20 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                       Saved
                     </Link>
                     <Link
+                      href="/frequency"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Frequency
+                    </Link>
+                    <Link
+                      href="/messages"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                    >
+                      Messages
+                    </Link>
+                    <Link
                       href="/profile"
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
@@ -348,6 +362,20 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Saved
+                </Link>
+                <Link
+                  href="/frequency"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                >
+                  Frequency
+                </Link>
+                <Link
+                  href="/messages"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                >
+                  Messages
                 </Link>
                 <Link
                   href="/profile"
