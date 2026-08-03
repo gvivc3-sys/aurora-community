@@ -8,6 +8,7 @@ import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import NotificationDropdown from "@/components/notification-dropdown";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon } from "@/components/icons";
 
 type NavUser = {
   email: string;
@@ -148,31 +149,35 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 {dropdownOpen && (
                   <div className="absolute right-0 top-full z-50 mt-0 w-48 overflow-hidden rounded-lg border border-warm-200 bg-white/95 pt-2 pb-1 shadow-lg backdrop-blur-sm">
                     <Link
-                      href="/bookmarks"
+                      href="/profile"
                       onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
-                      Saved
+                      <UserCircleIcon className="h-4 w-4 text-warm-400" />
+                      Profile
                     </Link>
                     <Link
                       href="/messages"
                       onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
+                      <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
                       Messages
                     </Link>
                     <Link
-                      href="/profile"
+                      href="/bookmarks"
                       onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
-                      Profile
+                      <BookmarkIcon className="h-4 w-4 text-warm-400" />
+                      Saved
                     </Link>
                     <Link
                       href="/library"
                       onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                     >
+                      <BookOpenIcon className="h-4 w-4 text-warm-400" />
                       Guides
                     </Link>
                     {user.isAdmin && (
@@ -211,8 +216,9 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                     <form action={signOut}>
                       <button
                         type="submit"
-                        className="block w-full px-4 py-2.5 text-left text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                        className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
                       >
+                        <ArrowRightOnRectangleIcon className="h-4 w-4 text-warm-400" />
                         Log out
                       </button>
                     </form>
@@ -344,31 +350,35 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 </Link>
                 <div className="my-2 border-t border-warm-100" />
                 <Link
-                  href="/bookmarks"
+                  href="/profile"
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
-                  Saved
+                  <UserCircleIcon className="h-4 w-4 text-warm-400" />
+                  Profile
                 </Link>
                 <Link
                   href="/messages"
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
+                  <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
                   Messages
                 </Link>
                 <Link
-                  href="/profile"
+                  href="/bookmarks"
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/profile") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/bookmarks") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
-                  Profile
+                  <BookmarkIcon className="h-4 w-4 text-warm-400" />
+                  Saved
                 </Link>
                 <Link
                   href="/library"
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/library") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
+                  <BookOpenIcon className="h-4 w-4 text-warm-400" />
                   Guides
                 </Link>
                 <InstallPrompt />
@@ -407,8 +417,9 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 <form action={signOut}>
                   <button
                     type="submit"
-                    className="mt-1 w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
+                    className="mt-1 flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                   >
+                    <ArrowRightOnRectangleIcon className="h-4 w-4 text-warm-400" />
                     Log out
                   </button>
                 </form>
