@@ -33,7 +33,7 @@ function PostSkeleton() {
 export default function BookmarksLoading() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <Shimmer className="h-4 w-16" />
         <Shimmer className="mt-6 h-7 w-20" />
         <div className="mt-6 space-y-6">

@@ -39,7 +39,7 @@ export default async function ManagementPage({
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
       {tab === "whispers" && <RealtimeRefresh table="messages" />}
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <BackLink />
 
         <h1 className="mt-4 text-2xl font-light tracking-tight text-warm-900">

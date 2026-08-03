@@ -84,20 +84,18 @@ export default async function AdminProfilesPage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
-        <div className="text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
-            Admin
-          </p>
-          <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            Profiles
-          </h1>
-          <p className="mt-2 text-sm text-warm-500">
-            {users.length} {users.length === 1 ? "member" : "members"}
-          </p>
-        </div>
+      <div className="mx-auto max-w-4xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
+          Admin
+        </p>
+        <h1 className="mt-2 text-2xl font-light tracking-tight text-warm-900">
+          Profiles
+        </h1>
+        <p className="mt-1 text-sm text-warm-500">
+          {users.length} {users.length === 1 ? "member" : "members"}
+        </p>
 
-        <div className="mt-12 space-y-3">
+        <div className="mt-8 space-y-3">
           {sorted.map((u) => {
             const sub = subByUserId.get(u.id);
             const status = sub?.status ?? "none";

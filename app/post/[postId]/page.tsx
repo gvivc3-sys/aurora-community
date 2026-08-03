@@ -111,7 +111,7 @@ export default async function PostPage({ params }: { params: Params }) {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
-      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <div className="flex items-center justify-between">
           <BackLink />
           <ShareButton />
