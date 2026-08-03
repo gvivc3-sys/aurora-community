@@ -44,7 +44,7 @@ export default function MessageComposer({ conversationId }: { conversationId: st
         placeholder="Write a message…"
         rows={1}
         maxLength={2000}
-        className="max-h-32 flex-1 resize-none rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-900 placeholder:text-warm-300 focus:border-warm-400 focus:outline-none"
+        className="max-h-32 flex-1 resize-none rounded-lg border border-warm-200 px-3 py-2 text-base text-warm-900 placeholder:text-warm-300 focus:border-warm-400 focus:outline-none md:text-sm"
       />
       <button
         type="submit"

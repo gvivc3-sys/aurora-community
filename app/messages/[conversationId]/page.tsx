@@ -30,9 +30,9 @@ export default async function ConversationPage({ params }: { params: Params }) {
   }
 
   return (
-    <div className="flex h-[calc(100dvh-6.375rem)] flex-col bg-warm-50 md:h-[calc(100dvh-3.5rem)]">
+    <div className="flex flex-col bg-warm-50">
       <RealtimeRefresh table="direct_messages" />
-      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-2 sm:py-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-2xl flex-col px-4 py-2 sm:py-4 sm:px-6">
         <BackLink href="/messages" label="Back to Messages" className="mb-2 sm:mb-4" />
 
         <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm sm:mb-3">
@@ -81,7 +81,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
           Instagram check goes a long way before meeting up.
         </p>
 
-        <div className="flex-1 space-y-3 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-4">
+        <div className="max-h-[50vh] min-h-[16rem] space-y-3 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-4">
           {messages.length > 0 ? (
             messages.map((m) => {
               const mine = m.senderId === currentUser.userId;
