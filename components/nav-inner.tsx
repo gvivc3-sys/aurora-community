@@ -82,6 +82,13 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
           {(hasActiveSub && user) ? (
             <>
               <Link
+                href="/frequency"
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/frequency") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
+              >
+                Frequency
+              </Link>
+
+              <Link
                 href="/dashboard"
                 className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/dashboard") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
               >
@@ -96,13 +103,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                 className={`relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/inbox") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
               >
                 Whisper
-              </Link>
-
-              <Link
-                href="/frequency"
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${isActive("/frequency") ? "bg-warm-50 text-warm-900" : "text-warm-600"}`}
-              >
-                Frequency
               </Link>
 
               <NotificationDropdown unreadCount={unreadNotificationCount} />
@@ -325,6 +325,13 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               </Link>
               <div className="border-t border-warm-100 pt-3">
                 <Link
+                  href="/frequency"
+                  onClick={() => setMenuOpen(false)}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                >
+                  Frequency
+                </Link>
+                <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
                   className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
@@ -340,13 +347,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                 >
                   Whisper
-                </Link>
-                <Link
-                  href="/frequency"
-                  onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
-                >
-                  Frequency
                 </Link>
                 <div className="my-2 border-t border-warm-100" />
                 <Link

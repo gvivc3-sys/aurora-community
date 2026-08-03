@@ -86,3 +86,53 @@ export async function createPortalSession() {
 
   redirect(session.url);
 }
+
+export async function submitCancelSurveyAndContinue(
+  previousState: unknown,
+  formData: FormData,
+): Promise<{ error?: string }> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const reason = (formData.get("reason") as string)?.trim() || "(no reason given)";
+  const meta = user.user_metadata ?? {};
+
+  await supabaseAdmin.from("messages").insert({
+    sender_id: user.id,
+    sender_name: meta.username || user.email || null,
+    sender_avatar_url: meta.custom_avatar_url || meta.avatar_url || null,
+    body: `User passed unsubscribe button with reason: ${reason}`,
+    status: "unread",
+  });
+
+  const { data: sub } = await supabase
+    .from("subscriptions")
+    .select("stripe_customer_id")
+    .eq("user_id", user.id)
+    .single();
+
+  if (!sub?.stripe_customer_id) {
+    redirect("/subscribe");
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+
+  let portalUrl: string;
+  try {
+    const session = await stripe.billingPortal.sessions.create({
+      customer: sub.stripe_customer_id,
+      return_url: `${siteUrl}/dashboard`,
+    });
+    portalUrl = session.url;
+  } catch {
+    return { error: "Something went wrong. Please try again." };
+  }
+
+  redirect(portalUrl);
+}

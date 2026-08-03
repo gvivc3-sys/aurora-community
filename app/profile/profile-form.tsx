@@ -13,6 +13,8 @@ import LocationPicker, { type LocationValue } from "@/components/location-picker
 import { useToast } from "@/components/toast";
 import { HeartSolidIcon } from "@/components/icons";
 import { getProfileCompletion } from "@/lib/profile-completion";
+import InstallCard from "@/components/install-card";
+import { submitCancelSurveyAndContinue } from "@/lib/actions/stripe";
 
 function ProfileToastEffect({ state }: { state: { error?: string; success?: boolean } | null }) {
   const { toast } = useToast();
@@ -40,6 +42,11 @@ export default function ProfileForm({ user }: { user: User }) {
     meta.location_city
       ? { city: meta.location_city, lat: meta.location_lat, lng: meta.location_lng }
       : null,
+  );
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelState, cancelAction, cancelPending] = useActionState(
+    submitCancelSurveyAndContinue,
+    null,
   );
 
   const zodiac = birthday ? getZodiacSign(new Date(birthday)) : null;
@@ -308,16 +315,72 @@ export default function ProfileForm({ user }: { user: User }) {
             Manage your billing, update payment method, or cancel your
             membership through the Stripe customer portal.
           </p>
-          <form action={createPortalSession} className="mt-4">
+          <div className="mt-4 flex items-center gap-4">
+            <form action={createPortalSession}>
+              <button
+                type="submit"
+                className="rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+              >
+                Manage Subscription
+              </button>
+            </form>
             <button
-              type="submit"
-              className="rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+              type="button"
+              onClick={() => setShowCancelModal(true)}
+              className="text-sm font-medium text-warm-400 hover:text-warm-600"
             >
-              Manage Subscription
+              Cancel my membership
             </button>
-          </form>
+          </div>
+        </div>
+
+        {/* Get the app */}
+        <div className="mt-6">
+          <InstallCard />
         </div>
       </div>
+
+      {showCancelModal && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
+            <h3 className="text-base font-medium text-warm-900">
+              Sorry to see you go
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-warm-600">
+              Before you head to billing, would you mind sharing why
+              you&apos;re cancelling? It helps us make Aurora better.
+            </p>
+            <form action={cancelAction} className="mt-4">
+              <textarea
+                name="reason"
+                rows={3}
+                placeholder="Optional — tell us what didn't work for you"
+                className="w-full resize-none rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-900 placeholder:text-warm-300 focus:border-warm-400 focus:outline-none"
+              />
+              <div className="mt-4 flex items-center justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={cancelPending}
+                  className="text-sm font-medium text-warm-500 hover:text-warm-700"
+                >
+                  Never mind
+                </button>
+                <button
+                  type="submit"
+                  disabled={cancelPending}
+                  className="rounded-full bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+                >
+                  {cancelPending ? "Continuing…" : "Continue to cancel"}
+                </button>
+              </div>
+              {cancelState?.error && (
+                <p className="mt-3 text-xs text-red-600">{cancelState.error}</p>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
