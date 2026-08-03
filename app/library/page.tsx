@@ -51,14 +51,14 @@ export default async function LibraryPage() {
             Ashley&apos;s Library
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-warm-500">
-            Your collection of guides, books, and resources — all yours to keep forever.
+            Your collection of guides, books, and resources, all yours to keep forever.
           </p>
         </div>
 
         <div className="mt-8 space-y-3">
           {items.length === 0 && (
             <p className="py-12 text-center text-sm text-warm-400">
-              No files yet — check back soon.
+              No files yet. Check back soon.
             </p>
           )}
           {items.map(({ filename, url }) => {

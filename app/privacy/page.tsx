@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Aurora",
+  title: "Privacy Policy: Aurora",
 };
 
 const CONTACT_EMAIL = "hello@myaurora.io";
@@ -58,9 +58,9 @@ export default function PrivacyPage() {
             providers that help us operate the platform:
           </p>
           <ul>
-            <li><strong>Supabase</strong> — database and authentication</li>
-            <li><strong>Stripe</strong> — payment processing</li>
-            <li><strong>Resend</strong> — transactional email delivery</li>
+            <li><strong>Supabase</strong>: database and authentication</li>
+            <li><strong>Stripe</strong>: payment processing</li>
+            <li><strong>Resend</strong>: transactional email delivery</li>
           </ul>
 
           <h2>Data retention</h2>
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
 
           <h2>Security</h2>
           <p>
-            All data is transmitted over HTTPS. Passwords are never stored — authentication is
+            All data is transmitted over HTTPS. Passwords are never stored. Authentication is
             handled securely by Supabase. Payment details are handled entirely by Stripe and
             never touch our servers.
           </p>

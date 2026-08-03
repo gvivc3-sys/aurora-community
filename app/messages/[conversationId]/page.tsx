@@ -77,7 +77,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
         </div>
 
         <p className="mb-2 text-center text-[11px] leading-snug text-warm-400">
-          For your safety: verify who you&apos;re talking to &mdash; a video call or
+          For your safety: verify who you&apos;re talking to. A video call or
           Instagram check goes a long way before meeting up.
         </p>
 

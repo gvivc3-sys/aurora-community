@@ -124,7 +124,7 @@ export default async function PublicProfilePage({
           <div className="mt-6 flex justify-center">
             <div className="rounded-full bg-warm-100 px-4 py-2 text-sm text-warm-700">
               <span className="text-lg">{zodiac.symbol}</span>{" "}
-              <strong>{zodiac.name}</strong> — {zodiac.element} sign
+              <strong>{zodiac.name}</strong>, {zodiac.element} sign
             </div>
           </div>
         )}

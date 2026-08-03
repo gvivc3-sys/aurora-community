@@ -5,15 +5,15 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Is Aurora really worth it?",
-    a: "Connection is one of the biggest predictors of long-term health and happiness — and it's usually the first thing to slip in a busy life. Aurora gives you a standing space for it: real conversations, real women, and direct access to Ashley, all for less than a couple of coffees a month.",
+    a: "Connection is one of the biggest predictors of long-term health and happiness, and it's usually the first thing to slip in a busy life. Aurora gives you a standing space for it: real conversations, real women, and direct access to Ashley, all for less than a couple of coffees a month.",
   },
   {
     q: "What do I actually get with my membership?",
-    a: "The Portal (Ashley's articles, voice notes, and community discussion), Frequency (a live board of members looking to connect, plus direct messaging), and Ashley's Guides (her full library of guides, books, and audio tracks — worth over $125 alone).",
+    a: "The Portal (Ashley's articles, voice notes, and community discussion), Frequency (a live board of members looking to connect, plus direct messaging), and Ashley's Guides (her full library of guides, books, and audio tracks, worth over $125 alone).",
   },
   {
     q: "How does Frequency work?",
-    a: "Post your city and what you're up for — coffee, a walk, just saying hi — and other members can message you directly. It's opt-in, so you're only ever visible when you choose to post.",
+    a: "Post your city and what you're up for: coffee, a walk, just saying hi. Other members can message you directly. It's opt-in, so you're only ever visible when you choose to post.",
   },
   {
     q: "Is my privacy protected?",
@@ -21,11 +21,11 @@ const faqs = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes — no contracts, no questions asked. Cancel anytime through your account settings.",
+    a: "Yes, no contracts, no questions asked. Cancel anytime through your account settings.",
   },
   {
     q: "What if I don't click with the community right away?",
-    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, say hi on Frequency, or just read for a while — there's no wrong way to ease in.",
+    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, say hi on Frequency, or just read for a while. There's no wrong way to ease in.",
   },
 ];
 

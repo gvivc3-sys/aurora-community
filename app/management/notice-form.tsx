@@ -116,7 +116,7 @@ export default function NoticeForm({ active }: { active: ActiveNotice | null }) 
           value={body}
           onChange={(e) => setBody(e.target.value)}
           rows={3}
-          placeholder="e.g. 🎉 **Founding member discount** — join before Friday for 20% off your first month."
+          placeholder="e.g. 🎉 **Founding member discount**: join before Friday for 20% off your first month."
           className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 text-sm text-warm-800 placeholder-warm-400 shadow-sm focus:border-warm-400 focus:outline-none focus:ring-2 focus:ring-warm-200 resize-none"
         />
       </div>

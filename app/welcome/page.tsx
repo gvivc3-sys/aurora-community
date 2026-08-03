@@ -34,7 +34,7 @@ export default async function WelcomePage() {
               </svg>
             </div>
             <p className="font-mono text-[11px] uppercase tracking-widest text-warm-200">
-              A hello from Ashley &mdash; coming soon
+              A hello from Ashley, coming soon
             </p>
           </div>
         </div>
@@ -45,10 +45,10 @@ export default async function WelcomePage() {
           </p>
           <ul className="mt-4 space-y-3">
             {[
-              "The Portal — Ashley's articles, voice notes, and community discussion, organized into Nourishment, Health + Beauty, Energy, and Whisper.",
-              "Frequency — post your city and what you're up for, then message other members directly.",
-              "Messages — your private inbox for connecting with members you meet.",
-              "Ashley's Guides — her full library of guides, books, and audio tracks.",
+              "The Portal: Ashley's articles, voice notes, and community discussion, organized into Nourishment, Health + Beauty, Energy, and Whisper.",
+              "Frequency: post your city and what you're up for, then message other members directly.",
+              "Messages: your private inbox for connecting with members you meet.",
+              "Ashley's Guides: her full library of guides, books, and audio tracks.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-warm-700">
                 <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />

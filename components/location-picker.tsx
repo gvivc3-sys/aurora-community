@@ -67,10 +67,10 @@ export default function LocationPicker({
           setCity(placeName);
           onChange({ city: placeName, lat, lng });
         } else {
-          setCity("Unrecognized location — try clicking nearer a city");
+          setCity("Unrecognized location, try clicking nearer a city");
         }
       } catch {
-        setCity("Couldn't resolve that location — try again");
+        setCity("Couldn't resolve that location, try again");
       } finally {
         setResolving(false);
       }
@@ -94,7 +94,7 @@ export default function LocationPicker({
   if (!MAPBOX_TOKEN) {
     return (
       <div className="flex h-[280px] items-center justify-center rounded-md border border-dashed border-warm-300 bg-warm-50 px-4 text-center text-sm text-warm-400">
-        Map unavailable — missing Mapbox configuration.
+        Map unavailable: missing Mapbox configuration.
       </div>
     );
   }

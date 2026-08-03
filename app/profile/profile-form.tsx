@@ -124,7 +124,7 @@ export default function ProfileForm({ user }: { user: User }) {
             {completion.isComplete ? (
               <>
                 <HeartSolidIcon className="h-3.5 w-3.5 text-fuchsia-500" />
-                Your profile is complete — your heart badge is live on your profile.
+                Your profile is complete. Your heart badge is live on your profile.
               </>
             ) : (
               "Fill in your picture, name, bio, birthday, Instagram, and location to earn a heart badge on your profile."
@@ -236,7 +236,7 @@ export default function ProfileForm({ user }: { user: User }) {
             {zodiac && (
               <div className="rounded-md bg-warm-100 p-3 text-sm text-warm-700">
                 <span className="text-lg">{zodiac.symbol}</span>{" "}
-                <strong>{zodiac.name}</strong> — {zodiac.element} sign (
+                <strong>{zodiac.name}</strong>, {zodiac.element} sign (
                 {zodiac.dateRange})
               </div>
             )}
@@ -296,7 +296,7 @@ export default function ProfileForm({ user }: { user: User }) {
               <input type="hidden" name="location_lat" value={location?.lat ?? ""} />
               <input type="hidden" name="location_lng" value={location?.lng ?? ""} />
               <p className="mt-1 text-xs text-warm-400">
-                Optional. City-level only — we never store your exact address.
+                Optional. City-level only. We never store your exact address.
               </p>
             </div>
 
@@ -361,7 +361,7 @@ export default function ProfileForm({ user }: { user: User }) {
               <textarea
                 name="reason"
                 rows={3}
-                placeholder="Optional — tell us what didn't work for you"
+                placeholder="Optional, tell us what didn't work for you"
                 className="w-full resize-none rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-900 placeholder:text-warm-300 focus:border-warm-400 focus:outline-none"
               />
               <div className="mt-4 flex items-center justify-end gap-3">

@@ -64,7 +64,7 @@ export default async function SubscribePage() {
               "Weekly voice notes from Ashley",
               "Video guides, articles & curated content",
               "Private messaging with the Aurora team",
-              "Community feed — like, comment & save",
+              "Community feed: like, comment & save",
               "New content added weekly",
               "Cancel anytime",
             ].map((feature) => (
