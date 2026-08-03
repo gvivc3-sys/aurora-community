@@ -222,14 +222,13 @@ export default async function Home() {
         </AnimateOnScroll>
 
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
-          <p className="text-sm font-medium italic text-warm-500">You belong here.</p>
-          <p className="mt-4 text-base leading-relaxed text-warm-600">
+          <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
             socials, and a bit about you. On Frequency, flag when you&apos;re
             free to connect: post your city and what you&apos;re up for, then
             message each other directly, no matter where you call home.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-warm-600">
+          <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
             This is a growing network of frequency-aligned women, all focused
             on the same thing: stepping into a more radiant, healthy, and
             positive life. Wherever you are in the world, there&apos;s
@@ -248,14 +247,14 @@ export default async function Home() {
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
               This is <span className="italic">the Portal.</span>
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-warm-600">
+            <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
               Ashley posts her own reflections and insights regularly,
               through voice notes, short vlogs, and articles, and you can
               comment, start a discussion thread, or just sit with what
               resonates. It&apos;s a real, living conversation, not a
               broadcast.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
+            <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
               Every post lives under one of four topics, so you can find
               (or skip) exactly what speaks to you:
             </p>
@@ -370,7 +369,7 @@ export default async function Home() {
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
                 Some questions are better <span className="italic">asked in a whisper</span>
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-warm-600">
+              <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
                 Share what&apos;s on your heart: a question, an
                 intention, or something you&apos;re navigating. Ashley will
                 read your whisper and may share her response with the sacred
@@ -500,7 +499,7 @@ export default async function Home() {
             Step into <span className="font-medium">Aurora.</span>
             <span className="mt-1 block italic">Your friends are waiting.</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-500">
+          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
             Aurora is a sanctuary for women who are ready to step into their most
             radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
@@ -579,13 +578,13 @@ export default async function Home() {
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
                 The woman behind <span className="italic">Aurora.</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600 md:mx-0">
+              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-600 md:mx-0">
                 Ashley has spent years immersed in ancient beauty practices, deep
                 nourishment, and living in alignment with true health,
                 creating natural skincare, painting, and connecting to the
                 natural ways of living on Earth.
               </p>
-              <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-warm-600 md:mx-0">
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-600 md:mx-0">
                 Aurora was born from the knowing that each of us holds the power
                 to elevate our energy and create the life we feel called to live.
               </p>
@@ -601,7 +600,7 @@ export default async function Home() {
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
               Questions?
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-warm-600">
+            <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
               A little more on why women are joining, and exactly what
               you get.
             </p>
