@@ -2,7 +2,6 @@ import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getConversationMessages } from "@/lib/actions/dm";
-import BackLink from "@/components/back-link";
 import TimeAgo from "@/components/time-ago";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import MessageComposer from "@/components/message-composer";
@@ -31,11 +30,9 @@ export default async function ConversationPage({ params }: { params: Params }) {
   }
 
   return (
-    <div className="flex flex-col bg-warm-50">
+    <div className="flex h-[calc(100dvh-6.375rem)] flex-col bg-warm-50 md:h-[calc(100dvh-3.5rem)]">
       <RealtimeRefresh table="direct_messages" />
-      <div className="mx-auto flex w-full max-w-2xl flex-col px-4 py-2 sm:py-4 sm:px-6">
-        <BackLink href="/messages" label="Back to Messages" className="mb-2 sm:mb-4" />
-
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-2 sm:py-4 sm:px-6">
         <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm sm:mb-3">
           <div className="flex min-w-0 items-center gap-2.5">
             {currentUser.avatarUrl ? (
@@ -82,7 +79,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
           Instagram check goes a long way before meeting up.
         </p>
 
-        <div className="max-h-[50vh] min-h-[16rem] space-y-1 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-3">
+        <div className="min-h-0 flex-1 space-y-1 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-3">
           {messages.length > 0 ? (
             messages.map((m) => {
               const mine = m.senderId === currentUser.userId;
