@@ -211,7 +211,7 @@ export default async function Home() {
             <div className="flex items-center gap-4 px-6 pt-6">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full">
                 <Image
-                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192"
+                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
                   alt="Ashley"
                   fill
                   className="object-cover"
@@ -271,7 +271,7 @@ export default async function Home() {
             <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="44px" />
+                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="44px" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-warm-900">
@@ -347,7 +347,7 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley</p>
@@ -404,7 +404,7 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley</p>
@@ -461,7 +461,7 @@ export default async function Home() {
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
                     <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1771626728192" alt="Ashley" fill className="object-cover" sizes="36px" />
+                      <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-warm-900">Ashley</p>
