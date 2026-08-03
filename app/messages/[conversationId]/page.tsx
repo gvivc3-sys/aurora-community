@@ -6,6 +6,7 @@ import BackLink from "@/components/back-link";
 import TimeAgo from "@/components/time-ago";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import MessageComposer from "@/components/message-composer";
+import ChatScrollAnchor from "@/components/chat-scroll-anchor";
 import { HeartSolidIcon } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
@@ -81,18 +82,20 @@ export default async function ConversationPage({ params }: { params: Params }) {
           Instagram check goes a long way before meeting up.
         </p>
 
-        <div className="max-h-[50vh] min-h-[16rem] space-y-3 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-4">
+        <div className="max-h-[50vh] min-h-[16rem] space-y-1 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-3">
           {messages.length > 0 ? (
             messages.map((m) => {
               const mine = m.senderId === currentUser.userId;
               return (
                 <div key={m.id} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm leading-relaxed ${mine ? "bg-warm-800 text-white" : "bg-warm-100 text-warm-800"}`}>
-                    <p className="whitespace-pre-wrap">{m.body}</p>
-                    <TimeAgo
-                      date={m.createdAt}
-                      className={`mt-1 block text-[10px] ${mine ? "text-warm-300" : "text-warm-400"}`}
-                    />
+                  <div className={`max-w-[75%] rounded-2xl px-3 py-1 text-sm leading-snug ${mine ? "bg-warm-800 text-white" : "bg-warm-100 text-warm-800"}`}>
+                    <p className="whitespace-pre-wrap">
+                      {m.body}{" "}
+                      <TimeAgo
+                        date={m.createdAt}
+                        className={`text-[10px] ${mine ? "text-warm-300" : "text-warm-400"}`}
+                      />
+                    </p>
                   </div>
                 </div>
               );
@@ -102,6 +105,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
               <p className="text-sm text-warm-400">Say hello to {otherUser.name}.</p>
             </div>
           )}
+          <ChatScrollAnchor messageCount={messages.length} />
         </div>
 
         <MessageComposer conversationId={conversationId} />
