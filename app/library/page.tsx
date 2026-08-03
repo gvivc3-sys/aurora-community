@@ -40,22 +40,15 @@ export default async function LibraryPage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <BackLink />
 
-        <div className="mt-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-warm-400">
-            Members Only
-          </p>
-          <h1 className="mt-3 text-3xl font-light tracking-tight text-warm-900">
-            Ashley&apos;s Library
-          </h1>
-          <p className="mt-2 text-sm leading-relaxed text-warm-500">
-            Your collection of guides, books, and resources, all yours to keep forever.
-          </p>
-        </div>
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">Guides</h1>
+        <p className="mt-2 text-sm leading-relaxed text-warm-500">
+          Your collection of guides, books, and resources, all yours to keep forever.
+        </p>
 
-        <div className="mt-8 space-y-3">
+        <div className="mt-6 space-y-3">
           {items.length === 0 && (
             <p className="py-12 text-center text-sm text-warm-400">
               No files yet. Check back soon.

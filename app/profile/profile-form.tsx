@@ -96,7 +96,7 @@ export default function ProfileForm({ user }: { user: User }) {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
-      <div className="mx-auto max-w-xl px-4 py-8 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <BackLink />
         <h1 className="flex items-center gap-2 text-2xl font-light tracking-tight text-warm-900">
           Your Profile
@@ -316,11 +316,11 @@ export default function ProfileForm({ user }: { user: User }) {
             Manage your billing, update payment method, or cancel your
             membership through the Stripe customer portal.
           </p>
-          <div className="mt-4 flex items-center gap-4">
-            <form action={createPortalSession}>
+          <div className="mt-4 flex flex-col items-start gap-3">
+            <form action={createPortalSession} className="w-full">
               <button
                 type="submit"
-                className="rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+                className="w-full rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
               >
                 Manage Subscription
               </button>
