@@ -62,8 +62,12 @@ function getNavigationHref(notification: Notification): string {
 
 export default function NotificationDropdown({
   unreadCount,
+  label,
+  triggerClassName,
 }: {
   unreadCount: number;
+  label?: string;
+  triggerClassName?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -106,32 +110,35 @@ export default function NotificationDropdown({
       <button
         type="button"
         onClick={handleOpen}
-        className="relative flex items-center rounded-full p-1.5 text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+        className={triggerClassName ?? "relative flex items-center rounded-full p-1.5 text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"}
         aria-label="Notifications"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="h-5 w-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-          />
-        </svg>
-        {localUnread > 0 && (
-          <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-            {localUnread > 9 ? "9+" : localUnread}
-          </span>
-        )}
+        <span className="relative flex shrink-0 items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-5 w-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+            />
+          </svg>
+          {localUnread > 0 && (
+            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+              {localUnread > 9 ? "9+" : localUnread}
+            </span>
+          )}
+        </span>
+        {label && <span>{label}</span>}
       </button>
 
       {open && (
-        <div className="fixed left-0 right-0 top-14 z-50 mx-4 overflow-hidden rounded-lg border border-warm-200 bg-white/95 shadow-lg backdrop-blur-sm sm:mx-auto sm:max-w-sm md:absolute md:left-full md:right-auto md:top-0 md:mx-0 md:ml-3 md:w-80">
+        <div className="fixed left-0 right-0 top-14 z-50 mx-4 overflow-hidden rounded-lg border border-warm-200 bg-white shadow-lg sm:mx-auto sm:max-w-sm md:absolute md:left-full md:right-auto md:top-0 md:mx-0 md:ml-3 md:w-80">
           <div className="flex items-center justify-between border-b border-warm-100 px-4 py-3">
             <h3 className="text-sm font-medium text-warm-900">
               Notifications

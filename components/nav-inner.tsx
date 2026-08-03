@@ -217,11 +217,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               Profile
             </Link>
 
-            <div className="flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium text-warm-600">
-              <NotificationDropdown unreadCount={unreadNotificationCount} />
-              Notifications
-            </div>
-
             {user.isAdmin && (
               <>
                 <div className="my-2 border-t border-warm-100" />
@@ -243,6 +238,14 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               </>
             )}
           </nav>
+
+          <div className="shrink-0 border-t border-warm-100 px-3 py-1">
+            <NotificationDropdown
+              unreadCount={unreadNotificationCount}
+              label="Notifications"
+              triggerClassName={sidebarLinkClass(false)}
+            />
+          </div>
 
           <div className="border-t border-warm-200 p-3">
             <Link href="/profile" className="flex items-center gap-2.5 rounded-full px-2 py-2 transition-colors hover:bg-warm-50">
