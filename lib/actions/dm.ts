@@ -125,13 +125,13 @@ export type DirectMessage = {
 export async function getConversationMessages(conversationId: string): Promise<{
   messages: DirectMessage[];
   otherUser: Awaited<ReturnType<typeof getUserIdentity>> | null;
-  currentUserId: string | null;
+  currentUser: Awaited<ReturnType<typeof getUserIdentity>> | null;
 }> {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return { messages: [], otherUser: null, currentUserId: null };
+  if (!user) return { messages: [], otherUser: null, currentUser: null };
 
   const { data: participant } = await supabaseAdmin
     .from("conversation_participants")
@@ -140,7 +140,7 @@ export async function getConversationMessages(conversationId: string): Promise<{
     .eq("user_id", user.id)
     .maybeSingle();
 
-  if (!participant) return { messages: [], otherUser: null, currentUserId: null };
+  if (!participant) return { messages: [], otherUser: null, currentUser: null };
 
   const { data: otherParticipant } = await supabaseAdmin
     .from("conversation_participants")
@@ -149,7 +149,10 @@ export async function getConversationMessages(conversationId: string): Promise<{
     .neq("user_id", user.id)
     .maybeSingle();
 
-  const otherUser = otherParticipant ? await getUserIdentity(otherParticipant.user_id) : null;
+  const [otherUser, currentUser] = await Promise.all([
+    otherParticipant ? getUserIdentity(otherParticipant.user_id) : Promise.resolve(null),
+    getUserIdentity(user.id),
+  ]);
 
   const { data: messages } = await supabaseAdmin
     .from("direct_messages")
@@ -171,7 +174,7 @@ export async function getConversationMessages(conversationId: string): Promise<{
       createdAt: m.created_at,
     })),
     otherUser,
-    currentUserId: user.id,
+    currentUser,
   };
 }
 

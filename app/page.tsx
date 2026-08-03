@@ -256,7 +256,7 @@ export default async function Home() {
 
           {/* Voice note mockup card */}
           <AnimateOnScroll delay={200}>
-            <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-xl sm:p-8">
+            <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
                   <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="44px" />
@@ -519,7 +519,7 @@ export default async function Home() {
           <div className="mx-auto mt-16 grid max-w-2xl gap-6 sm:grid-cols-2">
             {pillars.map((pillar, i) => (
               <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center transition-all duration-300 hover:shadow-lg">
+                <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center shadow-sm transition-all duration-300 hover:shadow-md">
                   <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-lg ${pillar.iconColor}`}>
                     <pillar.icon className="h-6 w-6" />
                   </div>
@@ -565,7 +565,7 @@ export default async function Home() {
             radiant, magnetic, and naturally beautiful selves through true health,
             feminine wisdom, and the power of women rising together.
           </p>
-          <div id="join" className="mx-auto mt-10 max-w-sm rounded-xl border border-warm-200 bg-white/80 px-8 py-8 shadow-md">
+          <div id="join" className="mx-auto mt-10 max-w-sm rounded-xl border border-warm-200 bg-white/80 px-8 py-8 shadow-sm">
             <div className="mb-4 flex justify-center">
               <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
             </div>
@@ -618,7 +618,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
             <AnimateOnScroll className="mx-auto md:mx-0">
-              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-200 shadow-xl sm:h-72 sm:w-72">
+              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:h-72 sm:w-72">
                 <Image
                   src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
                   alt="Ashley"

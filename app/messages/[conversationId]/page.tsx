@@ -23,9 +23,9 @@ export default async function ConversationPage({ params }: { params: Params }) {
     redirect("/login");
   }
 
-  const { messages, otherUser, currentUserId } = await getConversationMessages(conversationId);
+  const { messages, otherUser, currentUser } = await getConversationMessages(conversationId);
 
-  if (!otherUser || !currentUserId) {
+  if (!otherUser || !currentUser) {
     notFound();
   }
 
@@ -35,28 +35,51 @@ export default async function ConversationPage({ params }: { params: Params }) {
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-4 sm:px-6">
         <BackLink href="/messages" label="Back to Messages" />
 
-        <Link
-          href={`/profile/${otherUser.userId}`}
-          className="mb-4 flex items-center gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm"
-        >
-          {otherUser.avatarUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={otherUser.avatarUrl} alt="" className="h-9 w-9 rounded-full object-cover" />
-          ) : (
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
-              {otherUser.name[0]?.toUpperCase()}
+        <div className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm">
+          <div className="flex min-w-0 items-center gap-2.5">
+            {currentUser.avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={currentUser.avatarUrl} alt="" className="h-9 w-9 shrink-0 rounded-full object-cover" />
+            ) : (
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
+                {currentUser.name[0]?.toUpperCase()}
+              </div>
+            )}
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-warm-900">You</p>
+              {currentUser.location && (
+                <p className="truncate text-xs text-warm-400">{currentUser.location}</p>
+              )}
             </div>
-          )}
-          <span className="flex items-center gap-1 text-sm font-medium text-warm-900">
-            {otherUser.name}
-            {otherUser.verified && <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />}
-          </span>
-        </Link>
+          </div>
+
+          <div className="h-8 w-px shrink-0 bg-warm-100" />
+
+          <Link href={`/profile/${otherUser.userId}`} className="flex min-w-0 items-center gap-2.5 justify-end">
+            <div className="min-w-0 text-right">
+              <p className="flex items-center justify-end gap-1 truncate text-sm font-medium text-warm-900">
+                {otherUser.name}
+                {otherUser.verified && <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />}
+              </p>
+              {otherUser.location && (
+                <p className="truncate text-xs text-warm-400">{otherUser.location}</p>
+              )}
+            </div>
+            {otherUser.avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={otherUser.avatarUrl} alt="" className="h-9 w-9 shrink-0 rounded-full object-cover" />
+            ) : (
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
+                {otherUser.name[0]?.toUpperCase()}
+              </div>
+            )}
+          </Link>
+        </div>
 
         <div className="flex-1 space-y-3 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-4">
           {messages.length > 0 ? (
             messages.map((m) => {
-              const mine = m.senderId === currentUserId;
+              const mine = m.senderId === currentUser.userId;
               return (
                 <div key={m.id} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm leading-relaxed ${mine ? "bg-warm-800 text-white" : "bg-warm-100 text-warm-800"}`}>

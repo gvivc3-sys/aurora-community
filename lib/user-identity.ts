@@ -5,6 +5,7 @@ export type UserIdentity = {
   userId: string;
   name: string;
   avatarUrl: string | null;
+  location: string | null;
   verified: boolean;
 };
 
@@ -24,6 +25,7 @@ export async function getUserIdentity(userId: string): Promise<UserIdentity> {
     userId,
     name: handle?.display_name || meta.username || "Member",
     avatarUrl: handle?.avatar_url || meta.custom_avatar_url || meta.avatar_url || null,
+    location: meta.location_city || null,
     verified: getProfileCompletion(meta).isComplete,
   };
 }
