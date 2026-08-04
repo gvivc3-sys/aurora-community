@@ -33,7 +33,7 @@ export default function MessageComposer({ conversationId }: { conversationId: st
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-end gap-2 rounded-b-xl border border-t-0 border-warm-200 bg-white p-3 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]"
+      className="flex w-full shrink-0 items-end gap-2 border-t border-warm-200 bg-white px-3 py-3 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] md:mx-auto md:max-w-2xl"
     >
       <textarea
         value={body}

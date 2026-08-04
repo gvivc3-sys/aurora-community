@@ -45,7 +45,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
   // the app; on the public landing page (even while logged in) it would
   // overlay the marketing content, so fall back to a plain marketing bar.
   const showAppChrome = isMember && !isLandingPage;
-  const [navTop, setNavTop] = useState(0);
 
   // ESC to close mobile drawer
   useEffect(() => {
@@ -56,37 +55,19 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
     return () => document.removeEventListener("keydown", handleEsc);
   }, []);
 
-  // On the conversation detail page, track the visual viewport directly
-  // instead of relying on sticky positioning: iOS can pan the page to
-  // reveal a focused input without resizing the layout viewport or
-  // firing a scroll event, which otherwise leaves sticky/fixed elements
-  // pinned to the wrong place.
-  useEffect(() => {
-    if (!isConversationDetail) return;
-    const vv = window.visualViewport;
-    if (!vv) return;
-
-    function update() {
-      setNavTop(vv!.offsetTop);
-    }
-    update();
-    vv.addEventListener("resize", update);
-    vv.addEventListener("scroll", update);
-    return () => {
-      vv.removeEventListener("resize", update);
-      vv.removeEventListener("scroll", update);
-    };
-  }, [isConversationDetail]);
-
   const sidebarLinkClass = (active: boolean) =>
     `flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${active ? "bg-warm-50 text-warm-900" : "text-warm-600"}`;
 
   return (
     <>
-      <nav
-        style={isConversationDetail ? { top: navTop } : undefined}
-        className={`${isConversationDetail ? "fixed inset-x-0" : "sticky top-0"} z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${showAppChrome ? "md:hidden" : ""}`}
-      >
+      {/* The conversation detail page renders its own compact header (back
+          arrow + participants) and covers the full mobile viewport itself,
+          so the top bar doesn't render there at all on mobile — avoids
+          needing two separate fixed-position bars to stay in sync while
+          the keyboard opens/closes. The desktop sidebar below is
+          unaffected, since desktop has no on-screen keyboard to fight. */}
+      {!isConversationDetail && (
+      <nav className={`sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${showAppChrome ? "md:hidden" : ""}`}>
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
@@ -212,7 +193,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
         </div>
 
         {/* Mobile secondary nav — Gather / Portal / Whisper, shows the active page */}
-        {showAppChrome && !isConversationDetail && (
+        {showAppChrome && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
             <Link
               href="/frequency"
@@ -235,6 +216,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
           </div>
         )}
       </nav>
+      )}
 
       {/* Desktop permanent left sidebar — members only, not on the public landing page */}
       {showAppChrome && user && (
