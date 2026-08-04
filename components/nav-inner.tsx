@@ -153,14 +153,14 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
           </div>
         </div>
 
-        {/* Mobile secondary nav — Frequency / Portal / Whisper, shows the active page */}
+        {/* Mobile secondary nav — Gather / Portal / Whisper, shows the active page */}
         {isMember && !isConversationDetail && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
             <Link
               href="/frequency"
               className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Frequency
+              Gather
             </Link>
             <Link
               href="/dashboard"
@@ -192,7 +192,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
             </Link>
             <Link href="/frequency" className={sidebarLinkClass(isActive("/frequency"))}>
               <UsersIcon className="h-4 w-4 text-warm-400" />
-              Frequency
+              Gather
             </Link>
             <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
               <ChatBubbleIcon className="h-4 w-4 text-warm-400" />

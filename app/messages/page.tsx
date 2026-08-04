@@ -63,7 +63,7 @@ export default async function MessagesPage() {
               <p className="mt-2 text-sm text-warm-400">
                 Reach out to someone from{" "}
                 <Link href="/frequency" className="text-warm-600 underline">
-                  Frequency
+                  Gather
                 </Link>{" "}
                 to start a conversation.
               </p>

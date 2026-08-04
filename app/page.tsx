@@ -224,7 +224,7 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
-            socials, and a bit about you. On Frequency, flag when you&apos;re
+            socials, and a bit about you. On Gather, flag when you&apos;re
             free to connect: post your city and what you&apos;re up for, then
             message each other directly, no matter where you call home.
           </p>
@@ -283,7 +283,7 @@ export default async function Home() {
                   <BoltIcon className="h-3.5 w-3.5" />
                 </span>
                 <div>
-                  <p className="text-xs font-medium text-warm-900">Energy</p>
+                  <p className="text-xs font-medium text-warm-900">Frequency</p>
                   <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Mindset and elevating your frequency.</p>
                 </div>
               </div>
@@ -519,7 +519,7 @@ export default async function Home() {
               <ul className="space-y-3 text-left">
                 {[
                   "The Portal: Ashley's articles, voice notes, and community discussion",
-                  "Frequency: connect with frequency-aligned women, wherever you are",
+                  "Gather: connect with frequency-aligned women, wherever you are",
                   "Direct messaging with members around the world",
                   "Private, anonymous Whispers with Ashley",
                   "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",

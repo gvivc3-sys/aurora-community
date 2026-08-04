@@ -9,7 +9,7 @@ import DismissibleNote from "@/components/dismissible-note";
 
 export const dynamic = "force-dynamic";
 
-export default async function FrequencyPage() {
+export default async function GatherPage() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -25,7 +25,7 @@ export default async function FrequencyPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <h1 className="text-2xl font-light tracking-tight text-warm-900">Frequency</h1>
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
         <DismissibleNote id="frequency-intro" className="mt-2">
           <p className="pr-6 text-sm leading-relaxed text-warm-500 md:pr-0">
             Members looking to connect, right now. Post your city and what you&apos;re

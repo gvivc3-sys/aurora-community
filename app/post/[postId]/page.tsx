@@ -19,7 +19,7 @@ export const dynamic = "force-dynamic";
 const tagStyles: Record<string, { badge: string; icon: React.ComponentType<{ className?: string }>; label: string }> = {
   love: { badge: "bg-green-50 text-green-700", icon: LeafIcon, label: "Nourishment" },
   health: { badge: "bg-rose-50 text-rose-700", icon: HeartIcon, label: "Health + Beauty" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", icon: BoltIcon, label: "Energy" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", icon: BoltIcon, label: "Frequency" },
   ask: { badge: "bg-amber-50 text-amber-700", icon: ChatBubbleIcon, label: "whisper" },
 };
 

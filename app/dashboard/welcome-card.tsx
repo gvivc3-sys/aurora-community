@@ -40,7 +40,7 @@ export default function WelcomeCard() {
         This is your sacred portal. Here you&apos;ll find posts, voice
         notes, and articles from the Aurora team. You can like, comment on,
         and save posts you love. Say hi on{" "}
-        <Link href="/frequency" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Frequency</Link>,
+        <Link href="/frequency" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Gather</Link>,
         use{" "}
         <Link href="/inbox" className="font-medium text-warm-900 underline decoration-warm-300 underline-offset-2 transition-colors hover:text-warm-700">Whisper</Link> to
         share something privately with Ashley, and visit{" "}

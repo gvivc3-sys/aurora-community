@@ -8,10 +8,10 @@ import Avatar from "@/components/avatar";
 import MessageButton from "@/components/message-button";
 import { HeartSolidIcon } from "@/components/icons";
 
-const tagStyles: Record<string, { badge: string; emoji: string }> = {
-  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
-  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728" },
+const tagStyles: Record<string, { badge: string; emoji: string; label: string }> = {
+  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F", label: "Nourishment" },
+  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F", label: "Health + Beauty" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728", label: "Frequency" },
 };
 
 function timeAgo(date: string): string {
@@ -190,7 +190,7 @@ export default async function PublicProfilePage({
                       className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                     >
                       <span>{tag?.emoji}</span>
-                      {post.tag}
+                      {tag?.label ?? post.tag}
                     </span>
                     <span className="min-w-0 flex-1 truncate text-sm text-warm-700">
                       {label}

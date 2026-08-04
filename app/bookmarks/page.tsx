@@ -13,11 +13,11 @@ import AudioPlayer from "@/components/audio-player";
 import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
 
-const tagStyles: Record<string, { badge: string; emoji: string }> = {
-  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F" },
-  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728" },
-  ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D" },
+const tagStyles: Record<string, { badge: string; emoji: string; label: string }> = {
+  love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F", label: "Nourishment" },
+  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F", label: "Health + Beauty" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728", label: "Frequency" },
+  ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D", label: "whisper" },
 };
 
 export default async function BookmarksPage() {
@@ -152,7 +152,7 @@ export default async function BookmarksPage() {
                       className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}
                     >
                       <span>{tag?.emoji}</span>
-                      {post.tag === "ask" ? "whisper" : post.tag}
+                      {tag?.label ?? post.tag}
                     </span>
                   </div>
 

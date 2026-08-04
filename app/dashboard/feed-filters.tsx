@@ -7,7 +7,7 @@ const topics = [
   { key: "all", label: "All Topics" },
   { key: "love", label: "Nourishment" },
   { key: "health", label: "Health + Beauty" },
-  { key: "magic", label: "Energy" },
+  { key: "magic", label: "Frequency" },
   { key: "ask", label: "Whisper" },
 ] as const;
 
