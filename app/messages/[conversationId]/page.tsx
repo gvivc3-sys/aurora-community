@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getConversationMessages } from "@/lib/actions/dm";
 import TimeAgo from "@/components/time-ago";
 import RealtimeRefresh from "@/components/realtime-refresh";
+import LockBodyScroll from "@/components/lock-body-scroll";
 import MessageComposer from "@/components/message-composer";
 import ChatScrollAnchor from "@/components/chat-scroll-anchor";
 import { HeartSolidIcon } from "@/components/icons";
@@ -32,6 +33,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
   return (
     <div className="fixed inset-x-0 bottom-0 top-14 z-10 flex flex-col bg-background md:left-[calc(15rem+max(0px,(100vw-72rem)/2))] md:right-[max(0px,(100vw-72rem)/2)] md:top-0">
       <RealtimeRefresh table="direct_messages" />
+      <LockBodyScroll />
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-4 py-2 sm:py-4 sm:px-6">
         <div className="mb-2 flex items-center justify-between gap-3 rounded-xl border border-warm-200 bg-white p-3 shadow-sm sm:mb-3">
           <div className="flex min-w-0 items-center gap-2.5">
