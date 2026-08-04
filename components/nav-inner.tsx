@@ -6,9 +6,8 @@ import { useState, useEffect } from "react";
 import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
-import NotificationDropdown from "@/components/notification-dropdown";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon } from "@/components/icons";
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon } from "@/components/icons";
 
 type NavUser = {
   email: string;
@@ -140,7 +139,18 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                 <Link href="/">
                   <AuroraWordmark className="h-3 w-auto text-warm-600" />
                 </Link>
-                <NotificationDropdown unreadCount={unreadNotificationCount} />
+                <Link
+                  href="/notifications"
+                  aria-label="Notifications"
+                  className="relative flex h-8 w-8 items-center justify-center rounded-full text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900"
+                >
+                  <BellIcon className="h-5 w-5" />
+                  {unreadNotificationCount > 0 && (
+                    <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                      {unreadNotificationCount > 9 ? "9+" : unreadNotificationCount}
+                    </span>
+                  )}
+                </Link>
               </>
             ) : isMember && isLandingPage ? (
               <>
@@ -275,12 +285,16 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             )}
           </nav>
 
-          <div className="shrink-0 border-t border-warm-100 px-3 py-1">
-            <NotificationDropdown
-              unreadCount={unreadNotificationCount}
-              label="Notifications"
-              triggerClassName={sidebarLinkClass(false)}
-            />
+          <div className="shrink-0 border-t border-warm-200 px-3 py-1">
+            <Link href="/notifications" className={sidebarLinkClass(isActive("/notifications"))}>
+              <BellIcon className="h-4 w-4 text-warm-400" />
+              Notifications
+              {unreadNotificationCount > 0 && (
+                <span className="ml-auto flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                  {unreadNotificationCount > 9 ? "9+" : unreadNotificationCount}
+                </span>
+              )}
+            </Link>
           </div>
 
           <div className="border-t border-warm-200 p-3">
