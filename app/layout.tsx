@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import NavInner from "@/components/nav-inner";
+import PageShell from "@/components/page-shell";
 import { ToastProvider } from "@/components/toast";
 import { IOSInstallBanner } from "@/components/install-prompt";
 import "./globals.css";
@@ -116,7 +117,7 @@ export default async function RootLayout({
             unreadInboxCount={unreadInboxCount}
             unreadNotificationCount={unreadNotificationCount}
           />
-          <div className={isMember ? "md:pl-[calc(15rem+max(0px,(100vw-72rem)/2))] md:pr-[max(0px,(100vw-72rem)/2)]" : ""}>{children}</div>
+          <PageShell isMember={isMember}>{children}</PageShell>
           <IOSInstallBanner />
         </ToastProvider>
         <script

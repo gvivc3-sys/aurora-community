@@ -40,6 +40,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
   const isMember = hasActiveSub && !!user;
   const isConversationDetail = pathname?.startsWith("/messages/") ?? false;
+  const isLandingPage = pathname === "/";
+  // The sidebar/drawer app-shell only makes sense once a member is inside
+  // the app; on the public landing page (even while logged in) it would
+  // overlay the marketing content, so fall back to a plain marketing bar.
+  const showAppChrome = isMember && !isLandingPage;
   const [navTop, setNavTop] = useState(0);
 
   // ESC to close mobile drawer
@@ -80,7 +85,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
     <>
       <nav
         style={isConversationDetail ? { top: navTop } : undefined}
-        className={`${isConversationDetail ? "fixed inset-x-0" : "sticky top-0"} z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${isMember ? "md:hidden" : ""}`}
+        className={`${isConversationDetail ? "fixed inset-x-0" : "sticky top-0"} z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${showAppChrome ? "md:hidden" : ""}`}
       >
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           {/* Logo — desktop, only rendered here when there's no sidebar */}
@@ -89,8 +94,23 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
             <AuroraWordmark className="relative h-5 w-auto text-warm-600" />
           </Link>
 
-          {/* Desktop bar — non-member states only (members get the sidebar) */}
+          {/* Desktop bar — non-member states, plus members viewing the public landing page */}
           <div className="hidden items-center gap-4 md:flex">
+            {isMember && isLandingPage && (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] active:scale-[0.97]"
+                >
+                  Enter the Portal
+                </Link>
+                <form action={signOut}>
+                  <button type="submit" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
+                    Log out
+                  </button>
+                </form>
+              </>
+            )}
             {user && !hasActiveSub && (
               <>
                 <Link
@@ -120,7 +140,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
 
           {/* Mobile bar — all auth states */}
           <div className="flex w-full items-center justify-between md:hidden">
-            {isMember ? (
+            {showAppChrome ? (
               <>
                 <button
                   type="button"
@@ -140,6 +160,18 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                   <AuroraWordmark className="h-3 w-auto text-warm-600" />
                 </Link>
                 <NotificationDropdown unreadCount={unreadNotificationCount} />
+              </>
+            ) : isMember && isLandingPage ? (
+              <>
+                <Link href="/" className="group relative">
+                  <AuroraWordmark className="h-5 w-auto text-warm-600" />
+                </Link>
+                <Link
+                  href="/dashboard"
+                  className="rounded-full bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                >
+                  Enter the Portal
+                </Link>
               </>
             ) : user ? (
               <>
@@ -180,7 +212,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
         </div>
 
         {/* Mobile secondary nav — Gather / Portal / Whisper, shows the active page */}
-        {isMember && !isConversationDetail && (
+        {showAppChrome && !isConversationDetail && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
             <Link
               href="/frequency"
@@ -204,8 +236,8 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
         )}
       </nav>
 
-      {/* Desktop permanent left sidebar — members only */}
-      {isMember && user && (
+      {/* Desktop permanent left sidebar — members only, not on the public landing page */}
+      {showAppChrome && user && (
         <aside className="fixed inset-y-0 left-[max(0px,calc((100vw-72rem)/2))] z-40 hidden w-60 flex-col border-r border-warm-200 bg-background md:flex">
           <Link href="/" className="group relative px-6 py-5">
             <AuroraWordmark className="h-5 w-auto text-warm-600" />
