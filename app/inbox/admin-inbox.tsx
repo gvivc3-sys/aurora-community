@@ -229,16 +229,26 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-2">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">
           Whispers
         </h1>
+        <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">
+          Admin
+        </span>
+        <span className="rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
+          {messages.length}
+        </span>
         {unreadCount > 0 && (
           <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-medium text-white">
-            {unreadCount}
+            {unreadCount} unread
           </span>
         )}
       </div>
+      <p className="mt-1.5 max-w-xl text-sm text-warm-500">
+        Private messages members send through Whisper. Reply privately, or
+        share your response publicly on the Portal feed.
+      </p>
 
       {/* Filter tabs */}
       <div className="mt-4 flex border-b border-warm-200">
