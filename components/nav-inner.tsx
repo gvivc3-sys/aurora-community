@@ -40,6 +40,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
   const isMember = hasActiveSub && !!user;
   const isConversationDetail = pathname?.startsWith("/messages/") ?? false;
+  const [navTop, setNavTop] = useState(0);
 
   // ESC to close mobile drawer
   useEffect(() => {
@@ -50,12 +51,37 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
     return () => document.removeEventListener("keydown", handleEsc);
   }, []);
 
+  // On the conversation detail page, track the visual viewport directly
+  // instead of relying on sticky positioning: iOS can pan the page to
+  // reveal a focused input without resizing the layout viewport or
+  // firing a scroll event, which otherwise leaves sticky/fixed elements
+  // pinned to the wrong place.
+  useEffect(() => {
+    if (!isConversationDetail) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    function update() {
+      setNavTop(vv!.offsetTop);
+    }
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
+  }, [isConversationDetail]);
+
   const sidebarLinkClass = (active: boolean) =>
     `flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${active ? "bg-warm-50 text-warm-900" : "text-warm-600"}`;
 
   return (
     <>
-      <nav className={`sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${isMember ? "md:hidden" : ""}`}>
+      <nav
+        style={isConversationDetail ? { top: navTop } : undefined}
+        className={`${isConversationDetail ? "fixed inset-x-0" : "sticky top-0"} z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${isMember ? "md:hidden" : ""}`}
+      >
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
