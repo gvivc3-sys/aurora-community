@@ -39,6 +39,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
   const isMember = hasActiveSub && !!user;
+  const isConversationDetail = pathname?.startsWith("/messages/") ?? false;
 
   // ESC to close mobile drawer
   useEffect(() => {
@@ -153,7 +154,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
         </div>
 
         {/* Mobile secondary nav — Frequency / Portal / Whisper, shows the active page */}
-        {isMember && (
+        {isMember && !isConversationDetail && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
             <Link
               href="/frequency"
@@ -179,7 +180,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
 
       {/* Desktop permanent left sidebar — members only */}
       {isMember && user && (
-        <aside className="fixed inset-y-0 left-[max(0px,calc((100vw-72rem)/2))] z-40 hidden w-60 flex-col border-r border-warm-200 bg-white/95 backdrop-blur-sm md:flex">
+        <aside className="fixed inset-y-0 left-[max(0px,calc((100vw-72rem)/2))] z-40 hidden w-60 flex-col border-r border-warm-200 bg-background md:flex">
           <Link href="/" className="group relative px-6 py-5">
             <AuroraWordmark className="h-5 w-auto text-warm-600" />
           </Link>
