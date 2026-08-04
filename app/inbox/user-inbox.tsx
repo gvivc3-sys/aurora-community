@@ -148,7 +148,7 @@ export default function UserInbox({
   const [state, formAction, pending] = useActionState(sendMessage, null);
   const formRef = useRef<HTMLFormElement>(null);
   const [remaining, setRemaining] = useState<number>(0);
-  const [anonymous, setAnonymous] = useState(true);
+  const [visibility, setVisibility] = useState<"public" | "anon" | "confidential">("anon");
 
   useEffect(() => {
     if (!canSendAfter) {
@@ -206,38 +206,52 @@ export default function UserInbox({
           }}
           className="mt-4 space-y-4"
         >
-          <input type="hidden" name="anonymous" value={anonymous ? "on" : ""} />
+          <input type="hidden" name="visibility" value={visibility} />
 
-          {/* Anonymous / Named toggle */}
+          {/* Public / Anon / Confidential toggle */}
           <div>
             <div className="flex rounded-md border border-warm-200 p-0.5">
               <button
                 type="button"
-                onClick={() => setAnonymous(true)}
+                onClick={() => setVisibility("public")}
                 className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                  anonymous
+                  visibility === "public"
                     ? "bg-warm-800 text-warm-50"
                     : "text-warm-500 hover:text-warm-700"
                 }`}
               >
-                Anonymous
+                Public
               </button>
               <button
                 type="button"
-                onClick={() => setAnonymous(false)}
+                onClick={() => setVisibility("anon")}
                 className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                  !anonymous
+                  visibility === "anon"
                     ? "bg-warm-800 text-warm-50"
                     : "text-warm-500 hover:text-warm-700"
                 }`}
               >
-                Named
+                Anon
+              </button>
+              <button
+                type="button"
+                onClick={() => setVisibility("confidential")}
+                className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  visibility === "confidential"
+                    ? "bg-warm-800 text-warm-50"
+                    : "text-warm-500 hover:text-warm-700"
+                }`}
+              >
+                Confidential
               </button>
             </div>
             <p className="mt-1.5 text-xs text-warm-400">
-              {anonymous
-                ? "Anonymous \u2014 Ashley won\u2019t see your name"
-                : "Named \u2014 Ashley will see your profile"}
+              {visibility === "public" &&
+                "Public \u2014 shows who you are if Ashley shares it on the Portal feed"}
+              {visibility === "anon" &&
+                "Anon \u2014 shown as \u201ca sister\u201d if Ashley shares it on the Portal feed"}
+              {visibility === "confidential" &&
+                "Confidential \u2014 Ashley can't post this to the Portal, and your name stays hidden"}
             </p>
           </div>
 

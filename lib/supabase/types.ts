@@ -27,6 +27,8 @@ export interface Database {
           tag: "love" | "health" | "magic" | "ask";
           comments_enabled: boolean;
           anonymous_question: string | null;
+          whisper_sender_name: string | null;
+          whisper_sender_avatar_url: string | null;
           pinned: boolean;
           pinned_at: string | null;
           file_url: string | null;
@@ -46,6 +48,8 @@ export interface Database {
           tag: "love" | "health" | "magic" | "ask";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
+          whisper_sender_name?: string | null;
+          whisper_sender_avatar_url?: string | null;
           pinned?: boolean;
           pinned_at?: string | null;
           file_url?: string | null;
@@ -62,9 +66,11 @@ export interface Database {
           author_id?: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
-          tag?: "love" | "health" | "magic";
+          tag?: "love" | "health" | "magic" | "ask";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
+          whisper_sender_name?: string | null;
+          whisper_sender_avatar_url?: string | null;
           pinned?: boolean;
           pinned_at?: string | null;
           file_url?: string | null;
@@ -166,6 +172,7 @@ export interface Database {
           sender_id: string;
           sender_name: string | null;
           sender_avatar_url: string | null;
+          visibility: "public" | "anon" | "confidential";
           body: string;
           reply_body: string | null;
           status: "unread" | "read" | "addressed";
@@ -176,6 +183,7 @@ export interface Database {
           sender_id: string;
           sender_name?: string | null;
           sender_avatar_url?: string | null;
+          visibility?: "public" | "anon" | "confidential";
           body: string;
           reply_body?: string | null;
           status?: "unread" | "read" | "addressed";
@@ -186,6 +194,7 @@ export interface Database {
           sender_id?: string;
           sender_name?: string | null;
           sender_avatar_url?: string | null;
+          visibility?: "public" | "anon" | "confidential";
           body?: string;
           reply_body?: string | null;
           status?: "unread" | "read" | "addressed";

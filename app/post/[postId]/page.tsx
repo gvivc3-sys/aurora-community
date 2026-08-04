@@ -176,7 +176,7 @@ export default async function PostPage({ params }: { params: Params }) {
           {post.anonymous_question && (
             <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
               <p className="text-xs font-medium text-warm-500">
-                A sister whispered:
+                {post.whisper_sender_name ? `${post.whisper_sender_name} whispered:` : "A sister whispered:"}
               </p>
               <p className="mt-1 text-sm italic text-warm-600">
                 {post.anonymous_question}

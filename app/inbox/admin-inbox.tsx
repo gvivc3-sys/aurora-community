@@ -108,9 +108,10 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
   );
 }
 
-function ReplyForm({ messageId }: { messageId: string }) {
+function ReplyForm({ messageId, visibility }: { messageId: string; visibility: "public" | "anon" | "confidential" }) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"private" | "public">("private");
+  const canPostPublicly = visibility !== "confidential";
   const [state, action, pending] = useActionState(replyToMessage, null);
   const [lastSuccess, setLastSuccess] = useState<string | null>(null);
   const formKey = useRef(0);
@@ -161,18 +162,25 @@ function ReplyForm({ messageId }: { messageId: string }) {
             >
               Reply privately
             </button>
-            <button
-              type="button"
-              onClick={() => setMode("public")}
-              className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                mode === "public"
-                  ? "bg-warm-800 text-warm-50"
-                  : "text-warm-500 hover:text-warm-700"
-              }`}
-            >
-              Post to Portal
-            </button>
+            {canPostPublicly && (
+              <button
+                type="button"
+                onClick={() => setMode("public")}
+                className={`flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                  mode === "public"
+                    ? "bg-warm-800 text-warm-50"
+                    : "text-warm-500 hover:text-warm-700"
+                }`}
+              >
+                Post to Portal
+              </button>
+            )}
           </div>
+          {!canPostPublicly && (
+            <p className="text-xs text-warm-400">
+              This whisper is confidential — it can only be replied to privately.
+            </p>
+          )}
 
           <RichTextEditor
             name="replyBody"
@@ -290,8 +298,13 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <Link href={`/profile/${msg.sender_id}`} className="truncate text-sm font-medium text-warm-900 hover:underline" onClick={(e) => e.stopPropagation()}>
-                          {msg.sender_name ?? "Anonymous"}
+                          {msg.sender_name ?? (msg.visibility === "confidential" ? "Confidential" : "Anonymous")}
                         </Link>
+                        {msg.visibility === "confidential" && (
+                          <span className="rounded-full bg-warm-100 px-1.5 py-0.5 text-[10px] font-medium text-warm-500">
+                            Confidential
+                          </span>
+                        )}
                         {msg.status === "unread" && (
                           <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
                         )}
@@ -368,7 +381,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                       ) : null;
                     })()}
                     <div className="mt-3 border-t border-warm-100 pt-3">
-                      <ReplyForm messageId={msg.id} />
+                      <ReplyForm messageId={msg.id} visibility={msg.visibility} />
                     </div>
                   </div>
                 )}

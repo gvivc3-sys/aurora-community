@@ -47,12 +47,16 @@ export async function sendMessage(
     return { error: "Message must be 2000 characters or less." };
   }
 
-  const anonymous = formData.get("anonymous") === "on";
+  const rawVisibility = formData.get("visibility") as string;
+  const visibility: "public" | "anon" | "confidential" =
+    rawVisibility === "public" || rawVisibility === "confidential" ? rawVisibility : "anon";
+  const isPublic = visibility === "public";
 
   const { error } = await supabase.from("messages").insert({
     sender_id: user.id,
-    sender_name: anonymous ? null : (user.user_metadata?.username ?? user.email),
-    sender_avatar_url: anonymous ? null : (user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null),
+    sender_name: isPublic ? (user.user_metadata?.username ?? user.email) : null,
+    sender_avatar_url: isPublic ? (user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null) : null,
+    visibility,
     body,
   });
 
@@ -224,6 +228,10 @@ export async function replyToMessage(
   }
 
   if (mode === "public") {
+    if (message.visibility === "confidential") {
+      return { error: "This whisper is confidential and can't be posted to the Portal." };
+    }
+
     // Create a post in the Portal feed with the admin's reply
     const { error: postError } = await supabaseAdmin.from("posts").insert({
       type: "text",
@@ -234,6 +242,8 @@ export async function replyToMessage(
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
+      whisper_sender_name: message.visibility === "public" ? message.sender_name : null,
+      whisper_sender_avatar_url: message.visibility === "public" ? message.sender_avatar_url : null,
     });
 
     if (postError) {
