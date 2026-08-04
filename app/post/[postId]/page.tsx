@@ -6,7 +6,6 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { extractVideoId, getEmbedUrl } from "@/lib/video";
 import Avatar from "@/components/avatar";
-import ShareButton from "@/components/share-button";
 import TimeAgo from "@/components/time-ago";
 import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
@@ -109,12 +108,8 @@ export default async function PostPage({ params }: { params: Params }) {
   const tag = tagStyles[post.tag];
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <div className="flex justify-end">
-          <ShareButton />
-        </div>
-
         {/* Post card */}
         <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
           {/* Header */}
