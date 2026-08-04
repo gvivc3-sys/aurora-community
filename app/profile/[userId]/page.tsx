@@ -85,7 +85,7 @@ export default async function PublicProfilePage({
   const completion = getProfileCompletion(meta);
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         {/* Avatar + name + member since */}
         <div className="flex flex-col items-center text-center">

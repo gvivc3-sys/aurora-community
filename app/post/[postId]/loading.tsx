@@ -8,7 +8,7 @@ function Shimmer({ className }: { className?: string }) {
 
 export default function PostLoading() {
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <Shimmer className="h-4 w-28" />
         <div className="mt-6 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">

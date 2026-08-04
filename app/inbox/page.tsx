@@ -24,7 +24,7 @@ export default async function InboxPage() {
       .order("created_at", { ascending: false });
 
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-background">
         <RealtimeRefresh table="messages" />
         <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
           <AdminInbox messages={messages ?? []} />
@@ -50,7 +50,7 @@ export default async function InboxPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <UserInbox messages={messages ?? []} canSendAfter={canSendAfter} userId={user.id} />
       </div>

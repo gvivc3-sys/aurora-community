@@ -14,7 +14,7 @@ export default async function WelcomePage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">

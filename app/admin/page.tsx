@@ -136,7 +136,7 @@ export default async function AdminPage() {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-4xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
           Admin

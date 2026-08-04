@@ -23,7 +23,7 @@ export default async function FrequencyPage() {
   const profileComplete = getProfileCompletion(user.user_metadata ?? {}).isComplete;
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-warm-50">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Frequency</h1>
         <DismissibleNote id="frequency-intro" className="mt-2">

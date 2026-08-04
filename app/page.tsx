@@ -96,7 +96,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-warm-50">
+    <div className="bg-background">
       {/* ─── HERO (VSL-LED) ─── */}
       <section className="relative z-10 overflow-hidden">
         <div className="hero-gradient absolute inset-0" />
@@ -620,7 +620,7 @@ export default async function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="border-t border-warm-200 bg-warm-50 px-6 py-10">
+      <footer className="border-t border-warm-200 bg-background px-6 py-10">
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
             <svg className="h-3 w-auto text-warm-400" viewBox="0 0 536.4768 49.36722" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Aurora Circle">
