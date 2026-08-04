@@ -79,7 +79,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
           Instagram check goes a long way before meeting up.
         </p>
 
-        <div className="min-h-0 flex-1 space-y-1 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-3">
+        <div className="min-h-0 flex-1 space-y-1 overflow-y-auto rounded-t-xl border border-b-0 border-warm-200 bg-white p-3 pb-24 md:pb-3">
           {messages.length > 0 ? (
             messages.map((m) => {
               const mine = m.senderId === currentUser.userId;

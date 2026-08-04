@@ -31,7 +31,10 @@ export default function MessageComposer({ conversationId }: { conversationId: st
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-2 rounded-b-xl border border-t-0 border-warm-200 bg-white p-3">
+    <form
+      onSubmit={handleSubmit}
+      className="fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-2xl items-end gap-2 border-t border-warm-200 bg-white px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-2px_10px_rgba(0,0,0,0.05)] sm:px-6 md:static md:inset-auto md:z-auto md:max-w-none md:rounded-b-xl md:border md:border-t-0 md:px-3 md:pb-3 md:shadow-none"
+    >
       <textarea
         value={body}
         onChange={(e) => setBody(e.target.value)}
