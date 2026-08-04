@@ -39,15 +39,9 @@ export default function FriendFlagForm({
   }
 
   return (
-    <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
+    <div>
       <FlagToastEffect state={state} />
-      <p className="text-sm font-medium text-warm-900">
-        {hasFlag ? "Update your post" : "Looking for friends?"}
-      </p>
-      <p className="mt-1 text-xs text-warm-400">
-        Post your city and what you&apos;re up for. Visible for 14 days.
-      </p>
-      <form action={formAction} className="mt-4">
+      <form action={formAction}>
         <div className="grid gap-3 sm:grid-cols-[1fr_2fr]">
           <input
             type="text"

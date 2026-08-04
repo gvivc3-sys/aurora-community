@@ -44,6 +44,17 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* iOS Safari zooms the page in on focus when a text input's font-size is
+   under 16px. Force 16px on mobile regardless of Tailwind text-size
+   utilities (this is unlayered, so it wins over the utilities layer). */
+@media (max-width: 767px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
 /* Tiptap placeholder */
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
