@@ -15,10 +15,8 @@ import RealtimeRefresh from "@/components/realtime-refresh";
 import ScrollToTop from "./scroll-to-top";
 import WelcomeCard from "./welcome-card";
 import InstallCard from "@/components/install-card";
-import NoticeBanner from "@/components/notice-banner";
 import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
-import { getActiveNotice } from "@/lib/actions/notices";
 import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
 import { getProfileCompletion } from "@/lib/profile-completion";
 
@@ -69,9 +67,6 @@ export default async function DashboardPage({
     1,
     typeof params.page === "string" ? parseInt(params.page, 10) || 1 : 1,
   );
-
-  // Fetch active notice in parallel with posts
-  const activeNotice = await getActiveNotice();
 
   // Build query
   let query = supabase.from("posts").select("*", { count: "exact" });
@@ -197,12 +192,6 @@ export default async function DashboardPage({
         <div className="mt-4">
           <InstallCard />
         </div>
-
-        {activeNotice && (
-          <div className="mt-4">
-            <NoticeBanner notice={activeNotice as unknown as { id: string; body: string; bg: "default" | "amber" | "rose" | "fuchsia" | "green" }} />
-          </div>
-        )}
 
         {!user.user_metadata?.username && (
           <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">

@@ -75,15 +75,6 @@ export default async function RootLayout({
     }
   }
 
-  let unreadInboxCount = 0;
-  if (user && isAdmin(user)) {
-    const { count } = await supabase
-      .from("messages")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "unread");
-    unreadInboxCount = count ?? 0;
-  }
-
   let unreadNotificationCount = 0;
   if (user) {
     const { count } = await supabaseAdmin
@@ -114,7 +105,6 @@ export default async function RootLayout({
                 : null
             }
             hasActiveSub={hasActiveSub}
-            unreadInboxCount={unreadInboxCount}
             unreadNotificationCount={unreadNotificationCount}
           />
           <PageShell isMember={isMember}>{children}</PageShell>

@@ -33,7 +33,7 @@ function PortalIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-export default function NavInner({ user, hasActiveSub = false, unreadInboxCount = 0, unreadNotificationCount = 0 }: { user: NavUser | null; hasActiveSub?: boolean; unreadInboxCount?: number; unreadNotificationCount?: number }) {
+export default function NavInner({ user, hasActiveSub = false, unreadNotificationCount = 0 }: { user: NavUser | null; hasActiveSub?: boolean; unreadNotificationCount?: number }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -262,13 +262,8 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
               <>
                 <div className="my-2 border-t border-warm-100" />
                 <p className="px-3 pb-0.5 pt-1.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
-                <Link href="/management" className={sidebarLinkClass(isActive("/management"))}>
+                <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
                   Management
-                  {unreadInboxCount > 0 && (
-                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                      {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                    </span>
-                  )}
                 </Link>
                 <Link href="/admin/profiles" className={sidebarLinkClass(isActive("/admin/profiles"))}>
                   Profiles
@@ -376,16 +371,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadInboxCount 
                       <div className="mx-3 my-1 border-t border-warm-100" />
                       <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
                       <Link
-                        href="/management"
+                        href="/inbox"
                         onClick={() => setMenuOpen(false)}
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100"
                       >
                         Management
-                        {unreadInboxCount > 0 && (
-                          <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
-                            {unreadInboxCount > 9 ? "9+" : unreadInboxCount}
-                          </span>
-                        )}
                       </Link>
                       <Link
                         href="/admin/profiles"
