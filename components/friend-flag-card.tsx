@@ -23,6 +23,7 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
             className="flex items-center gap-1 text-sm font-medium text-warm-900 hover:underline"
           >
             {flag.name}
+            {flag.isMine && <span className="font-normal text-warm-400">(You)</span>}
             {flag.verified && <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />}
           </Link>
           <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">

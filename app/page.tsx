@@ -2,13 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/animate-on-scroll";
-import WaveformVisual from "@/components/waveform-visual";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
 import CommunityMap from "@/components/community-map";
 import {
-  SparklesIcon as StreamlineSparklesIcon,
-  VideoCameraIcon,
   ArrowRightIcon,
   CheckBadgeAlternateIcon,
   LeafIcon,
@@ -16,9 +13,9 @@ import {
   ChatBubbleIcon,
   HeartSolidIcon,
   HeartIcon as OutlineHeartIcon,
-  RectangleStackIcon,
 } from "@/components/icons";
 import FaqAccordion from "@/components/faq-accordion";
+import PillarShowcase from "@/components/pillar-showcase";
 
 
 /* ── SVG icon components (inline Heroicon-style) ── */
@@ -66,38 +63,6 @@ function SparklesIcon({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 
-
-const pillars = [
-  {
-    icon: UserGroupIcon,
-    iconColor: "bg-amber-50 text-amber-600",
-    title: "Gather",
-    description:
-      "Connect with sisters across the world: share where you are, flag when you're free, and message each other directly. No matter your time zone, you're never far from your people.",
-  },
-  {
-    icon: StreamlineSparklesIcon,
-    iconColor: "bg-fuchsia-50 text-fuchsia-600",
-    title: "The Portal",
-    description:
-      "A curated space of blog posts and articles on the topics that matter most, written by Ashley. Read, reflect, and share your own experiences and thoughts directly with the community.",
-  },
-  {
-    icon: RectangleStackIcon,
-    iconColor: "bg-purple-50 text-purple-600",
-    title: "Conversations",
-    description:
-      "Open discussion threads on anything on your mind. Reply, react, and see what the community is talking about most, right now.",
-  },
-  {
-    icon: VideoCameraIcon,
-    iconColor: "bg-rose-50 text-rose-500",
-    title: "Ashley's Guides",
-
-    description:
-      "Lifetime access to all of Ashley's guides and books, including every future release, yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks. This is a living and growing library you'll return to again and again.",
-  },
-];
 
 export default async function Home() {
   const supabase = await createClient();
@@ -190,6 +155,34 @@ export default async function Home() {
         <Marquee />
       </section>
 
+      {/* ─── WHAT IS AURORA ─── */}
+      <section className="px-6 py-14 text-center sm:py-20">
+        <AnimateOnScroll className="mx-auto max-w-2xl">
+          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+            A place to <span className="italic">align, connect, and belong.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
+            Aurora is a private membership and community for women ready to
+            reclaim their energy and rise together. It&apos;s a space to{" "}
+            <strong className="font-semibold text-warm-800">align</strong>{" "}
+            with your highest self, <strong className="font-semibold text-warm-800">connect</strong>{" "}
+            with sisters who get it, and build real friendships, no matter
+            where you live.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
+              <BoltIcon className="h-4 w-4 text-fuchsia-600" /> Align
+            </span>
+            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
+              <UserGroupIcon className="h-4 w-4 text-amber-600" /> Connect
+            </span>
+            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
+              <HeartIcon className="h-4 w-4 text-rose-500" /> Belong
+            </span>
+          </div>
+        </AnimateOnScroll>
+      </section>
 
       {/* ─── GATHER ─── */}
       <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
@@ -248,10 +241,10 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
-            socials, and a bit about you. On Gather, flag when you&apos;re
-            free to connect &mdash; post your city and what you&apos;re up
-            for &mdash; then message each other directly, no matter where
-            you call home.
+            socials, and a bit about you. On Gather, <strong className="font-semibold text-warm-800">flag</strong> when
+            you&apos;re free to connect: post your city and what you&apos;re
+            up for, then <strong className="font-semibold text-warm-800">message</strong> each other directly, no
+            matter where you call home.
           </p>
           <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
             This is a growing network of sisters on the same frequency,
@@ -267,7 +260,7 @@ export default async function Home() {
             <div className="flex items-start gap-3 border-b border-warm-100 p-4">
               <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
                 <Image
-                  src="/images/avatar_pool/woman_brunette_basic.jpeg"
+                  src="/images/avatar_pool/woman_smile_blonde.jpeg"
                   alt=""
                   fill
                   className="object-cover"
@@ -295,7 +288,7 @@ export default async function Home() {
             <div className="flex items-start gap-3 p-4">
               <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
                 <Image
-                  src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
+                  src="/images/avatar_pool/woman_brunette.jpeg"
                   alt=""
                   fill
                   className="object-cover"
@@ -310,7 +303,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                  New here &mdash; would love to meet other early risers!
+                  New here, would love to meet other early risers!
                 </p>
                 <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
                   Message
@@ -333,101 +326,68 @@ export default async function Home() {
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
               Ashley posts her own reflections and insights regularly,
-              through voice notes, short vlogs, and articles, and you can
-              comment, start a discussion thread, or just sit with what
-              resonates. It&apos;s a real, living conversation, not a
-              broadcast.
+              through voice notes, short vlogs, and articles, and you can{" "}
+              <strong className="font-semibold text-warm-800">comment</strong>,
+              start a discussion thread, or just sit with what resonates.
+              It&apos;s a real, living conversation, not a broadcast.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
               Every post lives under one of four topics, so you can find
               (or skip) exactly what speaks to you:
             </p>
 
-            <div className="mt-5 grid grid-cols-2 gap-3 text-left">
-              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
+            <div className="mt-6 flex flex-wrap gap-3">
+              <span
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                style={{ animationDelay: "0ms" }}
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
                   <LeafIcon className="h-3.5 w-3.5" />
                 </span>
-                <div>
-                  <p className="text-xs font-medium text-warm-900">Nourishment</p>
-                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Food and living in rhythm with your body.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+                <span className="text-xs font-medium text-warm-900">Nourishment</span>
+              </span>
+              <span
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                style={{ animationDelay: "400ms" }}
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
                   <HeartIcon className="h-3.5 w-3.5" />
                 </span>
-                <div>
-                  <p className="text-xs font-medium text-warm-900">Health + Beauty</p>
-                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Natural beauty and feeling good in your skin.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600">
+                <span className="text-xs font-medium text-warm-900">Health + Beauty</span>
+              </span>
+              <span
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                style={{ animationDelay: "800ms" }}
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600">
                   <BoltIcon className="h-3.5 w-3.5" />
                 </span>
-                <div>
-                  <p className="text-xs font-medium text-warm-900">Frequency</p>
-                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Mindset and elevating your frequency.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 rounded-lg border border-warm-200 bg-white p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600">
+                <span className="text-xs font-medium text-warm-900">Frequency</span>
+              </span>
+              <span
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                style={{ animationDelay: "1200ms" }}
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                   <ChatBubbleIcon className="h-3.5 w-3.5" />
                 </span>
-                <div>
-                  <p className="text-xs font-medium text-warm-900">Whisper</p>
-                  <p className="mt-0.5 text-[11px] leading-snug text-warm-500">Ask Ashley anything, privately or publicly.</p>
-                </div>
-              </div>
+                <span className="text-xs font-medium text-warm-900">Whisper</span>
+              </span>
             </div>
           </AnimateOnScroll>
 
-          {/* Voice note mockup card */}
+          {/* Gradient bridge into the Whisper section below */}
           <AnimateOnScroll delay={200}>
-            <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm sm:p-8">
-              <div className="flex items-center gap-3">
-                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                  <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="44px" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-warm-900">
-                    Ashley
-                  </p>
-                  <p className="text-xs text-warm-400">
-                    Voice Note &middot; 4:32
-                  </p>
-                </div>
-              </div>
-
-              <h3 className="mt-5 text-base font-medium text-warm-900">
-                Nourishing your body with the seasons
-              </h3>
-
-              <div className="mt-4 rounded-lg bg-warm-50 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-fuchsia-200 text-warm-900 shadow-md">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="ml-0.5 h-4 w-4"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <WaveformVisual />
-                </div>
-              </div>
-
-              <p className="mt-4 text-sm leading-relaxed text-warm-500">
-                When we eat with the seasons, everything shifts. Our bodies receive
-                the quantum information encoded&hellip;
-              </p>
+            <div className="portal-bridge-gradient relative flex h-full min-h-[320px] items-center justify-center overflow-hidden rounded-xl shadow-sm">
+              <div className="grain-overlay" aria-hidden="true" />
+              <svg
+                viewBox="0 0 258.22298 283.80057"
+                className="animate-[spin_16s_linear_infinite] h-28 w-auto opacity-40"
+                fill="#ffffff"
+                aria-hidden="true"
+              >
+                <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
+              </svg>
             </div>
           </AnimateOnScroll>
         </div>
@@ -436,12 +396,12 @@ export default async function Home() {
 
 
       {/* ─── WHISPERS FROM THE PORTAL ─── */}
-      <section className="relative overflow-hidden px-6 py-16 sm:py-24">
+      <section className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
         {/* Rotating logo — decorative background */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]" />
+          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/20 blur-[100px]" />
           <div
-            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-fuchsia-200/20 blur-[100px]"
+            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/20 blur-[100px]"
             style={{ animationDelay: "4s" }}
           />
         </div>
@@ -450,21 +410,49 @@ export default async function Home() {
           <div className="grid items-center gap-16 md:grid-cols-2">
             {/* Copy */}
             <AnimateOnScroll className="text-center md:text-left">
-              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
                 Some questions are better <span className="italic">asked in a whisper</span>
               </h2>
-              <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-                Share what&apos;s on your heart: a question, an
-                intention, or something you&apos;re navigating. Ashley will
-                read your whisper and may share her response with the sacred
-                portal for the community to reflect on. Your identity is
-                yours to reveal.
+              <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
+                <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
+                on your heart: a question, an intention, or something
+                you&apos;ve never said out loud. Ashley reads every whisper
+                personally and replies with real insight, exactly as
+                privately as you choose.
               </p>
+
+              <ul className="mt-6 space-y-3 text-left">
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Public:</strong> Ashley
+                    may share your whisper, and her reply, on the Portal
+                    with your name attached.
+                  </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Anonymous:</strong> shared
+                    the same way, but you&apos;re known only as &ldquo;a sister.&rdquo;
+                  </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Secret:</strong> stays
+                    fully private, just you and Ashley. Perfect for{" "}
+                    <strong className="font-semibold text-warm-50">unloading guilt</strong>{" "}
+                    or asking what you&apos;ve never said out loud.
+                  </p>
+                </li>
+              </ul>
             </AnimateOnScroll>
 
             {/* Single whisper example */}
-            <AnimateOnScroll delay={200}>
-              <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+            <AnimateOnScroll delay={200} className="relative">
+              <div className="pointer-events-none absolute -inset-8 rounded-[2rem] bg-white/20 blur-3xl" aria-hidden="true" />
+              <div className="relative overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
                 {/* Ashley header */}
                 <div className="flex items-center justify-between px-4 pt-4">
                   <div className="flex items-center gap-3">
@@ -539,10 +527,11 @@ export default async function Home() {
               Or start <span className="italic">a conversation.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Open a thread on anything &mdash; no anonymity here, every
-              voice is her own. Reply, react, and watch the most active
-              conversations rise to the top. It&apos;s a living board where
-              sisters show up for each other, one thread at a time.
+              Open a thread on anything: no anonymity here, every voice is
+              her own. <strong className="font-semibold text-warm-800">Reply, react</strong>,
+              and watch the most active conversations rise to the top.
+              It&apos;s a living board where sisters show up for each
+              other, one thread at a time.
             </p>
           </AnimateOnScroll>
 
@@ -625,29 +614,15 @@ export default async function Home() {
             </h2>
           </AnimateOnScroll>
 
-          <div className="mx-auto mt-16 grid max-w-4xl gap-6 sm:grid-cols-2">
-            {pillars.map((pillar, i) => (
-              <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center shadow-sm transition-all duration-300 hover:shadow-md">
-                  <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-lg ${pillar.iconColor}`}>
-                    <pillar.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold text-warm-900">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-warm-600">
-                    {pillar.description}
-                  </p>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
+          <AnimateOnScroll delay={100} className="mt-16">
+            <PillarShowcase />
+          </AnimateOnScroll>
 
           <AnimateOnScroll className="mx-auto mt-10 max-w-2xl text-center">
             <p className="text-sm leading-relaxed text-warm-500">
-              Four ways to grow, connect, and be supported by your sisters
-              &mdash; all inside one membership, right in your browser or
-              installed as an app on your phone&apos;s home screen.
+              Four ways to grow, connect, and be supported by your sisters,
+              all inside one membership, right in your browser or installed
+              as an app on your phone&apos;s home screen.
             </p>
           </AnimateOnScroll>
 
@@ -792,8 +767,8 @@ export default async function Home() {
 
           <AnimateOnScroll className="mt-10 text-center">
             <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
-              Join Aurora
-              <ArrowRightIcon className="h-4 w-4 rotate-90" />
+              Ready to find your people?
+              <ArrowRightIcon className="h-4 w-4 -rotate-90" />
             </a>
           </AnimateOnScroll>
         </div>
