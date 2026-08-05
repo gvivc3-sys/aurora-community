@@ -328,11 +328,11 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
       {menuOpen && user && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/30 md:hidden"
+            className="fixed inset-0 z-[55] bg-black/30 md:hidden"
             onClick={() => setMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="animate-slide-in-left fixed left-0 top-0 z-50 h-full w-72 max-w-[80%] overflow-y-auto bg-white shadow-xl md:hidden">
+          <div className="animate-slide-in-left fixed left-0 top-0 z-[60] h-full w-72 max-w-[80%] overflow-y-auto bg-white shadow-xl md:hidden">
             {isMember ? (
               <div className="p-5">
                 <Link

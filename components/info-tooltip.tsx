@@ -24,7 +24,7 @@ export default function InfoTooltip({ text }: { text: string }) {
         aria-label="About this page"
         aria-expanded={open}
         className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${
-          open ? "bg-warm-100 text-warm-500" : "text-warm-300 hover:bg-warm-100 hover:text-warm-500"
+          open ? "bg-warm-100 text-warm-600" : "text-warm-400 hover:bg-warm-100 hover:text-warm-600"
         }`}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6">

@@ -44,7 +44,7 @@ export default function MobileComposerSheet({
               onClick={() => setOpen(false)}
               aria-hidden="true"
             />
-            <div className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 max-h-[80vh] overflow-y-auto rounded-2xl border border-warm-200 bg-white shadow-xl">
+            <div className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl border border-warm-200 bg-white shadow-xl">
               <div className="sticky top-0 flex items-center justify-between rounded-t-2xl border-b border-warm-100 bg-white px-4 py-3">
                 <p className="text-sm font-medium text-warm-900">{label}</p>
                 <button
@@ -58,7 +58,7 @@ export default function MobileComposerSheet({
                   </svg>
                 </button>
               </div>
-              <div className="p-4 pb-6">{children}</div>
+              <div className="p-4 pb-[calc(env(safe-area-inset-bottom)+2rem)]">{children}</div>
             </div>
           </>
         )}
