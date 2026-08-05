@@ -376,6 +376,105 @@ export interface Database {
         };
         Relationships: [];
       };
+      threads: {
+        Row: {
+          id: string;
+          author_id: string;
+          author_name: string | null;
+          author_avatar_url: string | null;
+          title: string;
+          body: string;
+          file_url: string | null;
+          file_type: string | null;
+          bumped_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          author_id: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          title: string;
+          body: string;
+          file_url?: string | null;
+          file_type?: string | null;
+          bumped_at?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          author_id?: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          title?: string;
+          body?: string;
+          file_url?: string | null;
+          file_type?: string | null;
+          bumped_at?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      thread_replies: {
+        Row: {
+          id: string;
+          thread_id: string;
+          author_id: string;
+          author_name: string | null;
+          author_avatar_url: string | null;
+          body: string;
+          file_url: string | null;
+          file_type: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          thread_id: string;
+          author_id: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          body: string;
+          file_url?: string | null;
+          file_type?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          thread_id?: string;
+          author_id?: string;
+          author_name?: string | null;
+          author_avatar_url?: string | null;
+          body?: string;
+          file_url?: string | null;
+          file_type?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      thread_reactions: {
+        Row: {
+          id: string;
+          user_id: string;
+          thread_id: string | null;
+          reply_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          thread_id?: string | null;
+          reply_id?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          thread_id?: string | null;
+          reply_id?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

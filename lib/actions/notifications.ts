@@ -8,8 +8,8 @@ type CreateMentionParams = {
   actorName: string | null;
   actorAvatarUrl: string | null;
   mentionedUserIds: string[];
-  type: "mention_post" | "mention_comment" | "mention_reply";
-  resourceType: "post" | "comment" | "message";
+  type: "mention_post" | "mention_comment" | "mention_reply" | "mention_thread" | "mention_thread_reply";
+  resourceType: "post" | "comment" | "message" | "thread";
   resourceId: string;
   bodyPreview?: string;
 };

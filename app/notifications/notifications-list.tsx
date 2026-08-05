@@ -41,6 +41,10 @@ function getTypeLabel(type: string): string {
       return "mentioned you in a reply";
     case "direct_message":
       return "sent you a message";
+    case "mention_thread":
+      return "mentioned you in a conversation";
+    case "mention_thread_reply":
+      return "mentioned you in a reply";
     default:
       return "mentioned you";
   }
@@ -52,6 +56,9 @@ function getNavigationHref(notification: Notification): string {
   }
   if (notification.resource_type === "message") {
     return "/inbox";
+  }
+  if (notification.resource_type === "thread" && notification.resource_id) {
+    return `/conversations/${notification.resource_id}`;
   }
   if (notification.resource_id) {
     return `/post/${notification.resource_id}`;

@@ -7,7 +7,7 @@ import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon } from "@/components/icons";
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon } from "@/components/icons";
 
 type NavUser = {
   email: string;
@@ -255,6 +255,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <EnvelopeIcon className="h-4 w-4 text-warm-400" />
               Messages
             </Link>
+            <Link href="/conversations" className={sidebarLinkClass(isActive("/conversations"))}>
+              <RectangleStackIcon className="h-4 w-4 text-warm-400" />
+              Conversations
+            </Link>
             <Link href="/bookmarks" className={sidebarLinkClass(isActive("/bookmarks"))}>
               <BookmarkIcon className="h-4 w-4 text-warm-400" />
               Saved
@@ -362,6 +366,14 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   >
                     <EnvelopeIcon className="h-4 w-4 text-warm-400" />
                     Messages
+                  </Link>
+                  <Link
+                    href="/conversations"
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                  >
+                    <RectangleStackIcon className="h-4 w-4 text-warm-400" />
+                    Conversations
                   </Link>
                   <Link
                     href="/bookmarks"
