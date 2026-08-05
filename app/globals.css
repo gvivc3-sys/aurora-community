@@ -243,22 +243,6 @@ a[data-type="mention"]:hover {
   animation: float-small 4s ease-in-out infinite;
 }
 
-/* ── Portal → Whisper transition panel ── */
-.portal-bridge-gradient {
-  background: linear-gradient(160deg, #faf6fc 0%, #e6d4ee 30%, #9b3aed 70%, #2a1230 100%);
-  background-size: 200% 200%;
-  animation: gradient-move 10s ease infinite;
-}
-
-.grain-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 /* ── Auto-rotating pillar showcase tab progress bar ── */
 @keyframes tab-fill {
   from { width: 0%; }

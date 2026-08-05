@@ -62,6 +62,15 @@ function SparklesIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
+function PhoneIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className={className}>
+      <rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="11" y1="18" x2="13" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 
 
 export default async function Home() {
@@ -376,18 +385,54 @@ export default async function Home() {
             </div>
           </AnimateOnScroll>
 
-          {/* Gradient bridge into the Whisper section below */}
+          {/* Example Portal post */}
           <AnimateOnScroll delay={200}>
-            <div className="portal-bridge-gradient relative flex h-full min-h-[320px] items-center justify-center overflow-hidden rounded-xl shadow-sm">
-              <div className="grain-overlay" aria-hidden="true" />
-              <svg
-                viewBox="0 0 258.22298 283.80057"
-                className="animate-[spin_16s_linear_infinite] h-28 w-auto opacity-40"
-                fill="#ffffff"
-                aria-hidden="true"
-              >
-                <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-              </svg>
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+              <div className="flex items-center justify-between px-4 pt-4">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
+                    <Image src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658" alt="Ashley" fill className="object-cover" sizes="36px" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-warm-900">Ashley</p>
+                    <p className="text-xs text-warm-400">3d ago</p>
+                  </div>
+                </div>
+                <span className="flex items-center gap-1 rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-medium text-fuchsia-600">
+                  <BoltIcon className="h-3 w-3" /> Frequency
+                </span>
+              </div>
+              <div className="px-4 py-3">
+                <p className="text-sm font-semibold text-warm-900">
+                  Why your energy is your most valuable currency
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-warm-600">
+                  Most of us were taught to manage our time. Almost none of
+                  us were taught to manage our energy, and that&apos;s the
+                  real difference between women who burn out and women who
+                  bloom...
+                </p>
+              </div>
+              <div className="mx-4 border-t border-warm-100" />
+              <div className="flex items-center gap-4 px-4 py-3 text-xs text-warm-400">
+                <span className="flex items-center gap-1">
+                  <OutlineHeartIcon className="h-3.5 w-3.5" /> 42
+                </span>
+                <span className="flex items-center gap-1">
+                  <ChatBubbleIcon className="h-3.5 w-3.5" /> 15
+                </span>
+              </div>
+              <div className="space-y-2.5 px-4 pb-4">
+                <div className="flex items-start gap-2">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-100 text-[9px] font-semibold text-warm-600">
+                    MJ
+                  </div>
+                  <div>
+                    <p className="text-xs"><span className="font-medium text-warm-800">Maya J.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-warm-600">This shifted something for me today, thank you for this Ashley.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </AnimateOnScroll>
         </div>
@@ -621,8 +666,7 @@ export default async function Home() {
           <AnimateOnScroll className="mx-auto mt-10 max-w-2xl text-center">
             <p className="text-sm leading-relaxed text-warm-500">
               Four ways to grow, connect, and be supported by your sisters,
-              all inside one membership, right in your browser or installed
-              as an app on your phone&apos;s home screen.
+              all inside one membership.
             </p>
           </AnimateOnScroll>
 
@@ -633,6 +677,24 @@ export default async function Home() {
             </a>
           </AnimateOnScroll>
         </div>
+      </section>
+
+      {/* ─── STAY CONNECTED (APP) ─── */}
+      <section className="border-t border-warm-200 px-6 py-14 text-center sm:py-20">
+        <AnimateOnScroll className="mx-auto max-w-xl">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-warm-100 text-warm-700">
+            <PhoneIcon className="h-6 w-6" />
+          </div>
+          <h2 className="mt-5 font-display text-2xl leading-tight tracking-tight text-warm-900 sm:text-3xl">
+            Aurora lives right on your <span className="italic">home screen.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-warm-600">
+            <strong className="font-semibold text-warm-800">Install</strong> Aurora
+            as an app on your phone in seconds, no app store needed, so
+            you&apos;re always one tap away from staying connected to your
+            sisters.
+          </p>
+        </AnimateOnScroll>
       </section>
 
       {/* ─── FINAL CTA ─── */}
