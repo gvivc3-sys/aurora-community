@@ -195,7 +195,7 @@ export default async function Home() {
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
               <p className="text-[11px] font-medium leading-snug text-warm-700">
-                Looking for friends in LA!
+                Help! New to LA, need friends! 👋😭
               </p>
             </div>
 
@@ -208,7 +208,7 @@ export default async function Home() {
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
               <p className="text-[11px] font-medium leading-snug text-warm-700">
-                New to NYC, say hi!
+                New to NYC, who's around? 🤍
               </p>
             </div>
 
@@ -221,7 +221,7 @@ export default async function Home() {
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
               <p className="text-[11px] font-medium leading-snug text-warm-700">
-                Visiting Australia, anyone want to grab a coffee?
+                In Sydney for two weeks, anyone want to grab a coffee? ☕
               </p>
             </div>
           </div>
@@ -230,15 +230,15 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
-            socials, and a bit about you. On Gather, let your sisters know
+            IG, and a bit about you. On Gather, let your sisters know
             you&apos;re free to connect: post your city and what you&apos;re
             up for, then <strong className="font-semibold text-warm-800">message</strong> each
-            other directly in the Aurora app to meet up!
+            other directly inside the Aurora app and meet up!
           </p>
           <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
             This is a growing network of sisters on the same frequency,
             all focused on the same thing: stepping into a more radiant,
-            healthy, and positive life. Wherever you are in the world,
+            healthy, and beautiful life. Wherever you are in the world,
             there&apos;s potential to find your people.
           </p>
         </AnimateOnScroll>
@@ -259,7 +259,7 @@ export default async function Home() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <p className="flex items-center gap-1 text-sm font-medium text-warm-900">
-                    Maya
+                    Heather
                     <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
                   </p>
                   <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
@@ -267,7 +267,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                  Just landed, anyone up for a hike this weekend?
+                  Just landed, anyone up for a hike this weekend? ⛰️
                 </p>
                 <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
                   Message
@@ -292,7 +292,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                  New here, would love to meet other early risers!
+                  Who's in Soho? 🙌🥐
                 </p>
                 <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
                   Message
@@ -314,15 +314,12 @@ export default async function Home() {
               This is <span className="italic">the Portal.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Ashley posts her own reflections and insights regularly,
-              through voice notes, short vlogs, and articles, and you can{" "}
-              <strong className="font-semibold text-warm-800">comment</strong>,
-              start a discussion thread, or just sit with what resonates.
-              It&apos;s a real, living conversation, not a broadcast.
+              This is where Ashley shares her insights regularly,
+              through voice notes, short vlogs, and articles. Join the discussion, or just sit with what resonates.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              Every post lives under one of four topics, so you can find
-              (or skip) exactly what speaks to you:
+              Every post inside the Portal lives under one of four topics, so you can find
+              exactly what speaks to you:
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
@@ -390,7 +387,7 @@ export default async function Home() {
                   Most of us were taught to manage our time. Almost none of
                   us were taught to manage our energy, and that&apos;s the
                   real difference between women who burn out and women who
-                  bloom...
+                  bloom... 🌷
                 </p>
               </div>
               <div className="mx-4 border-t border-warm-100" />
@@ -409,7 +406,7 @@ export default async function Home() {
                   </div>
                   <div>
                     <p className="text-xs"><span className="font-medium text-warm-800">Maya J.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-warm-600">This shifted something for me today, thank you for this Ashley.</p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-warm-600">This shifted something for me today, thank you for this Ashley! 🤍</p>
                   </div>
                 </div>
               </div>
@@ -436,14 +433,14 @@ export default async function Home() {
             {/* Copy */}
             <AnimateOnScroll className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                Some questions are better <span className="italic">asked in a whisper</span>
+                Some questions are better <span className="italic">asked with a whisper</span>
               </h2>
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
                 on your heart: a question, an intention, or something
                 you&apos;ve never said out loud. Ashley reads every whisper
                 personally and replies with real insight, exactly as
-                privately as you choose.
+                privately as you choose. All met with judgement-free understanding.
               </p>
 
               <ul className="mt-6 space-y-3 text-left">
@@ -451,15 +448,14 @@ export default async function Home() {
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
                     <strong className="font-semibold text-warm-50">Public:</strong> Ashley
-                    may share your whisper, and her reply, on the Portal
-                    with your name attached.
+                    may choose to share your whisper to the Portal with her reply.
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
                     <strong className="font-semibold text-warm-50">Anonymous:</strong> shared
-                    the same way, but you&apos;re known only as &ldquo;a sister.&rdquo;
+                    the same way, but you&apos;re known as &ldquo;a sister.&rdquo;
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
@@ -467,7 +463,7 @@ export default async function Home() {
                   <p className="text-sm leading-relaxed text-warm-200">
                     <strong className="font-semibold text-warm-50">Secret:</strong> stays
                     fully private, just you and Ashley. Perfect for{" "}
-                    <strong className="font-semibold text-warm-50">unloading guilt</strong>{" "}
+                    <strong className="font-semibold text-warm-50">heavy feelings</strong>{" "}
                     or asking what you&apos;ve never said out loud.
                   </p>
                 </li>
@@ -497,7 +493,7 @@ export default async function Home() {
                 <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;I&apos;m struggling with food. I&apos;ve been having a hard time looking in the mirror. I&apos;m losing weight, but I still feel so bad about myself&hellip; what&apos;s wrong with me?&rdquo;
+                    &ldquo;I&apos;m struggling bad with food. I&apos;ve been having a hard time looking in the mirror. I&apos;m definitely losing weight... idk I still feel SO bad about myself&hellip; what&apos;s wrong with me??&rdquo;
                   </p>
                 </div>
                 {/* Ashley's response */}
@@ -516,7 +512,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Sofia Lin</span> <span className="text-warm-400">&middot; 1d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I felt every word of this. What helped me was banning the scale for a while and focusing on how food made me feel, not how it made me look.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I felt this. What helped me was hiding the scale for a while, and just focusing on how food made me feel, not how it made me look.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -525,7 +521,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Rina K.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Same here, some days I still catch that voice. Therapy and this community helped me finally separate my worth from my body.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Same here, but lately I've been chatting with more friends and keeping busy, and I although sometimes this comes to mind... I don't spiral about it anymore. ❤️</p>
                     </div>
                   </div>
                 </div>
@@ -552,11 +548,10 @@ export default async function Home() {
               Or start <span className="italic">a conversation.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Open a thread on anything: no anonymity here, every voice is
-              her own. <strong className="font-semibold text-warm-800">Reply, react</strong>,
-              and watch the most active conversations rise to the top.
+              Open a thread on anything: every voice is
+              her own. Anyone can talk about anything, conversations with the most enagement rise to the top.
               It&apos;s a living board where sisters show up for each
-              other, one thread at a time.
+              other, one reply at a time.
             </p>
           </AnimateOnScroll>
 
@@ -575,10 +570,10 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    Morning routines that actually stick
+                    Morning routines that actually stick? 🌞
                   </p>
                   <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
-                    Curious what everyone&apos;s doing before 8am lately&hellip;
+                    Curious what everyone&apos;s doing before 9am lately&hellip;
                   </p>
                   <div className="mt-2 flex items-center gap-3 text-xs text-warm-400">
                     <span>Sarah</span>
@@ -605,7 +600,10 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    me and my cat, Merlin!
+                    My Cat!
+                  </p>
+                  <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
+                    His name is Merlin 🥺💖
                   </p>
                   <div className="relative mt-2 h-32 w-full overflow-hidden rounded-lg">
                     <Image
@@ -613,11 +611,11 @@ export default async function Home() {
                       alt="A member with her cat, Merlin"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 400px"
+                      sizes="(max-width: 768px) 100vw, 800px"
                     />
                   </div>
                   <div className="mt-2 flex items-center gap-3 text-xs text-warm-400">
-                    <span>Emma</span>
+                    <span>Eva</span>
                     <span>&middot;</span>
                     <span>1h ago</span>
                     <span className="ml-auto flex items-center gap-1">
