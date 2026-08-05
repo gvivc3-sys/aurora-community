@@ -66,7 +66,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           the keyboard opens/closes. The desktop sidebar below is
           unaffected, since desktop has no on-screen keyboard to fight. */}
       {!isConversationDetail && (
-      <nav className={`sticky top-0 z-50 border-b border-warm-200 bg-white/80 backdrop-blur-sm ${showAppChrome ? "md:hidden" : ""}`}>
+      <nav className={`sticky top-0 z-50 border-b border-warm-200 bg-white ${showAppChrome ? "md:hidden" : ""}`}>
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
@@ -202,7 +202,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           </div>
         </div>
 
-        {/* Mobile secondary nav — Gather / Portal / Whisper, shows the active page */}
+        {/* Mobile secondary nav — Gather / Portal / Conversations, shows the active page */}
         {showAppChrome && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
             <Link
@@ -218,10 +218,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               Portal
             </Link>
             <Link
-              href="/inbox"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              href="/conversations"
+              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Whisper
+              Conversations
             </Link>
           </div>
         )}

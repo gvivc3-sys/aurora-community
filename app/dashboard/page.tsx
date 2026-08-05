@@ -19,6 +19,7 @@ import TimeAgo from "@/components/time-ago";
 import PostAttachment from "@/components/post-attachment";
 import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon, PinnedIcon } from "@/components/icons";
 import { getProfileCompletion } from "@/lib/profile-completion";
+import StickyMobileButton from "@/components/sticky-mobile-button";
 
 export const dynamic = "force-dynamic";
 
@@ -184,7 +185,12 @@ export default async function DashboardPage({
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <ScrollToTop />
       <RealtimeRefresh table="posts" />
-      <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <StickyMobileButton
+        label="Whisper"
+        href="/inbox"
+        icon={<ChatBubbleIcon className="h-5 w-5 shrink-0" />}
+      />
+      <div className="mx-auto max-w-3xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div>
           <WelcomeCard />
         </div>
