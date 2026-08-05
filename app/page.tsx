@@ -5,6 +5,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import WaveformVisual from "@/components/waveform-visual";
 import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
+import CommunityMap from "@/components/community-map";
 import {
   SparklesIcon as StreamlineSparklesIcon,
   VideoCameraIcon,
@@ -191,89 +192,133 @@ export default async function Home() {
 
 
       {/* ─── GATHER ─── */}
-      <section className="border-b border-t border-warm-200 px-6 py-12 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-        <div className="grid items-center gap-16 md:grid-cols-2">
-          {/* Copy */}
-          <AnimateOnScroll className="text-center md:text-left">
-            <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Find your people. <span className="italic">We call it Gather.</span>
-            </h2>
-            <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Every member has her own profile: share your location, your
-              socials, and a bit about you. On Gather, flag when you&apos;re
-              free to connect &mdash; post your city and what you&apos;re up
-              for &mdash; then message each other directly, no matter where
-              you call home.
-            </p>
-            <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              This is a growing network of sisters on the same frequency,
-              all focused on the same thing: stepping into a more radiant,
-              healthy, and positive life. Wherever you are in the world,
-              there&apos;s potential to find your people.
-            </p>
-          </AnimateOnScroll>
+      <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
+        <AnimateOnScroll className="mx-auto max-w-xl px-6">
+          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+            Find your people. <span className="italic">We call it Gather.</span>
+          </h2>
+        </AnimateOnScroll>
 
-          {/* Gather list mockup */}
-          <AnimateOnScroll delay={200}>
-            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
-              <div className="flex items-start gap-3 border-b border-warm-100 p-4">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
-                  <Image
-                    src="/images/avatar_pool/woman_brunette_basic.jpeg"
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="40px"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="flex items-center gap-1 text-sm font-medium text-warm-900">
-                      Maya
-                      <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
-                    </p>
-                    <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
-                      Austin, TX
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                    Just landed, anyone up for a hike this weekend?
-                  </p>
-                  <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
-                    Message
-                  </span>
-                </div>
+        <AnimateOnScroll delay={150} className="mx-auto mt-8 max-w-4xl px-6">
+          <div className="relative rounded-xl border border-warm-200 bg-white p-2 shadow-sm sm:p-4">
+            <CommunityMap />
+
+            {/* Callout bubbles — anchored to this card, spilling past its edges */}
+            <div className="pointer-events-none absolute -left-4 top-6 z-20 hidden max-w-[160px] -rotate-3 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-10 md:flex lg:-left-14">
+              <Image
+                src="/images/avatar_pool/blonde_woman_candid.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                Looking for friends in LA!
+              </p>
+            </div>
+
+            <div className="pointer-events-none absolute -left-4 bottom-8 z-20 hidden max-w-[160px] rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-8 md:flex lg:-left-12">
+              <Image
+                src="/images/avatar_pool/woman_brunette_basic.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                New to NYC, say hi!
+              </p>
+            </div>
+
+            <div className="pointer-events-none absolute -right-4 top-1/2 z-20 hidden max-w-[168px] -translate-y-1/2 -rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-right-10 md:flex lg:-right-14">
+              <Image
+                src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
+              />
+              <p className="text-[11px] font-medium leading-snug text-warm-700">
+                Visiting Australia, anyone want to grab a coffee?
+              </p>
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
+          <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
+            Every member has her own profile: share your location, your
+            socials, and a bit about you. On Gather, flag when you&apos;re
+            free to connect &mdash; post your city and what you&apos;re up
+            for &mdash; then message each other directly, no matter where
+            you call home.
+          </p>
+          <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
+            This is a growing network of sisters on the same frequency,
+            all focused on the same thing: stepping into a more radiant,
+            healthy, and positive life. Wherever you are in the world,
+            there&apos;s potential to find your people.
+          </p>
+        </AnimateOnScroll>
+
+        {/* Gather list mockup */}
+        <AnimateOnScroll delay={300} className="mx-auto mt-10 max-w-xl px-6">
+          <div className="overflow-hidden rounded-xl border border-warm-200 bg-white text-left shadow-sm">
+            <div className="flex items-start gap-3 border-b border-warm-100 p-4">
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="/images/avatar_pool/woman_brunette_basic.jpeg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
               </div>
-              <div className="flex items-start gap-3 p-4">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
-                  <Image
-                    src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="40px"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-medium text-warm-900">Priya</p>
-                    <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
-                      London, UK
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                    New here &mdash; would love to meet other early risers!
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="flex items-center gap-1 text-sm font-medium text-warm-900">
+                    Maya
+                    <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />
                   </p>
-                  <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
-                    Message
+                  <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
+                    Austin, TX
                   </span>
                 </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
+                  Just landed, anyone up for a hike this weekend?
+                </p>
+                <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                  Message
+                </span>
               </div>
             </div>
-          </AnimateOnScroll>
-        </div>
-        </div>
+            <div className="flex items-start gap-3 p-4">
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-sm font-medium text-warm-900">Priya</p>
+                  <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
+                    London, UK
+                  </span>
+                </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
+                  New here &mdash; would love to meet other early risers!
+                </p>
+                <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                  Message
+                </span>
+              </div>
+            </div>
+          </div>
+        </AnimateOnScroll>
       </section>
 
 
@@ -505,8 +550,14 @@ export default async function Home() {
           <AnimateOnScroll delay={200}>
             <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
               <div className="flex items-start gap-3 border-b border-warm-100 p-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
-                  S
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/images/avatar_pool/woman_blonde.jpeg"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="40px"
+                  />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
@@ -529,8 +580,14 @@ export default async function Home() {
                 </div>
               </div>
               <div className="flex items-start gap-3 p-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
-                  J
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/images/avatar_pool/long_curly_hair_night.jpeg"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="40px"
+                  />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
