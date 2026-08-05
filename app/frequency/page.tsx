@@ -26,39 +26,37 @@ export default async function GatherPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
-        <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
-            <InfoTooltip text="Members looking to connect, right now. Post your city and what you're up for — visible for 14 days — or reach out to someone below." />
-          </div>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
+          <InfoTooltip text="Members looking to connect, right now. Post your city and what you're up for — visible for 14 days — or reach out to someone below." />
+        </div>
 
-          <div className="mt-4">
-            {profileComplete ? (
-              <MobileComposerSheet label="Post to Gather">
-                <FriendFlagForm
-                  initialLocation={myFlag?.location ?? ""}
-                  initialNote={myFlag?.note ?? ""}
-                  hasFlag={!!myFlag}
-                />
-              </MobileComposerSheet>
-            ) : (
-              <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center">
-                <p className="text-sm font-medium text-amber-900">
-                  Complete your profile to post here
-                </p>
-                <p className="mx-auto mt-1 max-w-sm text-xs text-amber-700">
-                  Add your picture, name, bio, birthday, Instagram, and location so
-                  other members know who they&apos;re meeting.
-                </p>
-                <Link
-                  href="/profile"
-                  className="mt-3 inline-flex items-center gap-1 rounded-full bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
-                >
-                  Complete your profile
-                </Link>
-              </div>
-            )}
-          </div>
+        <div className="mt-4">
+          {profileComplete ? (
+            <MobileComposerSheet label="Post to Gather">
+              <FriendFlagForm
+                initialLocation={myFlag?.location ?? ""}
+                initialNote={myFlag?.note ?? ""}
+                hasFlag={!!myFlag}
+              />
+            </MobileComposerSheet>
+          ) : (
+            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center">
+              <p className="text-sm font-medium text-amber-900">
+                Complete your profile to post here
+              </p>
+              <p className="mx-auto mt-1 max-w-sm text-xs text-amber-700">
+                Add your picture, name, bio, birthday, Instagram, and location so
+                other members know who they&apos;re meeting.
+              </p>
+              <Link
+                href="/profile"
+                className="mt-3 inline-flex items-center gap-1 rounded-full bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
+              >
+                Complete your profile
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="mt-8">
