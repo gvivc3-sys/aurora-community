@@ -46,11 +46,11 @@ const pillars: Pillar[] = [
     iconColor: "bg-rose-50 text-rose-500",
     title: "Ashley's Guides",
     description:
-      "Lifetime access to all of Ashley's guides and books, including every future release, yours forever. From metabolic health and the energetics of food to workout guides and affirmation audio tracks.",
+      "Lifetime access to all of Ashley's guides and books (over $125 in value!), including every future release, yours forever. From metabolic health to workout guides and affirmation audio tracks.",
   },
 ];
 
-const DURATION_MS = 4500;
+const DURATION_MS = 3500;
 
 export default function PillarShowcase() {
   const [active, setActive] = useState(0);
@@ -62,49 +62,39 @@ export default function PillarShowcase() {
     return () => clearTimeout(t);
   }, [active, paused]);
 
-  const current = pillars[active];
-
   return (
     <div
+      className="mx-auto max-w-2xl space-y-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Tabs */}
-      <div className="flex flex-wrap justify-center gap-2">
-        {pillars.map((pillar, i) => (
+      {pillars.map((pillar, i) => {
+        const isActive = i === active;
+        return (
           <button
             key={pillar.title}
             type="button"
             onClick={() => setActive(i)}
-            className={`relative flex items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-              active === i
-                ? "border-warm-800 bg-warm-800 text-white"
-                : "border-warm-200 bg-white text-warm-600 hover:bg-warm-50"
+            className={`flex w-full items-center gap-4 rounded-xl border p-5 text-left transition-all duration-500 ${
+              isActive
+                ? "border-warm-800 bg-white shadow-md"
+                : "border-warm-200 bg-white/60 shadow-sm"
             }`}
           >
-            <pillar.icon className="h-4 w-4 shrink-0" />
-            {pillar.title}
-            {active === i && !paused && (
-              <span
-                key={active}
-                className="animate-tab-fill absolute inset-x-0 bottom-0 h-0.5 bg-white/70"
-                style={{ animationDuration: `${DURATION_MS}ms` }}
-              />
-            )}
+            <div
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg transition-transform duration-500 ${pillar.iconColor} ${
+                isActive ? "scale-110" : ""
+              }`}
+            >
+              <pillar.icon className="h-6 w-6" />
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-base font-bold text-warm-900">{pillar.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-warm-600">{pillar.description}</p>
+            </div>
           </button>
-        ))}
-      </div>
-
-      {/* Content */}
-      <div key={active} className="animate-fade-in-up mx-auto mt-8 max-w-md">
-        <div className="h-full rounded-xl border border-warm-200 bg-white/80 p-8 text-center shadow-sm">
-          <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-lg ${current.iconColor}`}>
-            <current.icon className="h-6 w-6" />
-          </div>
-          <h3 className="mt-4 text-lg font-bold text-warm-900">{current.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-warm-600">{current.description}</p>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 }

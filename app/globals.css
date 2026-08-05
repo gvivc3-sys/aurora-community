@@ -243,16 +243,6 @@ a[data-type="mention"]:hover {
   animation: float-small 4s ease-in-out infinite;
 }
 
-/* ── Auto-rotating pillar showcase tab progress bar ── */
-@keyframes tab-fill {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-
-.animate-tab-fill {
-  animation: tab-fill linear forwards;
-}
-
 .animate-shimmer {
   background: linear-gradient(
     90deg,

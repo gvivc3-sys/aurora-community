@@ -29,15 +29,6 @@ function MicrophoneIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function UserGroupIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clipRule="evenodd" />
-      <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
-    </svg>
-  );
-}
-
 function HeartIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -165,31 +156,20 @@ export default async function Home() {
       </section>
 
       {/* ─── WHAT IS AURORA ─── */}
-      <section className="px-6 py-14 text-center sm:py-20">
+      <section className="dark-gradient px-6 py-14 text-center sm:py-20">
         <AnimateOnScroll className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            A place to <span className="italic">align, connect, and belong.</span>
+          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
+            A place to align, connect, and{" "}
+            <span className="italic text-fuchsia-300">belong.</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
-            Aurora is a private membership and community for women ready to
-            reclaim their energy and rise together. It&apos;s a space to{" "}
-            <strong className="font-semibold text-warm-800">align</strong>{" "}
-            with your highest self, <strong className="font-semibold text-warm-800">connect</strong>{" "}
-            with sisters who get it, and build real friendships, no matter
-            where you live.
+          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-200 md:text-center">
+            Aurora is an <strong className="font-semibold text-warm-50">exclusive</strong>{" "}
+            membership and community for women ready to reclaim their energy
+            and rise together. It&apos;s a space to align with your highest
+            self, connect with sisters who get it, and{" "}
+            <strong className="font-semibold text-warm-50">build real friendships</strong>,
+            no matter where you live.
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
-              <BoltIcon className="h-4 w-4 text-fuchsia-600" /> Align
-            </span>
-            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
-              <UserGroupIcon className="h-4 w-4 text-amber-600" /> Connect
-            </span>
-            <span className="flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 text-sm font-medium text-warm-700 shadow-sm">
-              <HeartIcon className="h-4 w-4 text-rose-500" /> Belong
-            </span>
-          </div>
         </AnimateOnScroll>
       </section>
 
@@ -345,7 +325,7 @@ export default async function Home() {
               (or skip) exactly what speaks to you:
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               <span
                 className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
                 style={{ animationDelay: "0ms" }}
@@ -613,7 +593,7 @@ export default async function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-4">
+              <div className="flex items-start gap-3 border-b border-warm-100 p-4">
                 <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
                   <Image
                     src="/images/avatar_pool/long_curly_hair_night.jpeg"
@@ -639,6 +619,42 @@ export default async function Home() {
                     </span>
                     <span className="flex items-center gap-1">
                       <OutlineHeartIcon className="h-3.5 w-3.5" /> 3
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-4">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/images/avatar_pool/woman_with_cat.jpeg"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="40px"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-warm-900">
+                    me and my cat Merlin!
+                  </p>
+                  <div className="relative mt-2 h-32 w-full overflow-hidden rounded-lg">
+                    <Image
+                      src="/images/avatar_pool/woman_with_cat.jpeg"
+                      alt="A member with her cat, Merlin"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  </div>
+                  <div className="mt-2 flex items-center gap-3 text-xs text-warm-400">
+                    <span>Emma</span>
+                    <span>&middot;</span>
+                    <span>1h ago</span>
+                    <span className="ml-auto flex items-center gap-1">
+                      <ChatBubbleIcon className="h-3.5 w-3.5" /> 24
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <OutlineHeartIcon className="h-3.5 w-3.5" /> 31
                     </span>
                   </div>
                 </div>
