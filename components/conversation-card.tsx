@@ -18,7 +18,7 @@ export default function ConversationCard({ thread }: { thread: ThreadListItem })
   return (
     <Link
       href={`/conversations/${thread.id}`}
-      className="flex items-start gap-3 rounded-xl border border-warm-200 bg-white p-4 shadow-sm transition-colors hover:border-warm-300"
+      className="flex items-start gap-3 border-b border-warm-100 p-4 transition-colors last:border-b-0 hover:bg-warm-50"
     >
       {thread.file_url ? (
         // eslint-disable-next-line @next/next/no-img-element

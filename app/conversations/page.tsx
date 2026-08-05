@@ -4,6 +4,7 @@ import ConversationComposer from "@/components/conversation-composer";
 import ConversationCard, { type ThreadListItem } from "@/components/conversation-card";
 import RealtimeRefresh from "@/components/realtime-refresh";
 import MobileComposerSheet from "@/components/mobile-composer-sheet";
+import InfoTooltip from "@/components/info-tooltip";
 
 export const dynamic = "force-dynamic";
 
@@ -51,11 +52,10 @@ export default async function ConversationsPage() {
       <RealtimeRefresh table="threads" />
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
-          <h1 className="text-2xl font-light tracking-tight text-warm-900">Conversations</h1>
-          <p className="mt-2 text-sm leading-relaxed text-warm-500">
-            Start a thread, or jump into one below. Active conversations stay
-            near the top; the board holds the 15 most active at a time.
-          </p>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-light tracking-tight text-warm-900">Conversations</h1>
+            <InfoTooltip text="Start a thread, or jump into one below. Active conversations stay near the top; the board holds the 15 most active at a time." />
+          </div>
           <div className="mt-4">
             <MobileComposerSheet label="Start a conversation">
               <ConversationComposer />
@@ -63,9 +63,11 @@ export default async function ConversationsPage() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-3">
+        <div className="mt-8">
           {threads.length > 0 ? (
-            threads.map((thread) => <ConversationCard key={thread.id} thread={thread} />)
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+              {threads.map((thread) => <ConversationCard key={thread.id} thread={thread} />)}
+            </div>
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg font-light text-warm-400">No conversations yet.</p>

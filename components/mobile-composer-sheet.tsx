@@ -20,16 +20,18 @@ export default function MobileComposerSheet({
       {/* Mobile — collapsed sticky footer that expands into a bottom sheet */}
       <div className="md:hidden">
         {!open && (
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="fixed inset-x-0 bottom-0 z-50 flex items-center gap-2 border-t border-warm-200 bg-white px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] text-sm text-warm-500 shadow-[0_-1px_4px_rgba(0,0,0,0.04)]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4 shrink-0">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            {label}
-          </button>
+          <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]">
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-warm-800 px-6 py-4 text-base font-semibold text-white shadow-xl transition-all hover:bg-warm-700 active:scale-[0.98]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5 shrink-0">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              {label}
+            </button>
+          </div>
         )}
 
         {open && (

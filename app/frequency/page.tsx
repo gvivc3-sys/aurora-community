@@ -6,6 +6,7 @@ import { getProfileCompletion } from "@/lib/profile-completion";
 import FriendFlagForm from "@/components/friend-flag-form";
 import FriendFlagCard from "@/components/friend-flag-card";
 import MobileComposerSheet from "@/components/mobile-composer-sheet";
+import InfoTooltip from "@/components/info-tooltip";
 
 export const dynamic = "force-dynamic";
 
@@ -26,12 +27,10 @@ export default async function GatherPage() {
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
-          <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
-          <p className="mt-2 text-sm leading-relaxed text-warm-500">
-            Members looking to connect, right now. Post your city and what
-            you&apos;re up for — visible for 14 days — or reach out to
-            someone below.
-          </p>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
+            <InfoTooltip text="Members looking to connect, right now. Post your city and what you're up for — visible for 14 days — or reach out to someone below." />
+          </div>
 
           <div className="mt-4">
             {profileComplete ? (
@@ -62,9 +61,11 @@ export default async function GatherPage() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-3">
+        <div className="mt-8">
           {flags.length > 0 ? (
-            flags.map((flag) => <FriendFlagCard key={flag.id} flag={flag} />)
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+              {flags.map((flag) => <FriendFlagCard key={flag.id} flag={flag} />)}
+            </div>
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg font-light text-warm-400">No one&apos;s posted yet.</p>
