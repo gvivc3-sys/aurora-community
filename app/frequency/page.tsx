@@ -5,6 +5,7 @@ import { getActiveFriendFlags, getMyFriendFlag } from "@/lib/actions/friend-flag
 import { getProfileCompletion } from "@/lib/profile-completion";
 import FriendFlagForm from "@/components/friend-flag-form";
 import FriendFlagCard from "@/components/friend-flag-card";
+import MobileComposerSheet from "@/components/mobile-composer-sheet";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +24,7 @@ export default async function GatherPage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
           <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
           <p className="mt-2 text-sm leading-relaxed text-warm-500">
@@ -34,11 +35,13 @@ export default async function GatherPage() {
 
           <div className="mt-4">
             {profileComplete ? (
-              <FriendFlagForm
-                initialLocation={myFlag?.location ?? ""}
-                initialNote={myFlag?.note ?? ""}
-                hasFlag={!!myFlag}
-              />
+              <MobileComposerSheet label="Post to Gather">
+                <FriendFlagForm
+                  initialLocation={myFlag?.location ?? ""}
+                  initialNote={myFlag?.note ?? ""}
+                  hasFlag={!!myFlag}
+                />
+              </MobileComposerSheet>
             ) : (
               <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center">
                 <p className="text-sm font-medium text-amber-900">

@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import ConversationComposer from "@/components/conversation-composer";
 import ConversationCard, { type ThreadListItem } from "@/components/conversation-card";
 import RealtimeRefresh from "@/components/realtime-refresh";
+import MobileComposerSheet from "@/components/mobile-composer-sheet";
 
 export const dynamic = "force-dynamic";
 
@@ -48,7 +49,7 @@ export default async function ConversationsPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <RealtimeRefresh table="threads" />
-      <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
           <h1 className="text-2xl font-light tracking-tight text-warm-900">Conversations</h1>
           <p className="mt-2 text-sm leading-relaxed text-warm-500">
@@ -56,7 +57,9 @@ export default async function ConversationsPage() {
             near the top; the board holds the 15 most active at a time.
           </p>
           <div className="mt-4">
-            <ConversationComposer />
+            <MobileComposerSheet label="Start a conversation">
+              <ConversationComposer />
+            </MobileComposerSheet>
           </div>
         </div>
 
