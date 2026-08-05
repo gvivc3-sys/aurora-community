@@ -230,10 +230,10 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
-            socials, and a bit about you. On Gather, <strong className="font-semibold text-warm-800">flag</strong> when
+            socials, and a bit about you. On Gather, let your sisters know
             you&apos;re free to connect: post your city and what you&apos;re
-            up for, then <strong className="font-semibold text-warm-800">message</strong> each other directly, no
-            matter where you call home.
+            up for, then <strong className="font-semibold text-warm-800">message</strong> each
+            other directly in the Aurora app to meet up!
           </p>
           <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
             This is a growing network of sisters on the same frequency,
@@ -497,13 +497,13 @@ export default async function Home() {
                 <div className="mx-4 mt-3 rounded-md bg-warm-50 px-4 py-3">
                   <p className="text-xs font-medium text-warm-500">A sister whispered:</p>
                   <p className="mt-1 text-sm italic text-warm-600">
-                    &ldquo;I&apos;ve been trying to lose weight for years and feel inflamed and exhausted. It feels like my metabolism is completely broken.&rdquo;
+                    &ldquo;I&apos;m struggling with food. I&apos;ve been having a hard time looking in the mirror. I&apos;m losing weight, but I still feel so bad about myself&hellip; what&apos;s wrong with me?&rdquo;
                   </p>
                 </div>
                 {/* Ashley's response */}
                 <div className="px-4 py-3">
                   <p className="text-sm leading-relaxed text-warm-700">
-                    I really feel you with this. So many women experience this after years of dieting and restricting food...
+                    Nothing is wrong with you. Losing weight was never going to fix how you feel about yourself, because that&apos;s inner work, not a body project. You&apos;re allowed to want to feel good in your body while still questioning the voice that says it&apos;s not enough. That voice isn&apos;t the truth, it&apos;s an old pattern we can work on quieting together...
                   </p>
                 </div>
                 {/* Divider */}
@@ -516,7 +516,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Sofia Lin</span> <span className="text-warm-400">&middot; 1d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">This is exactly where I am right now. So relieved to hear I&apos;m not alone in this.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">I felt every word of this. What helped me was banning the scale for a while and focusing on how food made me feel, not how it made me look.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -525,7 +525,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Rina K.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Years of yo-yo dieting left me feeling the same way. Ashley&apos;s approach completely changed things for me.</p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-warm-600">Same here, some days I still catch that voice. Therapy and this community helped me finally separate my worth from my body.</p>
                     </div>
                   </div>
                 </div>
@@ -593,36 +593,6 @@ export default async function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 border-b border-warm-100 p-4">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
-                  <Image
-                    src="/images/avatar_pool/long_curly_hair_night.jpeg"
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="40px"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-warm-900">
-                    Anyone else doing a reset this month?
-                  </p>
-                  <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
-                    Looking for accountability buddies, drop a note!
-                  </p>
-                  <div className="mt-2 flex items-center gap-3 text-xs text-warm-400">
-                    <span>Jamie</span>
-                    <span>&middot;</span>
-                    <span>5h ago</span>
-                    <span className="ml-auto flex items-center gap-1">
-                      <ChatBubbleIcon className="h-3.5 w-3.5" /> 6
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <OutlineHeartIcon className="h-3.5 w-3.5" /> 3
-                    </span>
-                  </div>
-                </div>
-              </div>
               <div className="flex items-start gap-3 p-4">
                 <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
                   <Image
@@ -635,7 +605,7 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    me and my cat Merlin!
+                    me and my cat, Merlin!
                   </p>
                   <div className="relative mt-2 h-32 w-full overflow-hidden rounded-lg">
                     <Image
