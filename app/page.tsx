@@ -142,19 +142,19 @@ export default async function Home() {
       </section>
 
       {/* ─── MARQUEE + WHAT IS AURORA ─── */}
-      <section className="dark-gradient px-6 py-14 sm:py-20">
-        <Marquee dark />
+      <section className="px-6 py-14 sm:py-20">
+        <Marquee />
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
-          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-            A place to align, connect, and{" "}
-            <span className="italic text-fuchsia-300">belong.</span>
+          <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+            Aurora is a place to align, connect, and{" "}
+            <span className="italic text-fuchsia-600">belong.</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-200 md:text-center">
-            Aurora is an <strong className="font-semibold text-warm-50">exclusive</strong>{" "}
+          <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
+            Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
             membership and community for women ready to reclaim their energy
             and rise together. It&apos;s a space to align with your highest
             self, connect with sisters who get it, and{" "}
-            <strong className="font-semibold text-warm-50">build real friendships</strong>,
+            <strong className="font-semibold text-warm-800">build real friendships</strong>,
             no matter where you live.
           </p>
         </AnimateOnScroll>

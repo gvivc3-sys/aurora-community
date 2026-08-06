@@ -29,15 +29,13 @@ function MarqueeCard({ item, index }: { item: (typeof items)[number]; index: num
   );
 }
 
-export default function Marquee({ dark = false }: { dark?: boolean }) {
+export default function Marquee() {
   const track = [...items, ...items];
   return (
     <div>
       <AnimateOnScroll className="mx-auto max-w-2xl px-6 text-center">
-        <h2 className={`font-display text-3xl leading-tight tracking-tight sm:text-4xl ${dark ? "text-warm-50" : "text-warm-900"}`}>
-          Connection isn&apos;t a luxury.
-          <br />
-          <span className="italic">It&apos;s part of your health.</span>
+        <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+          It&apos;s not <span className="italic">healthy</span> to feel lonely.
         </h2>
       </AnimateOnScroll>
       <div className="marquee-fade mx-auto mt-8 max-w-4xl overflow-hidden px-6">
