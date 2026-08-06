@@ -433,7 +433,7 @@ export default async function Home() {
             {/* Copy */}
             <AnimateOnScroll className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                Some questions are better <span className="italic">asked with a whisper</span>
+                Some questions are better <span className="italic text-fuchsia-300">asked with a whisper</span>
               </h2>
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
@@ -591,7 +591,7 @@ export default async function Home() {
               <div className="flex items-start gap-3 p-4">
                 <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
                   <Image
-                    src="/images/avatar_pool/woman_with_cat.jpeg"
+                    src="/images/avatar_pool/woman_blonde_2.jpeg"
                     alt=""
                     fill
                     className="object-cover"
@@ -600,10 +600,10 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    My Cat!
+                    Post your pets!
                   </p>
                   <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
-                    His name is Merlin 🥺💖
+                    This is my cat Merlin 🥺💖
                   </p>
                   <div className="relative mt-2 h-32 w-full overflow-hidden rounded-lg">
                     <Image
@@ -643,9 +643,9 @@ export default async function Home() {
             </h2>
           </AnimateOnScroll>
 
-          <AnimateOnScroll delay={100} className="mt-16">
+          <div className="mt-16">
             <PillarShowcase />
-          </AnimateOnScroll>
+          </div>
 
           <AnimateOnScroll className="mx-auto mt-10 max-w-2xl text-center">
             <p className="text-sm leading-relaxed text-warm-500">
@@ -760,11 +760,11 @@ export default async function Home() {
       </section>
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="border-t border-warm-200 bg-warm-100/40 px-6 py-16 sm:py-24">
+      <section className="dark-gradient border-t border-warm-200 px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
             <AnimateOnScroll className="mx-auto md:mx-0">
-              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:h-72 sm:w-72">
+              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:h-72 sm:w-72">
                 <Image
                   src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
                   alt="Ashley"
@@ -776,16 +776,16 @@ export default async function Home() {
             </AnimateOnScroll>
 
             <AnimateOnScroll delay={120} className="text-center md:text-left">
-              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-                The woman behind <span className="italic">Aurora.</span>
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
+                The woman behind <span className="italic text-fuchsia-300">Aurora.</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-600 md:mx-0">
+              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
                 Ashley has spent years immersed in ancient beauty practices, deep
                 nourishment, and living in alignment with true health,
                 creating natural skincare, painting, and connecting to the
                 natural ways of living on Earth.
               </p>
-              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-600 md:mx-0">
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
                 Aurora was born from the knowing that each of us holds the power
                 to elevate our energy and create the life we feel called to live.
               </p>

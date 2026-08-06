@@ -1,7 +1,6 @@
-"use client";
-
-import { useEffect, useState, type ComponentType } from "react";
+import type { ComponentType } from "react";
 import { SparklesIcon, VideoCameraIcon, RectangleStackIcon } from "@/components/icons";
+import AnimateOnScroll from "@/components/animate-on-scroll";
 
 function UserGroupIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -50,51 +49,22 @@ const pillars: Pillar[] = [
   },
 ];
 
-const DURATION_MS = 3500;
-
 export default function PillarShowcase() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const t = setTimeout(() => setActive((a) => (a + 1) % pillars.length), DURATION_MS);
-    return () => clearTimeout(t);
-  }, [active, paused]);
-
   return (
-    <div
-      className="mx-auto max-w-2xl space-y-3"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {pillars.map((pillar, i) => {
-        const isActive = i === active;
-        return (
-          <button
-            key={pillar.title}
-            type="button"
-            onClick={() => setActive(i)}
-            className={`flex w-full items-center gap-4 rounded-xl border p-5 text-left transition-all duration-500 ${
-              isActive
-                ? "border-warm-800 bg-white shadow-md"
-                : "border-warm-200 bg-white/60 shadow-sm"
-            }`}
-          >
-            <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg transition-transform duration-500 ${pillar.iconColor} ${
-                isActive ? "scale-110" : ""
-              }`}
-            >
+    <div className="mx-auto max-w-2xl space-y-3">
+      {pillars.map((pillar, i) => (
+        <AnimateOnScroll key={pillar.title} delay={i * 100}>
+          <div className="flex w-full items-center gap-4 rounded-xl border border-warm-200 bg-white p-5 text-left shadow-sm">
+            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${pillar.iconColor}`}>
               <pillar.icon className="h-6 w-6" />
             </div>
             <div className="min-w-0">
               <h3 className="text-base font-bold text-warm-900">{pillar.title}</h3>
               <p className="mt-1 text-sm leading-relaxed text-warm-600">{pillar.description}</p>
             </div>
-          </button>
-        );
-      })}
+          </div>
+        </AnimateOnScroll>
+      ))}
     </div>
   );
 }
