@@ -141,14 +141,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── MARQUEE ─── */}
-      <section className="border-b border-warm-200 py-10">
-        <Marquee />
-      </section>
-
-      {/* ─── WHAT IS AURORA ─── */}
-      <section className="dark-gradient px-6 py-14 text-center sm:py-20">
-        <AnimateOnScroll className="mx-auto max-w-2xl">
+      {/* ─── MARQUEE + WHAT IS AURORA ─── */}
+      <section className="dark-gradient px-6 py-14 sm:py-20">
+        <Marquee dark />
+        <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
             A place to align, connect, and{" "}
             <span className="italic text-fuchsia-300">belong.</span>
@@ -321,42 +317,50 @@ export default async function Home() {
               exactly what speaks to you:
             </p>
 
-            <div className="mt-6 grid grid-cols-2 justify-items-center gap-3 md:justify-items-start">
-              <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
-                style={{ animationDelay: "0ms" }}
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700 md:h-7 md:w-7">
-                  <LeafIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            <div className="mt-6 grid grid-cols-2 justify-items-center gap-1 md:justify-items-start">
+              <span className="rotate-2 translate-y-1">
+                <span
+                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
+                  style={{ animationDelay: "0ms" }}
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700 md:h-7 md:w-7">
+                    <LeafIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Nourishment</span>
                 </span>
-                <span className="text-xs font-medium text-warm-900 md:text-sm">Nourishment</span>
               </span>
-              <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
-                style={{ animationDelay: "400ms" }}
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 md:h-7 md:w-7">
-                  <HeartIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+              <span className="-rotate-2 -translate-x-2 translate-y-3">
+                <span
+                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
+                  style={{ animationDelay: "400ms" }}
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 md:h-7 md:w-7">
+                    <HeartIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Health + Beauty</span>
                 </span>
-                <span className="text-xs font-medium text-warm-900 md:text-sm">Health + Beauty</span>
               </span>
-              <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
-                style={{ animationDelay: "800ms" }}
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600 md:h-7 md:w-7">
-                  <BoltIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+              <span className="-rotate-1 translate-x-2 -translate-y-2">
+                <span
+                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
+                  style={{ animationDelay: "800ms" }}
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600 md:h-7 md:w-7">
+                    <BoltIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Frequency</span>
                 </span>
-                <span className="text-xs font-medium text-warm-900 md:text-sm">Frequency</span>
               </span>
-              <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
-                style={{ animationDelay: "1200ms" }}
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600 md:h-7 md:w-7">
-                  <ChatBubbleIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+              <span className="rotate-3 -translate-y-1">
+                <span
+                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
+                  style={{ animationDelay: "1200ms" }}
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600 md:h-7 md:w-7">
+                    <ChatBubbleIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Whisper</span>
                 </span>
-                <span className="text-xs font-medium text-warm-900 md:text-sm">Whisper</span>
               </span>
             </div>
           </AnimateOnScroll>
@@ -604,7 +608,7 @@ export default async function Home() {
                   <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
                     This is my cat Merlin 🥺💖
                   </p>
-                  <div className="relative mt-2 h-32 w-full overflow-hidden rounded-lg">
+                  <div className="relative mt-2 h-56 w-full overflow-hidden rounded-lg">
                     <Image
                       src="/images/avatar_pool/woman_with_cat.jpeg"
                       alt="A member with her cat, Merlin"
