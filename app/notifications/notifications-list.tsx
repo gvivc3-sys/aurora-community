@@ -42,7 +42,7 @@ function getTypeLabel(type: string): string {
     case "direct_message":
       return "sent you a message";
     case "mention_thread":
-      return "mentioned you in a conversation";
+      return "mentioned you in a discussion";
     case "mention_thread_reply":
       return "mentioned you in a reply";
     default:

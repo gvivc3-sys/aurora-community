@@ -52,11 +52,11 @@ export default async function ConversationsPage() {
       <RealtimeRefresh table="threads" />
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-light tracking-tight text-warm-900">Conversations</h1>
-          <InfoTooltip text="Start a thread, or jump into one below. Active conversations stay near the top; the board holds the 15 most active at a time." />
+          <h1 className="text-2xl font-light tracking-tight text-warm-900">Discussions</h1>
+          <InfoTooltip text="Start a thread, or jump into one below. Active discussions stay near the top; the board holds the 15 most active at a time." />
         </div>
         <div className="mt-4">
-          <MobileComposerSheet label="Start a conversation">
+          <MobileComposerSheet label="Start a discussion">
             <ConversationComposer />
           </MobileComposerSheet>
         </div>
@@ -68,7 +68,7 @@ export default async function ConversationsPage() {
             </div>
           ) : (
             <div className="py-16 text-center">
-              <p className="text-lg font-light text-warm-400">No conversations yet.</p>
+              <p className="text-lg font-light text-warm-400">No discussions yet.</p>
               <p className="mt-2 text-sm text-warm-400">Be the first to start one.</p>
             </div>
           )}

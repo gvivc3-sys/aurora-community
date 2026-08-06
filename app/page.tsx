@@ -141,6 +141,18 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── CONNECTION STATEMENT ─── */}
+      <section className="px-6 py-10 text-center">
+        <AnimateOnScroll className="mx-auto max-w-2xl">
+          <p className="text-base leading-relaxed text-warm-600 sm:text-lg">
+            Connection is one of the biggest predictors of long-term health
+            and happiness, and it&apos;s often the first thing to slip.
+            Aurora gives you a standing space for it: real conversations,
+            real women, and direct access to Ashley.
+          </p>
+        </AnimateOnScroll>
+      </section>
+
       {/* ─── MARQUEE ─── */}
       <section className="border-y border-warm-200 py-8">
         <Marquee />
@@ -321,42 +333,42 @@ export default async function Home() {
               exactly what speaks to you:
             </p>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
+            <div className="mt-6 grid grid-cols-2 justify-items-center gap-3 md:justify-items-start">
               <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
                 style={{ animationDelay: "0ms" }}
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700">
-                  <LeafIcon className="h-3.5 w-3.5" />
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-700 md:h-7 md:w-7">
+                  <LeafIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </span>
-                <span className="text-xs font-medium text-warm-900">Nourishment</span>
+                <span className="text-xs font-medium text-warm-900 md:text-sm">Nourishment</span>
               </span>
               <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
                 style={{ animationDelay: "400ms" }}
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600">
-                  <HeartIcon className="h-3.5 w-3.5" />
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 md:h-7 md:w-7">
+                  <HeartIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </span>
-                <span className="text-xs font-medium text-warm-900">Health + Beauty</span>
+                <span className="text-xs font-medium text-warm-900 md:text-sm">Health + Beauty</span>
               </span>
               <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
                 style={{ animationDelay: "800ms" }}
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600">
-                  <BoltIcon className="h-3.5 w-3.5" />
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600 md:h-7 md:w-7">
+                  <BoltIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </span>
-                <span className="text-xs font-medium text-warm-900">Frequency</span>
+                <span className="text-xs font-medium text-warm-900 md:text-sm">Frequency</span>
               </span>
               <span
-                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm"
+                className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
                 style={{ animationDelay: "1200ms" }}
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600">
-                  <ChatBubbleIcon className="h-3.5 w-3.5" />
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600 md:h-7 md:w-7">
+                  <ChatBubbleIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </span>
-                <span className="text-xs font-medium text-warm-900">Whisper</span>
+                <span className="text-xs font-medium text-warm-900 md:text-sm">Whisper</span>
               </span>
             </div>
           </AnimateOnScroll>
@@ -537,24 +549,24 @@ export default async function Home() {
       </section>
 
 
-      {/* ─── CONVERSATIONS ─── */}
+      {/* ─── DISCUSSIONS ─── */}
       <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
         <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-16 md:grid-cols-2">
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Or start a <span className="italic">conversation.</span>
+              Or start a <span className="italic">discussion.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-            Start a conversation about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments, 
-            every discussion has the <strong className="font-semibold text-warm-800">opportunity to grow</strong> through the voices of women who care. 
-            The conversations with the most meaningful engagement rise to the top, making it easy to discover wisdom, offer support, and feel part 
+            Start a discussion about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments,
+            every discussion has the <strong className="font-semibold text-warm-800">opportunity to grow</strong> through the voices of women who care.
+            The discussions with the most meaningful engagement rise to the top, making it easy to discover wisdom, offer support, and feel part
             of something bigger than yourself.
             </p>
           </AnimateOnScroll>
 
-          {/* Conversations list mockup */}
+          {/* Discussions list mockup */}
           <AnimateOnScroll delay={200}>
             <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
               <div className="flex items-start gap-3 border-b border-warm-100 p-4">
@@ -714,7 +726,7 @@ export default async function Home() {
                     "The Portal: Ashley's articles, voice notes, and community discussion",
                     "Gather: connect with frequency-aligned sisters, wherever you are",
                     "Direct messaging with members around the world",
-                    "Conversations: open discussion threads with the whole community",
+                    "Discussions: open threads with the whole community",
                     "Private, anonymous Whispers with Ashley",
                     "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
                     "Use Aurora right in your browser, or install it as an app on your phone",

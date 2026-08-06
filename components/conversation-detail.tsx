@@ -196,7 +196,7 @@ export default function ConversationDetail({
         )}
         <div className="mt-3 flex items-center gap-4">
           <ReactionButton threadId={thread.id} count={thread.reactionCount} reacted={thread.reactedByMe} />
-          {canDeleteThread && <DeleteButton label="conversation" onDelete={handleDeleteThread} />}
+          {canDeleteThread && <DeleteButton label="discussion" onDelete={handleDeleteThread} />}
         </div>
       </div>
 

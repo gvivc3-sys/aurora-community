@@ -249,7 +249,7 @@ export async function deleteThread(previousState: unknown, formData: FormData) {
   if (!isAdmin(user)) {
     const { data: thread } = await supabase.from("threads").select("author_id").eq("id", threadId).single();
     if (!thread || thread.author_id !== user.id) {
-      return { error: "You can only delete your own conversations." };
+      return { error: "You can only delete your own discussions." };
     }
   }
 

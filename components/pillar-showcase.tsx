@@ -36,7 +36,7 @@ const pillars: Pillar[] = [
   {
     icon: RectangleStackIcon,
     iconColor: "bg-purple-50 text-purple-600",
-    title: "Conversations",
+    title: "Discussions",
     description:
       "Open discussion threads on anything on your mind. Reply, react, and see what the community is talking about most, right now.",
   },
