@@ -700,6 +700,22 @@ export default async function Home() {
                 <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
                   Aurora Membership
                 </h3>
+                <ul className="mt-6 space-y-3 text-left">
+                  {[
+                    "The Portal: Ashley's articles, voice notes, and community discussion",
+                    "Gather: connect with frequency-aligned sisters, wherever you are",
+                    "Direct messaging with members around the world",
+                    "Conversations: open discussion threads with the whole community",
+                    "Private, anonymous Whispers with Ashley",
+                    "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
+                    "Use Aurora right in your browser, or install it as an app on your phone",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
+                      <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
                 <div className="mt-8">
                   {hasActiveSub ? (
                     <Link
