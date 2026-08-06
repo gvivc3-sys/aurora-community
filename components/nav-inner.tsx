@@ -80,7 +80,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <>
                 <Link
                   href="/dashboard"
-                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] active:scale-[0.97]"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                 >
                   Enter the Portal
                 </Link>
@@ -159,7 +159,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="rounded-full bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-4 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                 >
                   Enter the Portal
                 </Link>
