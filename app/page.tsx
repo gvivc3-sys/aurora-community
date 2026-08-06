@@ -151,7 +151,7 @@ export default async function Home() {
         <AnimateOnScroll className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
             A place to align, connect, and{" "}
-            <span className="italic text-fuchsia-300">belong.</span>
+            <span className="italic text-fuchsia-300 font-bold">belong.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-200 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-50">exclusive</strong>{" "}
@@ -168,7 +168,7 @@ export default async function Home() {
       <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
         <AnimateOnScroll className="mx-auto max-w-xl px-6">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            Find your people. <span className="italic">We call it Gather.</span>
+            Find your people.<br></br><span className="italic font-bold">We call it Gather.</span>
           </h2>
         </AnimateOnScroll>
 
@@ -301,7 +301,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              This is <span className="italic">the Portal.</span>
+              This is <span className="italic font-bold">the Portal.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
               This is where Ashley shares her insights regularly,
@@ -423,7 +423,7 @@ export default async function Home() {
             {/* Copy */}
             <AnimateOnScroll className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                Some questions are better <span className="italic text-fuchsia-300">asked with a whisper</span>
+                Some questions are better <span className="italic text-fuchsia-300 font-bold">asked with a whisper</span>
               </h2>
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
@@ -535,7 +535,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Or start <span className="italic">a conversation.</span>
+              Or start a <span className="italic font-bold">conversation.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
             Start a conversation about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments, 
@@ -629,7 +629,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside <span className="italic">Aurora</span>
+              What Awaits You Inside <span className="italic font-bold">Aurora</span>
             </h2>
           </AnimateOnScroll>
 
