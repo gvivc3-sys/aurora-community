@@ -40,7 +40,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
       <div className="flex w-full shrink-0 items-center gap-2 border-b border-warm-200 bg-white px-3 py-2.5 md:mx-auto md:max-w-2xl">
         <Link
           href="/messages"
-          aria-label="Back to Messages"
+          aria-label="Back to Private Messages"
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">

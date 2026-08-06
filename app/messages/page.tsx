@@ -24,7 +24,7 @@ export default async function MessagesPage() {
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <RealtimeRefresh table="direct_messages" />
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <h1 className="text-2xl font-light tracking-tight text-warm-900">Messages</h1>
+        <h1 className="text-2xl font-light tracking-tight text-warm-900">Private Messages</h1>
 
         <div className="mt-6 space-y-2">
           {conversations.length > 0 ? (
@@ -59,7 +59,7 @@ export default async function MessagesPage() {
             ))
           ) : (
             <div className="py-16 text-center">
-              <p className="text-lg font-light text-warm-400">No messages yet.</p>
+              <p className="text-lg font-light text-warm-400">No private messages yet.</p>
               <p className="mt-2 text-sm text-warm-400">
                 Reach out to someone from{" "}
                 <Link href="/frequency" className="text-warm-600 underline">

@@ -47,7 +47,7 @@ export default async function WelcomePage() {
             {[
               "The Portal: Ashley's articles, voice notes, and community discussion, organized into Nourishment, Health + Beauty, Frequency, and Whisper.",
               "Gather: post your city and what you're up for, then message other members directly.",
-              "Messages: your private inbox for connecting with members you meet.",
+              "Private Messages: your inbox for connecting with members you meet.",
               "Ashley's Guides: her full library of guides, books, and audio tracks.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-warm-700">

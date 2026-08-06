@@ -253,7 +253,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
 
             <Link href="/messages" className={sidebarLinkClass(isActive("/messages"))}>
               <EnvelopeIcon className="h-4 w-4 text-warm-400" />
-              Messages
+              Private Messages
             </Link>
             <Link href="/conversations" className={sidebarLinkClass(isActive("/conversations"))}>
               <RectangleStackIcon className="h-4 w-4 text-warm-400" />
@@ -365,7 +365,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                     className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/messages") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                   >
                     <EnvelopeIcon className="h-4 w-4 text-warm-400" />
-                    Messages
+                    Private Messages
                   </Link>
                   <Link
                     href="/conversations"
