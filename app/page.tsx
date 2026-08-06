@@ -538,10 +538,10 @@ export default async function Home() {
               Or start <span className="italic">a conversation.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Open a thread on anything: every voice is
-              her own. Anyone can talk about anything, conversations with the most enagement rise to the top.
-              It&apos;s a living board where sisters show up for each
-              other, one reply at a time.
+            Start a conversation about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments, 
+            every discussion has the <strong className="font-semibold text-warm-800">opportunity to grow</strong> through the voices of women who care. 
+            The conversations with the most meaningful engagement rise to the top, making it easy to discover wisdom, offer support, and feel part 
+            of something bigger than yourself.
             </p>
           </AnimateOnScroll>
 
@@ -663,10 +663,8 @@ export default async function Home() {
             Aurora lives right on your <span className="italic">home screen.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-warm-600">
-            <strong className="font-semibold text-warm-800">Install</strong> Aurora
-            as an app on your phone in seconds, no app store needed, so
-            you&apos;re always one tap away from staying connected to your
-            sisters.
+            Install Aurora as an app on your phone in seconds, <strong className="font-semibold text-warm-800">no app store 
+            needed</strong>, so you&apos;re always one tap away from staying connected to your sisters.
           </p>
         </AnimateOnScroll>
       </section>
