@@ -497,8 +497,8 @@ export default async function Home() {
                 {/* Fake comments */}
                 <div className="px-4 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-100 text-[9px] font-semibold text-warm-600">
-                      SL
+                    <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
+                      <Image src="/images/avatar_pool/blonde_candid_photo.jpeg" alt="" fill className="object-cover" sizes="24px" />
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Sofia Lin</span> <span className="text-warm-400">&middot; 1d ago</span></p>
@@ -506,8 +506,8 @@ export default async function Home() {
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-pink-100 text-[9px] font-semibold text-warm-600">
-                      RK
+                    <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
+                      <Image src="/images/avatar_pool/woman_dark_hair.jpeg" alt="" fill className="object-cover" sizes="24px" />
                     </div>
                     <div>
                       <p className="text-xs"><span className="font-medium text-warm-800">Rina K.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
@@ -657,7 +657,7 @@ export default async function Home() {
       <section className="border-t border-warm-200 px-6 py-14 text-center sm:py-20">
         <AnimateOnScroll className="mx-auto max-w-xl">
           <div className="animate-float-small relative mx-auto h-16 w-16 overflow-hidden rounded-2xl shadow-md">
-            <Image src="/icon-192.png" alt="Aurora app icon" fill className="object-cover" sizes="64px" />
+            <Image src="/icon-512.png" alt="Aurora app icon" fill className="object-cover" sizes="64px" />
           </div>
           <h2 className="mt-5 font-display text-2xl leading-tight tracking-tight text-warm-900 sm:text-3xl">
             Aurora lives right on your <span className="italic">home screen.</span>
@@ -693,54 +693,39 @@ export default async function Home() {
             feminine wisdom, and the power of sisters rising together.
           </p>
 
-          <div className="mx-auto mt-10 max-w-md rounded-[1.75rem] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[1.5px] shadow-xl">
-            <div id="join" className="rounded-[1.7rem] bg-white px-8 py-9 sm:px-10">
-              <div className="mb-4 flex justify-center">
-                <span className="rounded-full bg-rose-50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-rose-500">Special Early Discount</span>
-              </div>
-              <div className="mb-5 flex justify-center">
-                <svg viewBox="0 0 258.22298 283.80057" className="h-10 w-auto text-warm-600 opacity-90" fill="currentColor" aria-label="Aurora">
-                  <path d="M257.08826,179.18199C219.48497,356.1381-28.9813,290.03619,2.80007,119.20064,14.26282,59.83959,64.89421,10.28182,124.54861.83252c10.6214-3.27536,22.24991,3.39539,22.19956,15.06622.00015,7.96598-5.90928,14.66283-13.80183,15.74607C-10.41877,53.49283,4.63344,270.06294,153.71203,250.64353c20.35698-4.20945,39.73611-16.08843,52.58595-32.042,38.87844-45.24125,17.97503-120.58777-42.38191-132.06891-20.73292-3.84051-44.23146,2.20129-58.85747,17.78997-26.92879,24.57781-23.98987,73.02894,10.01097,88.71939,50.9672,24.12123,80.02278-50.14195,32.55867-53.27997,5.79414,2.69217,9.7573,6.7851,10.93981,13.80016,4.07004,26.86157-34.76871,31.24146-45.8793,9.81855-20.54661-49.95095,49.5218-75.95895,79.41831-34.16748,18.30267,23.93839,13.12901,59.35308-8.31931,80.05857-54.34739,53.05058-143.55428-6.73916-127.32727-78.94152C90.85654-.7589,274.28501,50.91175,257.08826,179.18199Z"/>
-                </svg>
-              </div>
-              <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-warm-400">Everything inside</p>
-              <ul className="space-y-3 text-left">
-                {[
-                  "The Portal: Ashley's articles, voice notes, and community discussion",
-                  "Gather: connect with frequency-aligned sisters, wherever you are",
-                  "Direct messaging with members around the world",
-                  "Conversations: open discussion threads with the whole community",
-                  "Private, anonymous Whispers with Ashley",
-                  "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
-                  "Use Aurora right in your browser, or install it as an app on your phone",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
-                    <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6">
-                {hasActiveSub ? (
-                  <Link
-                    href="/dashboard"
-                    className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-                  >
-                    Go to Your Portal
-                  </Link>
-                ) : (
-                  <div className="flex flex-col items-center gap-2">
+          <div className="relative mx-auto mt-10 max-w-md">
+            <div className="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-fuchsia-300/50 via-pink-200/50 to-fuchsia-400/50 blur-2xl" aria-hidden="true" />
+            <div className="relative rounded-[20px] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[3px] shadow-xl">
+              <div id="join" className="rounded-[17px] bg-white px-8 py-10 sm:px-10">
+                <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
+                  Aurora Membership
+                </h3>
+                <div className="mt-8">
+                  {hasActiveSub ? (
                     <Link
-                      href={user ? "/subscribe" : "/signup"}
-                      className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                      href="/dashboard"
+                      className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                     >
-                      Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
+                      Go to Your Portal
                     </Link>
-                    <p className="text-xs text-warm-400">
-                      Cancel anytime. No contracts. No questions asked.
-                    </p>
-                  </div>
-                )}
+                  ) : (
+                    <div className="flex flex-col items-center gap-3">
+                      <span className="flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
+                        <CheckBadgeAlternateIcon className="h-3.5 w-3.5" />
+                        Special Early Discount
+                      </span>
+                      <Link
+                        href={user ? "/subscribe" : "/signup"}
+                        className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                      >
+                        Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
+                      </Link>
+                      <p className="text-xs text-warm-400">
+                        Cancel anytime. No contracts. No questions asked.
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
