@@ -141,20 +141,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ─── CONNECTION STATEMENT ─── */}
-      <section className="px-6 py-10 text-center">
-        <AnimateOnScroll className="mx-auto max-w-2xl">
-          <p className="text-base leading-relaxed text-warm-600 sm:text-lg">
-            Connection is one of the biggest predictors of long-term health
-            and happiness, and it&apos;s often the first thing to slip.
-            Aurora gives you a standing space for it: real conversations,
-            real women, and direct access to Ashley.
-          </p>
-        </AnimateOnScroll>
-      </section>
-
       {/* ─── MARQUEE ─── */}
-      <section className="border-y border-warm-200 py-8">
+      <section className="border-b border-warm-200 py-10">
         <Marquee />
       </section>
 

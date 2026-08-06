@@ -1,4 +1,5 @@
 import { BoltIcon, HeartIcon, LeafIcon, SparklesIcon, UsersIcon } from "@/components/icons";
+import AnimateOnScroll from "@/components/animate-on-scroll";
 
 const items = [
   { icon: BoltIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "More energy, less noise" },
@@ -31,11 +32,18 @@ function MarqueeCard({ item, index }: { item: (typeof items)[number]; index: num
 export default function Marquee() {
   const track = [...items, ...items];
   return (
-    <div className="marquee-fade mx-auto max-w-4xl overflow-hidden px-6">
-      <div className="animate-marquee flex w-max gap-4">
-        {track.map((item, i) => (
-          <MarqueeCard key={i} item={item} index={i} />
-        ))}
+    <div>
+      <AnimateOnScroll className="mx-auto max-w-2xl px-6 text-center">
+        <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+          Connection isn&apos;t a luxury. <span className="italic">It&apos;s part of your health.</span>
+        </h2>
+      </AnimateOnScroll>
+      <div className="marquee-fade mx-auto mt-8 max-w-4xl overflow-hidden px-6">
+        <div className="animate-marquee flex w-max gap-4">
+          {track.map((item, i) => (
+            <MarqueeCard key={i} item={item} index={i} />
+          ))}
+        </div>
       </div>
     </div>
   );
