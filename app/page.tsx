@@ -53,15 +53,6 @@ function SparklesIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function PhoneIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className={className}>
-      <rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="11" y1="18" x2="13" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 
 
 export default async function Home() {
@@ -88,7 +79,7 @@ export default async function Home() {
   return (
     <div className="bg-background">
       {/* ─── HERO (VSL-LED) ─── */}
-      <section className="relative z-10 overflow-hidden">
+      <section className="relative z-10">
         <div className="hero-gradient absolute inset-0" />
 
         <div className="relative mx-auto max-w-4xl px-6 pb-8 pt-8 text-center sm:pb-10 sm:pt-10">
@@ -230,16 +221,15 @@ export default async function Home() {
         <AnimateOnScroll delay={250} className="mx-auto mt-10 max-w-xl px-6">
           <p className="text-left text-base leading-relaxed text-warm-600 md:text-center">
             Every member has her own profile: share your location, your
-            IG, and a bit about you. On Gather, let your sisters know
+            IG, and a bit about you. On <strong className="font-semibold text-warm-800">Gather</strong>, let your sisters know
             you&apos;re free to connect: post your city and what you&apos;re
-            up for, then <strong className="font-semibold text-warm-800">message</strong> each
-            other directly inside the Aurora app and meet up!
+            up for, then message each other directly inside the Aurora app and meet up!
           </p>
           <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
             This is a growing network of sisters on the same frequency,
             all focused on the same thing: stepping into a more radiant,
             healthy, and beautiful life. Wherever you are in the world,
-            there&apos;s potential to find your people.
+            there&apos;s potential to <strong className="font-semibold text-warm-800">find your people.</strong>
           </p>
         </AnimateOnScroll>
 
@@ -440,7 +430,7 @@ export default async function Home() {
                 on your heart: a question, an intention, or something
                 you&apos;ve never said out loud. Ashley reads every whisper
                 personally and replies with real insight, exactly as
-                privately as you choose. All met with judgement-free understanding.
+                privately as you choose. All met with <strong className="font-semibold text-warm-50">judgement-free</strong> understanding.
               </p>
 
               <ul className="mt-6 space-y-3 text-left">
@@ -666,8 +656,8 @@ export default async function Home() {
       {/* ─── STAY CONNECTED (APP) ─── */}
       <section className="border-t border-warm-200 px-6 py-14 text-center sm:py-20">
         <AnimateOnScroll className="mx-auto max-w-xl">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-warm-100 text-warm-700">
-            <PhoneIcon className="h-6 w-6" />
+          <div className="animate-float-small relative mx-auto h-16 w-16 overflow-hidden rounded-2xl shadow-md">
+            <Image src="/icon-192.png" alt="Aurora app icon" fill className="object-cover" sizes="64px" />
           </div>
           <h2 className="mt-5 font-display text-2xl leading-tight tracking-tight text-warm-900 sm:text-3xl">
             Aurora lives right on your <span className="italic">home screen.</span>
