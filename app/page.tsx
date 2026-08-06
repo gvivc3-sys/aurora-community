@@ -13,7 +13,7 @@ import {
   ChatBubbleIcon,
   HeartSolidIcon,
   HeartIcon as OutlineHeartIcon,
-  PinnedIcon,
+  MapPinIcon,
   BookmarkIcon,
   ArrowTopRightIcon,
 } from "@/components/icons";
@@ -320,7 +320,7 @@ export default async function Home() {
               exactly what speaks to you:
             </p>
 
-            <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-2 gap-y-1">
+            <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-4 gap-y-3">
               <span className="rotate-2 translate-y-1">
                 <span
                   className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
@@ -407,8 +407,8 @@ export default async function Home() {
               </div>
               <div className="space-y-2.5 px-4 pb-4">
                 <div className="flex items-start gap-2">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-200 to-pink-100 text-[9px] font-semibold text-warm-600">
-                    MJ
+                  <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
+                    <Image src="/images/avatar_pool/long_curly_hair_night.jpeg" alt="" fill className="object-cover" sizes="24px" />
                   </div>
                   <div>
                     <p className="text-xs"><span className="font-medium text-warm-800">Maya J.</span> <span className="text-warm-400">&middot; 2d ago</span></p>
@@ -506,7 +506,7 @@ export default async function Home() {
                     <span className="text-red-500">4</span>
                   </span>
                   <ChatBubbleIcon className="h-5 w-5 text-warm-400" />
-                  <PinnedIcon className="h-5 w-5 text-warm-400" />
+                  <MapPinIcon className="h-5 w-5 text-warm-400" />
                   <BookmarkIcon className="h-5 w-5 text-warm-400" />
                   <ArrowTopRightIcon className="h-5 w-5 text-warm-400" />
                 </div>
