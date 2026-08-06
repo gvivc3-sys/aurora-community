@@ -177,7 +177,10 @@ export default async function Home() {
             <CommunityMap />
 
             {/* Callout bubbles — anchored to this card, spilling past its edges */}
-            <div className="pointer-events-none absolute -left-4 top-6 z-20 hidden max-w-[160px] -rotate-3 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-10 md:flex lg:-left-14">
+            <div
+              className="animate-bubble-wiggle-1 pointer-events-none absolute -left-4 top-6 z-20 hidden max-w-[160px] items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-10 md:flex lg:-left-14"
+              style={{ animationDelay: "0ms" }}
+            >
               <Image
                 src="/images/avatar_pool/blonde_woman_candid.jpeg"
                 alt=""
@@ -185,12 +188,15 @@ export default async function Home() {
                 height={36}
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
-              <p className="text-[11px] font-medium leading-snug text-warm-700">
+              <p className="text-left text-[11px] font-medium leading-snug text-warm-700">
                 Help! New to LA, need friends! 👋😭
               </p>
             </div>
 
-            <div className="pointer-events-none absolute -left-4 bottom-8 z-20 hidden max-w-[160px] rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-8 md:flex lg:-left-12">
+            <div
+              className="animate-bubble-wiggle-2 pointer-events-none absolute -left-4 bottom-8 z-20 hidden max-w-[160px] items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-left-8 md:flex lg:-left-12"
+              style={{ animationDelay: "500ms" }}
+            >
               <Image
                 src="/images/avatar_pool/woman_brunette_basic.jpeg"
                 alt=""
@@ -198,12 +204,15 @@ export default async function Home() {
                 height={36}
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
-              <p className="text-[11px] font-medium leading-snug text-warm-700">
+              <p className="text-left text-[11px] font-medium leading-snug text-warm-700">
                 New to NYC, who's around? 🤍
               </p>
             </div>
 
-            <div className="pointer-events-none absolute -right-4 top-1/2 z-20 hidden max-w-[168px] -translate-y-1/2 -rotate-2 items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-right-10 md:flex lg:-right-14">
+            <div
+              className="animate-bubble-wiggle-3 pointer-events-none absolute -right-4 top-1/2 z-20 hidden max-w-[168px] items-center gap-2 rounded-2xl border border-warm-200 bg-white p-2 shadow-lg md:-right-10 md:flex lg:-right-14"
+              style={{ animationDelay: "1000ms" }}
+            >
               <Image
                 src="/images/avatar_pool/woman_dark_hair_smile.jpeg"
                 alt=""
@@ -211,7 +220,7 @@ export default async function Home() {
                 height={36}
                 className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white"
               />
-              <p className="text-[11px] font-medium leading-snug text-warm-700">
+              <p className="text-left text-[11px] font-medium leading-snug text-warm-700">
                 In Sydney for two weeks, anyone want to grab a coffee? ☕
               </p>
             </div>
@@ -685,7 +694,7 @@ export default async function Home() {
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
             Step into <span className="font-medium">Aurora.</span>
-            <span className="mt-1 block italic">Your friends are waiting.</span>
+            <span className="mt-1 block italic block font-bold">Your friends are waiting.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
             Aurora is a sanctuary for women who are ready to step into their most
@@ -766,7 +775,7 @@ export default async function Home() {
 
             <AnimateOnScroll delay={120} className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                The woman behind <span className="italic text-fuchsia-300">Aurora.</span>
+                The woman behind <span className="italic text-fuchsia-300 block font-bold">Aurora.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
                 Ashley has spent years immersed in ancient beauty practices, deep
