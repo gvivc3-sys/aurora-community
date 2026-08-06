@@ -9,7 +9,7 @@ type Props = {
 };
 
 const buttonClass =
-  "flex w-full max-w-sm items-center justify-center gap-2 rounded-full bg-warm-800 px-6 py-4 text-base font-semibold text-white shadow-xl transition-all hover:bg-warm-700 active:scale-[0.98]";
+  "flex w-full max-w-sm items-center justify-center gap-2 rounded-lg bg-warm-800 px-6 py-4 text-base font-semibold text-white shadow-xl transition-all hover:bg-warm-700 active:scale-[0.98]";
 
 export default function StickyMobileButton({ label, icon, href, onClick }: Props) {
   return (

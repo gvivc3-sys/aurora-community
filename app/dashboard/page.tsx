@@ -397,7 +397,7 @@ export default async function DashboardPage({
             {page > 1 && (
               <Link
                 href={pageUrl(page - 1)}
-                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
+                className="rounded-lg bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
               >
                 Previous
               </Link>
@@ -408,7 +408,7 @@ export default async function DashboardPage({
             {page < totalPages && (
               <Link
                 href={pageUrl(page + 1)}
-                className="rounded-full bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
+                className="rounded-lg bg-warm-100 px-4 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-200"
               >
                 Next
               </Link>

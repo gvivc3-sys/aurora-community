@@ -250,7 +250,7 @@ export default async function BookmarksPage() {
               </p>
               <Link
                 href="/dashboard"
-                className="mt-4 inline-block rounded-full bg-warm-100 px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-200"
+                className="mt-4 inline-block rounded-lg bg-warm-100 px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-200"
               >
                 Browse the Portal
               </Link>

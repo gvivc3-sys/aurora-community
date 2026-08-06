@@ -141,7 +141,7 @@ export default function ProfileForm({ user }: { user: User }) {
               size="lg"
             />
             <div>
-              <label className="cursor-pointer rounded-full border border-warm-300 bg-white px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50">
+              <label className="cursor-pointer rounded-lg border border-warm-300 bg-white px-4 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50">
                 {uploading ? "Uploading..." : "Change picture"}
                 <input
                   type="file"
@@ -301,7 +301,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <button
               type="submit"
               disabled={pending}
-              className="w-full rounded-full bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
+              className="w-full rounded-lg bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
             </button>
@@ -318,7 +318,7 @@ export default function ProfileForm({ user }: { user: User }) {
             <form action={createPortalSession} className="w-full">
               <button
                 type="submit"
-                className="w-full rounded-full border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
+                className="w-full rounded-lg border border-warm-300 bg-white px-5 py-2 text-sm font-medium text-warm-700 transition-colors hover:bg-warm-50"
               >
                 Manage Subscription
               </button>
@@ -374,7 +374,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 <button
                   type="submit"
                   disabled={cancelPending}
-                  className="rounded-full bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+                  className="rounded-lg bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
                 >
                   {cancelPending ? "Continuing…" : "Continue to cancel"}
                 </button>

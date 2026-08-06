@@ -81,7 +81,7 @@ function Dropdown({
         onKeyDown={handleKeyDown}
         aria-expanded={open}
         aria-haspopup="listbox"
-        className="flex items-center gap-1.5 rounded-full border border-warm-200 bg-white px-3 py-1.5 text-xs font-medium text-warm-700 transition-colors hover:border-warm-300"
+        className="flex items-center gap-1.5 rounded-lg border border-warm-200 bg-white px-3 py-1.5 text-xs font-medium text-warm-700 transition-colors hover:border-warm-300"
       >
         {selected.label}
         <svg
@@ -176,7 +176,7 @@ export default function FeedFilters() {
         onClick={() =>
           update("sort", currentSort === "newest" ? "oldest" : "newest")
         }
-        className="ml-auto flex items-center gap-1 rounded-full bg-warm-100 px-3 py-1.5 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+        className="ml-auto flex items-center gap-1 rounded-lg bg-warm-100 px-3 py-1.5 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
       >
         {currentSort === "newest" ? "Newest first" : "Oldest first"}
         <svg

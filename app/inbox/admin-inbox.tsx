@@ -34,7 +34,7 @@ function MarkReadButton({ messageId }: { messageId: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200 disabled:opacity-50"
+        className="rounded-lg bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200 disabled:opacity-50"
       >
         {pending ? "..." : "Mark as read"}
       </button>
@@ -54,7 +54,7 @@ function MarkAddressedButton({ messageId }: { messageId: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 transition-colors hover:bg-green-200 disabled:opacity-50"
+        className="rounded-lg bg-green-100 px-3 py-1 text-xs font-medium text-green-700 transition-colors hover:bg-green-200 disabled:opacity-50"
       >
         {pending ? "..." : "Mark addressed"}
       </button>
@@ -78,7 +78,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
+            className="rounded-lg bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
           >
             {pending ? "..." : "Delete"}
           </button>
@@ -86,7 +86,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
         <button
           type="button"
           onClick={() => setConfirming(false)}
-          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+          className="rounded-lg bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
         >
           Cancel
         </button>
@@ -101,7 +101,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
     <button
       type="button"
       onClick={() => setConfirming(true)}
-      className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
+      className="rounded-lg bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
     >
       Delete
     </button>
@@ -140,7 +140,7 @@ function ReplyForm({ messageId, visibility }: { messageId: string; visibility: "
             setOpen(true);
             setLastSuccess(null);
           }}
-          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
+          className="rounded-lg bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
         >
           Reply
         </button>
@@ -191,7 +191,7 @@ function ReplyForm({ messageId, visibility }: { messageId: string; visibility: "
             <button
               type="submit"
               disabled={pending}
-              className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
+              className="rounded-lg bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
             >
               {pending
                 ? "Sending..."
@@ -202,7 +202,7 @@ function ReplyForm({ messageId, visibility }: { messageId: string; visibility: "
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+              className="rounded-lg bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
             >
               Cancel
             </button>

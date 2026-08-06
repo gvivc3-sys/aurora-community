@@ -51,7 +51,7 @@ export default async function GatherPage() {
               </p>
               <Link
                 href="/profile"
-                className="mt-3 inline-flex items-center gap-1 rounded-full bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
+                className="mt-3 inline-flex items-center gap-1 rounded-lg bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Complete your profile
               </Link>

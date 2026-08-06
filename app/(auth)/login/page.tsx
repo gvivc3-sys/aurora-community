@@ -53,7 +53,7 @@ function LoginForm() {
         type="button"
         onClick={handleGoogleSignIn}
         disabled={googlePending}
-        className="flex w-full items-center justify-center gap-3 rounded-full border border-warm-300 bg-white px-4 py-2.5 text-sm font-medium text-warm-700 shadow-sm transition-all hover:bg-warm-50 hover:shadow-md active:scale-[0.98] disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-3 rounded-lg border border-warm-300 bg-white px-4 py-2.5 text-sm font-medium text-warm-700 shadow-sm transition-all hover:bg-warm-50 hover:shadow-md active:scale-[0.98] disabled:opacity-50"
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -109,7 +109,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-full bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
+          className="w-full rounded-lg bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
         >
           {pending ? "Signing in..." : "Sign in"}
         </button>

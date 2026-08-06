@@ -61,7 +61,7 @@ export default async function WelcomePage() {
         <div className="mt-10 text-center">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
           >
             I&apos;m ready
           </Link>

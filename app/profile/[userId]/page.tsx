@@ -112,7 +112,7 @@ export default async function PublicProfilePage({
           {!isOwner && (
             <MessageButton
               userId={target.id}
-              className="mt-4 rounded-full bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+              className="mt-4 rounded-lg bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
             >
               Message
             </MessageButton>

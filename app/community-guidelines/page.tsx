@@ -80,7 +80,7 @@ export default async function CommunityGuidelinesPage() {
           <form action={acceptTerms} className="mt-8">
             <button
               type="submit"
-              className="w-full rounded-full bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-3 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+              className="w-full rounded-lg bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-3 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
             >
               I Agree &amp; Enter
             </button>

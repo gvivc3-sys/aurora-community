@@ -80,12 +80,12 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <>
                 <Link
                   href="/dashboard"
-                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                 >
                   Enter the Portal
                 </Link>
                 <form action={signOut}>
-                  <button type="submit" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
+                  <button type="submit" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
                     Log out
                   </button>
                 </form>
@@ -95,12 +95,12 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <>
                 <Link
                   href="/subscribe"
-                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] active:scale-[0.97]"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                 >
                   Join Aurora &middot; {MEMBERSHIP_PRICE}
                 </Link>
                 <form action={signOut}>
-                  <button type="submit" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
+                  <button type="submit" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
                     Log out
                   </button>
                 </form>
@@ -108,10 +108,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             )}
             {!user && (
               <>
-                <Link href="/login" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900">
+                <Link href="/login" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900">
                   Log in
                 </Link>
-                <Link href="/signup" className="rounded-full bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]">
+                <Link href="/signup" className="rounded-lg bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]">
                   Sign up
                 </Link>
               </>
@@ -159,7 +159,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                 </Link>
                 <Link
                   href="/dashboard"
-                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-4 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                  className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-4 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                 >
                   Enter the Portal
                 </Link>
@@ -190,10 +190,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   <AuroraWordmark className="h-5 w-auto text-warm-600" />
                 </Link>
                 <div className="flex items-center gap-2">
-                  <Link href="/login" className="rounded-full px-3 py-1.5 text-sm font-medium text-warm-600">
+                  <Link href="/login" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-600">
                     Log in
                   </Link>
-                  <Link href="/signup" className="rounded-full bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md">
+                  <Link href="/signup" className="rounded-lg bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md">
                     Sign up
                   </Link>
                 </div>
@@ -438,7 +438,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   <Link
                     href="/subscribe"
                     onClick={() => setMenuOpen(false)}
-                    className="block rounded-full bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                    className="block rounded-lg bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                   >
                     Join Aurora &middot; {MEMBERSHIP_PRICE}
                   </Link>

@@ -85,7 +85,7 @@ export default function InstallCard() {
         <button
           type="button"
           onClick={handleInstallClick}
-          className="mt-4 rounded-full bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
+          className="mt-4 rounded-lg bg-warm-800 px-5 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
         >
           Add to Home Screen
         </button>

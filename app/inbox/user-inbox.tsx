@@ -46,7 +46,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
+            className="rounded-lg bg-red-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50"
           >
             {pending ? "..." : "Delete"}
           </button>
@@ -54,7 +54,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
         <button
           type="button"
           onClick={() => setConfirming(false)}
-          className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+          className="rounded-lg bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
         >
           Cancel
         </button>
@@ -69,7 +69,7 @@ function DeleteMessageButton({ messageId }: { messageId: string }) {
     <button
       type="button"
       onClick={() => setConfirming(true)}
-      className="rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
+      className="rounded-lg bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-100"
     >
       Delete
     </button>
@@ -98,7 +98,7 @@ function UserReplyForm({ messageId }: { messageId: string }) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
+          className="rounded-lg bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700"
         >
           Reply
         </button>
@@ -117,14 +117,14 @@ function UserReplyForm({ messageId }: { messageId: string }) {
             <button
               type="submit"
               disabled={pending}
-              className="rounded-full bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
+              className="rounded-lg bg-warm-800 px-3 py-1 text-xs font-medium text-warm-50 transition-colors hover:bg-warm-700 disabled:opacity-50"
             >
               {pending ? "Sending..." : "Send reply"}
             </button>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
+              className="rounded-lg bg-warm-100 px-3 py-1 text-xs font-medium text-warm-600 transition-colors hover:bg-warm-200"
             >
               Cancel
             </button>
@@ -269,7 +269,7 @@ export default function UserInbox({
             <button
               type="submit"
               disabled={pending || onCooldown}
-              className="flex items-center gap-2 rounded-full bg-warm-800 px-6 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-warm-800 px-6 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />

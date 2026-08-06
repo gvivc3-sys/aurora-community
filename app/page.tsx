@@ -109,7 +109,7 @@ export default async function Home() {
               {hasActiveSub ? (
                 <Link
                   href="/dashboard"
-                  className="inline-flex items-center gap-2 rounded-full bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                 >
                   Enter the Portal
                   <ArrowRightIcon className="h-4 w-4" />
@@ -118,7 +118,7 @@ export default async function Home() {
                 <>
                   <Link
                     href={user ? "/subscribe" : "/signup"}
-                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                   >
                     Join Aurora
                     <ArrowRightIcon className="h-4 w-4" />
@@ -126,7 +126,7 @@ export default async function Home() {
                   {!user && (
                     <Link
                       href="/login"
-                      className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                      className="inline-flex items-center gap-2 rounded-lg border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
                     >
                       Sign In
                       <ArrowRightIcon className="h-4 w-4" />
@@ -267,7 +267,7 @@ export default async function Home() {
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
                   Just landed, anyone up for a hike this weekend? ⛰️
                 </p>
-                <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                <span className="mt-3 inline-block rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
                   Message
                 </span>
               </div>
@@ -292,7 +292,7 @@ export default async function Home() {
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
                   Who's in Soho? 🙌🥐
                 </p>
-                <span className="mt-3 inline-block rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                <span className="mt-3 inline-block rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
                   Message
                 </span>
               </div>
@@ -537,7 +537,7 @@ export default async function Home() {
             </AnimateOnScroll>
           </div>
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -663,7 +663,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -738,7 +738,7 @@ export default async function Home() {
                   {hasActiveSub ? (
                     <Link
                       href="/dashboard"
-                      className="block w-full rounded-full bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
+                      className="block w-full rounded-lg bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                     >
                       Go to Your Portal
                     </Link>
@@ -750,7 +750,7 @@ export default async function Home() {
                       </span>
                       <Link
                         href={user ? "/subscribe" : "/signup"}
-                        className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                        className="cta-gradient-btn block w-full rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
                       >
                         Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
                       </Link>
@@ -819,7 +819,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-10 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
               Ready to find your people?
               <ArrowRightIcon className="h-4 w-4 -rotate-90" />
             </a>

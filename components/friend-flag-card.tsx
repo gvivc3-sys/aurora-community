@@ -34,7 +34,7 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
         {!flag.isMine && (
           <MessageButton
             userId={flag.userId}
-            className="mt-3 rounded-full bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+            className="mt-3 rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
           >
             Message
           </MessageButton>
