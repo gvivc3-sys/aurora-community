@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { SparklesIcon, VideoCameraIcon, RectangleStackIcon } from "@/components/icons";
+import { SparklesIcon, VideoCameraIcon, RectangleStackIcon, EnvelopeIcon } from "@/components/icons";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 
 function UserGroupIcon({ className = "h-5 w-5" }: { className?: string }) {
@@ -25,6 +25,13 @@ const pillars: Pillar[] = [
     title: "Gather",
     description:
       "Connect with sisters across the world: share where you are, flag when you're free, and message each other directly. No matter your time zone, you're never far from your people.",
+  },
+  {
+    icon: EnvelopeIcon,
+    iconColor: "bg-blue-50 text-blue-600",
+    title: "Private Messages",
+    description:
+      "Connect one-on-one with members you meet on Gather. Real conversations, just between the two of you.",
   },
   {
     icon: SparklesIcon,
