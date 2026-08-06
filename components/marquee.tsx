@@ -1,17 +1,20 @@
-import { BoltIcon, HeartIcon, LeafIcon, SparklesIcon, UsersIcon } from "@/components/icons";
+import { HeartIcon } from "@/components/icons";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 
+const TINT = "bg-warm-100 text-warm-600";
+
 const items = [
-  { icon: BoltIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "More energy, less noise" },
-  { icon: BoltIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "No more doomscrolling" },
-  { icon: SparklesIcon, tint: "bg-rose-50 text-rose-500", text: "Weekly voice notes from Ashley" },
-  { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Real women, real conversations" },
-  { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Friends who share your values" },
-  { icon: HeartIcon, tint: "bg-rose-50 text-rose-500", text: "A place that feels like home" },
-  { icon: LeafIcon, tint: "bg-green-50 text-green-700", text: "Your own private sanctuary" },
-  { icon: UsersIcon, tint: "bg-warm-100 text-warm-600", text: "Support that feels like family" },
-  { icon: SparklesIcon, tint: "bg-fuchsia-50 text-fuchsia-600", text: "Wisdom shared, week by week" },
-  { icon: HeartIcon, tint: "bg-rose-50 text-rose-500", text: "You are not alone here" },
+  { icon: HeartIcon, tint: TINT, text: "A judgement-free community" },
+  { icon: HeartIcon, tint: TINT, text: "Replace doomscrolling with connection" },
+  { icon: HeartIcon, tint: TINT, text: "Conversations that actually matter" },
+  { icon: HeartIcon, tint: TINT, text: "Grow through shared wisdom" },
+  { icon: HeartIcon, tint: TINT, text: "Protect your peace" },
+  { icon: HeartIcon, tint: TINT, text: "Friends who share your values" },
+  { icon: HeartIcon, tint: TINT, text: "Built on kindness, not comparison" },
+  { icon: HeartIcon, tint: TINT, text: "Trade algorithms for authenticity" },
+  { icon: HeartIcon, tint: TINT, text: "Support through every season" },
+  { icon: HeartIcon, tint: TINT, text: "A calmer corner of the internet" },
+  { icon: HeartIcon, tint: TINT, text: "Never navigate life alone" },
 ];
 
 function MarqueeCard({ item, index }: { item: (typeof items)[number]; index: number }) {
@@ -35,7 +38,7 @@ export default function Marquee() {
     <div>
       <AnimateOnScroll className="mx-auto max-w-2xl px-6 text-center">
         <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-          It&apos;s not <span className="italic">healthy</span> to feel lonely.
+          It&apos;s not <span className="italic text-fuchsia-600">healthy</span> to feel lonely.
         </h2>
       </AnimateOnScroll>
       <div className="marquee-fade mx-auto mt-8 max-w-4xl overflow-hidden px-6">
