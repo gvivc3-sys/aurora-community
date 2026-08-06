@@ -13,6 +13,9 @@ import {
   ChatBubbleIcon,
   HeartSolidIcon,
   HeartIcon as OutlineHeartIcon,
+  PinnedIcon,
+  BookmarkIcon,
+  ArrowTopRightIcon,
 } from "@/components/icons";
 import FaqAccordion from "@/components/faq-accordion";
 import PillarShowcase from "@/components/pillar-showcase";
@@ -317,7 +320,7 @@ export default async function Home() {
               exactly what speaks to you:
             </p>
 
-            <div className="mt-6 grid grid-cols-2 justify-items-center gap-1 md:justify-items-start">
+            <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-2 gap-y-1">
               <span className="rotate-2 translate-y-1">
                 <span
                   className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
@@ -422,15 +425,6 @@ export default async function Home() {
 
       {/* ─── WHISPERS FROM THE PORTAL ─── */}
       <section className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
-        {/* Rotating logo — decorative background */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="animate-float absolute -left-32 top-1/3 h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/20 blur-[100px]" />
-          <div
-            className="animate-float absolute -right-32 bottom-1/4 h-[24rem] w-[24rem] rounded-full bg-fuchsia-500/20 blur-[100px]"
-            style={{ animationDelay: "4s" }}
-          />
-        </div>
-
         <div className="relative mx-auto max-w-6xl">
           <div className="grid items-center gap-16 md:grid-cols-2">
             {/* Copy */}
@@ -504,6 +498,17 @@ export default async function Home() {
                   <p className="text-sm leading-relaxed text-warm-700">
                     Nothing is wrong with you. Losing weight was never going to fix how you feel about yourself, because that&apos;s inner work, not a body project. You&apos;re allowed to want to feel good in your body while still questioning the voice that says it&apos;s not enough. That voice isn&apos;t the truth, it&apos;s an old pattern we can work on quieting together...
                   </p>
+                </div>
+                {/* Post footer */}
+                <div className="flex items-center gap-4 px-4 py-3">
+                  <span className="flex items-center gap-1 text-sm">
+                    <HeartSolidIcon className="h-5 w-5 text-red-500" />
+                    <span className="text-red-500">4</span>
+                  </span>
+                  <ChatBubbleIcon className="h-5 w-5 text-warm-400" />
+                  <PinnedIcon className="h-5 w-5 text-warm-400" />
+                  <BookmarkIcon className="h-5 w-5 text-warm-400" />
+                  <ArrowTopRightIcon className="h-5 w-5 text-warm-400" />
                 </div>
                 {/* Divider */}
                 <div className="mx-4 border-t border-warm-100" />
