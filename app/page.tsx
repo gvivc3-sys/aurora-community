@@ -115,7 +115,7 @@ export default async function Home() {
                 <>
                   <Link
                     href={user ? "/subscribe" : "/signup"}
-                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                   >
                     Join Aurora
                     <ArrowRightIcon className="h-4 w-4" />
@@ -151,7 +151,7 @@ export default async function Home() {
         <AnimateOnScroll className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
             A place to align, connect, and{" "}
-            <span className="italic text-fuchsia-300 font-bold">belong.</span>
+            <span className="italic text-fuchsia-300">belong.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-200 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-50">exclusive</strong>{" "}
@@ -168,7 +168,7 @@ export default async function Home() {
       <section className="border-b border-t border-warm-200 py-12 text-center sm:py-16">
         <AnimateOnScroll className="mx-auto max-w-xl px-6">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            Find your people.<br></br><span className="italic font-bold">We call it Gather.</span>
+            Find your people.<br></br><span className="italic">We call it Gather.</span>
           </h2>
         </AnimateOnScroll>
 
@@ -310,7 +310,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              This is <span className="italic font-bold">the Portal.</span>
+              This is <span className="italic">the Portal.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
               This is where Ashley shares her insights regularly,
@@ -432,7 +432,7 @@ export default async function Home() {
             {/* Copy */}
             <AnimateOnScroll className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                Some questions are better <span className="italic text-fuchsia-300 font-bold">asked with a whisper</span>
+                Some questions are better <span className="italic text-fuchsia-300">asked with a whisper</span>
               </h2>
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
@@ -528,7 +528,7 @@ export default async function Home() {
             </AnimateOnScroll>
           </div>
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -544,7 +544,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Or start a <span className="italic font-bold">conversation.</span>
+              Or start a <span className="italic">conversation.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
             Start a conversation about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments, 
@@ -638,7 +638,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside <span className="italic font-bold">Aurora</span>
+              What Awaits You Inside <span className="italic">Aurora</span>
             </h2>
           </AnimateOnScroll>
 
@@ -654,7 +654,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -694,7 +694,7 @@ export default async function Home() {
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
             Step into <span className="font-medium">Aurora.</span>
-            <span className="mt-1 block italic block font-bold">Your friends are waiting.</span>
+            <span className="mt-1 block italic">Your friends are waiting.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
             Aurora is a sanctuary for women who are ready to step into their most
@@ -741,7 +741,7 @@ export default async function Home() {
                       </span>
                       <Link
                         href={user ? "/subscribe" : "/signup"}
-                        className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
+                        className="cta-gradient-btn block w-full rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]"
                       >
                         Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
                       </Link>
@@ -775,7 +775,7 @@ export default async function Home() {
 
             <AnimateOnScroll delay={120} className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                The woman behind <span className="italic text-fuchsia-300 block font-bold">Aurora.</span>
+                The woman behind <span className="italic text-fuchsia-300 block">Aurora.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
                 Ashley has spent years immersed in ancient beauty practices, deep
@@ -810,7 +810,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-10 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-900 via-pink-700 to-fuchsia-900 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
+            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:shadow-xl active:scale-[0.97]">
               Ready to find your people?
               <ArrowRightIcon className="h-4 w-4 -rotate-90" />
             </a>
