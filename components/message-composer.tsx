@@ -53,7 +53,7 @@ export default function MessageComposer({ conversationId }: { conversationId: st
       <button
         type="submit"
         disabled={isPending || !body.trim()}
-        className="shrink-0 rounded-lg bg-warm-800 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50 md:px-5"
+        className="flex h-11 shrink-0 items-center justify-center rounded-lg bg-warm-800 px-4 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50 md:px-5"
       >
         Send
       </button>

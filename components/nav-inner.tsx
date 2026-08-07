@@ -111,7 +111,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                 <Link href="/login" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-600 transition-colors hover:bg-warm-50 hover:text-warm-900">
                   Log in
                 </Link>
-                <Link href="/signup" className="rounded-lg bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]">
+                <Link href="/signup" className="rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-sm font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98]">
                   Sign up
                 </Link>
               </>
@@ -193,7 +193,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   <Link href="/login" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-600">
                     Log in
                   </Link>
-                  <Link href="/signup" className="rounded-lg bg-warm-800 px-4 py-1.5 text-sm font-medium text-white shadow-md">
+                  <Link href="/signup" className="rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-sm font-medium text-warm-700">
                     Sign up
                   </Link>
                 </div>
