@@ -253,7 +253,7 @@ export async function deleteThread(previousState: unknown, formData: FormData) {
     }
   }
 
-  const { error } = await supabase.from("threads").delete().eq("id", threadId);
+  const { error } = await supabaseAdmin.from("threads").delete().eq("id", threadId);
   if (error) return { error: error.message };
 
   revalidatePath("/conversations");
@@ -283,7 +283,7 @@ export async function deleteThreadReply(previousState: unknown, formData: FormDa
     }
   }
 
-  const { error } = await supabase.from("thread_replies").delete().eq("id", replyId);
+  const { error } = await supabaseAdmin.from("thread_replies").delete().eq("id", replyId);
   if (error) return { error: error.message };
 
   if (threadId) revalidatePath(`/conversations/${threadId}`);

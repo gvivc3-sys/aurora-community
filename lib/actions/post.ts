@@ -336,7 +336,7 @@ export async function deletePost(previousState: unknown, formData: FormData) {
     }
   }
 
-  const { error } = await supabase.from("posts").delete().eq("id", postId);
+  const { error } = await supabaseAdmin.from("posts").delete().eq("id", postId);
 
   if (error) {
     return { error: error.message };
@@ -523,7 +523,14 @@ export async function deleteComment(
     return { error: "Comment ID is required." };
   }
 
-  const { error } = await supabase
+  if (!isAdmin(user)) {
+    const { data: comment } = await supabaseAdmin.from("comments").select("user_id").eq("id", commentId).single();
+    if (!comment || comment.user_id !== user.id) {
+      return { error: "You can only delete your own comments." };
+    }
+  }
+
+  const { error } = await supabaseAdmin
     .from("comments")
     .delete()
     .eq("id", commentId);
