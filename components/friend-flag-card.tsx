@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { FriendFlag } from "@/lib/actions/friend-flags";
 import MessageButton from "@/components/message-button";
-import { HeartSolidIcon } from "@/components/icons";
+import { HeartSolidIcon, EnvelopeIcon } from "@/components/icons";
 
 export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
   return (
@@ -34,8 +34,9 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
         {!flag.isMine && (
           <MessageButton
             userId={flag.userId}
-            className="mt-3 rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-60"
+            className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-100 active:scale-[0.98] disabled:opacity-60"
           >
+            <EnvelopeIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:rotate-6" />
             Message
           </MessageButton>
         )}
