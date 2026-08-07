@@ -6,6 +6,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isValidHandle, generateHandle } from "@/lib/handle";
 
 const IDENTITY_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
+const AVATAR_COOLDOWN_MS = 48 * 60 * 60 * 1000; // 48 hours
 
 async function backfillIdentity(
   userId: string,
@@ -28,9 +29,9 @@ async function backfillIdentity(
   ]);
 }
 
-function isWithinCooldown(changedAt: string | undefined): boolean {
+function isWithinCooldown(changedAt: string | undefined, cooldownMs: number = IDENTITY_COOLDOWN_MS): boolean {
   if (!changedAt) return false;
-  return Date.now() - new Date(changedAt).getTime() < IDENTITY_COOLDOWN_MS;
+  return Date.now() - new Date(changedAt).getTime() < cooldownMs;
 }
 
 export async function updateProfile(
@@ -195,8 +196,8 @@ export async function updateAvatar() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Not authenticated." };
 
-  if (isWithinCooldown(user.user_metadata?.avatar_changed_at)) {
-    return { error: "You can only change your avatar once per week." };
+  if (isWithinCooldown(user.user_metadata?.avatar_changed_at, AVATAR_COOLDOWN_MS)) {
+    return { error: "You can only change your avatar once every 48 hours." };
   }
 
   const name = user.user_metadata?.username ?? "";
