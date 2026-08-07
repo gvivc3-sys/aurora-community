@@ -553,7 +553,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Or start a <span className="italic">discussion.</span>
+              Or start a <span className="italic text-fuchsia-300">discussion.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
             Start a discussion about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments,
@@ -647,7 +647,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside <span className="italic">Aurora</span>
+              What Awaits You Inside <span className="italic text-fuchsia-300">Aurora</span>
             </h2>
           </AnimateOnScroll>
 
@@ -703,7 +703,7 @@ export default async function Home() {
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
             Step into <span className="font-medium">Aurora.</span>
-            <span className="mt-1 block italic">Your friends are waiting.</span>
+            <span className="mt-1 block italic">Your <span className="text-fuchsia-300">friends</span> are waiting.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
             Aurora is a sanctuary for women who are ready to step into their most
@@ -716,7 +716,7 @@ export default async function Home() {
             <div className="relative rounded-[20px] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[3px] shadow-xl">
               <div id="join" className="rounded-[17px] bg-white px-8 py-10 sm:px-10">
                 <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
-                  Aurora Membership
+                  Aurora Sisterhood
                 </h3>
                 <ul className="mt-6 space-y-3 text-left">
                   {[
