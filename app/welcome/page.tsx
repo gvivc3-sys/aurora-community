@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { CheckBadgeAlternateIcon } from "@/components/icons";
+import VideoCard from "@/components/video-card";
 
 export default async function WelcomePage() {
   const supabase = await createClient();
@@ -25,18 +26,8 @@ export default async function WelcomePage() {
           </h1>
         </div>
 
-        {/* Video placeholder — swap for a real <VideoCard src="..." /> once delivered. */}
-        <div className="relative mx-auto mt-10 aspect-video w-full max-w-lg overflow-hidden rounded-xl bg-warm-900 shadow-lg">
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-md">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-6 w-6 text-warm-800">
-                <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <p className="font-mono text-[11px] uppercase tracking-widest text-warm-200">
-              A hello from Ashley, coming soon
-            </p>
-          </div>
+        <div className="mx-auto mt-10 max-w-lg">
+          <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/thankyou.mp4" poster="/images/thankyou_poster.jpg" vsl />
         </div>
 
         <div className="mx-auto mt-10 max-w-md">

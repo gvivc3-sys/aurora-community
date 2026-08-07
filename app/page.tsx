@@ -98,7 +98,7 @@ export default async function Home() {
 
             {/* Video */}
             <div className="animate-fade-in-up mx-auto mt-5 max-w-lg" style={{ animationDelay: "150ms" }}>
-              <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/placeholder.mp4" poster="/images/portrait_image_wide.jpg" vsl />
+              <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/welcome_video.mp4" poster="/images/welcome_video_poster.jpg" vsl />
             </div>
 
             {/* CTA buttons */}
