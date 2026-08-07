@@ -2,6 +2,13 @@
 
 import { useRef, useState } from "react";
 
+function formatTime(seconds: number): string {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
 export default function VideoCard({
   src,
   poster,
@@ -16,7 +23,11 @@ export default function VideoCard({
   vsl?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [scrubbing, setScrubbing] = useState(false);
 
   function handlePlay() {
     const v = videoRef.current;
@@ -38,7 +49,32 @@ export default function VideoCard({
     setPlaying(false);
   }
 
+  function seekFromPointer(clientX: number) {
+    const bar = barRef.current;
+    const v = videoRef.current;
+    if (!bar || !v || !videoDuration) return;
+    const rect = bar.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    v.currentTime = ratio * videoDuration;
+    setCurrentTime(ratio * videoDuration);
+  }
+
+  function handleScrubStart(e: React.PointerEvent<HTMLDivElement>) {
+    e.stopPropagation();
+    setScrubbing(true);
+    seekFromPointer(e.clientX);
+    const onMove = (ev: PointerEvent) => seekFromPointer(ev.clientX);
+    const onUp = () => {
+      setScrubbing(false);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+  }
+
   if (vsl) {
+    const progress = videoDuration ? (currentTime / videoDuration) * 100 : 0;
     return (
       <div className="relative w-full overflow-hidden rounded-xl shadow-2xl">
         <div className="relative aspect-video w-full bg-warm-900">
@@ -54,6 +90,10 @@ export default function VideoCard({
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
             onEnded={handleEnded}
+            onLoadedMetadata={(e) => setVideoDuration(e.currentTarget.duration)}
+            onTimeUpdate={(e) => {
+              if (!scrubbing) setCurrentTime(e.currentTarget.currentTime);
+            }}
           />
           {/* Visual play indicator — pointer-events-none so taps reach the video */}
           {!playing && (
@@ -75,6 +115,35 @@ export default function VideoCard({
                   />
                 </svg>
               </div>
+            </div>
+          )}
+          {/* Scrubber bar */}
+          {videoDuration > 0 && (
+            <div
+              className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2 pt-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span className="font-mono text-[10px] tabular-nums text-white/90">
+                {formatTime(currentTime)}
+              </span>
+              <div
+                ref={barRef}
+                className="group/bar relative h-3 flex-1 cursor-pointer touch-none"
+                onPointerDown={handleScrubStart}
+              >
+                <div className="absolute inset-y-0 top-1/2 h-1 w-full -translate-y-1/2 rounded-full bg-white/25" />
+                <div
+                  className="absolute inset-y-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-fuchsia-400"
+                  style={{ width: `${progress}%` }}
+                />
+                <div
+                  className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-300 shadow transition-transform group-hover/bar:scale-125"
+                  style={{ left: `${progress}%` }}
+                />
+              </div>
+              <span className="font-mono text-[10px] tabular-nums text-white/90">
+                {formatTime(videoDuration)}
+              </span>
             </div>
           )}
         </div>
