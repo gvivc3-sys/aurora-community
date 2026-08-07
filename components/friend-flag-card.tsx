@@ -5,7 +5,7 @@ import { HeartSolidIcon } from "@/components/icons";
 
 export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
   return (
-    <div className="flex items-start gap-3 border-b border-warm-100 p-4 transition-colors last:border-b-0 hover:bg-warm-50">
+    <div className="flex items-start gap-3 border-b border-warm-100 p-4 transition-colors last:border-b-0 hover:bg-warm-100">
       <Link href={`/profile/${flag.userId}`} className="shrink-0">
         {flag.avatarUrl ? (
           // eslint-disable-next-line @next/next/no-img-element

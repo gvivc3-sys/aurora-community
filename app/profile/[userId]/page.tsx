@@ -184,7 +184,7 @@ export default async function PublicProfilePage({
                   <Link
                     key={post.id}
                     href="/dashboard"
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-warm-50"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-warm-100"
                   >
                     <span
                       className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tag?.badge ?? "bg-warm-100 text-warm-600"}`}

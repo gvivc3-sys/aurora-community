@@ -121,7 +121,7 @@ export default function NotificationsList() {
           <Link
             key={notification.id}
             href={getNavigationHref(notification)}
-            className={`flex gap-3 border-b border-warm-100 px-4 py-3 transition-colors last:border-b-0 hover:bg-warm-50 ${
+            className={`flex gap-3 border-b border-warm-100 px-4 py-3 transition-colors last:border-b-0 hover:bg-warm-100 ${
               !notification.read ? "bg-warm-50/60" : ""
             }`}
           >

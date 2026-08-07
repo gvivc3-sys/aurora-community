@@ -112,8 +112,8 @@ function Dropdown({
                 value === o.key
                   ? "bg-warm-100 text-warm-900"
                   : i === focused
-                    ? "bg-warm-50 text-warm-800"
-                    : "text-warm-600 hover:bg-warm-50"
+                    ? "bg-warm-100 text-warm-800"
+                    : "text-warm-600 hover:bg-warm-100"
               }`}
             >
               {o.label}
