@@ -311,7 +311,7 @@ export default function PostActions({
                           </Link>
                         )}
                         <span className="shrink-0 text-warm-300">·</span>
-                        <span className="shrink-0 text-xs text-warm-400">
+                        <span className="shrink-0 text-xs text-warm-400" suppressHydrationWarning>
                           {timeAgo(comment.created_at)}
                         </span>
                         {canDelete && (
@@ -400,7 +400,7 @@ export default function PostActions({
                           </Link>
                         )}
                         <span className="shrink-0 text-warm-300">·</span>
-                        <span className="shrink-0 text-xs text-warm-400">
+                        <span className="shrink-0 text-xs text-warm-400" suppressHydrationWarning>
                           {timeAgo(comment.created_at)}
                         </span>
                         {canDelete && (

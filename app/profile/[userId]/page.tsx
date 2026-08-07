@@ -195,7 +195,7 @@ export default async function PublicProfilePage({
                     <span className="min-w-0 flex-1 truncate text-sm text-warm-700">
                       {label}
                     </span>
-                    <span className="shrink-0 text-xs text-warm-400">
+                    <span className="shrink-0 text-xs text-warm-400" suppressHydrationWarning>
                       {timeAgo(post.created_at)}
                     </span>
                   </Link>

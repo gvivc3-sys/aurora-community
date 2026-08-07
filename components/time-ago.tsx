@@ -29,6 +29,7 @@ export default function TimeAgo({
       dateTime={date}
       title={full}
       className={className}
+      suppressHydrationWarning
     >
       {relative(date)}
     </time>

@@ -330,7 +330,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                         </p>
                       )}
                     </div>
-                    <span className="shrink-0 text-xs text-warm-400">
+                    <span className="shrink-0 text-xs text-warm-400" suppressHydrationWarning>
                       {timeAgo(msg.created_at)}
                     </span>
                   </button>
@@ -372,7 +372,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                                   )}
                                 </p>
                                 {reply.created_at && (
-                                  <span className="text-xs text-warm-400">
+                                  <span className="text-xs text-warm-400" suppressHydrationWarning>
                                     {timeAgo(reply.created_at)}
                                   </span>
                                 )}

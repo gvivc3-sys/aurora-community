@@ -149,7 +149,7 @@ export default function NotificationsList() {
                   {notification.body_preview}
                 </p>
               )}
-              <p className="mt-0.5 text-xs text-warm-400">
+              <p className="mt-0.5 text-xs text-warm-400" suppressHydrationWarning>
                 {timeAgo(notification.created_at)}
               </p>
             </div>

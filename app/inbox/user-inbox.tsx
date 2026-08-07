@@ -293,7 +293,7 @@ export default function UserInbox({
                 className="rounded-xl border border-warm-200 bg-white px-4 py-3 shadow-sm"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-warm-400">
+                  <span className="text-xs text-warm-400" suppressHydrationWarning>
                     {timeAgo(msg.created_at)}
                   </span>
                   <div className="flex items-center gap-2">
@@ -336,7 +336,7 @@ export default function UserInbox({
                                 : `${reply.author_name} whispered back`}
                             </p>
                             {reply.created_at && (
-                              <span className="text-xs text-warm-400">
+                              <span className="text-xs text-warm-400" suppressHydrationWarning>
                                 {timeAgo(reply.created_at)}
                               </span>
                             )}
