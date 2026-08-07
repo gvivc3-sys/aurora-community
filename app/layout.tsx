@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     title: "Aurora",
   },
   icons: {
+    icon: "/icon.png",
     apple: "/apple-touch-icon.png",
   },
 };
