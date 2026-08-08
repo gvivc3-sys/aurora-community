@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { FriendFlag } from "@/lib/actions/friend-flags";
 import MessageButton from "@/components/message-button";
-import { HeartSolidIcon, EnvelopeIcon } from "@/components/icons";
+import UnpostButton from "@/components/unpost-button";
+import { HeartSolidIcon, EnvelopeIcon, ArrowUturnLeftIcon } from "@/components/icons";
 
 export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
   return (
@@ -31,7 +32,12 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
           </span>
         </div>
         <p className="mt-1.5 text-sm leading-relaxed text-warm-700">{flag.note}</p>
-        {!flag.isMine && (
+        {flag.isMine ? (
+          <UnpostButton className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
+            <ArrowUturnLeftIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5 group-hover:-rotate-12" />
+            Unpost
+          </UnpostButton>
+        ) : (
           <MessageButton
             userId={flag.userId}
             className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
