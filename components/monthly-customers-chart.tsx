@@ -14,23 +14,9 @@ const PAD_X = 12;
 const PAD_TOP = 20;
 const PAD_BOTTOM = 28;
 
-function smoothPath(points: { x: number; y: number }[]): string {
+function linearPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return "";
-  if (points.length === 1) return `M ${points[0].x},${points[0].y}`;
-
-  let d = `M ${points[0].x},${points[0].y}`;
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] ?? points[i];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] ?? p2;
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
-    d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
-  }
-  return d;
+  return points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x},${p.y}`).join(" ");
 }
 
 export default function MonthlyCustomersChart({
@@ -49,7 +35,7 @@ export default function MonthlyCustomersChart({
     y: PAD_TOP + (1 - d.count / max) * plotHeight,
   }));
 
-  const linePath = smoothPath(points);
+  const linePath = linearPath(points);
   const areaPath =
     points.length > 0
       ? `${linePath} L ${points[points.length - 1].x},${PAD_TOP + plotHeight} L ${points[0].x},${PAD_TOP + plotHeight} Z`

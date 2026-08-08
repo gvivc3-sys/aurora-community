@@ -16,6 +16,7 @@ import {
   MapPinIcon,
   BookmarkIcon,
   ArrowTopRightIcon,
+  EnvelopeIcon,
 } from "@/components/icons";
 import FaqAccordion from "@/components/faq-accordion";
 import PillarShowcase from "@/components/pillar-showcase";
@@ -267,7 +268,8 @@ export default async function Home() {
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
                   Just landed, anyone up for a hike this weekend? ⛰️
                 </p>
-                <span className="mt-3 inline-block rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                <span className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700">
+                  <EnvelopeIcon className="h-3.5 w-3.5" />
                   Message
                 </span>
               </div>
@@ -292,7 +294,8 @@ export default async function Home() {
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
                   Who's in Soho? 🙌🥐
                 </p>
-                <span className="mt-3 inline-block rounded-lg bg-warm-800 px-4 py-1.5 text-xs font-medium text-white shadow-sm">
+                <span className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700">
+                  <EnvelopeIcon className="h-3.5 w-3.5" />
                   Message
                 </span>
               </div>

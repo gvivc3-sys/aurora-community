@@ -35,6 +35,38 @@ async function fetchAllBalanceTransactions() {
   return txns;
 }
 
+async function countSince(
+  table: "posts" | "comments" | "friend_flags" | "threads" | "thread_replies",
+  since: string,
+) {
+  const { count } = await supabaseAdmin
+    .from(table)
+    .select("*", { count: "exact", head: true })
+    .gte("created_at", since);
+  return count ?? 0;
+}
+
+async function fetchSectionActivity() {
+  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
+  const [posts, comments, friendFlags, threads, threadReplies] = await Promise.all([
+    countSince("posts", since),
+    countSince("comments", since),
+    countSince("friend_flags", since),
+    countSince("threads", since),
+    countSince("thread_replies", since),
+  ]);
+
+  const sections = [
+    { label: "Portal", value: posts + comments },
+    { label: "Gather", value: friendFlags },
+    { label: "Discussions", value: threads + threadReplies },
+  ];
+
+  const total = sections.reduce((sum, s) => sum + s.value, 0);
+  return sections.map((s) => ({ ...s, percent: total > 0 ? Math.round((s.value / total) * 100) : 0 }));
+}
+
 export default async function AdminPage() {
   const supabase = await createClient();
   const {
@@ -46,10 +78,11 @@ export default async function AdminPage() {
   }
 
   // Fetch everything in parallel
-  const [usersRes, allSubs, allTxns] = await Promise.all([
+  const [usersRes, allSubs, allTxns, sectionActivity] = await Promise.all([
     supabaseAdmin.auth.admin.listUsers({ perPage: 1000 }),
     fetchAllSubscriptions(),
     fetchAllBalanceTransactions(),
+    fetchSectionActivity(),
   ]);
 
   const totalMembers = usersRes.data?.users?.length ?? 0;
@@ -86,10 +119,6 @@ export default async function AdminPage() {
         activeSubs.length /
         (30 * 24 * 60 * 60) // convert seconds to months
       : 0;
-
-  // LTV
-  const estimatedLtv =
-    monthlyChurnRate > 0 ? PRICE_PER_MONTH / monthlyChurnRate : 0;
 
   // New paying customers per month (last 12 months), based on currently
   // active/trialing subscriptions only.
@@ -129,10 +158,6 @@ export default async function AdminPage() {
   const healthStats = [
     { label: "Monthly Churn Rate", value: pct(monthlyChurnRate) },
     { label: "Avg Subscription Age", value: months(avgSubAge) },
-    {
-      label: "Estimated LTV",
-      value: estimatedLtv > 0 ? currency(Math.round(estimatedLtv)) : "N/A",
-    },
   ];
 
   return (
@@ -200,7 +225,7 @@ export default async function AdminPage() {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
             Health
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {healthStats.map((stat) => (
               <div
                 key={stat.label}
@@ -213,6 +238,37 @@ export default async function AdminPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Activity */}
+        <div className="mt-8">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
+            Activity by Section (Last 30 Days)
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {sectionActivity.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
+              >
+                <p className="text-3xl font-light tracking-tight text-warm-900">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-sm text-warm-500">{s.label}</p>
+                <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-warm-100">
+                  <div
+                    className="h-full rounded-full bg-warm-600"
+                    style={{ width: `${s.percent}%` }}
+                  />
+                </div>
+                <p className="mt-1.5 text-xs text-warm-400">{s.percent}% of activity</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-warm-400">
+            Posts, comments, replies, and Gather flags created in the last 30 days. This measures
+            content activity, not page views -- there&apos;s no visit-tracking analytics installed yet.
+          </p>
         </div>
       </div>
     </div>
