@@ -38,7 +38,7 @@ export default function ConversationComposer() {
         name="body"
         placeholder="What's on your mind?"
         maxLength={2000}
-        rows={3}
+        rows={12}
         required
         className="mt-3 w-full resize-none rounded-lg border border-warm-200 px-3 py-2 text-sm text-warm-900 placeholder:text-warm-300 focus:border-warm-400 focus:outline-none"
       />
