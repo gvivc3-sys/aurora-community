@@ -60,7 +60,7 @@ export default async function ConversationDetailPage({ params }: { params: Param
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <RealtimeRefresh table="thread_replies" />
       <RealtimeRefresh table="thread_reactions" />
-      <div className="mx-auto max-w-2xl px-2 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-2xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <Link
           href="/conversations"
           className="mb-4 inline-flex items-center gap-1 text-sm text-warm-500 transition-colors hover:text-warm-700"

@@ -109,7 +109,7 @@ export default async function PostPage({ params }: { params: Params }) {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-2xl px-2 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-2xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         {/* Post card */}
         <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
           {/* Header */}

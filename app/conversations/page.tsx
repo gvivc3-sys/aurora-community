@@ -50,7 +50,7 @@ export default async function ConversationsPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <RealtimeRefresh table="threads" />
-      <div className="mx-auto max-w-2xl px-2 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
+      <div className="mx-auto max-w-2xl px-3 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-light tracking-tight text-warm-900">Discussions</h1>
           <InfoTooltip text="Start a thread, or jump into one below. Active discussions stay near the top; the board holds the 15 most active at a time." />

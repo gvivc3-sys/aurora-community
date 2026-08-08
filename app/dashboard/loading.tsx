@@ -8,7 +8,7 @@ function Shimmer({ className }: { className?: string }) {
 
 function PostSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl border-b-8 border-background bg-white last:border-b-0 sm:border sm:border-warm-200 sm:shadow-sm">
       <div className="flex items-center gap-3 px-4 pt-4">
         <Shimmer className="h-8 w-8 shrink-0 rounded-full" />
         <div className="flex-1 space-y-1.5">
@@ -34,18 +34,27 @@ function PostSkeleton() {
 export default function DashboardLoading() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-3xl px-2 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <div className="flex justify-center">
+      <div className="mx-auto max-w-3xl px-3 pb-24 pt-3 sm:px-6 sm:pb-24 sm:pt-4 md:pb-12">
+        {/* Welcome card */}
+        <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm">
           <Shimmer className="h-4 w-40" />
-        </div>
-        <div className="mt-8">
-          <div className="flex gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <Shimmer key={i} className="h-7 w-16 rounded-full" />
-            ))}
+          <div className="mt-3 space-y-2">
+            <Shimmer className="h-3 w-full" />
+            <Shimmer className="h-3 w-5/6" />
+            <Shimmer className="h-3 w-2/3" />
           </div>
         </div>
-        <div className="mt-6 space-y-6">
+
+        {/* Filters */}
+        <div className="mt-4 flex items-center justify-between">
+          <div className="flex gap-2">
+            <Shimmer className="h-8 w-24 rounded-lg" />
+            <Shimmer className="h-8 w-24 rounded-lg" />
+          </div>
+          <Shimmer className="h-8 w-28 rounded-full" />
+        </div>
+
+        <div className="mt-6 space-y-0 sm:space-y-6">
           {[1, 2, 3].map((i) => (
             <PostSkeleton key={i} />
           ))}
