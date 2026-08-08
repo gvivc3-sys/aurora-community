@@ -7,7 +7,18 @@ import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon } from "@/components/icons";
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon, StarSolidIcon } from "@/components/icons";
+
+function AdminBadge({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-2 py-0.5 text-xs font-semibold text-amber-950 shadow-sm ${className}`}
+    >
+      <StarSolidIcon className="h-3 w-3" />
+      Admin
+    </span>
+  );
+}
 
 type NavUser = {
   email: string;
@@ -289,7 +300,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             {user.isAdmin && (
               <>
                 <div className="my-2 border-t border-warm-100" />
-                <p className="px-3 pb-0.5 pt-1.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
+                <p className="flex items-center gap-1 px-3 pb-0.5 pt-1.5 font-mono text-[10px] uppercase tracking-widest text-amber-600">
+                  <StarSolidIcon className="h-2.5 w-2.5" />
+                  Admin
+                </p>
                 <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
                   Management
                 </Link>
@@ -321,9 +335,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <span className="min-w-0 flex-1 truncate text-sm text-warm-700">
                 {user.username || user.email}
               </span>
-              {user.isAdmin && (
-                <span className="rounded-full bg-warm-900 px-2 py-0.5 text-xs font-medium text-warm-50">Admin</span>
-              )}
+              {user.isAdmin && <AdminBadge />}
             </Link>
             <form action={signOut}>
               <button
@@ -359,9 +371,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                     <p className="truncate text-sm font-medium text-warm-900">
                       {user.username || user.email}
                     </p>
-                    {user.isAdmin && (
-                      <span className="text-xs text-warm-500">Admin</span>
-                    )}
+                    {user.isAdmin && <AdminBadge className="mt-1" />}
                   </div>
                 </Link>
                 <div className="mt-4 space-y-1 border-t border-warm-100 pt-4">
@@ -409,7 +419,10 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   {user.isAdmin && (
                     <>
                       <div className="mx-3 my-1 border-t border-warm-100" />
-                      <p className="px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-warm-400">Admin</p>
+                      <p className="flex items-center gap-1 px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-amber-600">
+                        <StarSolidIcon className="h-2.5 w-2.5" />
+                        Admin
+                      </p>
                       <Link
                         href="/inbox"
                         onClick={() => setMenuOpen(false)}

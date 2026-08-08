@@ -4,6 +4,8 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { stripe } from "@/lib/stripe";
 import MonthlyCustomersChart from "@/components/monthly-customers-chart";
+import GrowthRangeSelect from "@/components/growth-range-select";
+import { StarSolidIcon } from "@/components/icons";
 
 const PRICE_PER_MONTH = 77;
 
@@ -67,7 +69,13 @@ async function fetchSectionActivity() {
   return sections.map((s) => ({ ...s, percent: total > 0 ? Math.round((s.value / total) * 100) : 0 }));
 }
 
-export default async function AdminPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function AdminPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -76,6 +84,19 @@ export default async function AdminPage() {
   if (!user || !isAdmin(user)) {
     redirect("/dashboard");
   }
+
+  const params = await searchParams;
+  const rawRange = params.range;
+  const range =
+    rawRange === "60d" || rawRange === "120d" || rawRange === "year" ? rawRange : "30d";
+  const rangeLabel =
+    range === "60d"
+      ? "Last 60 Days"
+      : range === "120d"
+        ? "Last 120 Days"
+        : range === "year"
+          ? "This Year"
+          : "Last 30 Days";
 
   // Fetch everything in parallel
   const [usersRes, allSubs, allTxns, sectionActivity] = await Promise.all([
@@ -120,26 +141,65 @@ export default async function AdminPage() {
         (30 * 24 * 60 * 60) // convert seconds to months
       : 0;
 
-  // New paying customers per month (last 12 months), based on currently
-  // active/trialing subscriptions only.
-  const monthlyCustomers = (() => {
+  // New paying customers over the selected range, based on currently
+  // active/trialing subscriptions only. "year" buckets by month; the
+  // day ranges bucket by day, with sparse labels so charts don't get
+  // cluttered with 60-120 overlapping labels.
+  function withSparseLabels<T extends { label: string }>(
+    buckets: T[],
+    maxLabels: number,
+  ): (T & { showLabel: boolean })[] {
+    if (buckets.length <= maxLabels) {
+      return buckets.map((b) => ({ ...b, showLabel: true }));
+    }
+    const step = (buckets.length - 1) / (maxLabels - 1);
+    const shown = new Set(
+      Array.from({ length: maxLabels }, (_, i) => Math.round(i * step)),
+    );
+    return buckets.map((b, i) => ({ ...b, showLabel: shown.has(i) }));
+  }
+
+  const growthData = (() => {
+    if (range === "year") {
+      const today = new Date();
+      const buckets = Array.from({ length: 12 }, (_, i) => {
+        const d = new Date(today.getFullYear(), today.getMonth() - (11 - i), 1);
+        return {
+          key: `${d.getFullYear()}-${d.getMonth()}`,
+          label: d.toLocaleDateString("en-US", { month: "short" }),
+          fullLabel: d.toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+          count: 0,
+        };
+      });
+      const indexByKey = new Map(buckets.map((b, i) => [b.key, i]));
+      for (const sub of activeSubs) {
+        const d = new Date(sub.start_date * 1000);
+        const idx = indexByKey.get(`${d.getFullYear()}-${d.getMonth()}`);
+        if (idx !== undefined) buckets[idx].count += 1;
+      }
+      return buckets.map((b) => ({ ...b, showLabel: true }));
+    }
+
+    const days = range === "60d" ? 60 : range === "120d" ? 120 : 30;
     const today = new Date();
-    const buckets = Array.from({ length: 12 }, (_, i) => {
-      const d = new Date(today.getFullYear(), today.getMonth() - (11 - i), 1);
+    today.setHours(0, 0, 0, 0);
+    const buckets = Array.from({ length: days }, (_, i) => {
+      const d = new Date(today);
+      d.setDate(d.getDate() - (days - 1 - i));
       return {
-        key: `${d.getFullYear()}-${d.getMonth()}`,
-        label: d.toLocaleDateString("en-US", { month: "short" }),
-        fullLabel: d.toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+        key: `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`,
+        label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+        fullLabel: d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
         count: 0,
       };
     });
     const indexByKey = new Map(buckets.map((b, i) => [b.key, i]));
     for (const sub of activeSubs) {
       const d = new Date(sub.start_date * 1000);
-      const idx = indexByKey.get(`${d.getFullYear()}-${d.getMonth()}`);
+      const idx = indexByKey.get(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
       if (idx !== undefined) buckets[idx].count += 1;
     }
-    return buckets;
+    return withSparseLabels(buckets, 7);
   })();
 
   const revenueStats = [
@@ -163,7 +223,8 @@ export default async function AdminPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-4xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
+        <p className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-2.5 py-1 font-mono text-xs uppercase tracking-[0.2em] text-amber-950 shadow-sm">
+          <StarSolidIcon className="h-3 w-3" />
           Admin
         </p>
         <h1 className="mt-2 text-2xl font-light tracking-tight text-warm-900">
@@ -173,9 +234,14 @@ export default async function AdminPage() {
         <div className="mt-6 space-y-4">
           {/* Growth */}
           <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
-            <h2 className="text-sm font-medium text-warm-500">New Paying Customers by Month</h2>
+            <div className="flex items-start justify-between gap-3">
+              <h2 className="text-sm font-medium text-warm-500">
+                New Paying Customers <span className="text-warm-400">({rangeLabel})</span>
+              </h2>
+              <GrowthRangeSelect current={range} />
+            </div>
             <div className="mt-4">
-              <MonthlyCustomersChart data={monthlyCustomers} />
+              <MonthlyCustomersChart data={growthData} />
             </div>
           </div>
 

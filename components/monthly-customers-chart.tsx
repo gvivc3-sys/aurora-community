@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 
-type MonthlyDatum = {
+type ChartDatum = {
   label: string;
   fullLabel: string;
   count: number;
+  showLabel?: boolean;
 };
 
 const WIDTH = 600;
 const HEIGHT = 160;
-const PAD_X = 12;
 const PAD_TOP = 16;
 const PAD_BOTTOM = 20;
 
@@ -22,16 +22,15 @@ function linearPath(points: { x: number; y: number }[]): string {
 export default function MonthlyCustomersChart({
   data,
 }: {
-  data: MonthlyDatum[];
+  data: ChartDatum[];
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   const max = Math.max(1, ...data.map((d) => d.count));
-  const plotWidth = WIDTH - PAD_X * 2;
   const plotHeight = HEIGHT - PAD_TOP - PAD_BOTTOM;
 
   const points = data.map((d, i) => ({
-    x: PAD_X + (data.length > 1 ? (i / (data.length - 1)) * plotWidth : plotWidth / 2),
+    x: data.length > 1 ? (i / (data.length - 1)) * WIDTH : WIDTH / 2,
     y: PAD_TOP + (1 - d.count / max) * plotHeight,
   }));
 
@@ -40,6 +39,8 @@ export default function MonthlyCustomersChart({
     points.length > 0
       ? `${linePath} L ${points[points.length - 1].x},${PAD_TOP + plotHeight} L ${points[0].x},${PAD_TOP + plotHeight} Z`
       : "";
+
+  const dotRadius = data.length > 60 ? 0 : data.length > 30 ? 2 : 3.5;
 
   return (
     <div>
@@ -58,9 +59,9 @@ export default function MonthlyCustomersChart({
           </defs>
 
           <line
-            x1={PAD_X}
+            x1={0}
             y1={PAD_TOP + plotHeight}
-            x2={WIDTH - PAD_X}
+            x2={WIDTH}
             y2={PAD_TOP + plotHeight}
             stroke="var(--warm-200)"
             strokeWidth={1}
@@ -87,16 +88,18 @@ export default function MonthlyCustomersChart({
                 onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
                 style={{ cursor: "pointer" }}
               />
-              <circle
-                cx={p.x}
-                cy={p.y}
-                r={hovered === i ? 5 : 3.5}
-                fill="white"
-                stroke="var(--warm-600)"
-                strokeWidth={2}
-                className="transition-all duration-150"
-                style={{ pointerEvents: "none" }}
-              />
+              {(dotRadius > 0 || hovered === i) && (
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r={hovered === i ? 5 : dotRadius}
+                  fill="white"
+                  stroke="var(--warm-600)"
+                  strokeWidth={2}
+                  className="transition-all duration-150"
+                  style={{ pointerEvents: "none" }}
+                />
+              )}
             </g>
           ))}
         </svg>
@@ -115,13 +118,13 @@ export default function MonthlyCustomersChart({
         )}
       </div>
 
-      <div className="mt-2 flex justify-between gap-1">
+      <div className="mt-2 flex gap-1">
         {data.map((d) => (
           <p
             key={d.fullLabel}
             className="min-w-0 flex-1 text-center text-[10px] text-warm-400"
           >
-            {d.label}
+            {d.showLabel !== false ? d.label : " "}
           </p>
         ))}
       </div>
