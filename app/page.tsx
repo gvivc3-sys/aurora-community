@@ -582,10 +582,10 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    Morning routines that actually stick? 🌞
+                    Morning routines for a calm nervous system 🌷
                   </p>
                   <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
-                    Curious what everyone&apos;s doing before 9am lately&hellip;
+                    Curious what your morning practices are for staying relaxed and feminine&hellip;
                   </p>
                   <div className="mt-2 flex items-center gap-3 text-xs text-warm-400">
                     <span>Sarah</span>
@@ -612,15 +612,15 @@ export default async function Home() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-warm-900">
-                    Post your pets!
+                    Post your breakfast ✨
                   </p>
                   <p className="mt-0.5 text-sm leading-relaxed text-warm-600">
-                    This is my cat Merlin 🥺💖
+                    This is my go to brekky lately! Eggs and sourdough toast with butter
                   </p>
                   <div className="relative mt-2 h-56 w-full overflow-hidden rounded-lg">
                     <Image
-                      src="/images/avatar_pool/woman_with_cat.jpeg"
-                      alt="A member with her cat, Merlin"
+                      src="/images/breakfast.jpeg"
+                      alt="Eggs and sourdough toast with butter"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 800px"
