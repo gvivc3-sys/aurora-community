@@ -154,7 +154,7 @@ export default function ProfileForm({ user }: { user: User }) {
                 />
               </label>
               <p className="mt-2 text-xs text-warm-400">
-                JPG, PNG, or GIF. Max 2 MB.
+                JPG, PNG, or GIF. Max 2 MB. Can be changed once every 48 hours.
               </p>
             </div>
           </div>
@@ -187,7 +187,9 @@ export default function ProfileForm({ user }: { user: User }) {
                 className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
                 placeholder="Pick a display name"
               />
-              <p className="mt-1 text-xs text-warm-400">Max 16 characters, no spaces.</p>
+              <p className="mt-1 text-xs text-warm-400">
+                Max 16 characters, no spaces. Can be changed once every 48 hours.
+              </p>
             </div>
 
             <div>

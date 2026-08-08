@@ -9,10 +9,10 @@ type MonthlyDatum = {
 };
 
 const WIDTH = 600;
-const HEIGHT = 220;
+const HEIGHT = 160;
 const PAD_X = 12;
-const PAD_TOP = 20;
-const PAD_BOTTOM = 28;
+const PAD_TOP = 16;
+const PAD_BOTTOM = 20;
 
 function linearPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return "";
@@ -42,12 +42,12 @@ export default function MonthlyCustomersChart({
       : "";
 
   return (
-    <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+    <div>
       <div className="relative">
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           className="w-full overflow-visible"
-          style={{ height: 220 }}
+          style={{ height: HEIGHT }}
           preserveAspectRatio="none"
         >
           <defs>
@@ -119,7 +119,7 @@ export default function MonthlyCustomersChart({
         {data.map((d) => (
           <p
             key={d.fullLabel}
-            className="min-w-0 flex-1 text-center font-mono text-[10px] uppercase tracking-wide text-warm-500"
+            className="min-w-0 flex-1 text-center text-[10px] text-warm-400"
           >
             {d.label}
           </p>

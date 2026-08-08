@@ -170,105 +170,87 @@ export default async function AdminPage() {
           Community Stats
         </h1>
 
-        {/* Growth */}
-        <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            New Paying Customers by Month
-          </p>
-          <div className="mt-4">
-            <MonthlyCustomersChart data={monthlyCustomers} />
+        <div className="mt-6 space-y-4">
+          {/* Growth */}
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">New Paying Customers by Month</h2>
+            <div className="mt-4">
+              <MonthlyCustomersChart data={monthlyCustomers} />
+            </div>
           </div>
-        </div>
 
-        {/* Revenue */}
-        <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            Revenue
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {revenueStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
-              >
-                <p className="text-3xl font-light tracking-tight text-warm-900">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm text-warm-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Subscribers */}
-        <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            Subscribers
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-4">
-            {subscriberStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
-              >
-                <p className="text-3xl font-light tracking-tight text-warm-900">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm text-warm-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Health */}
-        <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            Health
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {healthStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
-              >
-                <p className="text-3xl font-light tracking-tight text-warm-900">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm text-warm-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Activity */}
-        <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm-500">
-            Activity by Section (Last 30 Days)
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {sectionActivity.map((s) => (
-              <div
-                key={s.label}
-                className="rounded-xl border border-warm-200 bg-white p-6 text-center shadow-sm"
-              >
-                <p className="text-3xl font-light tracking-tight text-warm-900">
-                  {s.value}
-                </p>
-                <p className="mt-2 text-sm text-warm-500">{s.label}</p>
-                <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-warm-100">
-                  <div
-                    className="h-full rounded-full bg-warm-600"
-                    style={{ width: `${s.percent}%` }}
-                  />
+          {/* Revenue */}
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Revenue</h2>
+            <div className="mt-4 grid grid-cols-3 divide-x divide-warm-100">
+              {revenueStats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-xl font-light tracking-tight text-warm-900 sm:text-2xl">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-xs text-warm-500">{stat.label}</p>
                 </div>
-                <p className="mt-1.5 text-xs text-warm-400">{s.percent}% of activity</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <p className="mt-3 text-xs text-warm-400">
-            Posts, comments, replies, and Gather flags created in the last 30 days. This measures
-            content activity, not page views -- there&apos;s no visit-tracking analytics installed yet.
-          </p>
+
+          {/* Subscribers */}
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Subscribers</h2>
+            <div className="mt-4 grid grid-cols-4 divide-x divide-warm-100">
+              {subscriberStats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-xl font-light tracking-tight text-warm-900 sm:text-2xl">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-xs text-warm-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Health */}
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Health</h2>
+            <div className="mt-4 grid grid-cols-2 divide-x divide-warm-100">
+              {healthStats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-xl font-light tracking-tight text-warm-900 sm:text-2xl">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-xs text-warm-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Activity */}
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">
+              Activity by Section <span className="text-warm-400">(Last 30 Days)</span>
+            </h2>
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {sectionActivity.map((s) => (
+                <div key={s.label} className="text-center">
+                  <p className="text-xl font-light tracking-tight text-warm-900 sm:text-2xl">
+                    {s.value}
+                  </p>
+                  <p className="mt-1 text-xs text-warm-500">{s.label}</p>
+                  <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-warm-100">
+                    <div
+                      className="h-full rounded-full bg-warm-600"
+                      style={{ width: `${s.percent}%` }}
+                    />
+                  </div>
+                  <p className="mt-1.5 text-xs text-warm-400">{s.percent}%</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-warm-400">
+              Posts, comments, replies, and Gather flags created in the last 30 days. This measures
+              content activity, not page views -- there&apos;s no visit-tracking analytics installed yet.
+            </p>
+          </div>
         </div>
       </div>
     </div>
