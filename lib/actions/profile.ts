@@ -59,6 +59,8 @@ export async function updateProfile(
   const rawInstagram = instagramOptedOut
     ? ""
     : ((formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "");
+  const rawX = (formData.get("x_handle") as string)?.trim().replace(/^@/, "") ?? "";
+  const rawTiktok = (formData.get("tiktok_handle") as string)?.trim().replace(/^@/, "") ?? "";
   const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
   const locationCity = (formData.get("location_city") as string)?.trim() ?? "";
   const locationLat = formData.get("location_lat") as string;
@@ -86,6 +88,14 @@ export async function updateProfile(
 
   if (!rawInstagram && !instagramOptedOut) {
     return { error: "Add your Instagram handle, or opt out of sharing it." };
+  }
+
+  if (rawX && !/^[a-zA-Z0-9_]{1,15}$/.test(rawX)) {
+    return { error: "X handle must be 1-15 characters (letters, numbers, underscores)." };
+  }
+
+  if (rawTiktok && !/^[a-zA-Z0-9._]{1,24}$/.test(rawTiktok)) {
+    return { error: "TikTok handle must be 1-24 characters (letters, numbers, periods, underscores)." };
   }
 
   const lat = locationCity ? Number(locationLat) : NaN;
@@ -164,6 +174,8 @@ export async function updateProfile(
       bio: bio.slice(0, 300) || undefined,
       instagram_handle: rawInstagram,
       instagram_opted_out: instagramOptedOut,
+      x_handle: rawX,
+      tiktok_handle: rawTiktok,
       location_city: locationCity || undefined,
       location_lat: locationCity ? lat : undefined,
       location_lng: locationCity ? lng : undefined,

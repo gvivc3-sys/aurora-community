@@ -160,173 +160,227 @@ export default function ProfileForm({ user }: { user: User }) {
           </div>
         </div>
 
-        {/* Info card */}
-        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
-          <h2 className="text-sm font-medium text-warm-500">
-            Personal information
-          </h2>
+        <ProfileToastEffect state={state} />
 
-          <ProfileToastEffect state={state} />
+        <form action={formAction}>
+          {/* Personal information card */}
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">
+              Personal information
+            </h2>
 
-          <form action={formAction} className="mt-4 space-y-4">
-            <div>
-              <label
-                htmlFor="username"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                Chosen Name
-              </label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                defaultValue={meta.username ?? ""}
-                maxLength={16}
-                pattern="\S+"
-                title="No spaces allowed"
-                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
-                placeholder="Pick a display name"
-              />
-              <p className="mt-1 text-xs text-warm-400">
-                Max 16 characters, no spaces. Can be changed once every 48 hours.
-              </p>
-            </div>
-
-            <div>
-              <label
-                htmlFor="handle"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                Aurora Handle
-              </label>
-              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
-                <span className="pl-3 text-sm text-warm-400">@</span>
-                <input
-                  id="handle"
-                  name="handle"
-                  type="text"
-                  defaultValue={meta.handle ?? ""}
-                  maxLength={14}
-                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
-                  placeholder="auto-generated from your name"
-                />
-              </div>
-              <p className="mt-1 text-xs text-warm-400">
-                3-14 characters. Lowercase letters, numbers, underscores. Must start with a letter.
-              </p>
-            </div>
-
-            <div>
-              <label
-                htmlFor="birthday"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                Birthday
-              </label>
-              <input
-                id="birthday"
-                name="birthday"
-                type="date"
-                min="1920-01-01"
-                max={new Date().toISOString().split("T")[0]}
-                value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
-                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
-              />
-            </div>
-
-            {zodiac && (
-              <div className="rounded-md bg-warm-100 p-3 text-sm text-warm-700">
-                <span className="text-lg">{zodiac.symbol}</span>{" "}
-                <strong>{zodiac.name}</strong>, {zodiac.element} sign (
-                {zodiac.dateRange})
-              </div>
-            )}
-
-            <div>
-              <label
-                htmlFor="bio"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                What brings you to the Aurora community?
-              </label>
-              <textarea
-                id="bio"
-                name="bio"
-                rows={3}
-                maxLength={300}
-                defaultValue={meta.bio ?? ""}
-                className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
-                placeholder="Tell the portal a little about yourself..."
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="instagram_handle"
-                className="mb-1 block text-sm font-medium text-warm-700"
-              >
-                Instagram
-              </label>
-              <div
-                className={`flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500 ${
-                  instagramOptedOut ? "opacity-50" : ""
-                }`}
-              >
-                <span className="pl-3 text-sm text-warm-400">@</span>
-                <input
-                  id="instagram_handle"
-                  name="instagram_handle"
-                  type="text"
-                  disabled={instagramOptedOut}
-                  value={instagramHandle}
-                  onChange={(e) => setInstagramHandle(e.target.value)}
-                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0 disabled:cursor-not-allowed"
-                  placeholder="yourhandle"
-                />
-              </div>
-
-              <div className="mt-2 flex items-center justify-between">
-                <span className="text-xs text-warm-500">I'd rather not share my Instagram</span>
-                <input type="hidden" name="instagram_opted_out" value={instagramOptedOut ? "on" : ""} />
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={instagramOptedOut}
-                  onClick={() =>
-                    setInstagramOptedOut((prev) => {
-                      const next = !prev;
-                      if (next) setInstagramHandle("");
-                      return next;
-                    })
-                  }
-                  className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
-                    instagramOptedOut ? "bg-warm-900" : "bg-warm-300"
-                  }`}
+            <div className="mt-4 space-y-4">
+              <div>
+                <label
+                  htmlFor="username"
+                  className="mb-1 block text-sm font-medium text-warm-700"
                 >
-                  <span
-                    className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm ring-0 transition-transform ${
-                      instagramOptedOut ? "translate-x-4" : "translate-x-0"
-                    }`}
-                  />
-                </button>
+                  Chosen Name
+                </label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  defaultValue={meta.username ?? ""}
+                  maxLength={16}
+                  pattern="\S+"
+                  title="No spaces allowed"
+                  className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                  placeholder="Pick a display name"
+                />
+                <p className="mt-1 text-xs text-warm-400">
+                  Max 16 characters, no spaces. Can be changed once every 48 hours.
+                </p>
               </div>
 
-              {instagramOptedOut ? (
-                <div className="mt-2 rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
-                  You need to add your Instagram to participate on Gather!
+              <div>
+                <label
+                  htmlFor="handle"
+                  className="mb-1 block text-sm font-medium text-warm-700"
+                >
+                  Aurora Handle
+                </label>
+                <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                  <span className="pl-3 text-sm text-warm-400">@</span>
+                  <input
+                    id="handle"
+                    name="handle"
+                    type="text"
+                    defaultValue={meta.handle ?? ""}
+                    maxLength={14}
+                    className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                    placeholder="auto-generated from your name"
+                  />
                 </div>
-              ) : (
                 <p className="mt-1 text-xs text-warm-400">
-                  Just the handle. Required to earn your verified badge and post on Gather.
+                  3-14 characters. Lowercase letters, numbers, underscores. Must start with a letter.
                 </p>
-              )}
-            </div>
+              </div>
 
-            <div>
-              <label className="mb-1 block text-sm font-medium text-warm-700">
-                Location
-              </label>
+              <div>
+                <label
+                  htmlFor="birthday"
+                  className="mb-1 block text-sm font-medium text-warm-700"
+                >
+                  Birthday
+                </label>
+                <input
+                  id="birthday"
+                  name="birthday"
+                  type="date"
+                  min="1920-01-01"
+                  max={new Date().toISOString().split("T")[0]}
+                  value={birthday}
+                  onChange={(e) => setBirthday(e.target.value)}
+                  className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                />
+              </div>
+
+              {zodiac && (
+                <div className="rounded-md bg-warm-100 p-3 text-sm text-warm-700">
+                  <span className="text-lg">{zodiac.symbol}</span>{" "}
+                  <strong>{zodiac.name}</strong>, {zodiac.element} sign (
+                  {zodiac.dateRange})
+                </div>
+              )}
+
+              <div>
+                <label
+                  htmlFor="bio"
+                  className="mb-1 block text-sm font-medium text-warm-700"
+                >
+                  What brings you to the Aurora community?
+                </label>
+                <textarea
+                  id="bio"
+                  name="bio"
+                  rows={3}
+                  maxLength={300}
+                  defaultValue={meta.bio ?? ""}
+                  className="w-full rounded-md border border-warm-300 px-3 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-500 focus:outline-none focus:ring-1 focus:ring-warm-500"
+                  placeholder="Tell the portal a little about yourself..."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Socials card */}
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Socials</h2>
+
+            <div className="mt-4 space-y-5">
+              <div>
+                <div className="flex items-center justify-between gap-3">
+                  <label
+                    htmlFor="instagram_handle"
+                    className="text-sm font-medium text-warm-700"
+                  >
+                    Instagram <span className="text-fuchsia-500">*</span>
+                  </label>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span className="text-xs text-warm-500">I&apos;d rather not share it</span>
+                    <input type="hidden" name="instagram_opted_out" value={instagramOptedOut ? "on" : ""} />
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-checked={instagramOptedOut}
+                      onClick={() =>
+                        setInstagramOptedOut((prev) => {
+                          const next = !prev;
+                          if (next) setInstagramHandle("");
+                          return next;
+                        })
+                      }
+                      className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+                        instagramOptedOut ? "bg-warm-900" : "bg-warm-300"
+                      }`}
+                    >
+                      <span
+                        className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm ring-0 transition-transform ${
+                          instagramOptedOut ? "translate-x-4" : "translate-x-0"
+                        }`}
+                      />
+                    </button>
+                  </div>
+                </div>
+                <p className="mt-1 text-xs text-warm-400">
+                  Useful for verifying you are who you say you are to other users!
+                </p>
+
+                {!instagramOptedOut && (
+                  <div className="mt-2 flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                    <span className="pl-3 text-sm text-warm-400">@</span>
+                    <input
+                      id="instagram_handle"
+                      name="instagram_handle"
+                      type="text"
+                      value={instagramHandle}
+                      onChange={(e) => setInstagramHandle(e.target.value)}
+                      className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                      placeholder="yourhandle"
+                    />
+                  </div>
+                )}
+
+                {instagramOptedOut && (
+                  <div className="mt-2 rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
+                    You need to add your Instagram to participate on Gather!
+                  </div>
+                )}
+              </div>
+
+              <div className="border-t border-warm-100 pt-5">
+                <label
+                  htmlFor="x_handle"
+                  className="mb-1 block text-sm font-medium text-warm-700"
+                >
+                  X (Twitter) <span className="font-normal text-warm-400">(optional)</span>
+                </label>
+                <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                  <span className="pl-3 text-sm text-warm-400">@</span>
+                  <input
+                    id="x_handle"
+                    name="x_handle"
+                    type="text"
+                    defaultValue={meta.x_handle ?? ""}
+                    maxLength={15}
+                    className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                    placeholder="yourhandle"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="tiktok_handle"
+                  className="mb-1 block text-sm font-medium text-warm-700"
+                >
+                  TikTok <span className="font-normal text-warm-400">(optional)</span>
+                </label>
+                <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                  <span className="pl-3 text-sm text-warm-400">@</span>
+                  <input
+                    id="tiktok_handle"
+                    name="tiktok_handle"
+                    type="text"
+                    defaultValue={meta.tiktok_handle ?? ""}
+                    maxLength={24}
+                    className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                    placeholder="yourhandle"
+                  />
+                </div>
+              </div>
+
+              <p className="text-xs text-warm-400">
+                <span className="text-fuchsia-500">*</span> Required to earn your verified badge and post on Gather. Everything else here is just for members who want to share more.
+              </p>
+            </div>
+          </div>
+
+          {/* Location card */}
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+            <h2 className="text-sm font-medium text-warm-500">Location</h2>
+            <div className="mt-4">
               <LocationPicker
                 initialCity={meta.location_city}
                 initialLat={meta.location_lat}
@@ -340,7 +394,9 @@ export default function ProfileForm({ user }: { user: User }) {
                 Optional. City-level only. We never store your exact address.
               </p>
             </div>
+          </div>
 
+          <div className="mt-6">
             <button
               type="submit"
               disabled={pending || (!instagramHandle.trim() && !instagramOptedOut)}
@@ -349,12 +405,13 @@ export default function ProfileForm({ user }: { user: User }) {
               {pending ? "Saving..." : "Save changes"}
             </button>
             {!instagramHandle.trim() && !instagramOptedOut && (
-              <p className="text-center text-xs text-warm-400">
+              <p className="mt-2 text-center text-xs text-warm-400">
                 Add your Instagram or opt out above to save.
               </p>
             )}
-          </form>
-        </div>
+          </div>
+        </form>
+
         {/* Subscription card */}
         <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">Subscription</h2>
