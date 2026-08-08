@@ -45,12 +45,13 @@ export default async function LibraryPage() {
           Your collection of guides, books, and resources, all yours to keep forever.
         </p>
 
-        <div className="mt-6 space-y-3">
-          {items.length === 0 && (
+        <div className="mt-6">
+          {items.length === 0 ? (
             <p className="py-12 text-center text-sm text-warm-400">
               No files yet. Check back soon.
             </p>
-          )}
+          ) : (
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-3">
           {items.map(({ filename, url }) => {
             const type = fileType(filename);
             const name = cleanName(filename);
@@ -62,7 +63,7 @@ export default async function LibraryPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="group flex cursor-pointer items-center gap-4 rounded-xl border border-warm-200 bg-white px-5 py-4 shadow-sm transition-colors hover:bg-warm-50 active:scale-[0.99]"
+                className="group flex cursor-pointer items-center gap-4 border-b border-warm-100 px-5 py-4 transition-colors last:border-b-0 hover:bg-warm-50 active:scale-[0.99] sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm"
               >
                 <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${
                   type === "pdf"   ? "bg-rose-50 text-rose-500" :
@@ -102,6 +103,8 @@ export default async function LibraryPage() {
               </a>
             );
           })}
+            </div>
+          )}
         </div>
       </div>
     </div>

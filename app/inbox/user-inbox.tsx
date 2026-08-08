@@ -290,7 +290,7 @@ export default function UserInbox({
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className="rounded-xl border border-warm-200 bg-white px-4 py-3 shadow-sm"
+                className="rounded-xl border border-warm-200 bg-white px-4 py-3 shadow-none sm:shadow-sm"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-warm-400" suppressHydrationWarning>

@@ -95,7 +95,7 @@ export default async function AdminProfilesPage() {
           {users.length} {users.length === 1 ? "member" : "members"}
         </p>
 
-        <div className="mt-8 space-y-3">
+        <div className="mt-8 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-3">
           {sorted.map((u) => {
             const sub = subByUserId.get(u.id);
             const status = sub?.status ?? "none";
@@ -109,7 +109,7 @@ export default async function AdminProfilesPage() {
             return (
               <div
                 key={u.id}
-                className="rounded-xl border border-warm-200 bg-white p-4 shadow-sm sm:p-5"
+                className="border-b border-warm-100 bg-white p-4 last:border-b-0 sm:rounded-xl sm:border sm:border-warm-200 sm:p-5 sm:shadow-sm"
               >
                 <div className="flex items-start gap-4">
                   <Link href={`/profile/${u.id}`} className="shrink-0">

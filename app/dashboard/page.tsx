@@ -223,9 +223,10 @@ export default async function DashboardPage({
           <FeedFilters />
         </div>
 
-        <div className="mt-6 space-y-6">
+        <div className="mt-6">
           {posts && posts.length > 0 ? (
-            posts.map((post) => {
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-6">
+            {posts.map((post) => {
               const video =
                 post.type === "video" && post.video_url
                   ? extractVideoId(post.video_url)
@@ -237,7 +238,7 @@ export default async function DashboardPage({
                 <div
                   key={post.id}
                   id={`post-${post.id}`}
-                  className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm scroll-mt-16"
+                  className="border-b border-warm-100 bg-white last:border-b-0 scroll-mt-16 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm sm:last:border-b-0"
                 >
                   {/* Header: author info + tags */}
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
@@ -378,7 +379,8 @@ export default async function DashboardPage({
                   />
                 </div>
               );
-            })
+            })}
+            </div>
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg font-light text-warm-400">The portal is quiet for now.</p>

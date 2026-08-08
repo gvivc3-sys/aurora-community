@@ -172,7 +172,7 @@ export default async function AdminPage() {
 
         <div className="mt-6 space-y-4">
           {/* Growth */}
-          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">New Paying Customers by Month</h2>
             <div className="mt-4">
               <MonthlyCustomersChart data={monthlyCustomers} />
@@ -180,7 +180,7 @@ export default async function AdminPage() {
           </div>
 
           {/* Revenue */}
-          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Revenue</h2>
             <div className="mt-4 grid grid-cols-3 divide-x divide-warm-100">
               {revenueStats.map((stat) => (
@@ -195,7 +195,7 @@ export default async function AdminPage() {
           </div>
 
           {/* Subscribers */}
-          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Subscribers</h2>
             <div className="mt-4 grid grid-cols-4 divide-x divide-warm-100">
               {subscriberStats.map((stat) => (
@@ -210,7 +210,7 @@ export default async function AdminPage() {
           </div>
 
           {/* Health */}
-          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Health</h2>
             <div className="mt-4 grid grid-cols-2 divide-x divide-warm-100">
               {healthStats.map((stat) => (
@@ -225,7 +225,7 @@ export default async function AdminPage() {
           </div>
 
           {/* Activity */}
-          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">
               Activity by Section <span className="text-warm-400">(Last 30 Days)</span>
             </h2>

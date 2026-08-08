@@ -26,13 +26,14 @@ export default async function MessagesPage() {
       <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Private Messages</h1>
 
-        <div className="mt-6 space-y-2">
+        <div className="mt-6">
           {conversations.length > 0 ? (
-            conversations.map((c) => (
+            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-2">
+            {conversations.map((c) => (
               <Link
                 key={c.conversationId}
                 href={`/messages/${c.conversationId}`}
-                className={`flex cursor-pointer items-center gap-3 rounded-xl border border-warm-200 bg-white p-4 shadow-sm transition-colors hover:bg-warm-50 ${c.unread ? "bg-warm-50/60" : ""}`}
+                className={`flex cursor-pointer items-center gap-3 border-b border-warm-100 p-4 transition-colors last:border-b-0 hover:bg-warm-50 sm:rounded-xl sm:border sm:border-warm-200 sm:shadow-sm ${c.unread ? "bg-warm-50/60" : "bg-white"}`}
               >
                 {c.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -56,7 +57,8 @@ export default async function MessagesPage() {
                 </div>
                 {c.unread && <div className="h-2 w-2 shrink-0 rounded-full bg-red-500" />}
               </Link>
-            ))
+            ))}
+            </div>
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg font-light text-warm-400">No private messages yet.</p>

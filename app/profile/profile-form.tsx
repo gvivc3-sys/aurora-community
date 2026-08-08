@@ -107,7 +107,7 @@ export default function ProfileForm({ user }: { user: User }) {
         <p className="mt-1 text-sm text-warm-500">{user.email}</p>
 
         {/* Profile completeness */}
-        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-medium text-warm-500">Profile completeness</h2>
             <span className="text-sm font-medium text-warm-700">
@@ -133,7 +133,7 @@ export default function ProfileForm({ user }: { user: User }) {
         </div>
 
         {/* Avatar card */}
-        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-8 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">Profile picture</h2>
           <div className="mt-4 flex items-center gap-5">
             <Avatar
@@ -164,7 +164,7 @@ export default function ProfileForm({ user }: { user: User }) {
 
         <form action={formAction}>
           {/* Personal information card */}
-          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">
               Personal information
             </h2>
@@ -265,7 +265,7 @@ export default function ProfileForm({ user }: { user: User }) {
           </div>
 
           {/* Socials card */}
-          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Socials</h2>
 
             <div className="mt-4 space-y-5">
@@ -376,7 +376,7 @@ export default function ProfileForm({ user }: { user: User }) {
           </div>
 
           {/* Location card */}
-          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+          <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
             <h2 className="text-sm font-medium text-warm-500">Location</h2>
             <div className="mt-4">
               <LocationPicker
@@ -411,7 +411,7 @@ export default function ProfileForm({ user }: { user: User }) {
         </form>
 
         {/* Subscription card */}
-        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-warm-200 bg-white p-6 shadow-none sm:shadow-sm">
           <h2 className="text-sm font-medium text-warm-500">Subscription</h2>
           <p className="mt-2 text-sm text-warm-700">
             Manage your billing, update payment method, or cancel your
