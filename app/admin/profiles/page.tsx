@@ -44,7 +44,17 @@ async function fetchAllCharges() {
   return charges;
 }
 
-export default async function AdminProfilesPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function AdminProfilesPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const params = await searchParams;
+  const activeOnly = params.status === "active";
+  const payingOnly = params.payments === "gt0";
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -82,6 +92,33 @@ export default async function AdminProfilesPage() {
     return bTime - aTime;
   });
 
+  const rows = sorted
+    .map((u) => {
+      const sub = subByUserId.get(u.id);
+      const status = sub?.status ?? "none";
+      const payments = sub?.stripe_customer_id
+        ? (chargeCountByCustomer.get(sub.stripe_customer_id) ?? 0)
+        : 0;
+      return { u, sub, status, payments };
+    })
+    .filter((row) => (activeOnly ? row.status === "active" : true))
+    .filter((row) => (payingOnly ? row.payments > 0 : true));
+
+  const activeHref = activeOnly
+    ? { status: undefined, payments: params.payments }
+    : { status: "active", payments: params.payments };
+  const payingHref = payingOnly
+    ? { status: params.status, payments: undefined }
+    : { status: params.status, payments: "gt0" };
+
+  function toHref(next: { status?: string | string[] | undefined; payments?: string | string[] | undefined }) {
+    const qs = new URLSearchParams();
+    if (next.status) qs.set("status", String(next.status));
+    if (next.payments) qs.set("payments", String(next.payments));
+    const s = qs.toString();
+    return s ? `/admin/profiles?${s}` : "/admin/profiles";
+  }
+
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-4xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
@@ -92,16 +129,30 @@ export default async function AdminProfilesPage() {
           Profiles
         </h1>
         <p className="mt-1 text-sm text-warm-500">
-          {users.length} {users.length === 1 ? "member" : "members"}
+          {rows.length} of {users.length} {users.length === 1 ? "member" : "members"}
         </p>
 
-        <div className="mt-8 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-3">
-          {sorted.map((u) => {
-            const sub = subByUserId.get(u.id);
-            const status = sub?.status ?? "none";
-            const payments = sub?.stripe_customer_id
-              ? (chargeCountByCustomer.get(sub.stripe_customer_id) ?? 0)
-              : 0;
+        <div className="mt-4 flex items-center gap-2">
+          <Link
+            href={toHref(activeHref)}
+            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+              activeOnly ? "bg-warm-800 text-white" : "border border-warm-200 text-warm-600 hover:bg-warm-100"
+            }`}
+          >
+            Active
+          </Link>
+          <Link
+            href={toHref(payingHref)}
+            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+              payingOnly ? "bg-warm-800 text-white" : "border border-warm-200 text-warm-600 hover:bg-warm-100"
+            }`}
+          >
+            Payments &gt; 0
+          </Link>
+        </div>
+
+        <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-2">
+          {rows.map(({ u, status, payments }) => {
             const username =
               u.user_metadata?.username ?? u.user_metadata?.name ?? null;
             const avatarUrl = u.user_metadata?.custom_avatar_url ?? u.user_metadata?.avatar_url ?? null;
@@ -109,55 +160,35 @@ export default async function AdminProfilesPage() {
             return (
               <div
                 key={u.id}
-                className="border-b border-warm-100 bg-white p-4 last:border-b-0 sm:rounded-xl sm:border sm:border-warm-200 sm:p-5 sm:shadow-sm"
+                className="flex items-center gap-3 border-b border-warm-100 bg-white px-3 py-2.5 last:border-b-0 sm:rounded-lg sm:border sm:border-warm-200 sm:px-4 sm:py-3"
               >
-                <div className="flex items-start gap-4">
-                  <Link href={`/profile/${u.id}`} className="shrink-0">
-                    <Avatar
-                      src={avatarUrl}
-                      name={username}
-                      email={u.email}
-                      size="sm"
-                    />
-                  </Link>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <Link
-                        href={`/profile/${u.id}`}
-                        className="truncate text-sm font-medium text-warm-900 hover:underline"
-                      >
-                        {username || u.email || "Unknown"}
-                      </Link>
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${statusColors[status] ?? "bg-warm-100 text-warm-500"}`}
-                      >
-                        {status === "none" ? "no sub" : status.replace("_", " ")}
-                      </span>
-                    </div>
-                    {username && u.email && (
-                      <p className="mt-0.5 truncate text-xs text-warm-400">
-                        {u.email}
-                      </p>
-                    )}
-                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-warm-500">
-                      <span>
-                        Signed up{" "}
-                        <span className="text-warm-700">
-                          {formatDate(u.created_at)}
-                        </span>
-                      </span>
-                      <span>
-                        Last active{" "}
-                        <span className="text-warm-700">
-                          {formatRelative(u.last_sign_in_at)}
-                        </span>
-                      </span>
-                      <span>
-                        Payments{" "}
-                        <span className="text-warm-700">{payments}</span>
-                      </span>
-                    </div>
+                <Link href={`/profile/${u.id}`} className="shrink-0">
+                  <Avatar
+                    src={avatarUrl}
+                    name={username}
+                    email={u.email}
+                    size="sm"
+                  />
+                </Link>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <Link
+                      href={`/profile/${u.id}`}
+                      className="truncate text-sm font-medium text-warm-900 hover:underline"
+                    >
+                      {username || u.email || "Unknown"}
+                    </Link>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${statusColors[status] ?? "bg-warm-100 text-warm-500"}`}
+                    >
+                      {status === "none" ? "no sub" : status.replace("_", " ")}
+                    </span>
                   </div>
+                  <p className="mt-0.5 truncate text-xs text-warm-400">
+                    {username && u.email ? `${u.email} · ` : ""}
+                    Signed up {formatDate(u.created_at)} · Active {formatRelative(u.last_sign_in_at)} ·{" "}
+                    {payments} payment{payments === 1 ? "" : "s"}
+                  </p>
                 </div>
               </div>
             );

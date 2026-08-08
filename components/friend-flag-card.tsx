@@ -34,7 +34,7 @@ export default function FriendFlagCard({ flag, isAdmin = false }: { flag: Friend
         <p className="mt-1.5 text-sm leading-relaxed text-warm-700">{flag.note}</p>
         {flag.about && (
           <div className="mt-2 rounded-lg bg-warm-50 px-3 py-2">
-            <p className="text-[10px] font-medium uppercase tracking-wide text-warm-400">Also into</p>
+            <p className="text-[10px] font-medium uppercase tracking-wide text-warm-400">FYI</p>
             <p className="mt-0.5 text-sm leading-relaxed text-warm-600">{flag.about}</p>
           </div>
         )}
