@@ -40,7 +40,11 @@ export default function MonthlyCustomersChart({
       ? `${linePath} L ${points[points.length - 1].x},${PAD_TOP + plotHeight} L ${points[0].x},${PAD_TOP + plotHeight} Z`
       : "";
 
-  const dotRadius = data.length > 60 ? 0 : data.length > 30 ? 2 : 3.5;
+  // Dot markers are plain HTML circles positioned by percentage, not SVG
+  // <circle> elements — the SVG is stretched non-uniformly (preserveAspectRatio
+  // "none") to fill the card width, which would otherwise squash circles into
+  // ovals. Only show them when there are few enough points to not overlap.
+  const showDots = data.length <= 60;
 
   return (
     <div>
@@ -76,33 +80,33 @@ export default function MonthlyCustomersChart({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+        </svg>
 
+        <div className="absolute inset-0">
           {points.map((p, i) => (
-            <g key={data[i].fullLabel}>
-              <circle
-                cx={p.x}
-                cy={p.y}
-                r={14}
-                fill="transparent"
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
-                style={{ cursor: "pointer" }}
-              />
-              {(dotRadius > 0 || hovered === i) && (
-                <circle
-                  cx={p.x}
-                  cy={p.y}
-                  r={hovered === i ? 5 : dotRadius}
-                  fill="white"
-                  stroke="var(--warm-600)"
-                  strokeWidth={2}
-                  className="transition-all duration-150"
-                  style={{ pointerEvents: "none" }}
+            <div
+              key={data[i].fullLabel}
+              className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+              style={{
+                left: `${(p.x / WIDTH) * 100}%`,
+                top: `${(p.y / HEIGHT) * 100}%`,
+                width: 20,
+                height: 20,
+                cursor: "pointer",
+              }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
+            >
+              {(showDots || hovered === i) && (
+                <span
+                  className={`rounded-full border-2 border-warm-600 bg-white transition-all duration-150 ${
+                    hovered === i ? "h-[10px] w-[10px]" : "h-[7px] w-[7px]"
+                  }`}
                 />
               )}
-            </g>
+            </div>
           ))}
-        </svg>
+        </div>
 
         {hovered !== null && (
           <div
@@ -118,7 +122,7 @@ export default function MonthlyCustomersChart({
         )}
       </div>
 
-      <div className="mt-2 flex gap-1">
+      <div className="mt-2 flex">
         {data.map((d) => (
           <p
             key={d.fullLabel}

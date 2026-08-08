@@ -7,18 +7,8 @@ import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon, StarSolidIcon } from "@/components/icons";
-
-function AdminBadge({ className = "" }: { className?: string }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-2 py-0.5 text-xs font-semibold text-amber-950 shadow-sm ${className}`}
-    >
-      <StarSolidIcon className="h-3 w-3" />
-      Admin
-    </span>
-  );
-}
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon } from "@/components/icons";
+import AdminBadge from "@/components/admin-badge";
 
 type NavUser = {
   email: string;
@@ -300,8 +290,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             {user.isAdmin && (
               <>
                 <div className="my-2 border-t border-warm-100" />
-                <p className="flex items-center gap-1 px-3 pb-0.5 pt-1.5 font-mono text-[10px] uppercase tracking-widest text-amber-600">
-                  <StarSolidIcon className="h-2.5 w-2.5" />
+                <p className="px-3 pb-0.5 pt-1.5 text-[10px] font-semibold uppercase tracking-widest text-amber-600">
                   Admin
                 </p>
                 <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
@@ -419,8 +408,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   {user.isAdmin && (
                     <>
                       <div className="mx-3 my-1 border-t border-warm-100" />
-                      <p className="flex items-center gap-1 px-3 pt-1.5 pb-0.5 font-mono text-[10px] uppercase tracking-widest text-amber-600">
-                        <StarSolidIcon className="h-2.5 w-2.5" />
+                      <p className="px-3 pt-1.5 pb-0.5 text-[10px] font-semibold uppercase tracking-widest text-amber-600">
                         Admin
                       </p>
                       <Link

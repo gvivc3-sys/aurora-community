@@ -5,7 +5,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isAdmin } from "@/lib/roles";
 import { stripe } from "@/lib/stripe";
 import Avatar from "@/components/avatar";
-import { StarSolidIcon } from "@/components/icons";
+import AdminBadge from "@/components/admin-badge";
 
 function formatDate(iso: string | null | undefined): string {
   if (!iso) return "—";
@@ -123,10 +123,7 @@ export default async function AdminProfilesPage({
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-4xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        <p className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-2.5 py-1 font-mono text-xs uppercase tracking-[0.2em] text-amber-950 shadow-sm">
-          <StarSolidIcon className="h-3 w-3" />
-          Admin
-        </p>
+        <AdminBadge />
         <h1 className="mt-2 text-2xl font-light tracking-tight text-warm-900">
           Profiles
         </h1>
