@@ -5,7 +5,7 @@ import { HeartSolidIcon, EnvelopeIcon } from "@/components/icons";
 
 export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
   return (
-    <div className="flex items-start gap-3 border-b border-warm-100 p-4 transition-colors last:border-b-0 hover:bg-warm-100">
+    <div className="flex items-start gap-3 border-b border-warm-100 p-4 last:border-b-0">
       <Link href={`/profile/${flag.userId}`} className="shrink-0">
         {flag.avatarUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -34,7 +34,7 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
         {!flag.isMine && (
           <MessageButton
             userId={flag.userId}
-            className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-100 active:scale-[0.98] disabled:opacity-60"
+            className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <EnvelopeIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:rotate-6" />
             Message

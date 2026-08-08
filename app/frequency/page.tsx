@@ -41,17 +41,13 @@ export default async function GatherPage() {
               />
             </MobileComposerSheet>
           ) : (
-            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center">
-              <p className="text-sm font-medium text-amber-900">
+            <div className="flex items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5">
+              <p className="text-xs font-medium text-amber-800">
                 Complete your profile to post here
-              </p>
-              <p className="mx-auto mt-1 max-w-sm text-xs text-amber-700">
-                Add your picture, name, bio, birthday, Instagram, and location so
-                other members know who they&apos;re meeting.
               </p>
               <Link
                 href="/profile"
-                className="mt-3 inline-flex items-center gap-1 rounded-lg bg-warm-800 px-5 py-2 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
+                className="shrink-0 rounded-lg bg-warm-800 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
               >
                 Complete your profile
               </Link>
