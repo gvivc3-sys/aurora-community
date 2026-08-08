@@ -41,6 +41,15 @@ function button(text: string, href: string): string {
 
 const textStyle = 'style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1c1917;"';
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // ---------------------------------------------------------------------------
 // Send helpers (fire-and-forget)
 // ---------------------------------------------------------------------------
@@ -85,6 +94,33 @@ export async function sendSubscriptionConfirmedEmail(email: string) {
     });
   } catch (err) {
     console.error("Failed to send subscription confirmed email:", err);
+  }
+}
+
+export async function sendNewMemberAdminNotification(
+  email: string,
+  username: string | null | undefined,
+  amountCents: number | null | undefined,
+) {
+  const amount =
+    typeof amountCents === "number" ? `$${(amountCents / 100).toFixed(2)}` : "unknown amount";
+  try {
+    await getResend().emails.send({
+      from: FROM,
+      to: "byashleyenglish@protonmail.com",
+      subject: "New Aurora member joined",
+      html: emailLayout(
+        "New Member",
+        `<p ${textStyle}>A new member just joined Aurora.</p>
+         <p ${textStyle}>
+           <strong>Amount:</strong> ${amount}<br>
+           <strong>Email:</strong> ${escapeHtml(email)}<br>
+           <strong>Username:</strong> ${username ? escapeHtml(username) : "—"}
+         </p>`,
+      ),
+    });
+  } catch (err) {
+    console.error("Failed to send new member admin notification:", err);
   }
 }
 

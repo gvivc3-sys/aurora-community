@@ -6,6 +6,7 @@ import {
   sendSubscriptionConfirmedEmail,
   sendPaymentFailedEmail,
   sendSubscriptionCanceledEmail,
+  sendNewMemberAdminNotification,
 } from "@/lib/emails";
 
 export async function POST(request: NextRequest) {
@@ -64,6 +65,11 @@ export async function POST(request: NextRequest) {
             const { data: userData } = await supabaseAdmin.auth.admin.getUserById(userId);
             if (userData.user?.email) {
               sendSubscriptionConfirmedEmail(userData.user.email);
+              sendNewMemberAdminNotification(
+                userData.user.email,
+                userData.user.user_metadata?.username,
+                obj.amount_total,
+              );
             }
           }
         }
