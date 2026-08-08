@@ -26,7 +26,7 @@ export default async function GatherPage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-2xl px-3 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
+      <div className="mx-auto max-w-3xl px-3 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-light tracking-tight text-warm-900">Gather</h1>
           <InfoTooltip text="Members looking to connect, right now. Post your city and what you're up for — visible for 14 days — or reach out to someone below." />

@@ -222,7 +222,7 @@ export default async function AdminPage({
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-4xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-3xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <AdminBadge />
         <h1 className="mt-2 text-2xl font-light tracking-tight text-warm-900">
           Community Stats

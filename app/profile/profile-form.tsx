@@ -97,7 +97,7 @@ export default function ProfileForm({ user }: { user: User }) {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-3xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <h1 className="flex items-center gap-2 text-2xl font-light tracking-tight text-warm-900">
           Your Profile
           {completion.isComplete && (
