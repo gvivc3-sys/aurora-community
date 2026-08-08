@@ -20,14 +20,14 @@ export default function Avatar({ src, name, email, size = "md" }: AvatarProps) {
       <img
         src={src}
         alt={name ?? email ?? "Avatar"}
-        className={`${classes} rounded-full object-cover object-top`}
+        className={`${classes} shrink-0 rounded-full object-cover object-top`}
       />
     );
   }
 
   return (
     <div
-      className={`${classes} flex items-center justify-center rounded-full bg-warm-200 font-medium text-warm-600`}
+      className={`${classes} flex shrink-0 items-center justify-center rounded-full bg-warm-200 font-medium text-warm-600`}
     >
       {initials}
     </div>
