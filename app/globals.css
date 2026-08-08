@@ -232,6 +232,19 @@ a[data-type="mention"]:hover {
   animation: float-small 4s ease-in-out infinite;
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(192, 38, 211, 0.25);
+  }
+  50% {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 8px rgba(192, 38, 211, 0.1);
+  }
+}
+
+.animate-float-glow {
+  animation: float-small 4s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+}
+
 /* ── Gather map callout bubbles ── */
 @keyframes bubble-wiggle-1 {
   0%, 100% { transform: rotate(-3deg) translateY(0); }

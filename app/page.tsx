@@ -312,7 +312,7 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              This is <span className="italic">the Portal.</span>
+              This is <span className="italic">the <span className="text-fuchsia-600">Portal</span>.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
               This is where Ashley shares her insights regularly,
@@ -358,15 +358,16 @@ export default async function Home() {
                 </span>
               </span>
               <span className="rotate-3 -translate-y-1">
-                <span
-                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
-                  style={{ animationDelay: "1200ms" }}
+                <a
+                  href="#whisper"
+                  className="animate-float-glow flex items-center gap-2 rounded-full border border-fuchsia-200 bg-fuchsia-50 px-4 py-2 transition-transform hover:scale-105 md:px-5 md:py-3"
+                  style={{ animationDelay: "1200ms, 0ms" }}
                 >
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600 md:h-7 md:w-7">
                     <ChatBubbleIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </span>
                   <span className="text-xs font-medium text-warm-900 md:text-sm">Whisper</span>
-                </span>
+                </a>
               </span>
             </div>
           </AnimateOnScroll>
@@ -427,7 +428,7 @@ export default async function Home() {
 
 
       {/* ─── WHISPERS FROM THE PORTAL ─── */}
-      <section className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
+      <section id="whisper" className="dark-gradient relative overflow-hidden px-6 py-16 sm:py-24">
         <div className="relative mx-auto max-w-6xl">
           <div className="grid items-center gap-16 md:grid-cols-2">
             {/* Copy */}
