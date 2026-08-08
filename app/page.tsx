@@ -286,7 +286,7 @@ export default async function Home() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-sm font-medium text-warm-900">Priya</p>
+                  <p className="text-sm font-medium text-warm-900">Ella</p>
                   <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
                     London, UK
                   </span>
