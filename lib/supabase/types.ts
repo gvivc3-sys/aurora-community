@@ -355,6 +355,7 @@ export interface Database {
           user_id: string;
           location: string;
           note: string;
+          about: string | null;
           created_at: string;
           expires_at: string;
         };
@@ -363,6 +364,7 @@ export interface Database {
           user_id: string;
           location: string;
           note: string;
+          about?: string | null;
           created_at?: string;
           expires_at?: string;
         };
@@ -371,6 +373,7 @@ export interface Database {
           user_id?: string;
           location?: string;
           note?: string;
+          about?: string | null;
           created_at?: string;
           expires_at?: string;
         };

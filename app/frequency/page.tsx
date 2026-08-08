@@ -35,8 +35,9 @@ export default async function GatherPage() {
           {profileComplete ? (
             <MobileComposerSheet label="Post to Gather">
               <FriendFlagForm
-                initialLocation={myFlag?.location ?? ""}
+                locationCity={user.user_metadata?.location_city ?? ""}
                 initialNote={myFlag?.note ?? ""}
+                initialAbout={myFlag?.about ?? ""}
                 hasFlag={!!myFlag}
               />
             </MobileComposerSheet>
