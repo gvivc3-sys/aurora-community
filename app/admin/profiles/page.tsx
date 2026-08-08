@@ -150,7 +150,7 @@ export default async function AdminProfilesPage({
           </Link>
         </div>
 
-        <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-2">
+        <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
           {rows.map(({ u, status, payments }) => {
             const username =
               u.user_metadata?.username ?? u.user_metadata?.name ?? null;
@@ -159,7 +159,7 @@ export default async function AdminProfilesPage({
             return (
               <div
                 key={u.id}
-                className="flex items-center gap-3 border-b border-warm-100 bg-white px-3 py-2.5 last:border-b-0 sm:rounded-lg sm:border sm:border-warm-200 sm:px-4 sm:py-3"
+                className="flex items-center gap-3 border-b border-warm-100 px-3 py-2.5 last:border-b-0 sm:px-4 sm:py-3"
               >
                 <Link href={`/profile/${u.id}`} className="shrink-0">
                   <Avatar
@@ -185,7 +185,9 @@ export default async function AdminProfilesPage({
                   </div>
                   <p className="mt-0.5 truncate text-xs text-warm-400">
                     {username && u.email ? `${u.email} · ` : ""}
-                    Signed up {formatDate(u.created_at)} · Active {formatRelative(u.last_sign_in_at)} ·{" "}
+                    Signed up {formatDate(u.created_at)} · Active {formatRelative(u.last_sign_in_at)}
+                  </p>
+                  <p className="mt-0.5 text-xs text-warm-400">
                     {payments} payment{payments === 1 ? "" : "s"}
                   </p>
                 </div>
