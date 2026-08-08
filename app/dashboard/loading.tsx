@@ -34,7 +34,7 @@ function PostSkeleton() {
 export default function DashboardLoading() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-3xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-3xl px-2 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <div className="flex justify-center">
           <Shimmer className="h-4 w-40" />
         </div>

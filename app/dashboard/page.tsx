@@ -190,7 +190,7 @@ export default async function DashboardPage({
         href="/inbox"
         icon={<ChatBubbleIcon className="h-5 w-5 shrink-0" />}
       />
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-3 sm:px-6 sm:pb-24 sm:pt-4 md:pb-12">
+      <div className="mx-auto max-w-3xl px-2 pb-24 pt-3 sm:px-6 sm:pb-24 sm:pt-4 md:pb-12">
         <div>
           <WelcomeCard />
         </div>

@@ -6,7 +6,7 @@ import { HeartSolidIcon, EnvelopeIcon, ArrowUturnLeftIcon } from "@/components/i
 
 export default function FriendFlagCard({ flag, isAdmin = false }: { flag: FriendFlag; isAdmin?: boolean }) {
   return (
-    <div className="flex items-start gap-3 border-b border-warm-100 p-4 last:border-b-0">
+    <div className="flex items-start gap-3 border-b border-warm-100 p-3 last:border-b-0 sm:p-4">
       <Link href={`/profile/${flag.userId}`} className="shrink-0">
         {flag.avatarUrl ? (
           // eslint-disable-next-line @next/next/no-img-element

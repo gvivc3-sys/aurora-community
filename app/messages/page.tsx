@@ -23,7 +23,7 @@ export default async function MessagesPage() {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <RealtimeRefresh table="direct_messages" />
-      <div className="mx-auto max-w-2xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="mx-auto max-w-2xl px-2 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <h1 className="text-2xl font-light tracking-tight text-warm-900">Private Messages</h1>
 
         <div className="mt-6">
