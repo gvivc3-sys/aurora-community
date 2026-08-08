@@ -14,13 +14,13 @@ export default async function CommunityGuidelinesPage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-2xl px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-2xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <div className="text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
             Welcome
           </p>
           <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            Community <span className="font-medium">Guidelines</span>
+            Community Guidelines
           </h1>
           <p className="mx-auto mt-4 max-w-md text-warm-600">
             Before you enter, please review and accept our community guidelines.
@@ -80,7 +80,7 @@ export default async function CommunityGuidelinesPage() {
           <form action={acceptTerms} className="mt-8">
             <button
               type="submit"
-              className="w-full rounded-lg bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-3 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+              className="w-full rounded-lg bg-warm-800 px-4 py-3 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
             >
               I Agree &amp; Enter
             </button>

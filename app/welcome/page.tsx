@@ -16,13 +16,13 @@ export default async function WelcomePage() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
-      <div className="mx-auto max-w-2xl px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-2xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
         <div className="text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
             You&apos;re In
           </p>
           <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
-            A hello from <span className="font-medium">Ashley</span>
+            A hello from Ashley
           </h1>
         </div>
 
@@ -52,7 +52,7 @@ export default async function WelcomePage() {
         <div className="mt-10 text-center">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-warm-800 to-warm-900 px-10 py-3.5 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98]"
+            className="inline-flex items-center gap-2 rounded-lg bg-warm-800 px-10 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98]"
           >
             I&apos;m ready
           </Link>
