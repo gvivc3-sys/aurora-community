@@ -113,7 +113,7 @@ export default async function RootLayout({
         </ToastProvider>
         <script
           dangerouslySetInnerHTML={{
-            __html: `if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js?v=2")}`,
+            __html: `if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js?v=3")}`,
           }}
         />
       </body>

@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const CACHE_NAME = `aurora-${CACHE_VERSION}`;
 const OFFLINE_URL = "/offline";
 
@@ -55,11 +55,8 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Static assets — cache first
-  if (
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.match(/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg|ico|webp)$/)
-  ) {
+  // Next.js build output — content-hashed filenames, safe to cache forever.
+  if (url.pathname.startsWith("/_next/static/")) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>
@@ -70,6 +67,28 @@ self.addEventListener("fetch", (event) => {
             return response;
           })
       )
+    );
+    return;
+  }
+
+  // Other static assets (images, fonts, etc.) — stale-while-revalidate.
+  // Unlike hashed Next.js build assets, these URLs get reused when the
+  // underlying file changes, so pure cache-first can serve a stale file
+  // forever; this still answers instantly from cache but refreshes it
+  // in the background for next time.
+  if (url.pathname.match(/\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg|ico|webp)$/)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(request);
+        const fetchPromise = fetch(request)
+          .then((response) => {
+            cache.put(request, response.clone());
+            return response;
+          })
+          .catch(() => cached);
+        event.waitUntil(fetchPromise);
+        return cached || fetchPromise;
+      })
     );
     return;
   }
