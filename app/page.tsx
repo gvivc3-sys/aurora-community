@@ -266,7 +266,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                  Just landed, anyone up for a hike this weekend? ⛰️
+                  I'm in LA, is anyone up for a hike this weekend? 🧚
                 </p>
                 <span className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700">
                   <EnvelopeIcon className="h-3.5 w-3.5" />
@@ -292,7 +292,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-relaxed text-warm-700">
-                  Who's in Soho? 🙌🥐
+                  Who is in Soho? Let's get coffee and sunbathe in the park ✨
                 </p>
                 <span className="group mt-3 inline-flex items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700">
                   <EnvelopeIcon className="h-3.5 w-3.5" />
