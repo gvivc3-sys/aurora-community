@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/roles";
 import { createCheckoutSession } from "@/lib/actions/stripe";
+import { CheckBadgeAlternateIcon } from "@/components/icons";
 
 export default async function SubscribePage() {
   const supabase = await createClient();
@@ -36,7 +37,7 @@ export default async function SubscribePage() {
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-warm-500">
             Membership
           </p>
-          <h1 className="mt-4 text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-light tracking-tight text-warm-900 sm:text-4xl">
             Join <span className="font-medium">Aurora</span>
           </h1>
           <p className="mx-auto mt-4 max-w-md text-warm-600">
@@ -46,60 +47,64 @@ export default async function SubscribePage() {
         </div>
 
         {/* Pricing card */}
-        <div className="mx-auto mt-12 max-w-sm rounded-xl border border-warm-200 bg-white p-8 shadow-sm">
-          <div className="text-center">
-            <h2 className="text-lg font-medium text-warm-900">Aurora</h2>
-            <div className="mt-3 flex items-center justify-center gap-2">
-              <span className="text-sm text-warm-400 line-through">$55/month</span>
-              <span className="rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-medium text-rose-500">Early Pricing</span>
-            </div>
-            <div className="mt-2 flex items-baseline justify-center gap-1">
-              <span className="text-4xl font-light tracking-tight text-warm-900">$38</span>
-              <span className="text-sm text-warm-500">/month</span>
+        <div className="relative mx-auto mt-12 max-w-sm">
+          <div
+            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-fuchsia-300/40 via-pink-200/40 to-fuchsia-400/40 blur-2xl"
+            aria-hidden="true"
+          />
+          <div className="relative rounded-[20px] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[3px] shadow-xl">
+            <div className="rounded-[17px] bg-white px-8 py-10">
+              <div className="text-center">
+                <h2 className="font-display text-2xl font-medium tracking-tight text-warm-900">
+                  Aurora
+                </h2>
+                <div className="mt-3 flex items-center justify-center gap-2">
+                  <span className="text-sm text-warm-400 line-through">$55/month</span>
+                  <span className="flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
+                    <CheckBadgeAlternateIcon className="h-3.5 w-3.5" />
+                    Early Pricing
+                  </span>
+                </div>
+                <div className="mt-2 flex items-baseline justify-center gap-1">
+                  <span className="text-4xl font-light tracking-tight text-warm-900">$38</span>
+                  <span className="text-sm text-warm-500">/month</span>
+                </div>
+              </div>
+
+              <ul className="mt-8 space-y-3">
+                {[
+                  "Weekly voice notes from Ashley",
+                  "Video guides, articles & curated content",
+                  "Private messaging with the Aurora team",
+                  "Community feed: like, comment & save",
+                  "New content added weekly",
+                ].map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm text-warm-700">
+                    <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-warm-500" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <form action={createCheckoutSession} className="mt-8">
+                <button
+                  type="submit"
+                  className="cta-gradient-btn w-full rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-4 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                >
+                  Subscribe Now
+                </button>
+              </form>
+              <p className="mt-3 text-center text-xs text-warm-400">
+                Cancel anytime. No contracts. No questions asked.
+              </p>
+
+              {sub?.status === "canceled" && (
+                <p className="mt-4 text-center text-xs text-warm-500">
+                  Your subscription was canceled. Subscribe again to regain access.
+                </p>
+              )}
             </div>
           </div>
-
-          <ul className="mt-8 space-y-3">
-            {[
-              "Weekly voice notes from Ashley",
-              "Video guides, articles & curated content",
-              "Private messaging with the Aurora team",
-              "Community feed: like, comment & save",
-              "New content added weekly",
-              "Cancel anytime",
-            ].map((feature) => (
-              <li key={feature} className="flex items-start gap-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="mt-0.5 h-4 w-4 shrink-0 text-green-600"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm text-warm-700">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <form action={createCheckoutSession} className="mt-8">
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-warm-800 px-4 py-3 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-            >
-              Subscribe Now
-            </button>
-          </form>
-
-          {sub?.status === "canceled" && (
-            <p className="mt-4 text-center text-xs text-warm-500">
-              Your subscription was canceled. Subscribe again to regain access.
-            </p>
-          )}
         </div>
       </div>
     </div>
