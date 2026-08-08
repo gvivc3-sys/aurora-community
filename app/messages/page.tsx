@@ -32,7 +32,7 @@ export default async function MessagesPage() {
               <Link
                 key={c.conversationId}
                 href={`/messages/${c.conversationId}`}
-                className={`flex items-center gap-3 rounded-xl border border-warm-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md ${c.unread ? "bg-warm-50/60" : ""}`}
+                className={`flex cursor-pointer items-center gap-3 rounded-xl border border-warm-200 bg-white p-4 shadow-sm transition-colors hover:bg-warm-50 ${c.unread ? "bg-warm-50/60" : ""}`}
               >
                 {c.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element

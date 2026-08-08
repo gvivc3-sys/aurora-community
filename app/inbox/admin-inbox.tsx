@@ -284,7 +284,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
             return (
               <div
                 key={msg.id}
-                className={`overflow-hidden rounded-xl border bg-white shadow-sm transition-shadow hover:shadow-md ${
+                className={`overflow-hidden rounded-xl border bg-white shadow-sm transition-colors hover:bg-warm-50 ${
                   msg.status === "unread"
                     ? "border-warm-300"
                     : "border-warm-200"
@@ -303,7 +303,7 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     onClick={() =>
                       setExpandedId(isExpanded ? null : msg.id)
                     }
-                    className="flex min-w-0 flex-1 items-center gap-3 text-left"
+                    className="flex min-w-0 flex-1 cursor-pointer items-center gap-3 text-left"
                   >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">

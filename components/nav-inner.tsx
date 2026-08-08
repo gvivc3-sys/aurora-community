@@ -16,7 +16,7 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-function AuroraWordmark({ className = "h-5 w-auto text-warm-600" }: { className?: string }) {
+function AuroraWordmark({ className = "h-4 w-auto text-warm-600" }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element -- vector logo, nothing for the image optimizer to do
     <img src="/images/aurora_rebrand_logo_colored.svg" alt="Aurora" className={className} />
@@ -70,7 +70,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
             <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-fuchsia-200/40 to-pink-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
-            <AuroraWordmark className="relative h-5 w-auto text-warm-600" />
+            <AuroraWordmark className="relative h-4 w-auto text-warm-600" />
           </Link>
 
           {/* Desktop bar — non-member states, plus members viewing the public landing page */}
@@ -136,7 +136,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   )}
                 </button>
                 <Link href="/">
-                  <AuroraWordmark className="h-3 w-auto text-warm-600" />
+                  <AuroraWordmark className="h-2.5 w-auto text-warm-600" />
                 </Link>
                 <Link
                   href="/notifications"
@@ -154,7 +154,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             ) : isMember && isLandingPage ? (
               <>
                 <Link href="/" className="group relative">
-                  <AuroraWordmark className="h-5 w-auto text-warm-600" />
+                  <AuroraWordmark className="h-4 w-auto text-warm-600" />
                 </Link>
                 <Link
                   href="/dashboard"
@@ -166,7 +166,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             ) : user ? (
               <>
                 <Link href="/" className="group relative">
-                  <AuroraWordmark className="h-5 w-auto text-warm-600" />
+                  <AuroraWordmark className="h-4 w-auto text-warm-600" />
                 </Link>
                 <button
                   type="button"
@@ -186,7 +186,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             ) : (
               <>
                 <Link href="/" className="group relative">
-                  <AuroraWordmark className="h-5 w-auto text-warm-600" />
+                  <AuroraWordmark className="h-4 w-auto text-warm-600" />
                 </Link>
                 <div className="flex items-center gap-2">
                   <Link href="/login" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-600">
@@ -231,7 +231,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
       {showAppChrome && user && (
         <aside className="fixed inset-y-0 left-[max(0px,calc((100vw-72rem)/2))] z-40 hidden w-60 flex-col border-r border-warm-200 bg-background md:flex">
           <Link href="/" className="group relative px-6 py-5">
-            <AuroraWordmark className="h-5 w-auto text-warm-600" />
+            <AuroraWordmark className="h-4 w-auto text-warm-600" />
           </Link>
 
           <nav className="flex-1 space-y-1 overflow-y-auto px-3">

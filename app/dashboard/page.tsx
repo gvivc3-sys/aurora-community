@@ -237,7 +237,7 @@ export default async function DashboardPage({
                 <div
                   key={post.id}
                   id={`post-${post.id}`}
-                  className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm transition-shadow hover:shadow-md scroll-mt-16"
+                  className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm scroll-mt-16"
                 >
                   {/* Header: author info + tags */}
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">

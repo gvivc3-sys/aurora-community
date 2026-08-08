@@ -62,7 +62,7 @@ export default async function LibraryPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="group flex items-center gap-4 rounded-xl border border-warm-200 bg-white px-5 py-4 shadow-sm transition-all hover:border-warm-300 hover:shadow-md active:scale-[0.99]"
+                className="group flex cursor-pointer items-center gap-4 rounded-xl border border-warm-200 bg-white px-5 py-4 shadow-sm transition-colors hover:bg-warm-50 active:scale-[0.99]"
               >
                 <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${
                   type === "pdf"   ? "bg-rose-50 text-rose-500" :
