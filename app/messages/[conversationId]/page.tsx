@@ -51,7 +51,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
         <div className="flex min-w-0 flex-1 items-center gap-1.5">
           {currentUser.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={currentUser.avatarUrl} alt="" className="h-6 w-6 shrink-0 rounded-full object-cover" />
+            <img src={currentUser.avatarUrl} alt="" className="h-6 w-6 shrink-0 rounded-full object-cover object-top" />
           ) : (
             <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-warm-200 text-[10px] font-medium text-warm-600">
               {currentUser.name[0]?.toUpperCase()}
@@ -67,7 +67,7 @@ export default async function ConversationPage({ params }: { params: Params }) {
           </span>
           {otherUser.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={otherUser.avatarUrl} alt="" className="h-7 w-7 shrink-0 rounded-full object-cover" />
+            <img src={otherUser.avatarUrl} alt="" className="h-7 w-7 shrink-0 rounded-full object-cover object-top" />
           ) : (
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-warm-200 text-xs font-medium text-warm-600">
               {otherUser.name[0]?.toUpperCase()}

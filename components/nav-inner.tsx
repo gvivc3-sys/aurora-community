@@ -66,7 +66,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           unaffected, since desktop has no on-screen keyboard to fight. */}
       {!isConversationDetail && (
       <nav className={`sticky top-0 z-50 border-b border-warm-200 bg-white ${showAppChrome ? "md:hidden" : ""}`}>
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
             <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-fuchsia-200/40 to-pink-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
@@ -201,26 +201,29 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           </div>
         </div>
 
-        {/* Mobile secondary nav — Portal / Whisper / Gather, shows the active page */}
+        {/* Mobile secondary nav — Portal / Discussions / Gather, shows the active page */}
         {showAppChrome && (
-          <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
+          <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-2 py-1.5 md:hidden">
             <Link
               href="/dashboard"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Portal
+              <PortalIcon className="h-4 w-4" />
+              <span className="text-[11px] font-medium">Portal</span>
             </Link>
             <Link
-              href="/inbox"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              href="/conversations"
+              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Whisper
+              <RectangleStackIcon className="h-4 w-4" />
+              <span className="text-[11px] font-medium">Discussions</span>
             </Link>
             <Link
               href="/frequency"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Gather
+              <UsersIcon className="h-4 w-4" />
+              <span className="text-[11px] font-medium">Gather</span>
             </Link>
           </div>
         )}
@@ -367,12 +370,12 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                     Private Messages
                   </Link>
                   <Link
-                    href="/conversations"
+                    href="/inbox"
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
+                    className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-warm-100 ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-600"}`}
                   >
-                    <RectangleStackIcon className="h-4 w-4 text-warm-400" />
-                    Discussions
+                    <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
+                    Whisper
                   </Link>
                   <Link
                     href="/bookmarks"

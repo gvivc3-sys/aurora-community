@@ -36,7 +36,7 @@ export default async function MessagesPage() {
               >
                 {c.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={c.avatarUrl} alt="" className="h-10 w-10 shrink-0 rounded-full object-cover" />
+                  <img src={c.avatarUrl} alt="" className="h-10 w-10 shrink-0 rounded-full object-cover object-top" />
                 ) : (
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
                     {c.name[0]?.toUpperCase()}

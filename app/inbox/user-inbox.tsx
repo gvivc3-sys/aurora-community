@@ -186,7 +186,7 @@ export default function UserInbox({
         <p className="mt-2 text-sm leading-relaxed text-warm-500">
           Share what&apos;s on your heart, a question, an intention, or
           something you&apos;re navigating. Ashley will read your whisper and
-          may share her response with the sacred portal for the community to
+          may share her response with the Portal for the community to
           reflect on. Your identity is yours to reveal.
         </p>
 

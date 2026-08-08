@@ -518,8 +518,9 @@ export default function PostActions({
             <button
               type="submit"
               disabled={addPending}
-              className="mt-3 w-full rounded-lg bg-gradient-to-r from-warm-800 to-warm-900 px-4 py-2 text-sm font-medium text-warm-50 shadow-md transition-all hover:from-warm-700 hover:to-warm-800 hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-warm-800 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
             >
+              <ChatBubbleIcon className="h-4 w-4" />
               {addPending ? "Posting..." : "Post Comment"}
             </button>
           </form>

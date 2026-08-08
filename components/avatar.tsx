@@ -20,7 +20,7 @@ export default function Avatar({ src, name, email, size = "md" }: AvatarProps) {
       <img
         src={src}
         alt={name ?? email ?? "Avatar"}
-        className={`${classes} rounded-full object-cover`}
+        className={`${classes} rounded-full object-cover object-top`}
       />
     );
   }

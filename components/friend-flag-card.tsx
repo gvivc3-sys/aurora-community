@@ -10,7 +10,7 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
       <Link href={`/profile/${flag.userId}`} className="shrink-0">
         {flag.avatarUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={flag.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover" />
+          <img src={flag.avatarUrl} alt="" className="h-10 w-10 rounded-full object-cover object-top" />
         ) : (
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-200 text-sm font-medium text-warm-600">
             {flag.name[0]?.toUpperCase()}

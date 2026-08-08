@@ -201,35 +201,37 @@ export default function ConversationDetail({
       </div>
 
       {/* Replies */}
-      <div className="mt-4 space-y-3">
-        {replies.map((reply) => {
-          const canDeleteReply = isAdmin || reply.author_id === currentUserId;
-          return (
-            <div key={reply.id} className="flex items-start gap-3 rounded-xl border border-warm-200 bg-white p-4 shadow-sm">
-              <Link href={`/profile/${reply.author_id}`} className="shrink-0">
-                <Avatar src={reply.author_avatar_url} name={reply.author_name} size="sm" />
-              </Link>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5">
-                  <Link href={`/profile/${reply.author_id}`} className="text-sm font-medium text-warm-900 hover:underline">
-                    {reply.author_name || "Unknown"}
-                  </Link>
-                  <span className="text-warm-300">·</span>
-                  <TimeAgo date={reply.created_at} className="text-xs text-warm-400" />
-                </div>
-                <p className="mt-0.5 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">{reply.body}</p>
-                {reply.file_url && (
-                  <PostAttachment fileUrl={reply.file_url} fileType={reply.file_type} />
-                )}
-                <div className="mt-2 flex items-center gap-4">
-                  <ReactionButton replyId={reply.id} count={reply.reactionCount} reacted={reply.reactedByMe} />
-                  {canDeleteReply && <DeleteButton label="reply" onDelete={() => handleDeleteReply(reply.id)} />}
+      {replies.length > 0 && (
+        <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+          {replies.map((reply) => {
+            const canDeleteReply = isAdmin || reply.author_id === currentUserId;
+            return (
+              <div key={reply.id} className="flex items-start gap-3 border-b border-warm-100 p-4 last:border-b-0">
+                <Link href={`/profile/${reply.author_id}`} className="shrink-0">
+                  <Avatar src={reply.author_avatar_url} name={reply.author_name} size="sm" />
+                </Link>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <Link href={`/profile/${reply.author_id}`} className="text-sm font-medium text-warm-900 hover:underline">
+                      {reply.author_name || "Unknown"}
+                    </Link>
+                    <span className="text-warm-300">·</span>
+                    <TimeAgo date={reply.created_at} className="text-xs text-warm-400" />
+                  </div>
+                  <p className="mt-0.5 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">{reply.body}</p>
+                  {reply.file_url && (
+                    <PostAttachment fileUrl={reply.file_url} fileType={reply.file_type} />
+                  )}
+                  <div className="mt-2 flex items-center gap-4">
+                    <ReactionButton replyId={reply.id} count={reply.reactionCount} reacted={reply.reactedByMe} />
+                    {canDeleteReply && <DeleteButton label="reply" onDelete={() => handleDeleteReply(reply.id)} />}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Reply composer */}
       <form
