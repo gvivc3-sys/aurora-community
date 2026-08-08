@@ -38,6 +38,8 @@ export default function ProfileForm({ user }: { user: User }) {
   );
   const [uploading, setUploading] = useState(false);
   const [birthday, setBirthday] = useState<string>(meta.birthday ?? "");
+  const [instagramHandle, setInstagramHandle] = useState<string>(meta.instagram_handle ?? "");
+  const [instagramOptedOut, setInstagramOptedOut] = useState<boolean>(!!meta.instagram_opted_out);
   const [location, setLocation] = useState<LocationValue>(
     meta.location_city
       ? { city: meta.location_city, lat: meta.location_lat, lng: meta.location_lng }
@@ -264,20 +266,59 @@ export default function ProfileForm({ user }: { user: User }) {
               >
                 Instagram
               </label>
-              <div className="flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+              <div
+                className={`flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500 ${
+                  instagramOptedOut ? "opacity-50" : ""
+                }`}
+              >
                 <span className="pl-3 text-sm text-warm-400">@</span>
                 <input
                   id="instagram_handle"
                   name="instagram_handle"
                   type="text"
-                  defaultValue={meta.instagram_handle ?? ""}
-                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0"
+                  disabled={instagramOptedOut}
+                  value={instagramHandle}
+                  onChange={(e) => setInstagramHandle(e.target.value)}
+                  className="w-full border-0 bg-transparent px-2 py-2.5 text-sm text-warm-900 placeholder-warm-400 focus:outline-none focus:ring-0 disabled:cursor-not-allowed"
                   placeholder="yourhandle"
                 />
               </div>
-              <p className="mt-1 text-xs text-warm-400">
-                Optional. Just the handle.
-              </p>
+
+              <div className="mt-2 flex items-center justify-between">
+                <span className="text-xs text-warm-500">I'd rather not share my Instagram</span>
+                <input type="hidden" name="instagram_opted_out" value={instagramOptedOut ? "on" : ""} />
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={instagramOptedOut}
+                  onClick={() =>
+                    setInstagramOptedOut((prev) => {
+                      const next = !prev;
+                      if (next) setInstagramHandle("");
+                      return next;
+                    })
+                  }
+                  className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+                    instagramOptedOut ? "bg-warm-900" : "bg-warm-300"
+                  }`}
+                >
+                  <span
+                    className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm ring-0 transition-transform ${
+                      instagramOptedOut ? "translate-x-4" : "translate-x-0"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {instagramOptedOut ? (
+                <div className="mt-2 rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
+                  You need to add your Instagram to participate on Gather!
+                </div>
+              ) : (
+                <p className="mt-1 text-xs text-warm-400">
+                  Just the handle. Required to earn your verified badge and post on Gather.
+                </p>
+              )}
             </div>
 
             <div>
@@ -300,11 +341,16 @@ export default function ProfileForm({ user }: { user: User }) {
 
             <button
               type="submit"
-              disabled={pending}
+              disabled={pending || (!instagramHandle.trim() && !instagramOptedOut)}
               className="w-full rounded-lg bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
             </button>
+            {!instagramHandle.trim() && !instagramOptedOut && (
+              <p className="text-center text-xs text-warm-400">
+                Add your Instagram or opt out above to save.
+              </p>
+            )}
           </form>
         </div>
         {/* Subscription card */}

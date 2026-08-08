@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { isValidHandle, generateHandle } from "@/lib/handle";
 
-const IDENTITY_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
+const IDENTITY_COOLDOWN_MS = 48 * 60 * 60 * 1000; // 48 hours
 const AVATAR_COOLDOWN_MS = 48 * 60 * 60 * 1000; // 48 hours
 
 async function backfillIdentity(
@@ -43,7 +43,10 @@ export async function updateProfile(
   const username = (formData.get("username") as string)?.trim();
   const birthday = formData.get("birthday") as string;
   const bio = (formData.get("bio") as string)?.trim() ?? "";
-  const rawInstagram = (formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "";
+  const instagramOptedOut = formData.get("instagram_opted_out") === "on";
+  const rawInstagram = instagramOptedOut
+    ? ""
+    : ((formData.get("instagram_handle") as string)?.trim().replace(/^@/, "") ?? "");
   const rawHandle = (formData.get("handle") as string)?.trim().toLowerCase() ?? "";
   const locationCity = (formData.get("location_city") as string)?.trim() ?? "";
   const locationLat = formData.get("location_lat") as string;
@@ -69,6 +72,10 @@ export async function updateProfile(
     return { error: "Instagram handle must be 1-30 characters (letters, numbers, periods, underscores)." };
   }
 
+  if (!rawInstagram && !instagramOptedOut) {
+    return { error: "Add your Instagram handle, or opt out of sharing it." };
+  }
+
   const lat = locationCity ? Number(locationLat) : NaN;
   const lng = locationCity ? Number(locationLng) : NaN;
   if (locationCity && (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180)) {
@@ -84,7 +91,7 @@ export async function updateProfile(
 
   if (usernameChanged) {
     if (isWithinCooldown(user.user_metadata?.name_changed_at)) {
-      return { error: "You can only change your name once per week." };
+      return { error: "You can only change your name once every 48 hours." };
     }
   }
 
@@ -143,7 +150,8 @@ export async function updateProfile(
       username: username || undefined,
       birthday: birthday || undefined,
       bio: bio.slice(0, 300) || undefined,
-      instagram_handle: rawInstagram || undefined,
+      instagram_handle: rawInstagram,
+      instagram_opted_out: instagramOptedOut,
       location_city: locationCity || undefined,
       location_lat: locationCity ? lat : undefined,
       location_lng: locationCity ? lng : undefined,
