@@ -63,7 +63,7 @@ export default function InstallCard() {
     <div className="rounded-xl border border-warm-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="flex items-center gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/apple-touch-icon.png" alt="" className="h-11 w-11 shrink-0 rounded-lg shadow-sm" />
+        <img src="/apple-touch-icon.png?v=2" alt="" className="h-11 w-11 shrink-0 rounded-lg shadow-sm" />
         <div>
           <p className="text-sm font-medium text-warm-900">Get the Aurora app</p>
           <p className="text-xs text-warm-500">Faster access, right from your home screen.</p>
