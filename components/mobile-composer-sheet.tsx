@@ -13,9 +13,11 @@ const PlusIcon = (
 export default function MobileComposerSheet({
   label,
   children,
+  fullScreen = false,
 }: {
   label: string;
   children: ReactNode;
+  fullScreen?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -26,7 +28,7 @@ export default function MobileComposerSheet({
         {children}
       </div>
 
-      {/* Mobile — collapsed sticky footer that expands into a bottom sheet */}
+      {/* Mobile — collapsed sticky footer that expands into a bottom sheet (or full-screen) */}
       <div className="md:hidden">
         {!open && (
           <StickyMobileButton label={label} icon={PlusIcon} onClick={() => setOpen(true)} />
@@ -35,13 +37,24 @@ export default function MobileComposerSheet({
         {open && (
           <>
             <LockBodyScroll />
+            {!fullScreen && (
+              <div
+                className="fixed inset-0 z-40 bg-black/30"
+                onClick={() => setOpen(false)}
+                aria-hidden="true"
+              />
+            )}
             <div
-              className="fixed inset-0 z-40 bg-black/30"
-              onClick={() => setOpen(false)}
-              aria-hidden="true"
-            />
-            <div className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl border border-warm-200 bg-white shadow-xl">
-              <div className="sticky top-0 flex items-center justify-between rounded-t-2xl border-b border-warm-100 bg-white px-4 py-3">
+              className={
+                fullScreen
+                  ? "fixed inset-0 z-50 flex flex-col bg-white"
+                  : "fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl border border-warm-200 bg-white shadow-xl"
+              }
+            >
+              <div
+                className={`sticky top-0 flex shrink-0 items-center justify-between border-b border-warm-100 bg-white px-4 py-3 ${fullScreen ? "" : "rounded-t-2xl"}`}
+                style={fullScreen ? { paddingTop: "calc(env(safe-area-inset-top) + 0.75rem)" } : undefined}
+              >
                 <p className="text-sm font-medium text-warm-900">{label}</p>
                 <button
                   type="button"
@@ -54,7 +67,15 @@ export default function MobileComposerSheet({
                   </svg>
                 </button>
               </div>
-              <div className="p-4 pb-[calc(env(safe-area-inset-bottom)+2rem)]">{children}</div>
+              <div
+                className={
+                  fullScreen
+                    ? "flex-1 overflow-y-auto p-4 pb-[calc(env(safe-area-inset-bottom)+2rem)]"
+                    : "p-4 pb-[calc(env(safe-area-inset-bottom)+2rem)]"
+                }
+              >
+                {children}
+              </div>
             </div>
           </>
         )}

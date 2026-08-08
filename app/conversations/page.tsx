@@ -56,7 +56,7 @@ export default async function ConversationsPage() {
           <InfoTooltip text="Start a thread, or jump into one below. Active discussions stay near the top; the board holds the 15 most active at a time." />
         </div>
         <div className="mt-4">
-          <MobileComposerSheet label="Start a discussion">
+          <MobileComposerSheet label="Start a discussion" fullScreen>
             <ConversationComposer />
           </MobileComposerSheet>
         </div>
