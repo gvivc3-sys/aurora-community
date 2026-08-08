@@ -202,7 +202,7 @@ export default function ConversationDetail({
 
       {/* Replies */}
       {replies.length > 0 && (
-        <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+        <div className="mt-4 border-t border-warm-100 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm">
           {replies.map((reply) => {
             const canDeleteReply = isAdmin || reply.author_id === currentUserId;
             return (

@@ -238,7 +238,7 @@ export default function PostForm() {
         onClick={() => setOpen(!open)}
         className="rounded-lg bg-warm-800 px-4 py-2 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
       >
-        {open ? "Cancel" : "+ New Post"}
+        {open ? "Cancel" : "+ New Post (Admin Only)"}
       </button>
 
       {open && (

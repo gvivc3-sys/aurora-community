@@ -190,17 +190,17 @@ export default async function DashboardPage({
         href="/inbox"
         icon={<ChatBubbleIcon className="h-5 w-5 shrink-0" />}
       />
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-5 sm:px-6 sm:pb-24 sm:pt-6 md:pb-12">
+      <div className="mx-auto max-w-3xl px-4 pb-24 pt-3 sm:px-6 sm:pb-24 sm:pt-4 md:pb-12">
         <div>
           <WelcomeCard />
         </div>
 
-        <div className="mt-4">
+        <div className="mt-3">
           <InstallCard />
         </div>
 
         {!user.user_metadata?.username && (
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
+          <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center">
             <p className="text-sm text-amber-800">
               You haven&apos;t set a display name yet.{" "}
               <a
@@ -214,12 +214,12 @@ export default async function DashboardPage({
         )}
 
         {admin && (
-          <div className="mt-8">
+          <div className="mt-4">
             <PostForm />
           </div>
         )}
 
-        <div className="mt-8">
+        <div className="mt-4">
           <FeedFilters />
         </div>
 

@@ -63,7 +63,7 @@ export default async function ConversationsPage() {
 
         <div className="mt-8">
           {threads.length > 0 ? (
-            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+            <div className="border-t border-warm-100 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm">
               {threads.map((thread) => <ConversationCard key={thread.id} thread={thread} />)}
             </div>
           ) : (

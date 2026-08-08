@@ -59,7 +59,7 @@ export default async function GatherPage() {
 
         <div className="mt-8">
           {flags.length > 0 ? (
-            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+            <div className="border-t border-warm-100 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm">
               {flags.map((flag) => <FriendFlagCard key={flag.id} flag={flag} isAdmin={isAdmin(user)} />)}
             </div>
           ) : (

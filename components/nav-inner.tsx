@@ -201,29 +201,41 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           </div>
         </div>
 
-        {/* Mobile secondary nav — Portal / Discussions / Gather, shows the active page */}
+        {/* Mobile secondary nav — Portal / Discussions / Gather, icon-only until active */}
         {showAppChrome && (
-          <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-2 py-1.5 md:hidden">
+          <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-2 py-2 md:hidden">
             <Link
               href="/dashboard"
-              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              className={`flex items-center justify-center gap-1.5 overflow-hidden rounded-full py-2 transition-all duration-300 ${isActive("/dashboard") ? "flex-[2] bg-warm-100 text-warm-900" : "flex-1 text-warm-500"}`}
             >
-              <PortalIcon className="h-4 w-4" />
-              <span className="text-[11px] font-medium">Portal</span>
+              <PortalIcon className="h-4 w-4 shrink-0" />
+              <span
+                className={`overflow-hidden whitespace-nowrap text-[11px] font-medium transition-all duration-300 ${isActive("/dashboard") ? "max-w-[80px] opacity-100" : "max-w-0 opacity-0"}`}
+              >
+                Portal
+              </span>
             </Link>
             <Link
               href="/conversations"
-              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              className={`flex items-center justify-center gap-1.5 overflow-hidden rounded-full py-2 transition-all duration-300 ${isActive("/conversations") ? "flex-[2] bg-warm-100 text-warm-900" : "flex-1 text-warm-500"}`}
             >
-              <RectangleStackIcon className="h-4 w-4" />
-              <span className="text-[11px] font-medium">Discussions</span>
+              <RectangleStackIcon className="h-4 w-4 shrink-0" />
+              <span
+                className={`overflow-hidden whitespace-nowrap text-[11px] font-medium transition-all duration-300 ${isActive("/conversations") ? "max-w-[100px] opacity-100" : "max-w-0 opacity-0"}`}
+              >
+                Discussions
+              </span>
             </Link>
             <Link
               href="/frequency"
-              className={`flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-center transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              className={`flex items-center justify-center gap-1.5 overflow-hidden rounded-full py-2 transition-all duration-300 ${isActive("/frequency") ? "flex-[2] bg-warm-100 text-warm-900" : "flex-1 text-warm-500"}`}
             >
-              <UsersIcon className="h-4 w-4" />
-              <span className="text-[11px] font-medium">Gather</span>
+              <UsersIcon className="h-4 w-4 shrink-0" />
+              <span
+                className={`overflow-hidden whitespace-nowrap text-[11px] font-medium transition-all duration-300 ${isActive("/frequency") ? "max-w-[80px] opacity-100" : "max-w-0 opacity-0"}`}
+              >
+                Gather
+              </span>
             </Link>
           </div>
         )}
