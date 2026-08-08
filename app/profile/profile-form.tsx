@@ -303,12 +303,8 @@ export default function ProfileForm({ user }: { user: User }) {
                     </button>
                   </div>
                 </div>
-                <p className="mt-1 text-xs text-warm-400">
-                  Useful for verifying you are who you say you are to other users!
-                </p>
-
                 {!instagramOptedOut && (
-                  <div className="mt-2 flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
+                  <div className="mt-4 flex items-center rounded-md border border-warm-300 focus-within:border-warm-500 focus-within:ring-1 focus-within:ring-warm-500">
                     <span className="pl-3 text-sm text-warm-400">@</span>
                     <input
                       id="instagram_handle"
@@ -322,11 +318,13 @@ export default function ProfileForm({ user }: { user: User }) {
                   </div>
                 )}
 
-                {instagramOptedOut && (
-                  <div className="mt-2 rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
-                    You need to add your Instagram to participate on Gather!
-                  </div>
-                )}
+                <div
+                  className={`rounded-md border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-xs text-fuchsia-800 ${
+                    instagramOptedOut ? "mt-4" : "mt-2"
+                  }`}
+                >
+                  You need to add your Instagram to participate on Gather!
+                </div>
               </div>
 
               <div className="border-t border-warm-100 pt-5">
