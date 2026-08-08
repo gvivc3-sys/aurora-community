@@ -201,15 +201,9 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           </div>
         </div>
 
-        {/* Mobile secondary nav — Gather / Portal / Discussions, shows the active page */}
+        {/* Mobile secondary nav — Portal / Whisper / Gather, shows the active page */}
         {showAppChrome && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-3 py-2 md:hidden">
-            <Link
-              href="/frequency"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
-            >
-              Gather
-            </Link>
             <Link
               href="/dashboard"
               className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/dashboard") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
@@ -217,10 +211,16 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               Portal
             </Link>
             <Link
-              href="/conversations"
-              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/conversations") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+              href="/inbox"
+              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/inbox") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
             >
-              Discussions
+              Whisper
+            </Link>
+            <Link
+              href="/frequency"
+              className={`flex-1 rounded-full py-1.5 text-center text-xs font-medium transition-colors ${isActive("/frequency") ? "bg-warm-100 text-warm-900" : "text-warm-500"}`}
+            >
+              Gather
             </Link>
           </div>
         )}
@@ -239,32 +239,32 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
               <PortalIcon className="h-4 w-4" />
               Portal
             </Link>
-            <Link href="/frequency" className={sidebarLinkClass(isActive("/frequency"))}>
-              <UsersIcon className="h-4 w-4 text-warm-400" />
-              Gather
-            </Link>
             <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
               <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
               Whisper
             </Link>
+            <Link href="/frequency" className={sidebarLinkClass(isActive("/frequency"))}>
+              <UsersIcon className="h-4 w-4 text-warm-400" />
+              Gather
+            </Link>
 
             <div className="my-2 border-t border-warm-100" />
 
-            <Link href="/messages" className={sidebarLinkClass(isActive("/messages"))}>
-              <EnvelopeIcon className="h-4 w-4 text-warm-400" />
-              Private Messages
-            </Link>
             <Link href="/conversations" className={sidebarLinkClass(isActive("/conversations"))}>
               <RectangleStackIcon className="h-4 w-4 text-warm-400" />
               Discussions
             </Link>
-            <Link href="/bookmarks" className={sidebarLinkClass(isActive("/bookmarks"))}>
-              <BookmarkIcon className="h-4 w-4 text-warm-400" />
-              Saved
+            <Link href="/messages" className={sidebarLinkClass(isActive("/messages"))}>
+              <EnvelopeIcon className="h-4 w-4 text-warm-400" />
+              Private Messages
             </Link>
             <Link href="/library" className={sidebarLinkClass(isActive("/library"))}>
               <BookOpenIcon className="h-4 w-4 text-warm-400" />
               Guides
+            </Link>
+            <Link href="/bookmarks" className={sidebarLinkClass(isActive("/bookmarks"))}>
+              <BookmarkIcon className="h-4 w-4 text-warm-400" />
+              Saved
             </Link>
             <Link href="/profile" className={sidebarLinkClass(isActive("/profile"))}>
               <UserCircleIcon className="h-4 w-4 text-warm-400" />
