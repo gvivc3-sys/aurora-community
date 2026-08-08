@@ -55,6 +55,8 @@ export default async function AdminProfilesPage({
   const params = await searchParams;
   const activeOnly = params.status === "active";
   const payingOnly = params.payments === "gt0";
+  const sortOrder = params.sort === "oldest" ? "oldest" : "newest";
+  const query = (typeof params.q === "string" ? params.q : "").trim();
 
   const supabase = await createClient();
   const {
@@ -86,13 +88,14 @@ export default async function AdminProfilesPage({
     }
   }
 
-  // Sort by last active (most recent first), nulls last
+  // Sort by signup date
   const sorted = [...users].sort((a, b) => {
-    const aTime = a.last_sign_in_at ? new Date(a.last_sign_in_at).getTime() : 0;
-    const bTime = b.last_sign_in_at ? new Date(b.last_sign_in_at).getTime() : 0;
-    return bTime - aTime;
+    const aTime = new Date(a.created_at).getTime();
+    const bTime = new Date(b.created_at).getTime();
+    return sortOrder === "oldest" ? aTime - bTime : bTime - aTime;
   });
 
+  const q = query.toLowerCase();
   const rows = sorted
     .map((u) => {
       const sub = subByUserId.get(u.id);
@@ -103,22 +106,37 @@ export default async function AdminProfilesPage({
       return { u, sub, status, payments };
     })
     .filter((row) => (activeOnly ? row.status === "active" : true))
-    .filter((row) => (payingOnly ? row.payments > 0 : true));
+    .filter((row) => (payingOnly ? row.payments > 0 : true))
+    .filter((row) => {
+      if (!q) return true;
+      const username = row.u.user_metadata?.username ?? row.u.user_metadata?.name ?? "";
+      const handle = row.u.user_metadata?.handle ?? "";
+      const email = row.u.email ?? "";
+      return (
+        username.toLowerCase().includes(q) ||
+        handle.toLowerCase().includes(q) ||
+        email.toLowerCase().includes(q)
+      );
+    });
 
-  const activeHref = activeOnly
-    ? { status: undefined, payments: params.payments }
-    : { status: "active", payments: params.payments };
-  const payingHref = payingOnly
-    ? { status: params.status, payments: undefined }
-    : { status: params.status, payments: "gt0" };
-
-  function toHref(next: { status?: string | string[] | undefined; payments?: string | string[] | undefined }) {
+  function toHref(overrides: Record<string, string | undefined>) {
+    const current: Record<string, string | undefined> = {
+      status: activeOnly ? "active" : undefined,
+      payments: payingOnly ? "gt0" : undefined,
+      sort: sortOrder === "oldest" ? "oldest" : undefined,
+      q: query || undefined,
+    };
+    const merged = { ...current, ...overrides };
     const qs = new URLSearchParams();
-    if (next.status) qs.set("status", String(next.status));
-    if (next.payments) qs.set("payments", String(next.payments));
+    for (const [key, value] of Object.entries(merged)) {
+      if (value) qs.set(key, value);
+    }
     const s = qs.toString();
     return s ? `/admin/profiles?${s}` : "/admin/profiles";
   }
+
+  const activeHref = toHref({ status: activeOnly ? undefined : "active" });
+  const payingHref = toHref({ payments: payingOnly ? undefined : "gt0" });
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
@@ -131,9 +149,22 @@ export default async function AdminProfilesPage({
           {rows.length} of {users.length} {users.length === 1 ? "member" : "members"}
         </p>
 
-        <div className="mt-4 flex items-center gap-2">
+        <form action="/admin/profiles" method="get" className="mt-4">
+          {activeOnly && <input type="hidden" name="status" value="active" />}
+          {payingOnly && <input type="hidden" name="payments" value="gt0" />}
+          {sortOrder === "oldest" && <input type="hidden" name="sort" value="oldest" />}
+          <input
+            type="text"
+            name="q"
+            defaultValue={query}
+            placeholder="Search by name, handle, or email"
+            className="w-full rounded-lg border border-warm-200 bg-white px-3 py-2 text-sm text-warm-900 placeholder-warm-400 focus:border-warm-400 focus:outline-none"
+          />
+        </form>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <Link
-            href={toHref(activeHref)}
+            href={activeHref}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               activeOnly ? "bg-warm-800 text-white" : "border border-warm-200 text-warm-600 hover:bg-warm-100"
             }`}
@@ -141,13 +172,32 @@ export default async function AdminProfilesPage({
             Active
           </Link>
           <Link
-            href={toHref(payingHref)}
+            href={payingHref}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               payingOnly ? "bg-warm-800 text-white" : "border border-warm-200 text-warm-600 hover:bg-warm-100"
             }`}
           >
             Payments &gt; 0
           </Link>
+
+          <div className="ml-auto flex items-center gap-1 rounded-full border border-warm-200 p-0.5">
+            <Link
+              href={toHref({ sort: undefined })}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                sortOrder === "newest" ? "bg-warm-800 text-white" : "text-warm-600 hover:bg-warm-100"
+              }`}
+            >
+              Newest
+            </Link>
+            <Link
+              href={toHref({ sort: "oldest" })}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                sortOrder === "oldest" ? "bg-warm-800 text-white" : "text-warm-600 hover:bg-warm-100"
+              }`}
+            >
+              Oldest
+            </Link>
+          </div>
         </div>
 
         <div className="mt-4 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
