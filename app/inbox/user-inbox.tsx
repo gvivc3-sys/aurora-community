@@ -208,7 +208,7 @@ export default function UserInbox({
         >
           <input type="hidden" name="visibility" value={visibility} />
 
-          {/* Public / Anon / Confidential toggle */}
+          {/* Public / Anonymous / Secret toggle */}
           <div>
             <div className="flex rounded-md border border-warm-200 p-0.5">
               <button
@@ -231,7 +231,7 @@ export default function UserInbox({
                     : "text-warm-500 hover:text-warm-700"
                 }`}
               >
-                Anon
+                Anonymous
               </button>
               <button
                 type="button"
@@ -242,16 +242,16 @@ export default function UserInbox({
                     : "text-warm-500 hover:text-warm-700"
                 }`}
               >
-                Confidential
+                Secret
               </button>
             </div>
             <p className="mt-1.5 text-xs text-warm-400">
               {visibility === "public" &&
-                "Public \u2014 shows who you are if Ashley shares it on the Portal feed"}
+                "Public \u2014 Ashley may choose to share your whisper to the Portal with her reply"}
               {visibility === "anon" &&
-                "Anon \u2014 shown as \u201ca sister\u201d if Ashley shares it on the Portal feed"}
+                "Anonymous \u2014 shared the same way, but you're known as \u201ca sister\u201d"}
               {visibility === "confidential" &&
-                "Confidential \u2014 Ashley can't post this to the Portal, and your name stays hidden"}
+                "Secret \u2014 stays fully private, just you and Ashley. Perfect for heavy feelings or asking what you've never said out loud."}
             </p>
           </div>
 

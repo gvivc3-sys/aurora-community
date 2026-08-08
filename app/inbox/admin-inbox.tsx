@@ -178,7 +178,7 @@ function ReplyForm({ messageId, visibility }: { messageId: string; visibility: "
           </div>
           {!canPostPublicly && (
             <p className="text-xs text-warm-400">
-              This whisper is confidential — it can only be replied to privately.
+              This whisper is secret — it can only be replied to privately.
             </p>
           )}
 
@@ -308,11 +308,11 @@ export default function AdminInbox({ messages }: { messages: Message[] }) {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <Link href={`/profile/${msg.sender_id}`} className="truncate text-sm font-medium text-warm-900 hover:underline" onClick={(e) => e.stopPropagation()}>
-                          {msg.sender_name ?? (msg.visibility === "confidential" ? "Confidential" : "Anonymous")}
+                          {msg.sender_name ?? (msg.visibility === "confidential" ? "Secret" : "Anonymous")}
                         </Link>
                         {msg.visibility === "confidential" && (
                           <span className="rounded-full bg-warm-100 px-1.5 py-0.5 text-[10px] font-medium text-warm-500">
-                            Confidential
+                            Secret
                           </span>
                         )}
                         {msg.status === "unread" && (
