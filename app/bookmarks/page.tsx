@@ -111,7 +111,7 @@ export default async function BookmarksPage() {
 
         <div className="mt-6">
           {orderedPosts.length > 0 ? (
-            <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none sm:space-y-6">
+            <div className="sm:space-y-6">
             {orderedPosts.map((post) => {
               const video =
                 post.type === "video" && post.video_url
@@ -122,7 +122,7 @@ export default async function BookmarksPage() {
               return (
                 <div
                   key={post.id}
-                  className="border-b border-warm-100 bg-white last:border-b-0 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm sm:last:border-b-0"
+                  className="border-b-8 border-background bg-white last:border-b-0 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm"
                 >
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
