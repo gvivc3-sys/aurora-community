@@ -26,6 +26,18 @@ async function backfillIdentity(
       .from("messages")
       .update({ sender_name: name, sender_avatar_url: avatarUrl })
       .eq("sender_id", userId),
+    supabaseAdmin
+      .from("threads")
+      .update({ author_name: name, author_avatar_url: avatarUrl })
+      .eq("author_id", userId),
+    supabaseAdmin
+      .from("thread_replies")
+      .update({ author_name: name, author_avatar_url: avatarUrl })
+      .eq("author_id", userId),
+    supabaseAdmin
+      .from("notifications")
+      .update({ actor_name: name, actor_avatar_url: avatarUrl })
+      .eq("actor_id", userId),
   ]);
 }
 
