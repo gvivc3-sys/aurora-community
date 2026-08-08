@@ -122,7 +122,7 @@ export default async function BookmarksPage() {
               return (
                 <div
                   key={post.id}
-                  className="border-b-8 border-background bg-white last:border-b-0 sm:overflow-hidden sm:rounded-xl sm:border sm:border-warm-200 sm:bg-white sm:shadow-sm"
+                  className="overflow-hidden rounded-xl border-b-8 border-background bg-white last:border-b-0 sm:border sm:border-warm-200 sm:shadow-sm"
                 >
                   <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">

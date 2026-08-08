@@ -49,10 +49,10 @@ export default function FriendFlagForm({
         <div>
           <span className="mb-1 block text-xs font-medium text-warm-500">Location</span>
           {locationCity ? (
-            <div className="flex items-center gap-1.5 text-sm text-warm-700">
-              <MapPinIcon className="h-4 w-4 text-warm-400" />
-              {locationCity}
-              <Link href="/profile" className="ml-1 text-xs text-warm-400 underline decoration-warm-200 underline-offset-2 hover:text-warm-600">
+            <div className="flex min-w-0 items-center gap-1.5 text-sm text-warm-700">
+              <MapPinIcon className="h-4 w-4 shrink-0 text-warm-400" />
+              <span className="truncate">{locationCity}</span>
+              <Link href="/profile" className="ml-1 shrink-0 text-xs text-warm-400 underline decoration-warm-200 underline-offset-2 hover:text-warm-600">
                 Change in profile
               </Link>
             </div>

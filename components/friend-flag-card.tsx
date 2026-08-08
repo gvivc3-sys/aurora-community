@@ -27,16 +27,16 @@ export default function FriendFlagCard({ flag, isAdmin = false }: { flag: Friend
             {flag.isMine && <span className="font-normal text-warm-400">(You)</span>}
             {flag.verified && <HeartSolidIcon className="h-3 w-3 shrink-0 text-fuchsia-500" />}
           </Link>
-          <span className="shrink-0 rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
+          <span className="max-w-[45%] shrink-0 truncate rounded-full bg-warm-100 px-2.5 py-0.5 text-xs font-medium text-warm-600">
             {flag.location}
           </span>
         </div>
         <p className="mt-1.5 text-sm leading-relaxed text-warm-700">{flag.note}</p>
         {flag.about && (
-          <>
-            <div className="my-2 border-t border-warm-100" />
-            <p className="text-sm leading-relaxed text-warm-600">{flag.about}</p>
-          </>
+          <div className="mt-2 rounded-lg bg-warm-50 px-3 py-2">
+            <p className="text-[10px] font-medium uppercase tracking-wide text-warm-400">Also into</p>
+            <p className="mt-0.5 text-sm leading-relaxed text-warm-600">{flag.about}</p>
+          </div>
         )}
         <div className="mt-3 flex items-center gap-2">
           {flag.isMine ? (
