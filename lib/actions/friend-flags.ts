@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getUserIdentity } from "@/lib/user-identity";
 import { getProfileCompletion } from "@/lib/profile-completion";
+import { isAdmin } from "@/lib/roles";
 
 const MAX_NOTE_LENGTH = 140;
 const MAX_ABOUT_LENGTH = 200;
@@ -119,13 +120,21 @@ export async function postFriendFlag(
   return { success: true };
 }
 
-export async function deleteMyFriendFlag() {
+export async function deleteMyFriendFlag(targetUserId?: string): Promise<{ error?: string }> {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return;
+  if (!user) return { error: "You must be signed in." };
 
-  await supabaseAdmin.from("friend_flags").delete().eq("user_id", user.id);
+  const userIdToDelete = targetUserId ?? user.id;
+  if (userIdToDelete !== user.id && !isAdmin(user)) {
+    return { error: "You can only remove your own post." };
+  }
+
+  const { error } = await supabaseAdmin.from("friend_flags").delete().eq("user_id", userIdToDelete);
+  if (error) return { error: "Something went wrong. Please try again." };
+
   revalidatePath("/frequency");
+  return {};
 }

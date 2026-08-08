@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveFriendFlags, getMyFriendFlag } from "@/lib/actions/friend-flags";
 import { getProfileCompletion } from "@/lib/profile-completion";
+import { isAdmin } from "@/lib/roles";
 import FriendFlagForm from "@/components/friend-flag-form";
 import FriendFlagCard from "@/components/friend-flag-card";
 import MobileComposerSheet from "@/components/mobile-composer-sheet";
@@ -59,7 +60,7 @@ export default async function GatherPage() {
         <div className="mt-8">
           {flags.length > 0 ? (
             <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
-              {flags.map((flag) => <FriendFlagCard key={flag.id} flag={flag} />)}
+              {flags.map((flag) => <FriendFlagCard key={flag.id} flag={flag} isAdmin={isAdmin(user)} />)}
             </div>
           ) : (
             <div className="py-16 text-center">

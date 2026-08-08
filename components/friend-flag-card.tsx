@@ -4,7 +4,7 @@ import MessageButton from "@/components/message-button";
 import UnpostButton from "@/components/unpost-button";
 import { HeartSolidIcon, EnvelopeIcon, ArrowUturnLeftIcon } from "@/components/icons";
 
-export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
+export default function FriendFlagCard({ flag, isAdmin = false }: { flag: FriendFlag; isAdmin?: boolean }) {
   return (
     <div className="flex items-start gap-3 border-b border-warm-100 p-4 last:border-b-0">
       <Link href={`/profile/${flag.userId}`} className="shrink-0">
@@ -38,20 +38,34 @@ export default function FriendFlagCard({ flag }: { flag: FriendFlag }) {
             <p className="text-sm leading-relaxed text-warm-600">{flag.about}</p>
           </>
         )}
-        {flag.isMine ? (
-          <UnpostButton className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
-            <ArrowUturnLeftIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5 group-hover:-rotate-12" />
-            Unpost
-          </UnpostButton>
-        ) : (
-          <MessageButton
-            userId={flag.userId}
-            className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            <EnvelopeIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:rotate-6" />
-            Message
-          </MessageButton>
-        )}
+        <div className="mt-3 flex items-center gap-2">
+          {flag.isMine ? (
+            <UnpostButton className="group inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
+              <ArrowUturnLeftIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5 group-hover:-rotate-12" />
+              Unpost
+            </UnpostButton>
+          ) : (
+            <>
+              <MessageButton
+                userId={flag.userId}
+                className="group inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <EnvelopeIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:rotate-6" />
+                Message
+              </MessageButton>
+              {isAdmin && (
+                <UnpostButton
+                  targetUserId={flag.userId}
+                  confirmLabel="Delete this post?"
+                  className="group inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-xs font-medium text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <ArrowUturnLeftIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:-translate-x-0.5 group-hover:-rotate-12" />
+                  Delete
+                </UnpostButton>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
