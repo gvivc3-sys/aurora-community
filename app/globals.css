@@ -2,18 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #f8f8fb;
-  --foreground: #262244;
-  --warm-50: #f6f5fa;
-  --warm-100: #ece9f5;
-  --warm-200: #dad5ec;
-  --warm-300: #beb7dc;
-  --warm-400: #9a91c2;
-  --warm-500: #7c72a8;
-  --warm-600: #625a87;
-  --warm-700: #4c4569;
-  --warm-800: #38334e;
-  --warm-900: #262244;
+  --background: #faf6f1;
+  --foreground: #33231a;
+  --warm-50: #fbf5f0;
+  --warm-100: #f5e8dc;
+  --warm-200: #e8d2bc;
+  --warm-300: #d6b494;
+  --warm-400: #c2946f;
+  --warm-500: #a97650;
+  --warm-600: #8a5d3d;
+  --warm-700: #6d4831;
+  --warm-800: #4f3526;
+  --warm-900: #33231a;
 }
 
 @theme inline {
@@ -30,22 +30,22 @@
   --color-warm-800: var(--warm-800);
   --color-warm-900: var(--warm-900);
 
-  /* Indigo Dusk — brand accent, replaces the old magenta/pink fuchsia+pink pairing */
-  --color-fuchsia-50: #f2f1fc;
-  --color-fuchsia-100: #e5e3f9;
-  --color-fuchsia-200: #cac6f2;
-  --color-fuchsia-300: #a89fe8;
-  --color-fuchsia-400: #8a7fdd;
-  --color-fuchsia-500: #6f62d0;
-  --color-fuchsia-600: #5b4ec2;
-  --color-fuchsia-700: #4a3fa0;
-  --color-fuchsia-800: #3c3480;
-  --color-fuchsia-900: #322b68;
-  --color-pink-50: #f5f0fc;
-  --color-pink-100: #ebe2fa;
-  --color-pink-200: #d4c5f0;
-  --color-pink-500: #8f72d6;
-  --color-pink-700: #5f4aa8;
+  /* Terracotta & Sand — brand accent, replaces the old Indigo Dusk pairing */
+  --color-fuchsia-50: #fdf3ee;
+  --color-fuchsia-100: #fbe4d8;
+  --color-fuchsia-200: #f5c7ac;
+  --color-fuchsia-300: #eda87d;
+  --color-fuchsia-400: #dd8054;
+  --color-fuchsia-500: #c1582f;
+  --color-fuchsia-600: #a34526;
+  --color-fuchsia-700: #82361f;
+  --color-fuchsia-800: #5f2717;
+  --color-fuchsia-900: #3d1810;
+  --color-pink-50: #fdf6ec;
+  --color-pink-100: #faebd3;
+  --color-pink-200: #f0d3a8;
+  --color-pink-500: #d99a3e;
+  --color-pink-700: #9c6a2f;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -81,7 +81,7 @@ body {
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #9a91c2;
+  color: #c2946f;
   pointer-events: none;
   height: 0;
 }
@@ -191,12 +191,12 @@ a[data-type="mention"]:hover {
 .hero-gradient {
   background: linear-gradient(
     135deg,
-    #f6f5fa 0%,
-    #ece9f5 18%,
-    #f0eefc 36%,
-    #ece9f5 54%,
-    #dad5ec 72%,
-    #f6f5fa 90%
+    #fbf5f0 0%,
+    #f5e8dc 18%,
+    #fbf0e6 36%,
+    #f5e8dc 54%,
+    #e8d2bc 72%,
+    #fbf5f0 90%
   );
   background-size: 400% 400%;
   animation: gradient-move 16s ease infinite;
@@ -205,11 +205,11 @@ a[data-type="mention"]:hover {
 .dark-gradient {
   background: linear-gradient(
     135deg,
-    #262244 0%,
-    #332d5c 30%,
-    #262244 50%,
-    #2c2650 70%,
-    #262244 100%
+    #33231a 0%,
+    #4f3526 30%,
+    #33231a 50%,
+    #443023 70%,
+    #33231a 100%
   );
   background-size: 400% 400%;
   animation: gradient-move 12s ease infinite;
@@ -234,10 +234,10 @@ a[data-type="mention"]:hover {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(192, 38, 211, 0.25);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(193, 88, 47, 0.25);
   }
   50% {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 8px rgba(192, 38, 211, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 8px rgba(193, 88, 47, 0.1);
   }
 }
 
@@ -277,7 +277,7 @@ a[data-type="mention"]:hover {
   background: linear-gradient(
     90deg,
     var(--warm-900) 0%,
-    #6f62d0 45%,
+    #c1582f 45%,
     var(--warm-900) 55%,
     var(--warm-900) 100%
   );
