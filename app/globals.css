@@ -2,18 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #faf6f1;
-  --foreground: #33231a;
-  --warm-50: #fbf5f0;
-  --warm-100: #f5e8dc;
-  --warm-200: #e8d2bc;
-  --warm-300: #d6b494;
-  --warm-400: #c2946f;
-  --warm-500: #a97650;
-  --warm-600: #8a5d3d;
-  --warm-700: #6d4831;
-  --warm-800: #4f3526;
-  --warm-900: #33231a;
+  --background: #faf8f6;
+  --foreground: #2a241b;
+  --warm-50: #f9f7f5;
+  --warm-100: #f1ede8;
+  --warm-200: #e2dad0;
+  --warm-300: #cbbfae;
+  --warm-400: #ab9d87;
+  --warm-500: #8d7d67;
+  --warm-600: #71624d;
+  --warm-700: #594d3c;
+  --warm-800: #40372a;
+  --warm-900: #2a241b;
 }
 
 @theme inline {
@@ -47,18 +47,18 @@
   --color-pink-500: #d99a3e;
   --color-pink-700: #9c6a2f;
 
-  /* Dusty sky/clay blue — button accent, earthy but cooler than the
-     terracotta text accent above. Replaces Tailwind's real (unused) teal. */
-  --color-teal-50: #f2f6f6;
-  --color-teal-100: #e1ebec;
-  --color-teal-200: #c5d8da;
-  --color-teal-300: #a0bfc2;
-  --color-teal-400: #7aa1a5;
-  --color-teal-500: #5c8489;
-  --color-teal-600: #4a6c70;
-  --color-teal-700: #3c565a;
-  --color-teal-800: #2e4245;
-  --color-teal-900: #212f31;
+  /* Soft sky blue — button accent, lighter and cooler than the terracotta
+     text accent above. Replaces Tailwind's real (unused) teal. */
+  --color-teal-50: #f2f7fa;
+  --color-teal-100: #e2eef4;
+  --color-teal-200: #c7dee8;
+  --color-teal-300: #a8cadb;
+  --color-teal-400: #8bb5cc;
+  --color-teal-500: #7fa8c2;
+  --color-teal-600: #6a93b0;
+  --color-teal-700: #557d99;
+  --color-teal-800: #3f6178;
+  --color-teal-900: #2a4451;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -94,7 +94,7 @@ body {
 .tiptap p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #c2946f;
+  color: #ab9d87;
   pointer-events: none;
   height: 0;
 }

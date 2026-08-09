@@ -27,7 +27,7 @@ const playfair = Playfair_Display({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#33231a",
+  themeColor: "#2a241b",
   interactiveWidget: "resizes-content",
 };
 
