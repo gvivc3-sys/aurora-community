@@ -680,12 +680,10 @@ export default async function Home() {
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
             Step into <span className="font-medium">Aurora.</span>
-            <span className="mt-1 block italic">Your <span className="text-fuchsia-600">friends</span> are waiting.</span>
+            <span className="mt-1 block italic">Ready to step into your <span className="text-fuchsia-600">Warrior Woman</span> era?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
-            Aurora is a sanctuary for women who are ready to step into their most
-            radiant, magnetic, and naturally beautiful selves through true health,
-            feminine wisdom, and the power of sisters rising together.
+          Aurora is a sanctuary for women ready to stop shrinking, reclaim their strength, and become the healthiest, most confident version of themselves through self-respect, feminine wisdom, and the power of women rising together..
           </p>
 
           <div className="relative mx-auto mt-10 max-w-md">
@@ -693,7 +691,7 @@ export default async function Home() {
             <div className="relative rounded-[20px] bg-teal-300 p-[3px] shadow-xl">
               <div id="join" className="rounded-[17px] bg-white px-8 py-10 sm:px-10">
                 <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
-                  Aurora Sisterhood
+                  Aurora | Warrior Woman Wellness
                 </h3>
                 <ul className="mt-6 space-y-3 text-left">
                   {[
@@ -761,7 +759,7 @@ export default async function Home() {
 
           <AnimateOnScroll className="mt-10 text-center">
             <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
-              Ready to find your people?
+              Begin your Journey
               <ArrowRightIcon className="h-4 w-4 -rotate-90" />
             </a>
           </AnimateOnScroll>

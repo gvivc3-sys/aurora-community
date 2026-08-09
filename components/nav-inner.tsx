@@ -22,7 +22,7 @@ export function AuroraWordmark({ className = "text-lg", showTagline = false }: {
     <span className={`inline-flex items-center gap-1.5 whitespace-nowrap font-display ${className}`}>
       <span className="font-bold tracking-tight text-fuchsia-600">Aurora</span>
       {showTagline && (
-        <span className="pl-1 text-[0.65em] font-normal tracking-normal text-warm-400">| Warrior Woman Health</span>
+        <span className="pl-1 text-[0.65em] font-normal tracking-normal text-warm-400">| Warrior Woman Wellness</span>
       )}
     </span>
   );
