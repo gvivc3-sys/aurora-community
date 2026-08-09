@@ -119,8 +119,8 @@ export default async function Home() {
               className="animate-fade-in-up font-display text-4xl leading-[1.05] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
               style={{ animationDelay: "0ms" }}
             >
-              <span className="block font-normal italic">Reclaim your energy.</span>
-              <span className="block font-bold">Elevate your life.</span>
+              <span className="block font-normal italic">Stop shrinking.</span>
+              <span className="block font-bold">Start strengthening.</span>
             </h1>
 
             {/* Video */}
@@ -230,10 +230,10 @@ export default async function Home() {
               </p>
               <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
                 That transformation became part of why I created Aurora. I
-                want to help women break free from the beliefs that keep us
-                small, discover the strength already within themselves, and
-                use that strength to create the health, confidence, and life
-                they truly desire.
+                want to help women stop shrinking themselves for other
+                people, discover the strength already within them, and use
+                it to build the health, self-respect, and life they
+                actually want.
               </p>
               <a
                 href="#join"
@@ -254,15 +254,19 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              This is <span className="italic">the <span className="text-fuchsia-600">Portal</span>.</span>
+              Ready to grow <span className="italic text-fuchsia-600">stronger</span>?
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              This is where I share my insights regularly,
-              through voice notes, short vlogs, and articles. Join the discussion, or just sit with what resonates.
+              This is where I share what&apos;s helped me become
+              physically stronger, mentally clearer, and more myself:
+              voice notes, short vlogs, and articles on nourishing your
+              body, protecting your energy, and taking up space without
+              apology. Join the discussion, or just sit with what resonates.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              Every post inside the Portal lives under one of four topics, so you can find
-              exactly what speaks to you:
+              Every post inside the Portal lives under one of four topics,
+              so you can find exactly what you need to keep becoming
+              stronger:
             </p>
 
             <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-4 gap-y-3">
@@ -380,10 +384,10 @@ export default async function Home() {
               </h2>
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
-                on your heart: a question, an intention, or something
-                you&apos;ve never said out loud. I read every whisper
-                personally and reply with real insight, exactly as
-                privately as you choose. All met with <strong className="font-semibold text-warm-50">judgement-free</strong> understanding.
+                on your heart: a question, a boundary you&apos;re scared to
+                set, or something you&apos;ve never said out loud. I read
+                every whisper personally and reply with real insight,
+                exactly as privately as you choose. All met with <strong className="font-semibold text-warm-50">judgement-free</strong> understanding.
               </p>
 
               <ul className="mt-6 space-y-3 text-left">
@@ -499,8 +503,10 @@ export default async function Home() {
               <span className="italic text-fuchsia-600">Ashley&apos;s Guides</span>, included.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-              Lifetime access to my full library of guides and audio tracks,
-              including every future release, free with your membership.
+              Real tools for becoming stronger, not another quick fix:
+              training programs, nourishment frameworks, and mindset audio.
+              Lifetime access to my full library, including every future
+              release, free with your membership.
             </p>
           </AnimateOnScroll>
 
@@ -530,14 +536,16 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            Or start a <span className="italic text-fuchsia-600">discussion.</span>
+              What&apos;s on your <span className="italic text-fuchsia-600">mind</span> today?
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-            This is where I share my insights regularly, through voice notes, short vlogs, and articles designed to help you become stronger 
-            in your body, mind, and sense of self. Join the discussion, learn alongside your sisters, or simply sit with what resonates.
-            <br></br>
-            Every post inside the Portal lives under one of four topics, each centered around becoming a <strong className="font-semibold text-warm-800">stronger, healthier,
-            more self-respecting woman</strong>, so you can find exactly what speaks to you:
+              Open threads with the whole community: a win, a question, a
+              moment you want to talk through out loud. Reply, react, and
+              see what other women are working on right now.
+            </p>
+            <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
+              No algorithm, no performance, just <strong className="font-semibold text-warm-800">real conversation</strong> with
+              sisters who are also choosing to get stronger, not smaller.
             </p>
           </AnimateOnScroll>
 
@@ -625,7 +633,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <AnimateOnScroll className="text-center">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              What Awaits You Inside <span className="italic text-fuchsia-600">Aurora</span>
+              What&apos;s Waiting for You Inside <span className="italic text-fuchsia-600">Aurora</span>?
             </h2>
           </AnimateOnScroll>
 
@@ -679,10 +687,13 @@ export default async function Home() {
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
-            <span className="mt-1 block italic">Ready to step into your <span className="text-fuchsia-600">Warrior Woman</span> era?</span>
+            <span className="mt-1 block italic">Ready to stop shrinking and <span className="text-fuchsia-600">start strengthening</span>?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
-          Aurora is a sanctuary for women ready to stop shrinking, reclaim their strength, and become the healthiest, most confident version of themselves through self-respect, feminine wisdom, and the power of women rising together..
+            Aurora is where women learn to nourish their bodies without
+            guilt, set boundaries without apology, and build real strength,
+            physical, mental, and emotional, alongside sisters doing the
+            same. Strong and feminine were never opposites.
           </p>
 
           <div className="relative mx-auto mt-10 max-w-md">

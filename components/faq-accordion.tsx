@@ -5,11 +5,11 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Is Aurora really worth it?",
-    a: "Connection is one of the biggest predictors of long-term health and happiness, and it's usually the first thing to slip in a busy life. Aurora gives you a standing space for it: real conversations, real women, and direct access to Ashley, all for less than a couple of coffees a month.",
+    a: "Real change, in your body, your mindset, your boundaries, rarely happens alone. Aurora gives you the guides, the guidance, and the sisters to actually get there: direct access to Ashley, real tools, and women choosing strength together, all for less than a couple of coffees a month.",
   },
   {
     q: "What do I actually get with my membership?",
-    a: "The Portal (Ashley's articles, voice notes, and community discussion), Discussions (open threads with the whole community), and Ashley's Guides (her full library of guides, books, and audio tracks, worth over $125 alone).",
+    a: "Ashley's Guides (her full library of training programs, nourishment frameworks, and mindset audio, worth over $125 alone), the Portal (her articles, voice notes, and community discussion), and Discussions (open threads with the whole community).",
   },
   {
     q: "Is my privacy protected?",
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "What if I don't click with the community right away?",
-    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, jump into a Discussion, or just read for a while. There's no wrong way to ease in.",
+    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, read a guide, or jump into a Discussion. There's no wrong way to start becoming her.",
   },
 ];
 

@@ -15,28 +15,28 @@ const pillars: Pillar[] = [
     iconColor: "bg-fuchsia-50 text-fuchsia-600",
     title: "The Portal",
     description:
-      "A curated space of blog posts and articles on the topics that matter most, written by Ashley. Read, reflect, and share your own experiences and thoughts directly with the community.",
+      "Ashley's insights on nourishment, strength, and mindset, in her own words. Read, reflect, and share how it lands for you.",
   },
   {
     icon: VideoCameraIcon,
     iconColor: "bg-rose-50 text-rose-500",
     title: "Ashley's Guides",
     description:
-      "Lifetime access to all of Ashley's guides and books (over $125 in value!), including every future release, yours forever. From metabolic health to workout guides and affirmation audio tracks.",
+      "Real tools for becoming stronger, not quick fixes: training programs, nourishment frameworks, and mindset audio (over $125 in value), lifetime access, yours forever.",
   },
   {
     icon: RectangleStackIcon,
     iconColor: "bg-purple-50 text-purple-600",
     title: "Discussions",
     description:
-      "Open discussion threads on anything on your mind. Reply, react, and see what the community is talking about most, right now.",
+      "Open threads for anything on your mind: a win, a question, a boundary you're learning to hold. See what the community is working through, right now.",
   },
   {
     icon: EnvelopeIcon,
     iconColor: "bg-blue-50 text-blue-600",
     title: "Private Messages",
     description:
-      "Connect one-on-one with members you meet in Discussions. Real conversations, just between the two of you.",
+      "Connect one-on-one with the sisters you meet along the way. Real conversations, just between the two of you.",
   },
 ];
 
