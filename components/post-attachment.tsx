@@ -2,23 +2,27 @@ export default function PostAttachment({
   fileUrl,
   fileType,
   variant = "inline",
+  expanded = false,
 }: {
   fileUrl: string;
   fileType: string | null;
   variant?: "inline" | "thumbnail";
+  expanded?: boolean;
 }) {
   if (fileType?.startsWith("image/")) {
     if (variant === "thumbnail") {
       return (
-        <div className="mt-3">
-          <a href={fileUrl} target="_blank" rel="noopener noreferrer">
-            <img
-              src={fileUrl}
-              alt="Cover image"
-              className="aspect-[2/1] w-full object-cover"
-            />
-          </a>
-        </div>
+        <a href={fileUrl} target="_blank" rel="noopener noreferrer">
+          <img
+            src={fileUrl}
+            alt="Cover image"
+            className={
+              expanded
+                ? "h-auto w-full object-contain"
+                : "aspect-[4/3] w-full object-cover"
+            }
+          />
+        </a>
       );
     }
 

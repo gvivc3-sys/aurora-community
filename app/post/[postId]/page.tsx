@@ -110,8 +110,8 @@ export default async function PostPage({ params }: { params: Params }) {
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-background">
       <div className="mx-auto max-w-3xl px-3 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-6">
-        {/* Post card */}
-        <div className="overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+        {/* Post — plain white backdrop, no card chrome, since this is already the fully-expanded view */}
+        <div className="bg-white">
           {/* Header */}
           <div className="flex flex-col gap-2 px-4 pt-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -197,14 +197,9 @@ export default async function PostPage({ params }: { params: Params }) {
             <PostAttachment fileUrl={post.file_url} fileType={post.file_type} />
           )}
 
-          {/* Article cover image */}
-          {post.type === "article" && post.file_url && (
-            <PostAttachment fileUrl={post.file_url} fileType={post.file_type} variant="thumbnail" />
-          )}
-
           {/* Article */}
           {post.type === "article" && post.body && (
-            <ArticleBody title={post.title} body={post.body} />
+            <ArticleBody title={post.title} body={post.body} fileUrl={post.file_url} fileType={post.file_type} collapsible={false} />
           )}
 
           {/* Voice */}
