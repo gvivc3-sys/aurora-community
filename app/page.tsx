@@ -536,7 +536,7 @@ export default async function Home() {
             This is where I share my insights regularly, through voice notes, short vlogs, and articles designed to help you become stronger 
             in your body, mind, and sense of self. Join the discussion, learn alongside your sisters, or simply sit with what resonates.
             <br></br>
-            Every post inside the Portal lives under one of four topics, each centered around becoming a <strong className="font-semibold text-warm-800">tronger, healthier, 
+            Every post inside the Portal lives under one of four topics, each centered around becoming a <strong className="font-semibold text-warm-800">stronger, healthier,
             more self-respecting woman</strong>, so you can find exactly what speaks to you:
             </p>
           </AnimateOnScroll>
