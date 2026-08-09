@@ -17,7 +17,7 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-function AuroraWordmark({ className = "text-lg", showTagline = false }: { className?: string; showTagline?: boolean }) {
+export function AuroraWordmark({ className = "text-lg", showTagline = false }: { className?: string; showTagline?: boolean }) {
   return (
     <span className={`inline-flex items-center gap-1.5 whitespace-nowrap font-display ${className}`}>
       <span className="font-bold tracking-tight text-fuchsia-600">Aurora</span>
