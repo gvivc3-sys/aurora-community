@@ -193,7 +193,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
             <AnimateOnScroll className="mx-auto md:mx-0">
-              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:h-72 sm:w-72">
+              <div className="relative aspect-[9/16] w-56 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-64">
                 <video
                   src="/videos/ig_example.mp4"
                   autoPlay
