@@ -17,10 +17,13 @@ type NavUser = {
   isAdmin: boolean;
 };
 
-function AuroraWordmark({ className = "text-lg" }: { className?: string }) {
+function AuroraWordmark({ className = "text-lg", showTagline = false }: { className?: string; showTagline?: boolean }) {
   return (
-    <span className={`font-display font-bold tracking-tight text-fuchsia-600 ${className}`}>
-      Aurora
+    <span className={`inline-flex items-baseline gap-1.5 whitespace-nowrap font-display ${className}`}>
+      <span className="font-bold tracking-tight text-fuchsia-600">Aurora</span>
+      {showTagline && (
+        <span className="pl-1 text-[0.5em] font-normal tracking-normal text-warm-400">| Warrior Woman Health</span>
+      )}
     </span>
   );
 }
@@ -72,7 +75,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           {/* Logo — desktop, only rendered here when there's no sidebar */}
           <Link href="/" className="group relative hidden md:block">
             <div className="absolute -inset-2 rounded-full bg-fuchsia-200/40 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
-            <AuroraWordmark className="relative text-lg" />
+            <AuroraWordmark className="relative text-lg" showTagline />
           </Link>
 
           {/* Desktop bar — non-member states, plus members viewing the public landing page */}

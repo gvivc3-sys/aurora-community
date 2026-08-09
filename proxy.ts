@@ -113,6 +113,6 @@ export const config = {
      * - favicon.ico
      * - public assets
      */
-    "/((?!_next/static|_next/image|favicon.ico|sw\\.js|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sw\\.js|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|webm|mov|m4a|mp3)$).*)",
   ],
 };

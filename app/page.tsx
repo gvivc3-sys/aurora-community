@@ -194,12 +194,13 @@ export default async function Home() {
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
             <AnimateOnScroll className="mx-auto md:mx-0">
               <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:h-72 sm:w-72">
-                <Image
-                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
-                  alt="Ashley"
-                  fill
-                  className="object-cover"
-                  sizes="288px"
+                <video
+                  src="/videos/ig_example.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="h-full w-full object-cover"
                 />
               </div>
             </AnimateOnScroll>
