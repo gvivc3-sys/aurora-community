@@ -179,13 +179,48 @@ export default async function Home() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
-            membership built around Ashley&apos;s insights: articles, voice
+            membership built around my insights: articles, voice
             notes, and real conversation on the topics that matter most.
             It&apos;s a space to align with your highest self,{" "}
-            <strong className="font-semibold text-warm-800">learn from Ashley&apos;s guidance</strong>,
+            <strong className="font-semibold text-warm-800">learn from my guidance</strong>,
             and connect with sisters walking the same path.
           </p>
         </AnimateOnScroll>
+      </section>
+
+      {/* ─── ABOUT ASHLEY ─── */}
+      <section className="dark-gradient border-t border-warm-200 px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
+            <AnimateOnScroll className="mx-auto md:mx-0">
+              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:h-72 sm:w-72">
+                <Image
+                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
+                  alt="Ashley"
+                  fill
+                  className="object-cover"
+                  sizes="288px"
+                />
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={120} className="text-center md:text-left">
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
+                The woman behind <span className="italic text-fuchsia-300 block">Aurora.</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
+                I&apos;ve spent years immersed in ancient beauty practices, deep
+                nourishment, and living in alignment with true health,
+                creating natural skincare, painting, and connecting to the
+                natural ways of living on Earth.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
+                I built Aurora from the knowing that each of us holds the power
+                to elevate our energy and create the life we feel called to live.
+              </p>
+            </AnimateOnScroll>
+          </div>
+        </div>
       </section>
 
       {/* ─── THE PORTAL ─── */}
@@ -198,7 +233,7 @@ export default async function Home() {
               This is <span className="italic">the <span className="text-fuchsia-600">Portal</span>.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              This is where Ashley shares her insights regularly,
+              This is where I share my insights regularly,
               through voice notes, short vlogs, and articles. Join the discussion, or just sit with what resonates.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
@@ -322,8 +357,8 @@ export default async function Home() {
               <p className="mt-6 text-left text-base leading-relaxed text-warm-200">
                 <strong className="font-semibold text-warm-50">Share</strong> what&apos;s
                 on your heart: a question, an intention, or something
-                you&apos;ve never said out loud. Ashley reads every whisper
-                personally and replies with real insight, exactly as
+                you&apos;ve never said out loud. I read every whisper
+                personally and reply with real insight, exactly as
                 privately as you choose. All met with <strong className="font-semibold text-warm-50">judgement-free</strong> understanding.
               </p>
 
@@ -331,8 +366,8 @@ export default async function Home() {
                 <li className="flex items-start gap-3">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
-                    <strong className="font-semibold text-warm-50">Public:</strong> Ashley
-                    may choose to share your whisper to the Portal with her reply.
+                    <strong className="font-semibold text-warm-50">Public:</strong> I
+                    may choose to share your whisper to the Portal with my reply.
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
@@ -346,7 +381,7 @@ export default async function Home() {
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
                     <strong className="font-semibold text-warm-50">Secret:</strong> stays
-                    fully private, just you and Ashley. Perfect for{" "}
+                    fully private, just you and me. Perfect for{" "}
                     <strong className="font-semibold text-warm-50">heavy feelings</strong>{" "}
                     or asking what you&apos;ve never said out loud.
                   </p>
@@ -440,7 +475,7 @@ export default async function Home() {
               <span className="italic text-fuchsia-600">Ashley&apos;s Guides</span>, included.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-              Lifetime access to Ashley&apos;s full library of guides and audio tracks,
+              Lifetime access to my full library of guides and audio tracks,
               including every future release, free with your membership.
             </p>
           </AnimateOnScroll>
@@ -638,8 +673,8 @@ export default async function Home() {
                 </h3>
                 <ul className="mt-6 space-y-3 text-left">
                   {[
-                    "The Portal: Ashley's articles, voice notes, and community discussion",
-                    "Private, anonymous Whispers with Ashley",
+                    "The Portal: my articles, voice notes, and community discussion",
+                    "Private, anonymous Whispers with me",
                     "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
                     "Discussions: open threads with the whole community",
                     "Direct messaging with members around the world",
@@ -681,41 +716,6 @@ export default async function Home() {
             </div>
           </div>
         </AnimateOnScroll>
-      </section>
-
-      {/* ─── ABOUT ASHLEY ─── */}
-      <section className="dark-gradient border-t border-warm-200 px-6 py-16 sm:py-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="mx-auto md:mx-0">
-              <div className="relative h-64 w-64 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:h-72 sm:w-72">
-                <Image
-                  src="https://cnhcyfqdqfmprarwdhng.supabase.co/storage/v1/object/public/avatars/0f4a6ffc-07d9-4a8e-a8da-1da9b64c90c8/avatar.png?t=1785718694658"
-                  alt="Ashley"
-                  fill
-                  className="object-cover"
-                  sizes="288px"
-                />
-              </div>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll delay={120} className="text-center md:text-left">
-              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                The woman behind <span className="italic text-fuchsia-300 block">Aurora.</span>
-              </h2>
-              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
-                Ashley has spent years immersed in ancient beauty practices, deep
-                nourishment, and living in alignment with true health,
-                creating natural skincare, painting, and connecting to the
-                natural ways of living on Earth.
-              </p>
-              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
-                Aurora was born from the knowing that each of us holds the power
-                to elevate our energy and create the life we feel called to live.
-              </p>
-            </AnimateOnScroll>
-          </div>
-        </div>
       </section>
 
       {/* ─── FAQ ─── */}
