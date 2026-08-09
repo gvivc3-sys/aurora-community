@@ -57,6 +57,33 @@ function SparklesIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 
 
+const ashleysGuides = [
+  {
+    title: "Warrior Woman Workout Guide & Training Program",
+    price: "46",
+    description:
+      "Build a strong, sculpted physique with training that supports your female physiology: 4 weeks of exact lifting workouts, for 2-4 days a week.",
+  },
+  {
+    title: "Holistic Metabolism Guide",
+    price: "27",
+    description:
+      "A complete holistic guide to building and maintaining a strong, healthy metabolism.",
+  },
+  {
+    title: "Electrical Eating: Your Guide to High Frequency Health",
+    price: "61",
+    description:
+      "Knowledge, wisdom, and a grounded framework for nourishing choices, not a rigid diet: food insights, a full grocery list, and meal and snack ideas for true vitality.",
+  },
+  {
+    title: "Alignment Affirmations Audio Tracks",
+    price: "46",
+    description:
+      "Two spoken affirmation tracks (23 and 68 minutes) to elevate your frequency across health, beauty, wealth, energy, alignment, magnetism, gratitude, relationships, and more.",
+  },
+];
+
 export default async function Home() {
   const supabase = await createClient();
   const {
@@ -110,7 +137,7 @@ export default async function Home() {
                   href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-lg bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                 >
-                  Enter the Portal
+                  Enter Aurora
                   <ArrowRightIcon className="h-4 w-4" />
                 </Link>
               ) : (
@@ -405,6 +432,37 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── ASHLEY'S GUIDES ─── */}
+      <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <AnimateOnScroll className="text-center">
+            <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
+              <span className="italic text-fuchsia-600">Ashley&apos;s Guides</span>, included.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
+              Lifetime access to Ashley&apos;s full library of guides and audio tracks,
+              including every future release, free with your membership.
+            </p>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={150} className="mt-10">
+            <ul className="divide-y divide-warm-200 overflow-hidden rounded-xl border border-warm-200 bg-white shadow-sm">
+              {ashleysGuides.map((g) => (
+                <li key={g.title} className="p-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 className="text-base font-semibold text-warm-900">{g.title}</h3>
+                    <p className="shrink-0 text-sm">
+                      <span className="text-warm-400 line-through">${g.price}</span>{" "}
+                      <span className="font-medium text-green-700">Free with membership</span>
+                    </p>
+                  </div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-warm-600">{g.description}</p>
+                </li>
+              ))}
+            </ul>
+          </AnimateOnScroll>
+        </div>
+      </section>
 
       {/* ─── DISCUSSIONS ─── */}
       <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
@@ -581,10 +639,10 @@ export default async function Home() {
                 <ul className="mt-6 space-y-3 text-left">
                   {[
                     "The Portal: Ashley's articles, voice notes, and community discussion",
-                    "Direct messaging with members around the world",
-                    "Discussions: open threads with the whole community",
                     "Private, anonymous Whispers with Ashley",
                     "Ashley's Guides: guides, books, and audio tracks (over $125 in value!)",
+                    "Discussions: open threads with the whole community",
+                    "Direct messaging with members around the world",
                     "Use Aurora right in your browser, or install it as an app on your phone",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-warm-700">
@@ -599,7 +657,7 @@ export default async function Home() {
                       href="/dashboard"
                       className="block w-full rounded-lg bg-warm-800 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                     >
-                      Go to Your Portal
+                      Enter Aurora
                     </Link>
                   ) : (
                     <div className="flex flex-col items-center gap-3">

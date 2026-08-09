@@ -18,6 +18,13 @@ const pillars: Pillar[] = [
       "A curated space of blog posts and articles on the topics that matter most, written by Ashley. Read, reflect, and share your own experiences and thoughts directly with the community.",
   },
   {
+    icon: VideoCameraIcon,
+    iconColor: "bg-rose-50 text-rose-500",
+    title: "Ashley's Guides",
+    description:
+      "Lifetime access to all of Ashley's guides and books (over $125 in value!), including every future release, yours forever. From metabolic health to workout guides and affirmation audio tracks.",
+  },
+  {
     icon: RectangleStackIcon,
     iconColor: "bg-purple-50 text-purple-600",
     title: "Discussions",
@@ -30,13 +37,6 @@ const pillars: Pillar[] = [
     title: "Private Messages",
     description:
       "Connect one-on-one with members you meet in Discussions. Real conversations, just between the two of you.",
-  },
-  {
-    icon: VideoCameraIcon,
-    iconColor: "bg-rose-50 text-rose-500",
-    title: "Ashley's Guides",
-    description:
-      "Lifetime access to all of Ashley's guides and books (over $125 in value!), including every future release, yours forever. From metabolic health to workout guides and affirmation audio tracks.",
   },
 ];
 

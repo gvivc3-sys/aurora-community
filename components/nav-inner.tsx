@@ -82,7 +82,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-lg border border-warm-300 bg-transparent px-5 py-1.5 text-sm font-medium tracking-wide text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98]"
                 >
-                  Enter the Portal
+                  Enter Aurora
                 </Link>
                 <form action={signOut}>
                   <button type="submit" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
@@ -161,7 +161,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-lg border border-warm-300 bg-transparent px-4 py-1.5 text-sm font-medium tracking-wide text-warm-700 transition-all hover:bg-warm-50 active:scale-[0.98]"
                 >
-                  Enter the Portal
+                  Enter Aurora
                 </Link>
               </>
             ) : user ? (
