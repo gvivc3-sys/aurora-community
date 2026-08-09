@@ -38,8 +38,8 @@ export default function Marquee() {
     <div>
       <AnimateOnScroll className="mx-auto max-w-2xl px-6 text-center">
         <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-          It&apos;s not noise you need.{" "}
-          <span className="italic text-fuchsia-600">It&apos;s insight.</span>
+          A sacred space to nourish your mind, body, and{" "}
+          <span className="italic text-fuchsia-600">soul</span>.
         </h2>
       </AnimateOnScroll>
       <div className="marquee-fade mx-auto mt-8 max-w-4xl overflow-hidden px-6">

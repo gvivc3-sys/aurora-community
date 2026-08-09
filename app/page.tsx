@@ -148,8 +148,7 @@ export default async function Home() {
         <Marquee />
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            Align, grow, and{" "}
-            <span className="italic text-fuchsia-600">belong</span> with Aurora.
+            All within Aurora.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
