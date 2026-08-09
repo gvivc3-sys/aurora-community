@@ -195,7 +195,7 @@ a[data-type="mention"]:hover {
 }
 
 .dark-gradient {
-  background: var(--warm-900);
+  background: var(--color-teal-900);
 }
 
 .animate-fade-in-up {
