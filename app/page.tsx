@@ -144,7 +144,7 @@ export default async function Home() {
                 <>
                   <Link
                     href={user ? "/subscribe" : "/signup"}
-                    className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                    className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                   >
                     Join Aurora
                     <ArrowRightIcon className="h-4 w-4" />
@@ -474,7 +474,7 @@ export default async function Home() {
             </AnimateOnScroll>
           </div>
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -631,7 +631,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-12 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
               Join Aurora
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
@@ -680,8 +680,8 @@ export default async function Home() {
           </p>
 
           <div className="relative mx-auto mt-10 max-w-md">
-            <div className="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-fuchsia-300/50 via-pink-200/50 to-fuchsia-400/50 blur-2xl" aria-hidden="true" />
-            <div className="relative rounded-[20px] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[3px] shadow-xl">
+            <div className="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-teal-300/40 blur-2xl" aria-hidden="true" />
+            <div className="relative rounded-[20px] bg-teal-300 p-[3px] shadow-xl">
               <div id="join" className="rounded-[17px] bg-white px-8 py-10 sm:px-10">
                 <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
                   Aurora Sisterhood
@@ -717,7 +717,7 @@ export default async function Home() {
                       </span>
                       <Link
                         href={user ? "/subscribe" : "/signup"}
-                        className="cta-gradient-btn block w-full rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                        className="block w-full rounded-lg bg-teal-700 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                       >
                         Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
                       </Link>
@@ -751,7 +751,7 @@ export default async function Home() {
           </AnimateOnScroll>
 
           <AnimateOnScroll className="mt-10 text-center">
-            <a href="#join" className="cta-gradient-btn inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100">
+            <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
               Ready to find your people?
               <ArrowRightIcon className="h-4 w-4 -rotate-90" />
             </a>

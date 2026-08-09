@@ -49,10 +49,10 @@ export default async function SubscribePage() {
         {/* Pricing card */}
         <div className="relative mx-auto mt-12 max-w-sm">
           <div
-            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-fuchsia-300/40 via-pink-200/40 to-fuchsia-400/40 blur-2xl"
+            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-teal-300/40 blur-2xl"
             aria-hidden="true"
           />
-          <div className="relative rounded-[20px] bg-gradient-to-br from-fuchsia-300 via-pink-200 to-fuchsia-300 p-[3px] shadow-xl">
+          <div className="relative rounded-[20px] bg-teal-300 p-[3px] shadow-xl">
             <div className="rounded-[17px] bg-white px-8 py-10">
               <div className="text-center">
                 <h2 className="font-display text-2xl font-medium tracking-tight text-warm-900">
@@ -89,7 +89,7 @@ export default async function SubscribePage() {
               <form action={createCheckoutSession} className="mt-8">
                 <button
                   type="submit"
-                  className="cta-gradient-btn w-full rounded-lg bg-gradient-to-r from-fuchsia-600 via-pink-500 to-fuchsia-700 bg-[length:200%_100%] px-4 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-[100%_0] hover:brightness-110 hover:shadow-xl active:scale-[0.97] active:brightness-100"
+                  className="w-full rounded-lg bg-teal-700 px-4 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                 >
                   Subscribe Now
                 </button>
