@@ -119,8 +119,8 @@ export default async function Home() {
               className="animate-fade-in-up font-display text-4xl leading-[1.05] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
               style={{ animationDelay: "0ms" }}
             >
-              <span className="block font-normal italic">Stop shrinking.</span>
-              <span className="block font-bold">Start strengthening.</span>
+              <span className="block font-normal italic">Reclaim your energy.</span>
+              <span className="block font-bold">Elevate your life.</span>
             </h1>
 
             {/* Video */}
@@ -687,7 +687,7 @@ export default async function Home() {
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
-            <span className="mt-1 block italic">Ready to stop shrinking and <span className="text-fuchsia-600">start strengthening</span>?</span>
+            <span className="mt-1 block italic">Ready to step into your <span className="text-fuchsia-600">Warrior Woman</span> era?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
             Aurora is where women learn to nourish their bodies without
