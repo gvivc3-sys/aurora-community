@@ -36,7 +36,7 @@ export default async function WelcomePage() {
           </p>
           <ul className="mt-4 space-y-3">
             {[
-              "The Portal: Ashley's articles, voice notes, and community discussion, organized into Nourishment, Health + Beauty, Frequency, and Whisper.",
+              "The Portal: Ashley's articles, voice notes, and community discussion, organized into Nourishment, Strength + Beauty, Frequency, and Whisper.",
               "Discussions: open threads with the whole community on anything on your mind.",
               "Private Messages: your inbox for connecting with members you meet.",
               "Ashley's Guides: her full library of guides, books, and audio tracks.",

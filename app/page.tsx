@@ -289,7 +289,7 @@ export default async function Home() {
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 md:h-7 md:w-7">
                     <HeartIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </span>
-                  <span className="text-xs font-medium text-warm-900 md:text-sm">Health + Beauty</span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Strength + Beauty</span>
                 </span>
               </span>
               <span className="-rotate-1 translate-x-2 -translate-y-2">

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 const topics = [
   { key: "all", label: "All Topics" },
   { key: "love", label: "Nourishment" },
-  { key: "health", label: "Health + Beauty" },
+  { key: "health", label: "Strength + Beauty" },
   { key: "magic", label: "Frequency" },
   { key: "ask", label: "Whisper" },
 ] as const;
