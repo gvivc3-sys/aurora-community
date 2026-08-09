@@ -209,14 +209,29 @@ export default async function Home() {
                 The woman behind <span className="italic text-fuchsia-300 block">Aurora.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
-                I&apos;ve spent years immersed in ancient beauty practices, deep
-                nourishment, and living in alignment with true health,
-                creating natural skincare, painting, and connecting to the
-                natural ways of living on Earth.
+                As women, we&apos;re taught that being skinny and small is
+                something to strive for. After years in the modeling
+                industry, where a low weight was celebrated, I had to unlearn
+                that belief for myself.
               </p>
               <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
-                I built Aurora from the knowing that each of us holds the power
-                to elevate our energy and create the life we feel called to live.
+                When I began prioritizing my health, I stopped weighing
+                myself and started focusing on becoming stronger. I lifted
+                weights, gained muscle, and learned to measure progress by
+                how I felt, not a number on a scale.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
+                Recently, I stepped on a scale and saw 170 lbs. For the first
+                time, the number meant nothing to me. I feel strong, healthy,
+                and confident, and that matters so much more than what I
+                weigh.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0">
+                That transformation became part of why I created Aurora. I
+                want to help women break free from the beliefs that keep us
+                small, discover the strength already within themselves, and
+                use that strength to create the health, confidence, and life
+                they truly desire.
               </p>
             </AnimateOnScroll>
           </div>
