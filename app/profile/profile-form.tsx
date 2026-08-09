@@ -275,7 +275,7 @@ export default function ProfileForm({ user }: { user: User }) {
                     htmlFor="instagram_handle"
                     className="text-sm font-medium text-warm-700"
                   >
-                    Instagram <span className="text-fuchsia-500">*</span>
+                    Instagram
                   </label>
                   <div className="flex shrink-0 items-center gap-2">
                     <span className="text-xs text-warm-500">I&apos;d rather not share it</span>
@@ -317,14 +317,6 @@ export default function ProfileForm({ user }: { user: User }) {
                     />
                   </div>
                 )}
-
-                <div
-                  className={`rounded-md border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-xs text-fuchsia-800 ${
-                    instagramOptedOut ? "mt-4" : "mt-2"
-                  }`}
-                >
-                  You need to add your Instagram to participate on Gather!
-                </div>
               </div>
 
               <div className="border-t border-warm-100 pt-5">
@@ -370,7 +362,7 @@ export default function ProfileForm({ user }: { user: User }) {
               </div>
 
               <p className="text-xs text-warm-400">
-                <span className="text-fuchsia-500">*</span> Required to earn your verified badge and post on Gather. Everything else here is just for members who want to share more.
+                Instagram contributes to your verified badge. Everything else here is optional, just for members who want to share more.
               </p>
             </div>
           </div>
@@ -397,16 +389,11 @@ export default function ProfileForm({ user }: { user: User }) {
           <div className="mt-6">
             <button
               type="submit"
-              disabled={pending || (!instagramHandle.trim() && !instagramOptedOut)}
+              disabled={pending}
               className="w-full rounded-lg bg-warm-800 px-4 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98] disabled:opacity-50"
             >
               {pending ? "Saving..." : "Save changes"}
             </button>
-            {!instagramHandle.trim() && !instagramOptedOut && (
-              <p className="mt-2 text-center text-xs text-warm-400">
-                Add your Instagram or opt out above to save.
-              </p>
-            )}
           </div>
         </form>
 

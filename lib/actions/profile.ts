@@ -86,10 +86,6 @@ export async function updateProfile(
     return { error: "Instagram handle must be 1-30 characters (letters, numbers, periods, underscores)." };
   }
 
-  if (!rawInstagram && !instagramOptedOut) {
-    return { error: "Add your Instagram handle, or opt out of sharing it." };
-  }
-
   if (rawX && !/^[a-zA-Z0-9_]{1,15}$/.test(rawX)) {
     return { error: "X handle must be 1-15 characters (letters, numbers, underscores)." };
   }

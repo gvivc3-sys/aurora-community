@@ -38,7 +38,7 @@ async function fetchAllBalanceTransactions() {
 }
 
 async function countSince(
-  table: "posts" | "comments" | "friend_flags" | "threads" | "thread_replies",
+  table: "posts" | "comments" | "threads" | "thread_replies",
   since: string,
 ) {
   const { count } = await supabaseAdmin
@@ -51,17 +51,15 @@ async function countSince(
 async function fetchSectionActivity() {
   const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
-  const [posts, comments, friendFlags, threads, threadReplies] = await Promise.all([
+  const [posts, comments, threads, threadReplies] = await Promise.all([
     countSince("posts", since),
     countSince("comments", since),
-    countSince("friend_flags", since),
     countSince("threads", since),
     countSince("thread_replies", since),
   ]);
 
   const sections = [
     { label: "Portal", value: posts + comments },
-    { label: "Gather", value: friendFlags },
     { label: "Discussions", value: threads + threadReplies },
   ];
 
@@ -292,7 +290,7 @@ export default async function AdminPage({
             <h2 className="text-sm font-medium text-warm-500">
               Activity by Section <span className="text-warm-400">(Last 30 Days)</span>
             </h2>
-            <div className="mt-4 grid grid-cols-3 gap-4">
+            <div className="mt-4 grid grid-cols-2 gap-4">
               {sectionActivity.map((s) => (
                 <div key={s.label} className="text-center">
                   <p className="text-xl font-light tracking-tight text-warm-900 sm:text-2xl">
@@ -310,7 +308,7 @@ export default async function AdminPage({
               ))}
             </div>
             <p className="mt-4 text-xs text-warm-400">
-              Posts, comments, replies, and Gather flags created in the last 30 days. This measures
+              Posts, comments, and replies created in the last 30 days. This measures
               content activity, not page views -- there&apos;s no visit-tracking analytics installed yet.
             </p>
           </div>

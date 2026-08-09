@@ -9,15 +9,11 @@ const faqs = [
   },
   {
     q: "What do I actually get with my membership?",
-    a: "The Portal (Ashley's articles, voice notes, and community discussion), Gather (a live board of members looking to connect, plus direct messaging), and Ashley's Guides (her full library of guides, books, and audio tracks, worth over $125 alone).",
-  },
-  {
-    q: "How does Gather work?",
-    a: "Post your city and what you're up for: coffee, a walk, just saying hi. Other members can message you directly. It's opt-in, so you're only ever visible when you choose to post.",
+    a: "The Portal (Ashley's articles, voice notes, and community discussion), Discussions (open threads with the whole community), and Ashley's Guides (her full library of guides, books, and audio tracks, worth over $125 alone).",
   },
   {
     q: "Is my privacy protected?",
-    a: "Yes. Locations are city-level only, never an exact address. Whispers to Ashley can be sent completely anonymously, and it's always your choice whether to reveal your identity.",
+    a: "Yes. Whispers to Ashley can be sent completely anonymously, and it's always your choice whether to reveal your identity.",
   },
   {
     q: "Can I cancel anytime?",
@@ -25,7 +21,7 @@ const faqs = [
   },
   {
     q: "What if I don't click with the community right away?",
-    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, say hi on Gather, or just read for a while. There's no wrong way to ease in.",
+    a: "Every woman in Aurora started as a stranger to the rest. Post a whisper, jump into a Discussion, or just read for a while. There's no wrong way to ease in.",
   },
 ];
 

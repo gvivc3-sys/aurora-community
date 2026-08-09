@@ -64,8 +64,8 @@ export default async function MessagesPage() {
               <p className="text-lg font-light text-warm-400">No private messages yet.</p>
               <p className="mt-2 text-sm text-warm-400">
                 Reach out to someone from{" "}
-                <Link href="/frequency" className="text-warm-600 underline">
-                  Gather
+                <Link href="/conversations" className="text-warm-600 underline">
+                  Discussions
                 </Link>{" "}
                 to start a conversation.
               </p>

@@ -7,7 +7,7 @@ import { signOut } from "@/lib/actions/auth";
 import Avatar from "@/components/avatar";
 import InstallPrompt from "@/components/install-prompt";
 import { MEMBERSHIP_PRICE } from "@/lib/config";
-import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, UsersIcon, EnvelopeIcon, BellIcon, RectangleStackIcon } from "@/components/icons";
+import { UserCircleIcon, ChatBubbleIcon, BookmarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon, EnvelopeIcon, BellIcon, RectangleStackIcon } from "@/components/icons";
 import AdminBadge from "@/components/admin-badge";
 
 type NavUser = {
@@ -202,7 +202,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
           </div>
         </div>
 
-        {/* Mobile secondary nav — Portal / Discussions / Gather, icon-only until active */}
+        {/* Mobile secondary nav — Portal / Discussions, icon-only until active */}
         {showAppChrome && (
           <div className="flex items-center gap-1 border-t border-warm-100 bg-white px-2 py-2 md:hidden">
             <Link
@@ -227,17 +227,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                 Discussions
               </span>
             </Link>
-            <Link
-              href="/frequency"
-              className={`flex items-center justify-center gap-1.5 overflow-hidden rounded-full py-2 transition-all duration-300 ${isActive("/frequency") ? "flex-[2] bg-warm-100 text-warm-900" : "flex-1 text-warm-500"}`}
-            >
-              <UsersIcon className="h-4 w-4 shrink-0" />
-              <span
-                className={`overflow-hidden whitespace-nowrap text-[11px] font-medium transition-all duration-300 ${isActive("/frequency") ? "max-w-[80px] opacity-100" : "max-w-0 opacity-0"}`}
-              >
-                Gather
-              </span>
-            </Link>
           </div>
         )}
       </nav>
@@ -258,10 +247,6 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
             <Link href="/inbox" className={sidebarLinkClass(isActive("/inbox"))}>
               <ChatBubbleIcon className="h-4 w-4 text-warm-400" />
               Whisper
-            </Link>
-            <Link href="/frequency" className={sidebarLinkClass(isActive("/frequency"))}>
-              <UsersIcon className="h-4 w-4 text-warm-400" />
-              Gather
             </Link>
 
             <div className="my-2 border-t border-warm-100" />
