@@ -530,13 +530,14 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Or start a <span className="italic text-fuchsia-600">discussion.</span>
+            Or start a <span className="italic text-fuchsia-600">discussion.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-            Start a discussion about anything that's on your mind. From wellness and relationships to everyday questions and life's bigger moments,
-            every discussion has the <strong className="font-semibold text-warm-800">opportunity to grow</strong> through the voices of women who care.
-            The discussions with the most meaningful engagement rise to the top, making it easy to discover wisdom, offer support, and feel part
-            of something bigger than yourself.
+            This is where I share my insights regularly, through voice notes, short vlogs, and articles designed to help you become stronger 
+            in your body, mind, and sense of self. Join the discussion, learn alongside your sisters, or simply sit with what resonates.
+            <br></br>
+            Every post inside the Portal lives under one of four topics, each centered around becoming a <strong className="font-semibold text-warm-800">tronger, healthier, 
+            more self-respecting woman</strong>, so you can find exactly what speaks to you:
             </p>
           </AnimateOnScroll>
 
@@ -634,8 +635,7 @@ export default async function Home() {
 
           <AnimateOnScroll className="mx-auto mt-10 max-w-2xl text-center">
             <p className="text-sm leading-relaxed text-warm-500">
-              Four ways to grow, connect, and be supported by your sisters,
-              all inside one membership.
+              Four ways to grow, connect, and become stronger alongside sisters committed to doing the same.
             </p>
           </AnimateOnScroll>
 
@@ -679,7 +679,6 @@ export default async function Home() {
 
         <AnimateOnScroll className="relative mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extralight leading-[1.08] tracking-tight text-warm-900 sm:text-5xl">
-            Step into <span className="font-medium">Aurora.</span>
             <span className="mt-1 block italic">Ready to step into your <span className="text-fuchsia-600">Warrior Woman</span> era?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
