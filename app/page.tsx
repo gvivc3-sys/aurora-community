@@ -200,7 +200,7 @@ export default async function Home() {
       </section>
 
       {/* ─── ABOUT ASHLEY ─── */}
-      <section className="dark-gradient border-t border-warm-200 px-6 py-16 sm:py-24">
+      <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
             <AnimateOnScroll className="mx-auto md:mx-0">
@@ -244,23 +244,16 @@ export default async function Home() {
                 already within to build the health, body, and life they
                 truly desire.
               </p>
-              <a
-                href="#join"
-                className="mt-7 inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
-              >
-                Join Aurora
-                <ArrowRightIcon className="h-4 w-4 rotate-90" />
-              </a>
             </AnimateOnScroll>
           </div>
         </div>
       </section>
 
       {/* ─── WHAT IS A WARRIOR WOMAN ─── */}
-      <section className="dark-gradient px-6 py-16 sm:py-24">
+      <section className="dark-gradient px-6 pb-16 pt-10 sm:pb-24 sm:pt-14">
         <div className="mx-auto max-w-5xl">
-          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="mx-auto md:mx-0">
+          <div className="grid items-center gap-12 md:grid-cols-[1fr_280px] md:gap-16">
+            <AnimateOnScroll className="mx-auto md:order-2 md:mx-0">
               <div className="relative aspect-[3/4] w-56 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-64">
                 <Image
                   src="/images/warrior_woman_img.jpg"
@@ -272,7 +265,7 @@ export default async function Home() {
               </div>
             </AnimateOnScroll>
 
-            <AnimateOnScroll delay={120} className="text-center md:text-left">
+            <AnimateOnScroll delay={120} className="text-center md:order-1 md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
                 What does it mean to be a <span className="italic text-fuchsia-300">Warrior Woman</span>?
               </h2>
@@ -288,9 +281,37 @@ export default async function Home() {
                 Embodying this strength in every area of your life and
                 listening to your heart, allowing it to lead you always.
               </p>
-              <p className="mx-auto mt-4 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
+
+              <div className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-3 md:mx-0 md:max-w-none">
+                {[
+                  { icon: BoltIcon, label: "Train your body" },
+                  { icon: LeafIcon, label: "Nourish your vessel" },
+                  { icon: SparklesIcon, label: "Cultivate energy" },
+                  { icon: HeartIcon, label: "Listen to your heart" },
+                ].map((pillar, i) => (
+                  <div
+                    key={pillar.label}
+                    className="animate-float-small flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2"
+                    style={{ animationDelay: `${i * 300}ms` }}
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fuchsia-400/20 text-fuchsia-300">
+                      <pillar.icon className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-xs font-medium text-warm-50 sm:text-sm">{pillar.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mx-auto mt-6 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
                 These are the pillars of being a Warrior Woman.
               </p>
+              <a
+                href="#join"
+                className="mt-7 inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
+              >
+                Join Aurora
+                <ArrowRightIcon className="h-4 w-4 rotate-90" />
+              </a>
             </AnimateOnScroll>
           </div>
         </div>
