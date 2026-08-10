@@ -193,7 +193,7 @@ export default async function Home() {
             membership for women committed to becoming stronger, healthier, and more deeply rooted in themselves. 
             Through my articles, voice notes, guidance, and real conversations, you&apos;ll learn to nourish your body, 
             strengthen your mind, and step into the woman you know you can be.{" "}
-            <strong className="font-semibold text-warm-800">Grow alongside me</strong>,
+            <br></br><strong className="font-semibold text-warm-800">Grow alongside me</strong>,
             and connect with sisters committed to becoming their strongest selves too.
           </p>
         </AnimateOnScroll>
@@ -263,18 +263,17 @@ export default async function Home() {
           {/* Copy */}
           <AnimateOnScroll className="text-center md:text-left">
             <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-              Ready to grow <span className="italic text-fuchsia-600">stronger</span>?
+              This is <span className="italic">the <span className="text-fuchsia-600">Portal</span>.</span>
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              This is where I share what&apos;s helped me become
-              physically stronger, mentally clearer, and more myself:
-              voice notes, short vlogs, and articles on nourishing your
-              body, protecting your energy, and taking up space without
-              apology. Join the discussion, or just sit with what resonates.
+              This is where I share every day practices and my philosophies
+              to become stronger physically, mentally, and spiritually.
+              Voice notes and blog posts on nourishing the body, building
+              muscle, and cultivating your energy. You can join the
+              discussion or sit with what resonates.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              I sort every post I share into one of four topics, so you
-              can find exactly what you need to keep becoming stronger:
+              I sort every post into one of four topics:
             </p>
 
             <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-4 gap-y-3">
@@ -297,7 +296,7 @@ export default async function Home() {
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-50 text-rose-600 md:h-7 md:w-7">
                     <HeartIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </span>
-                  <span className="text-xs font-medium text-warm-900 md:text-sm">Strength + Beauty</span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Strength Training</span>
                 </span>
               </span>
               <span className="-rotate-1 translate-x-2 -translate-y-2">
@@ -308,20 +307,19 @@ export default async function Home() {
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-600 md:h-7 md:w-7">
                     <BoltIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </span>
-                  <span className="text-xs font-medium text-warm-900 md:text-sm">Frequency</span>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Energy</span>
                 </span>
               </span>
               <span className="rotate-3 -translate-y-1">
-                <a
-                  href="#whisper"
-                  className="animate-float-glow flex items-center gap-2 rounded-full border border-fuchsia-200 bg-fuchsia-50 px-4 py-2 transition-transform hover:scale-105 md:px-5 md:py-3"
-                  style={{ animationDelay: "1200ms, 0ms" }}
+                <span
+                  className="animate-float-small flex items-center gap-2 rounded-full border border-warm-200 bg-white px-4 py-2 shadow-sm md:px-5 md:py-3"
+                  style={{ animationDelay: "1200ms" }}
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-600 md:h-7 md:w-7">
-                    <ChatBubbleIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-purple-50 text-purple-600 md:h-7 md:w-7">
+                    <SparklesIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </span>
-                  <span className="text-xs font-medium text-warm-900 md:text-sm">Whisper</span>
-                </a>
+                  <span className="text-xs font-medium text-warm-900 md:text-sm">Beauty</span>
+                </span>
               </span>
             </div>
           </AnimateOnScroll>
@@ -340,7 +338,7 @@ export default async function Home() {
                   </div>
                 </div>
                 <span className="flex items-center gap-1 rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-medium text-fuchsia-600">
-                  <BoltIcon className="h-3 w-3" /> Frequency
+                  <BoltIcon className="h-3 w-3" /> Energy
                 </span>
               </div>
               <div className="px-4 py-3">

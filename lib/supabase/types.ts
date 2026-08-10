@@ -24,7 +24,7 @@ export interface Database {
           author_id: string;
           author_name: string | null;
           author_avatar_url: string | null;
-          tag: "love" | "health" | "magic" | "ask";
+          tag: "love" | "health" | "magic" | "beauty" | "ask";
           comments_enabled: boolean;
           anonymous_question: string | null;
           whisper_sender_name: string | null;
@@ -45,7 +45,7 @@ export interface Database {
           author_id: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
-          tag: "love" | "health" | "magic" | "ask";
+          tag: "love" | "health" | "magic" | "beauty" | "ask";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
           whisper_sender_name?: string | null;
@@ -66,7 +66,7 @@ export interface Database {
           author_id?: string;
           author_name?: string | null;
           author_avatar_url?: string | null;
-          tag?: "love" | "health" | "magic" | "ask";
+          tag?: "love" | "health" | "magic" | "beauty" | "ask";
           comments_enabled?: boolean;
           anonymous_question?: string | null;
           whisper_sender_name?: string | null;

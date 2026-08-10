@@ -24,7 +24,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
 
   const type = formData.get("type") as string;
   const tag = formData.get("tag") as string;
-  if (!tag || !["love", "health", "magic"].includes(tag)) {
+  if (!tag || !["love", "health", "magic", "beauty"].includes(tag)) {
     return { error: "Please select a tag." };
   }
 
@@ -61,7 +61,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-      tag: tag as "love" | "health" | "magic",
+      tag: tag as "love" | "health" | "magic" | "beauty",
       comments_enabled: commentsEnabled,
     }).select("id").single();
 
@@ -128,7 +128,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
         author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-        tag: tag as "love" | "health" | "magic",
+        tag: tag as "love" | "health" | "magic" | "beauty",
         comments_enabled: commentsEnabled,
       }).select("id").single();
 
@@ -143,7 +143,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
         author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-        tag: tag as "love" | "health" | "magic",
+        tag: tag as "love" | "health" | "magic" | "beauty",
         comments_enabled: commentsEnabled,
       }).select("id").single();
 
@@ -208,7 +208,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
         author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-        tag: tag as "love" | "health" | "magic",
+        tag: tag as "love" | "health" | "magic" | "beauty",
         comments_enabled: commentsEnabled,
       }).select("id").single();
 
@@ -224,7 +224,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
         author_id: user.id,
         author_name: user.user_metadata?.username ?? user.email,
         author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-        tag: tag as "love" | "health" | "magic",
+        tag: tag as "love" | "health" | "magic" | "beauty",
         comments_enabled: commentsEnabled,
       }).select("id").single();
 
@@ -277,7 +277,7 @@ export async function createPost(previousState: unknown, formData: FormData) {
       author_id: user.id,
       author_name: user.user_metadata?.username ?? user.email,
       author_avatar_url: user.user_metadata?.custom_avatar_url ?? user.user_metadata?.avatar_url ?? null,
-      tag: tag as "love" | "health" | "magic",
+      tag: tag as "love" | "health" | "magic" | "beauty",
       comments_enabled: commentsEnabled,
     }).select("id").single();
 

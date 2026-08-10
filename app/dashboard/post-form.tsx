@@ -5,7 +5,7 @@ import { createPost } from "@/lib/actions/post";
 import RichTextEditor from "@/components/rich-text-editor";
 import AudioPlayer from "@/components/audio-player";
 import { useToast } from "@/components/toast";
-import { LeafIcon, HeartIcon, BoltIcon } from "@/components/icons";
+import { LeafIcon, HeartIcon, BoltIcon, SparklesIcon } from "@/components/icons";
 
 const postTypes = [
   { key: "voice", label: "Voice" },
@@ -16,8 +16,9 @@ const postTypes = [
 
 const tags = [
   { key: "love", label: "Nourishment", icon: LeafIcon, color: "border-green-300 bg-green-50 text-green-700", activeColor: "border-green-500 bg-green-100 text-green-800 ring-2 ring-green-200" },
-  { key: "health", label: "Strength + Beauty", icon: HeartIcon, color: "border-rose-300 bg-rose-50 text-rose-700", activeColor: "border-rose-500 bg-rose-100 text-rose-800 ring-2 ring-rose-200" },
-  { key: "magic", label: "Frequency", icon: BoltIcon, color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700", activeColor: "border-fuchsia-500 bg-fuchsia-100 text-fuchsia-800 ring-2 ring-fuchsia-200" },
+  { key: "health", label: "Strength Training", icon: HeartIcon, color: "border-rose-300 bg-rose-50 text-rose-700", activeColor: "border-rose-500 bg-rose-100 text-rose-800 ring-2 ring-rose-200" },
+  { key: "magic", label: "Energy", icon: BoltIcon, color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700", activeColor: "border-fuchsia-500 bg-fuchsia-100 text-fuchsia-800 ring-2 ring-fuchsia-200" },
+  { key: "beauty", label: "Beauty", icon: SparklesIcon, color: "border-purple-300 bg-purple-50 text-purple-700", activeColor: "border-purple-500 bg-purple-100 text-purple-800 ring-2 ring-purple-200" },
 ] as const;
 
 type PostType = (typeof postTypes)[number]["key"];

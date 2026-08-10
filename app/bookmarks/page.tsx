@@ -15,8 +15,9 @@ import PostAttachment from "@/components/post-attachment";
 
 const tagStyles: Record<string, { badge: string; emoji: string; label: string }> = {
   love: { badge: "bg-pink-50 text-pink-700", emoji: "\u2764\uFE0F", label: "Nourishment" },
-  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F", label: "Strength + Beauty" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728", label: "Frequency" },
+  health: { badge: "bg-green-50 text-green-700", emoji: "\uD83C\uDF3F", label: "Strength Training" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", emoji: "\u2728", label: "Energy" },
+  beauty: { badge: "bg-purple-50 text-purple-700", emoji: "\uD83D\uDC84", label: "Beauty" },
   ask: { badge: "bg-amber-50 text-amber-700", emoji: "\uD83E\uDD0D", label: "whisper" },
 };
 

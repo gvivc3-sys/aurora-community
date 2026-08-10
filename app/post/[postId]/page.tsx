@@ -11,15 +11,16 @@ import ArticleBody from "@/app/dashboard/article-body";
 import PostActions from "@/app/dashboard/post-actions";
 import AudioPlayer from "@/components/audio-player";
 import PostAttachment from "@/components/post-attachment";
-import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon } from "@/components/icons";
+import { LeafIcon, HeartIcon, HeartSolidIcon, BoltIcon, ChatBubbleIcon, SparklesIcon } from "@/components/icons";
 import { getProfileCompletion } from "@/lib/profile-completion";
 
 export const dynamic = "force-dynamic";
 
 const tagStyles: Record<string, { badge: string; icon: React.ComponentType<{ className?: string }>; label: string }> = {
   love: { badge: "bg-green-50 text-green-700", icon: LeafIcon, label: "Nourishment" },
-  health: { badge: "bg-rose-50 text-rose-700", icon: HeartIcon, label: "Strength + Beauty" },
-  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", icon: BoltIcon, label: "Frequency" },
+  health: { badge: "bg-rose-50 text-rose-700", icon: HeartIcon, label: "Strength Training" },
+  magic: { badge: "bg-fuchsia-50 text-fuchsia-700", icon: BoltIcon, label: "Energy" },
+  beauty: { badge: "bg-purple-50 text-purple-700", icon: SparklesIcon, label: "Beauty" },
   ask: { badge: "bg-amber-50 text-amber-700", icon: ChatBubbleIcon, label: "whisper" },
 };
 
