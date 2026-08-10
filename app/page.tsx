@@ -117,7 +117,7 @@ export default async function Home() {
             <div className="animate-fade-in-up mx-auto md:mx-0" style={{ animationDelay: "0ms" }}>
               <div className="relative aspect-[4/5] w-56 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:w-64 md:w-full">
                 <Image
-                  src="/images/welcome_video_c_poster.jpg"
+                  src="/images/portrait_image_wide.jpg"
                   alt="Ashley, founder of Aurora"
                   fill
                   priority
