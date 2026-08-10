@@ -256,6 +256,46 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ─── WHAT IS A WARRIOR WOMAN ─── */}
+      <section className="dark-gradient px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
+            <AnimateOnScroll className="mx-auto md:mx-0">
+              <div className="relative aspect-[3/4] w-56 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-64">
+                <Image
+                  src="/images/warrior_woman_img.jpg"
+                  alt="A warrior woman"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 224px, 256px"
+                />
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={120} className="text-center md:text-left">
+              <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
+                What does it mean to be a <span className="italic text-fuchsia-300">Warrior Woman</span>?
+              </h2>
+              <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
+                To be a warrior woman is to embody your true strength in
+                this life. Within us all is great power, and we have the
+                ability to tap into this and activate our energy.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
+                Training to strengthen the physical body. Deeply nourishing
+                yourself with food to honor your vessel. Cultivating your
+                energy to amplify all that you are: mind, body, and spirit.
+                Embodying this strength in every area of your life and
+                listening to your heart, allowing it to lead you always.
+              </p>
+              <p className="mx-auto mt-4 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
+                These are the pillars of being a Warrior Woman.
+              </p>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
       {/* ─── THE PORTAL ─── */}
       <section className="border-t border-warm-200 px-6 py-12 sm:py-20">
         <div className="mx-auto max-w-6xl">
