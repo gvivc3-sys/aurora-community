@@ -3,11 +3,15 @@ export default function PostAttachment({
   fileType,
   variant = "inline",
   expanded = false,
+  padded = true,
 }: {
   fileUrl: string;
   fileType: string | null;
   variant?: "inline" | "thumbnail";
   expanded?: boolean;
+  /** Inline variant only: whether to add its own horizontal padding, or fill
+   *  the width of an already-padded parent (e.g. a post/reply's text column). */
+  padded?: boolean;
 }) {
   if (fileType?.startsWith("image/")) {
     if (variant === "thumbnail") {
@@ -27,7 +31,7 @@ export default function PostAttachment({
     }
 
     return (
-      <div className="mt-3 px-4">
+      <div className={padded ? "mt-3 px-4" : "mt-3"}>
         <a href={fileUrl} target="_blank" rel="noopener noreferrer">
           <img
             src={fileUrl}

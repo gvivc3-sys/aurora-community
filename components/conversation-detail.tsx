@@ -189,14 +189,14 @@ export default function ConversationDetail({
             </div>
             <h1 className="mt-1 text-lg font-medium text-warm-900">{thread.title}</h1>
             <p className="mt-1 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">{thread.body}</p>
+            {thread.file_url && (
+              <PostAttachment fileUrl={thread.file_url} fileType={thread.file_type} padded={false} />
+            )}
+            <div className="mt-3 flex items-center gap-4">
+              <ReactionButton threadId={thread.id} count={thread.reactionCount} reacted={thread.reactedByMe} />
+              {canDeleteThread && <DeleteButton label="discussion" onDelete={handleDeleteThread} />}
+            </div>
           </div>
-        </div>
-        {thread.file_url && (
-          <PostAttachment fileUrl={thread.file_url} fileType={thread.file_type} />
-        )}
-        <div className="mt-3 flex items-center gap-4">
-          <ReactionButton threadId={thread.id} count={thread.reactionCount} reacted={thread.reactedByMe} />
-          {canDeleteThread && <DeleteButton label="discussion" onDelete={handleDeleteThread} />}
         </div>
       </div>
 
@@ -220,7 +220,7 @@ export default function ConversationDetail({
                   </div>
                   <p className="mt-0.5 whitespace-pre-wrap text-sm leading-relaxed text-warm-700">{reply.body}</p>
                   {reply.file_url && (
-                    <PostAttachment fileUrl={reply.file_url} fileType={reply.file_type} />
+                    <PostAttachment fileUrl={reply.file_url} fileType={reply.file_type} padded={false} />
                   )}
                   <div className="mt-2 flex items-center gap-4">
                     <ReactionButton replyId={reply.id} count={reply.reactionCount} reacted={reply.reactedByMe} />
