@@ -217,6 +217,15 @@ export default async function Home() {
                   className="h-full w-full object-cover"
                 />
               </div>
+              <div className="absolute left-[80%] top-6 z-20 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:top-8">
+                <Image
+                  src="/images/gym_v3.jpg"
+                  alt="Ashley training"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 144px, (max-width: 768px) 240px, 256px"
+                />
+              </div>
             </AnimateOnScroll>
 
             <AnimateOnScroll delay={120} className="text-center md:text-left">
