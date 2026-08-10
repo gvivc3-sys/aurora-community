@@ -660,7 +660,8 @@ export default async function Home() {
       <section className="border-t border-warm-200 px-6 py-14 text-center sm:py-20">
         <AnimateOnScroll className="mx-auto max-w-xl">
           <div className="animate-float-small relative mx-auto h-16 w-16 overflow-hidden rounded-2xl shadow-md">
-            <Image src="/icon-512.png" alt="Aurora app icon" fill className="object-cover" sizes="128px" quality={100} />
+            {/* Plain img (not next/image) so the ?v= cache-busting query string works without touching images.localPatterns */}
+            <img src="/icon-512.png?v=3" alt="Aurora app icon" className="h-full w-full object-cover" />
           </div>
           <h2 className="mt-5 font-display text-2xl leading-tight tracking-tight text-warm-900 sm:text-3xl">
             Aurora lives right on your <span className="italic">home screen.</span>

@@ -104,7 +104,7 @@ export function IOSInstallBanner() {
             <div className="flex items-center gap-3">
               {/* App icon */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/apple-touch-icon.png?v=2" alt="" className="h-12 w-12 rounded-lg shadow-sm" />
+              <img src="/apple-touch-icon.png?v=3" alt="" className="h-12 w-12 rounded-lg shadow-sm" />
               <div>
                 <p className="text-sm font-semibold text-warm-900">Aurora</p>
                 <p className="text-xs text-warm-500">Add to your Home Screen</p>
