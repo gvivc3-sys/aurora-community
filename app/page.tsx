@@ -158,7 +158,7 @@ export default async function Home() {
             </div>
             {!hasActiveSub && (
               <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "300ms" }}>
-                <span className="line-through opacity-50">$55</span> $38 / month &middot; Early pricing &middot; Cancel anytime
+                <span className="line-through opacity-50">$55</span> $38 / month &middot; Founding member pricing &middot; Cancel anytime
               </p>
             )}
           </div>
@@ -725,8 +725,11 @@ export default async function Home() {
                     <div className="flex flex-col items-center gap-3">
                       <span className="flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
                         <CheckBadgeAlternateIcon className="h-3.5 w-3.5" />
-                        Special Early Discount
+                        Founding Member Pricing
                       </span>
+                      <p className="max-w-xs text-center text-xs leading-relaxed text-warm-500">
+                        Aurora is just getting started, and I want the women who join me now to be taken care of for it.
+                      </p>
                       <Link
                         href={user ? "/subscribe" : "/signup"}
                         className="block w-full rounded-lg bg-teal-700 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
