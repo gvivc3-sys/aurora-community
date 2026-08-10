@@ -3,7 +3,6 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { AuroraWordmark } from "@/components/nav-inner";
 import AnimateOnScroll from "@/components/animate-on-scroll";
-import VideoCard from "@/components/video-card";
 import Marquee from "@/components/marquee";
 import {
   ArrowRightIcon,
@@ -123,15 +122,10 @@ export default async function Home() {
               <span className="block font-bold">Elevate your life.</span>
             </h1>
 
-            {/* Video */}
-            <div className="animate-fade-in-up mx-auto mt-5 max-w-lg" style={{ animationDelay: "150ms" }}>
-              <VideoCard src="https://auth.myaurora.io/storage/v1/object/public/videos/welcome_video_c.mp4" poster="/images/welcome_video_c_poster.jpg" vsl />
-            </div>
-
             {/* CTA buttons */}
             <div
-              className="animate-fade-in-up mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              style={{ animationDelay: "300ms" }}
+              className="animate-fade-in-up mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
+              style={{ animationDelay: "150ms" }}
             >
               {hasActiveSub ? (
                 <Link
@@ -163,7 +157,7 @@ export default async function Home() {
               )}
             </div>
             {!hasActiveSub && (
-              <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "450ms" }}>
+              <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "300ms" }}>
                 <span className="line-through opacity-50">$55</span> $38 / month &middot; Early pricing &middot; Cancel anytime
               </p>
             )}
@@ -176,7 +170,7 @@ export default async function Home() {
         <Marquee />
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            Warrior Woman Wellness | Aurora
+            Aurora | Warrior Woman
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
@@ -208,7 +202,7 @@ export default async function Home() {
 
             <AnimateOnScroll delay={120} className="text-center md:text-left">
               <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-50 sm:text-4xl">
-                The woman behind <span className="italic text-fuchsia-300 block">Aurora.</span>
+                The woman behind Warrior Woman
               </h2>
               <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
                 As women, we&apos;re taught that being skinny and small is
@@ -702,7 +696,7 @@ export default async function Home() {
             <div className="relative rounded-[20px] bg-teal-300 p-[3px] shadow-xl">
               <div id="join" className="rounded-[17px] bg-white px-8 py-10 sm:px-10">
                 <h3 className="text-center font-display text-2xl font-medium tracking-tight text-warm-900">
-                  Aurora | Warrior Woman Wellness
+                  Aurora | Warrior Woman
                 </h3>
                 <ul className="mt-6 space-y-3 text-left">
                   {[
