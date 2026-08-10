@@ -20,9 +20,9 @@ type NavUser = {
 export function AuroraWordmark({ className = "text-lg", showTagline = false }: { className?: string; showTagline?: boolean }) {
   return (
     <span className={`inline-flex items-center gap-1.5 whitespace-nowrap font-display ${className}`}>
-      <span className="font-bold tracking-tight text-fuchsia-600">Aurora</span>
+      <span className="font-bold leading-none tracking-tight text-fuchsia-600">Aurora</span>
       {showTagline && (
-        <span className="pl-1 text-[0.65em] font-normal tracking-normal text-warm-400">| Warrior Woman</span>
+        <span className="pl-1 text-[0.65em] font-normal leading-none tracking-normal text-warm-400">| Warrior Woman</span>
       )}
     </span>
   );

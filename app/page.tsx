@@ -128,19 +128,19 @@ export default async function Home() {
             </div>
 
             <div className="text-center md:text-left">
+              {/* Eyebrow */}
+              <div className="animate-fade-in-up flex justify-center md:justify-start" style={{ animationDelay: "0ms" }}>
+                <AuroraWordmark className="text-xl sm:text-2xl" showTagline />
+              </div>
+
               {/* Headline */}
               <h1
-                className="animate-fade-in-up font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl md:text-5xl"
-                style={{ animationDelay: "0ms" }}
-              >
-                Aurora <span className="text-warm-400">|</span> Warrior Woman
-              </h1>
-              <p
-                className="animate-fade-in-up mt-3 font-display text-xl italic leading-snug tracking-tight text-warm-600 sm:text-2xl"
+                className="animate-fade-in-up mt-3 font-display text-3xl leading-[1.1] tracking-tight text-warm-900 sm:text-4xl md:text-5xl"
                 style={{ animationDelay: "100ms" }}
               >
-                Build and embody strength through nourishment, training, and energy cultivation
-              </p>
+                <span className="block font-normal italic">Build and embody strength</span>
+                <span className="block font-bold">through nourishment, training, and energy cultivation</span>
+              </h1>
 
               {/* CTA buttons */}
               <div
@@ -192,10 +192,12 @@ export default async function Home() {
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <p className="mx-auto max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
-            membership for women committed to becoming stronger, healthier, and more deeply rooted in themselves. 
-            Through my articles, voice notes, guidance, and real conversations, you&apos;ll learn to nourish your body, 
-            strengthen your mind, and step into the woman you know you can be.{" "}
-            <br></br><strong className="font-semibold text-warm-800">Grow alongside me</strong>,
+            membership for women committed to becoming stronger, healthier, and more deeply rooted in themselves.
+            Through my articles, voice notes, guidance, and real conversations, you&apos;ll learn to nourish your body,
+            strengthen your mind, and step into the woman you know you can be.
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
+            <strong className="font-semibold text-warm-800">Grow alongside me</strong>,
             and connect with sisters committed to becoming their strongest selves too.
           </p>
         </AnimateOnScroll>
