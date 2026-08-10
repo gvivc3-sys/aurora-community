@@ -2,6 +2,12 @@ import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 import { createServerClient } from "@supabase/ssr";
 
+// Site-wide password gate — set to false to reopen the site without
+// touching anything else below.
+const SITE_LOCKED = true;
+const GATE_COOKIE = "site_access";
+const GATE_PATH = "/paused";
+
 // Routes that require an active subscription
 const PROTECTED_ROUTES = ["/dashboard", "/profile", "/inbox", "/bookmarks", "/library", "/post", "/admin", "/management", "/frequency", "/messages", "/welcome"];
 
@@ -16,16 +22,28 @@ const PUBLIC_EXACT = [
   "/subscribe",
   "/community-guidelines",
   "/privacy",
+  GATE_PATH,
 ];
 
 // Prefix public routes (matched with startsWith)
 const PUBLIC_PREFIXES = ["/api/", "/auth/"];
 
 export async function proxy(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+
+  // Site-wide password gate takes priority over everything else. API
+  // routes stay exempt so things like the Stripe webhook keep working.
+  if (SITE_LOCKED && path !== GATE_PATH && !path.startsWith("/api/")) {
+    const unlocked = request.cookies.get(GATE_COOKIE)?.value === "granted";
+    if (!unlocked) {
+      const url = request.nextUrl.clone();
+      url.pathname = GATE_PATH;
+      return NextResponse.redirect(url);
+    }
+  }
+
   // Always refresh the Supabase session
   const { response, user } = await updateSession(request);
-
-  const path = request.nextUrl.pathname;
 
   // Skip paywall for public routes and API routes
   if (

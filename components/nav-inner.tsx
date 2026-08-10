@@ -61,6 +61,12 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
   const sidebarLinkClass = (active: boolean) =>
     `flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium transition-colors hover:bg-warm-50 hover:text-warm-900 ${active ? "bg-warm-50 text-warm-900" : "text-warm-600"}`;
 
+  // Standalone notice page while the site-wide password gate is on —
+  // no nav chrome, no working-looking links to click through.
+  if (pathname === "/paused") {
+    return null;
+  }
+
   return (
     <>
       {/* The conversation detail page renders its own compact header (back
