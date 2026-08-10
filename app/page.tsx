@@ -203,7 +203,8 @@ export default async function Home() {
       <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="mx-auto md:mx-0">
+            <AnimateOnScroll className="relative mx-auto md:mx-0">
+              <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-fuchsia-400/30 via-teal-400/20 to-transparent blur-2xl" aria-hidden="true" />
               <div className="relative aspect-[9/16] w-56 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-64">
                 <video
                   src="/videos/ig_example.mp4"
@@ -274,37 +275,36 @@ export default async function Home() {
                 this life. Within us all is great power, and we have the
                 ability to tap into this and activate our energy.
               </p>
-              <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
-                Training to strengthen the physical body. Deeply nourishing
-                yourself with food to honor your vessel. Cultivating your
-                energy to amplify all that you are: mind, body, and spirit.
-                Embodying this strength in every area of your life and
-                listening to your heart, allowing it to lead you always.
-              </p>
-
               <p className="mx-auto mt-6 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
                 These are the pillars of being a Warrior Woman.
               </p>
 
-              <div className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-3 md:mx-0 md:max-w-none">
-                {[
-                  { icon: BoltIcon, label: "Train your body" },
-                  { icon: LeafIcon, label: "Nourish your vessel" },
-                  { icon: SparklesIcon, label: "Cultivate energy" },
-                  { icon: HeartIcon, label: "Listen to your heart" },
-                ].map((pillar, i) => (
-                  <div
-                    key={pillar.label}
-                    className="animate-float-small flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2"
-                    style={{ animationDelay: `${i * 300}ms` }}
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-fuchsia-400/20 text-fuchsia-300">
-                      <pillar.icon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="text-xs font-medium text-warm-50 sm:text-sm">{pillar.label}</span>
-                  </div>
-                ))}
-              </div>
+              <ul className="mx-auto mt-6 max-w-md space-y-3 text-left md:mx-0 md:max-w-none">
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Train:</strong> strengthening the physical body.
+                  </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Nourish:</strong> deeply feeding yourself with food to honor your vessel.
+                  </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Cultivate:</strong> amplifying your energy across mind, body, and spirit.
+                  </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
+                  <p className="text-sm leading-relaxed text-warm-200">
+                    <strong className="font-semibold text-warm-50">Listen:</strong> embodying this strength everywhere, and letting your heart lead.
+                  </p>
+                </li>
+              </ul>
             </AnimateOnScroll>
           </div>
           <AnimateOnScroll className="mt-12 text-center">
