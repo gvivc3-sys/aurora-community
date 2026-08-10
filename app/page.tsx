@@ -117,7 +117,7 @@ export default async function Home() {
             <div className="animate-fade-in-up mx-auto md:mx-0" style={{ animationDelay: "0ms" }}>
               <div className="relative aspect-[4/5] w-56 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:w-64 md:w-full">
                 <Image
-                  src="/images/portrait_image_wide.jpg"
+                  src="/images/gym_v2.jpg"
                   alt="Ashley, founder of Aurora"
                   fill
                   priority
@@ -156,7 +156,7 @@ export default async function Home() {
                       href={user ? "/subscribe" : "/signup"}
                       className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                     >
-                      Join Aurora
+                      Become a Warrior Woman
                       <ArrowRightIcon className="h-4 w-4" />
                     </Link>
                     {!user && (
@@ -282,6 +282,10 @@ export default async function Home() {
                 listening to your heart, allowing it to lead you always.
               </p>
 
+              <p className="mx-auto mt-6 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
+                These are the pillars of being a Warrior Woman.
+              </p>
+
               <div className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-3 md:mx-0 md:max-w-none">
                 {[
                   { icon: BoltIcon, label: "Train your body" },
@@ -301,19 +305,14 @@ export default async function Home() {
                   </div>
                 ))}
               </div>
-
-              <p className="mx-auto mt-6 max-w-md text-left text-base italic leading-relaxed text-warm-50 md:mx-0 md:max-w-none">
-                These are the pillars of being a Warrior Woman.
-              </p>
-              <a
-                href="#join"
-                className="mt-7 inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
-              >
-                Join Aurora
-                <ArrowRightIcon className="h-4 w-4 rotate-90" />
-              </a>
             </AnimateOnScroll>
           </div>
+          <AnimateOnScroll className="mt-12 text-center">
+            <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
+              Become a Warrior Woman
+              <ArrowRightIcon className="h-4 w-4 rotate-90" />
+            </a>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -555,7 +554,7 @@ export default async function Home() {
           </div>
           <AnimateOnScroll className="mt-12 text-center">
             <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
-              Join Aurora
+              Become a Warrior Woman
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
           </AnimateOnScroll>
@@ -717,7 +716,7 @@ export default async function Home() {
 
           <AnimateOnScroll className="mt-12 text-center">
             <a href="#join" className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-8 py-3 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]">
-              Join Aurora
+              Become a Warrior Woman
               <ArrowRightIcon className="h-4 w-4 rotate-90" />
             </a>
           </AnimateOnScroll>
@@ -808,7 +807,7 @@ export default async function Home() {
                         href={user ? "/subscribe" : "/signup"}
                         className="block w-full rounded-lg bg-teal-700 py-3.5 text-center text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                       >
-                        Join Aurora &middot; <span className="line-through opacity-60">$55</span> $38/month
+                        Become a Warrior Woman &middot; <span className="line-through opacity-60">$55</span> $38/month
                       </Link>
                       <p className="text-xs text-warm-400">
                         Cancel anytime. No contracts. No questions asked.

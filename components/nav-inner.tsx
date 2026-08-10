@@ -101,7 +101,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                   href="/subscribe"
                   className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-5 py-1.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                 >
-                  Join Aurora &middot; {MEMBERSHIP_PRICE}
+                  Become a Warrior Woman &middot; {MEMBERSHIP_PRICE}
                 </Link>
                 <form action={signOut}>
                   <button type="submit" className="rounded-lg px-3 py-1.5 text-sm font-medium text-warm-500 transition-colors hover:bg-warm-50 hover:text-warm-900">
@@ -444,7 +444,7 @@ export default function NavInner({ user, hasActiveSub = false, unreadNotificatio
                     onClick={() => setMenuOpen(false)}
                     className="block rounded-lg bg-warm-800 px-3 py-2 text-center text-sm font-medium text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                   >
-                    Join Aurora &middot; {MEMBERSHIP_PRICE}
+                    Become a Warrior Woman &middot; {MEMBERSHIP_PRICE}
                   </Link>
                   <form action={signOut}>
                     <button type="submit" className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-warm-600 transition-colors hover:bg-warm-100">
