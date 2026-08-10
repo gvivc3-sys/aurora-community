@@ -1,7 +1,7 @@
 import { HeartIcon } from "@/components/icons";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 
-const TINT = "bg-warm-100 text-warm-600";
+const TINT = "bg-fuchsia-50 text-fuchsia-600";
 
 const items = [
   { icon: HeartIcon, tint: TINT, text: "A judgement-free community" },
@@ -38,7 +38,7 @@ export default function Marquee() {
     <div>
       <AnimateOnScroll className="mx-auto max-w-2xl px-6 text-center">
         <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-          A sacred space to nourish your mind, body, and{" "}
+          A sacred space to strengthen your mind, body, and{" "}
           <span className="italic text-fuchsia-600">soul</span>.
         </h2>
       </AnimateOnScroll>

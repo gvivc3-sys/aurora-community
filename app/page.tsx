@@ -111,56 +111,72 @@ export default async function Home() {
       <section className="relative z-10">
         <div className="hero-gradient absolute inset-0" />
 
-        <div className="relative mx-auto max-w-4xl px-6 pb-8 pt-8 text-center sm:pb-10 sm:pt-10">
-          <div className="relative z-10">
-            {/* Headline */}
-            <h1
-              className="animate-fade-in-up font-display text-4xl leading-[1.05] tracking-tight text-warm-900 sm:text-5xl md:text-6xl"
-              style={{ animationDelay: "0ms" }}
-            >
-              <span className="block font-normal italic">Reclaim your energy.</span>
-              <span className="block font-bold">Elevate your life.</span>
-            </h1>
+        <div className="relative mx-auto max-w-5xl px-6 pb-8 pt-8 sm:pb-10 sm:pt-10">
+          <div className="relative z-10 grid items-center gap-8 md:grid-cols-[280px_1fr] md:gap-12">
+            {/* Face card */}
+            <div className="animate-fade-in-up mx-auto md:mx-0" style={{ animationDelay: "0ms" }}>
+              <div className="relative aspect-[4/5] w-56 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:w-64 md:w-full">
+                <Image
+                  src="/images/welcome_video_c_poster.jpg"
+                  alt="Ashley, founder of Aurora"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 256px, 280px"
+                />
+              </div>
+            </div>
 
-            {/* CTA buttons */}
-            <div
-              className="animate-fade-in-up mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              style={{ animationDelay: "150ms" }}
-            >
-              {hasActiveSub ? (
-                <Link
-                  href="/dashboard"
-                  className="inline-flex items-center gap-2 rounded-lg bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
-                >
-                  Enter Aurora
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
-              ) : (
-                <>
+            <div className="text-center md:text-left">
+              {/* Headline */}
+              <h1
+                className="animate-fade-in-up font-display text-3xl leading-[1.1] tracking-tight text-warm-900 sm:text-4xl md:text-5xl"
+                style={{ animationDelay: "100ms" }}
+              >
+                <span className="block font-normal italic">Build and embody strength</span>
+                <span className="block font-bold">through nourishment, training, and energy cultivation</span>
+              </h1>
+
+              {/* CTA buttons */}
+              <div
+                className="animate-fade-in-up mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row md:justify-start"
+                style={{ animationDelay: "250ms" }}
+              >
+                {hasActiveSub ? (
                   <Link
-                    href={user ? "/subscribe" : "/signup"}
-                    className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
+                    href="/dashboard"
+                    className="inline-flex items-center gap-2 rounded-lg bg-warm-800 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-md transition-all hover:bg-warm-700 active:scale-[0.98]"
                   >
-                    Join Aurora
+                    Enter Aurora
                     <ArrowRightIcon className="h-4 w-4" />
                   </Link>
-                  {!user && (
+                ) : (
+                  <>
                     <Link
-                      href="/login"
-                      className="inline-flex items-center gap-2 rounded-lg border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                      href={user ? "/subscribe" : "/signup"}
+                      className="inline-flex items-center gap-2 rounded-lg bg-teal-700 px-10 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg transition-all duration-500 hover:bg-teal-600 hover:shadow-xl active:scale-[0.97]"
                     >
-                      Sign In
+                      Join Aurora
                       <ArrowRightIcon className="h-4 w-4" />
                     </Link>
-                  )}
-                </>
+                    {!user && (
+                      <Link
+                        href="/login"
+                        className="inline-flex items-center gap-2 rounded-lg border border-warm-300 bg-white/60 px-8 py-3.5 text-sm font-medium tracking-wide text-warm-700 shadow-sm transition-all hover:bg-white hover:shadow-md active:scale-[0.98]"
+                      >
+                        Sign In
+                        <ArrowRightIcon className="h-4 w-4" />
+                      </Link>
+                    )}
+                  </>
+                )}
+              </div>
+              {!hasActiveSub && (
+                <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "400ms" }}>
+                  <span className="line-through opacity-50">$55</span> $38 / month &middot; Founding member pricing &middot; Cancel anytime
+                </p>
               )}
             </div>
-            {!hasActiveSub && (
-              <p className="animate-fade-in-up mt-4 text-xs text-warm-400" style={{ animationDelay: "300ms" }}>
-                <span className="line-through opacity-50">$55</span> $38 / month &middot; Founding member pricing &middot; Cancel anytime
-              </p>
-            )}
           </div>
         </div>
       </section>
@@ -207,27 +223,26 @@ export default async function Home() {
               <p className="mx-auto mt-5 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
                 As women, we&apos;re taught that being skinny and small is
                 something to strive for. After years in the modeling
-                industry, where a low weight was celebrated, I had to unlearn
-                that belief for myself.
+                industry, where being skinny was celebrated, I decided to
+                prioritize my health and unlearn that belief.
               </p>
               <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
-                When I began prioritizing my health, I stopped weighing
-                myself and started focusing on becoming stronger. I lifted
-                weights, gained muscle, and learned to measure progress by
-                how I felt, not a number on a scale.
+                I stopped weighing myself and started focusing on nourishing
+                my body and becoming stronger. I lifted weights, gained
+                muscle, and started valuing how I FEEL above everything
+                else. I had never felt so so incredible and powerful in
+                every area of my life.
               </p>
               <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
-                Recently, I stepped on a scale and saw 170 lbs. For the first
-                time, the number meant nothing to me. I feel strong, healthy,
-                and confident, and that matters so much more than what I
-                weigh.
+                Recently, I stepped on a scale and saw 170 lbs. And the
+                number meant nothing to me. I feel strong, healthy, and
+                confident, and that matters so much more than what I weigh.
               </p>
               <p className="mx-auto mt-4 max-w-md text-left text-base leading-relaxed text-warm-200 md:mx-0 md:max-w-none">
-                That transformation became part of why I created Aurora. I
-                want to help women stop shrinking themselves for other
-                people, discover the strength already within them, and use
-                it to build the health, self-respect, and life they
-                actually want.
+                This is why I have created Warrior Woman. I want to help
+                women stop shrinking themselves and discover the strength
+                already within to build the health, body, and life they
+                truly desire.
               </p>
               <a
                 href="#join"
