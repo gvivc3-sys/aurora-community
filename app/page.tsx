@@ -192,13 +192,11 @@ export default async function Home() {
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <p className="mx-auto max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
-            membership for women committed to becoming stronger, healthier, and more deeply rooted in themselves.
-            Through my articles, voice notes, guidance, and real conversations, you&apos;ll learn to nourish your body,
-            strengthen your mind, and step into the woman you know you can be.
+            membership for women committed to becoming strong, healthy, and energetically potent.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
-            <strong className="font-semibold text-warm-800">Grow alongside me</strong>,
-            and connect with sisters committed to becoming their strongest selves too.
+            Through my articles, voice notes, guidance, and open conversations, you&apos;ll learn to nourish your body,
+            strengthen your spirit, and step into the powerful woman you are meant to be.
           </p>
         </AnimateOnScroll>
       </section>
@@ -207,7 +205,7 @@ export default async function Home() {
       <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="relative mx-auto w-56 md:mx-0 sm:w-64">
+            <AnimateOnScroll className="relative mx-auto w-48 sm:w-56 md:mx-0">
               <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-fuchsia-400/30 via-teal-400/20 to-transparent blur-2xl" aria-hidden="true" />
               <div className="relative z-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-sm">
                 <video
@@ -219,13 +217,13 @@ export default async function Home() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="relative z-20 -mt-16 ml-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:-mt-20 sm:ml-12">
+              <div className="absolute left-1/2 top-6 z-20 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:top-8">
                 <Image
                   src="/images/gym_v3.jpg"
                   alt="Ashley training"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 224px, 256px"
+                  sizes="(max-width: 768px) 192px, 224px"
                 />
               </div>
             </AnimateOnScroll>
