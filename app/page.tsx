@@ -176,15 +176,15 @@ export default async function Home() {
         <Marquee />
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <h2 className="font-display text-3xl leading-tight tracking-tight text-warm-900 sm:text-4xl">
-            All within Aurora.
+            Warrior Woman Wellness | Aurora
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
             Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
-            membership built around my insights: articles, voice
-            notes, and real conversation on the topics that matter most.
-            It&apos;s a space to align with your highest self,{" "}
-            <strong className="font-semibold text-warm-800">learn from my guidance</strong>,
-            and connect with sisters walking the same path.
+            membership for women committed to becoming stronger, healthier, and more deeply rooted in themselves. 
+            Through my articles, voice notes, guidance, and real conversations, you&apos;ll learn to nourish your body, 
+            strengthen your mind, and step into the woman you know you can be.{" "}
+            <strong className="font-semibold text-warm-800">Grow alongside me</strong>,
+            and connect with sisters committed to becoming their strongest selves too.
           </p>
         </AnimateOnScroll>
       </section>
@@ -264,9 +264,8 @@ export default async function Home() {
               apology. Join the discussion, or just sit with what resonates.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              Every post inside the Portal lives under one of four topics,
-              so you can find exactly what you need to keep becoming
-              stronger:
+              I sort every post I share into one of four topics, so you
+              can find exactly what you need to keep becoming stronger:
             </p>
 
             <div className="mt-6 inline-grid grid-cols-[auto_auto] gap-x-4 gap-y-3">
@@ -401,8 +400,8 @@ export default async function Home() {
                 <li className="flex items-start gap-3">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
-                    <strong className="font-semibold text-warm-50">Anonymous:</strong> shared
-                    the same way, but you&apos;re known as &ldquo;a sister.&rdquo;
+                    <strong className="font-semibold text-warm-50">Anonymous:</strong> I
+                    share it the same way, but you&apos;re known as &ldquo;a sister.&rdquo;
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
@@ -539,12 +538,13 @@ export default async function Home() {
               What&apos;s on your <span className="italic text-fuchsia-600">mind</span> today?
             </h2>
             <p className="mt-6 text-left text-base leading-relaxed text-warm-600">
-              Open threads with the whole community: a win, a question, a
-              moment you want to talk through out loud. Reply, react, and
-              see what other women are working on right now.
+              I wanted a place for the smaller moments too: open threads
+              with the whole community for a win, a question, or something
+              you want to talk through out loud. Reply, react, and see
+              what other women are working on right now.
             </p>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600">
-              No algorithm, no performance, just <strong className="font-semibold text-warm-800">real conversation</strong> with
+              I keep it simple: no algorithm, no performance, just <strong className="font-semibold text-warm-800">real conversation</strong> with
               sisters who are also choosing to get stronger, not smaller.
             </p>
           </AnimateOnScroll>
@@ -643,7 +643,7 @@ export default async function Home() {
 
           <AnimateOnScroll className="mx-auto mt-10 max-w-2xl text-center">
             <p className="text-sm leading-relaxed text-warm-500">
-              Four ways to grow, connect, and become stronger alongside sisters committed to doing the same.
+              Four ways I&apos;ve built for you to grow, connect, and become stronger alongside sisters committed to doing the same.
             </p>
           </AnimateOnScroll>
 
@@ -667,7 +667,7 @@ export default async function Home() {
             Aurora lives right on your <span className="italic">home screen.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-warm-600">
-            Install Aurora as an app on your phone in seconds, <strong className="font-semibold text-warm-800">no app store 
+            I made sure you can install Aurora as an app on your phone in seconds, <strong className="font-semibold text-warm-800">no app store
             needed</strong>, so you&apos;re always one tap away from staying connected to your sisters.
           </p>
         </AnimateOnScroll>
@@ -691,10 +691,10 @@ export default async function Home() {
             <span className="mt-1 block italic">Ready to step into your <span className="text-fuchsia-600">Warrior Woman</span> era?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-left text-base leading-relaxed text-warm-500 md:text-center">
-            Aurora is where women learn to nourish their bodies without
-            guilt, set boundaries without apology, and build real strength,
-            physical, mental, and emotional, alongside sisters doing the
-            same. Strong and feminine were never opposites.
+            I built Aurora to be where women learn to nourish their bodies
+            without guilt, set boundaries without apology, and build real
+            strength, physical, mental, and emotional, alongside sisters
+            doing the same. Strong and feminine were never opposites.
           </p>
 
           <div className="relative mx-auto mt-10 max-w-md">
@@ -759,8 +759,8 @@ export default async function Home() {
               Questions?
             </h2>
             <p className="mt-4 text-left text-base leading-relaxed text-warm-600 md:text-center">
-              A little more on why women are joining, and exactly what
-              you get.
+              A little more from me on why women are joining, and exactly
+              what you get.
             </p>
           </AnimateOnScroll>
 
