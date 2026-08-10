@@ -216,9 +216,23 @@ export async function toggleThreadReaction(previousState: unknown, formData: For
   query = threadId ? query.eq("thread_id", threadId) : query.eq("reply_id", replyId as string);
   const { data: existing } = await query.maybeSingle();
 
+  // Reactions on a reply only carry replyId, not threadId — look up the
+  // parent thread so we can revalidate the thread detail page too.
+  let revalidateThreadId = threadId;
+  if (!revalidateThreadId && replyId) {
+    const { data: reply } = await supabase
+      .from("thread_replies")
+      .select("thread_id")
+      .eq("id", replyId)
+      .single();
+    revalidateThreadId = reply?.thread_id ?? null;
+  }
+
   if (existing) {
     const { error } = await supabase.from("thread_reactions").delete().eq("id", existing.id);
     if (error) return { error: error.message, reacted: true };
+    revalidatePath("/conversations");
+    if (revalidateThreadId) revalidatePath(`/conversations/${revalidateThreadId}`);
     return { reacted: false };
   }
 
@@ -228,6 +242,8 @@ export async function toggleThreadReaction(previousState: unknown, formData: For
     reply_id: replyId,
   });
   if (error) return { error: error.message, reacted: false };
+  revalidatePath("/conversations");
+  if (revalidateThreadId) revalidatePath(`/conversations/${revalidateThreadId}`);
   return { reacted: true };
 }
 
