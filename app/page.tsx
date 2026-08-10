@@ -205,9 +205,9 @@ export default async function Home() {
       <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 sm:gap-16 md:grid-cols-[480px_1fr] md:gap-20">
-            <AnimateOnScroll className="relative mx-auto w-36 sm:w-60 md:w-64 md:mx-0">
+            <AnimateOnScroll className="relative mx-auto h-[288px] w-[260px] sm:h-[464px] sm:w-[432px] md:mx-0 md:h-[490px] md:w-[461px]">
               <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-fuchsia-400/30 via-teal-400/20 to-transparent blur-2xl" aria-hidden="true" />
-              <div className="relative z-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-sm">
+              <div className="absolute left-0 top-0 z-10 aspect-[9/16] w-[144px] overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-[240px] md:w-[256px]">
                 <video
                   src="/videos/ig_example.mp4"
                   autoPlay
@@ -217,13 +217,14 @@ export default async function Home() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="absolute left-[80%] top-6 z-20 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:top-8">
+              <div className="absolute left-[115px] top-6 z-20 aspect-[9/16] w-[144px] overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:left-[192px] sm:top-8 sm:w-[240px] md:left-[205px] md:w-[256px]">
                 <Image
                   src="/images/gym_v3.jpg"
                   alt="Ashley training"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 144px, (max-width: 768px) 240px, 256px"
+                  quality={90}
+                  sizes="(max-width: 640px) 220px, (max-width: 768px) 360px, 380px"
                 />
               </div>
             </AnimateOnScroll>
