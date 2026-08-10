@@ -117,7 +117,7 @@ export default async function Home() {
             <div className="animate-fade-in-up mx-auto md:mx-0" style={{ animationDelay: "0ms" }}>
               <div className="relative aspect-[4/5] w-56 overflow-hidden rounded-2xl border border-warm-200 shadow-sm sm:w-64 md:w-full">
                 <Image
-                  src="/images/gym_v2.jpg"
+                  src="/images/portrait_image_wide.jpg"
                   alt="Ashley, founder of Aurora"
                   fill
                   priority
@@ -207,9 +207,9 @@ export default async function Home() {
       <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="relative mx-auto md:mx-0">
+            <AnimateOnScroll className="relative mx-auto w-56 md:mx-0 sm:w-64">
               <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-fuchsia-400/30 via-teal-400/20 to-transparent blur-2xl" aria-hidden="true" />
-              <div className="relative aspect-[9/16] w-56 overflow-hidden rounded-2xl border border-warm-700 shadow-sm sm:w-64">
+              <div className="relative z-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-sm">
                 <video
                   src="/videos/ig_example.mp4"
                   autoPlay
@@ -217,6 +217,15 @@ export default async function Home() {
                   loop
                   playsInline
                   className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="relative z-20 -mt-16 ml-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:-mt-20 sm:ml-12">
+                <Image
+                  src="/images/gym_v3.jpg"
+                  alt="Ashley training"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 224px, 256px"
                 />
               </div>
             </AnimateOnScroll>
@@ -299,13 +308,13 @@ export default async function Home() {
                 <li className="flex items-start gap-3">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
-                    <strong className="font-semibold text-warm-50">Cultivate:</strong> amplifying your energy across mind, body, and spirit.
+                    <strong className="font-semibold text-warm-50">Cultivate:</strong> amplify your energy spiritually.
                   </p>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckBadgeAlternateIcon className="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-300" />
                   <p className="text-sm leading-relaxed text-warm-200">
-                    <strong className="font-semibold text-warm-50">Listen:</strong> embodying this strength everywhere, and letting your heart lead.
+                    <strong className="font-semibold text-warm-50">Embody:</strong> carry this strength with you through life, letting your heart lead.
                   </p>
                 </li>
               </ul>
