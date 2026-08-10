@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -68,9 +69,13 @@ export default function InstallPrompt() {
 const DISMISSED_KEY = "aurora-ios-install-dismissed";
 
 export function IOSInstallBanner() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Never prompt while the site-wide password gate is showing
+    if (pathname === "/paused") return;
+
     // Only show on iOS Safari, not already installed, not previously dismissed
     const ua = navigator.userAgent;
     const isIOS = /iPad|iPhone|iPod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream;
@@ -82,14 +87,14 @@ export function IOSInstallBanner() {
       const t = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(t);
     }
-  }, []);
+  }, [pathname]);
 
   function dismiss() {
     setVisible(false);
     localStorage.setItem(DISMISSED_KEY, "1");
   }
 
-  if (!visible) return null;
+  if (pathname === "/paused" || !visible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 animate-slide-up px-4 pb-4">
