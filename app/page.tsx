@@ -191,12 +191,12 @@ export default async function Home() {
         <Marquee />
         <AnimateOnScroll className="mx-auto mt-12 max-w-2xl text-center">
           <p className="mx-auto max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
-            Aurora is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
-            membership for women committed to becoming strong, healthy, and energetically potent.
+            Warrior Woman is an <strong className="font-semibold text-warm-800">exclusive</strong>{" "}
+            membership for women who are ready to be strong, healthy, and energetically potent.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-left text-base leading-relaxed text-warm-600 md:text-center">
-            Through my articles, voice notes, guidance, and open conversations, you&apos;ll learn to nourish your body,
-            strengthen your spirit, and step into the powerful woman you are meant to be.
+            Through my articles, voice notes, and open conversations, you&apos;ll learn to nourish your body,
+            strengthen your physical vessel and spirit, and step into the powerful woman you are meant to be.
           </p>
         </AnimateOnScroll>
       </section>
@@ -204,8 +204,8 @@ export default async function Home() {
       {/* ─── ABOUT ASHLEY ─── */}
       <section className="dark-gradient border-t border-warm-200 px-6 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="mx-auto max-w-5xl">
-          <div className="grid items-center gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <AnimateOnScroll className="relative mx-auto w-48 sm:w-56 md:mx-0">
+          <div className="grid items-center gap-12 sm:gap-16 md:grid-cols-[480px_1fr] md:gap-20">
+            <AnimateOnScroll className="relative mx-auto w-36 sm:w-60 md:w-64 md:mx-0">
               <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-fuchsia-400/30 via-teal-400/20 to-transparent blur-2xl" aria-hidden="true" />
               <div className="relative z-10 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-sm">
                 <video
@@ -215,15 +215,6 @@ export default async function Home() {
                   loop
                   playsInline
                   className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="absolute left-1/2 top-6 z-20 aspect-[9/16] w-full overflow-hidden rounded-2xl border border-warm-700 shadow-lg sm:top-8">
-                <Image
-                  src="/images/gym_v3.jpg"
-                  alt="Ashley training"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 192px, 224px"
                 />
               </div>
             </AnimateOnScroll>
@@ -580,10 +571,9 @@ export default async function Home() {
               <span className="italic text-fuchsia-600">Ashley&apos;s Guides</span>, included.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-warm-600">
-              Real tools for becoming stronger, not another quick fix:
-              training programs, nourishment frameworks, and mindset audio.
-              Lifetime access to my full library, including every future
-              release, free with your membership.
+              Deeply supportive books for cultivating long term strength,
+              uplifting routines, metabolic and cellular health, and
+              reprogramming the mind.
             </p>
           </AnimateOnScroll>
 
